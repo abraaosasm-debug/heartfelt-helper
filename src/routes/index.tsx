@@ -217,8 +217,8 @@ function Index() {
             </h1>
 
             <p className="v3-hero-lead">
-              Tenha <strong>292 páginas</strong> entre atividades e materiais de apoio para trabalhar
-              letras, números, coordenação, emoções, rotina, raciocínio e muito mais.
+              Tenha <strong>292 páginas</strong> entre atividades e materiais de apoio para
+              trabalhar letras, números, coordenação, emoções, rotina, raciocínio e muito mais.
             </p>
 
             <div className="v3-proof-row" aria-label="Resumo do Kit Completo">
@@ -402,17 +402,14 @@ function Index() {
               </div>
 
               <ul>
-                {[
-                  "91 páginas",
-                  "Volume 1 completo",
-                  "PDF para imprimir",
-                  "Pagamento único",
-                ].map((item) => (
-                  <li key={item}>
-                    <Check size={17} />
-                    {item}
-                  </li>
-                ))}
+                {["91 páginas", "Volume 1 completo", "PDF para imprimir", "Pagamento único"].map(
+                  (item) => (
+                    <li key={item}>
+                      <Check size={17} />
+                      {item}
+                    </li>
+                  ),
+                )}
               </ul>
 
               <PrimaryButton href={checkoutUrls.essential} dark>
