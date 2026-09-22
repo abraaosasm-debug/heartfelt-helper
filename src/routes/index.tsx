@@ -542,15 +542,16 @@ function Index() {
               </a>
 
               <div className="premium-hero-topics" aria-label="Conteúdos trabalhados">
-                {["Letras", "Números", "Coordenação", "Emoções", "Rotina", "Jogos"].map(
-                  (topic) => (
-                    <span key={topic}>{topic}</span>
-                  ),
-                )}
+                {["Letras", "Números", "Coordenação", "Emoções", "Rotina", "Jogos"].map((topic) => (
+                  <span key={topic}>{topic}</span>
+                ))}
               </div>
             </div>
 
-            <div className="premium-hero-visual" aria-label="Prévia dos cinco bônus do Kit Completo">
+            <div
+              className="premium-hero-visual"
+              aria-label="Prévia dos cinco bônus do Kit Completo"
+            >
               <div className="premium-hero-visual-grid" aria-hidden="true" />
               <div className="premium-hero-offer-chip">5 BÔNUS • 110 PÁGINAS</div>
 
