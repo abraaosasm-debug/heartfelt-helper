@@ -338,7 +338,7 @@ function Index() {
               </div>
             </article>
 
-            <article className="v3-bonus-card">
+            <article id="bonus" className="v3-bonus-card">
               <div className="v3-bonus-copy">
                 <span>5 BÔNUS • 110 PÁGINAS</span>
                 <h3>Apoios que fazem o material sair do PDF e entrar na rotina.</h3>
@@ -361,7 +361,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="v3-section v3-benefits">
+      <section id="como-usar" className="v3-section v3-benefits">
         <div className="v3-shell">
           <div className="v3-benefit-intro">
             <span className="v3-kicker v3-kicker-light">MENOS PREPARAÇÃO. MAIS AÇÃO.</span>
