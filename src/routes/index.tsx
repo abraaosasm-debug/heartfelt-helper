@@ -83,7 +83,7 @@ function Cover({
   }, []);
 
   return (
-    <Dialog onOpenChange={onDialogOpenChange}>
+    <Dialog {...(onDialogOpenChange ? { onOpenChange: onDialogOpenChange } : {})}>
       <DialogTrigger asChild>
         <button
           type="button"
