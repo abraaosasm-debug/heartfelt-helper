@@ -923,11 +923,6 @@
     justify-self: center;
   }
 }
-@media (max-width: 390px) {
-}
-@media (prefers-reduced-motion: reduce) {
-  .cover-button,
-}
 @keyframes editorial-enter {
   from {
     opacity: 0;
