@@ -1666,3 +1666,96 @@
     max-width: 180px;
   }
 }
+
+
+/* Cover integrity normalization: one optical size, one frame, no transform blur */
+.cover-button {
+  aspect-ratio: 1080 / 1527;
+  contain: layout paint;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100% !important;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+  transform: none;
+  filter: none;
+}
+
+.book-pair > div {
+  top: 12px;
+  width: 52%;
+  max-width: 250px;
+  aspect-ratio: 1080 / 1527;
+}
+
+.book-one {
+  left: 2%;
+  transform: rotate(-4deg);
+}
+
+.book-two {
+  top: 12px !important;
+  right: 2%;
+  transform: rotate(4deg);
+}
+
+.bonus-visual {
+  aspect-ratio: 0.88;
+  min-height: 0;
+  padding: 18px;
+}
+
+.bonus-product .cover-button {
+  width: auto;
+  height: calc(100% - 8px);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@keyframes book-settle {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .book-pair {
+    height: min(88vw, 372px);
+  }
+
+  .book-pair > div {
+    top: 8px;
+    width: 52%;
+    max-width: 218px;
+  }
+
+  .book-one {
+    left: 0;
+    transform: rotate(-3deg);
+  }
+
+  .book-two {
+    top: 8px !important;
+    right: 0;
+    transform: rotate(3deg);
+  }
+
+  .bonus-visual {
+    aspect-ratio: 0.9;
+    padding: 16px;
+  }
+
+  .bonus-product .cover-button {
+    width: auto;
+    height: calc(100% - 4px);
+    max-width: 100%;
+  }
+}
