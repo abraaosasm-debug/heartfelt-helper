@@ -30,6 +30,27 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
+import cover10 from "@/assets/clean-covers/cover1-0";
+import cover11 from "@/assets/clean-covers/cover1-1";
+import cover12 from "@/assets/clean-covers/cover1-2";
+import cover13 from "@/assets/clean-covers/cover1-3";
+import cover70 from "@/assets/clean-covers/cover7-0";
+import cover71 from "@/assets/clean-covers/cover7-1";
+import cover72 from "@/assets/clean-covers/cover7-2";
+import cover73 from "@/assets/clean-covers/cover7-3";
+import cover74 from "@/assets/clean-covers/cover7-4";
+import cover75 from "@/assets/clean-covers/cover7-5";
+
+const cleanCover1 = "data:image/avif;base64," + [cover10, cover11, cover12, cover13].join("");
+const cleanCover7 =
+  "data:image/avif;base64," + [cover70, cover71, cover72, cover73, cover74, cover75].join("");
+
+function getCoverSource(number: number) {
+  if (number === 1) return cleanCover1;
+  if (number === 7) return cleanCover7;
+  return `/covers/Imagens_${number}.jpg`;
+}
+
 function Cover({
   number,
   title,
@@ -42,6 +63,7 @@ function Cover({
   const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  const coverSource = getCoverSource(number);
 
   useEffect(() => {
     const image = imageRef.current;
@@ -60,7 +82,7 @@ function Cover({
           <img
             ref={imageRef}
             className="cover-image"
-            src={`/covers/Imagens_${number}.jpg`}
+            src={coverSource}
             alt={`Capa de ${title}`}
             width={1080}
             height={1527}
@@ -83,7 +105,7 @@ function Cover({
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>Capa do material digital em PDF.</DialogDescription>
         <img
-          src={`/covers/Imagens_${number}.jpg`}
+          src={coverSource}
           alt={`Capa ampliada de ${title}`}
           width={1080}
           height={1527}
