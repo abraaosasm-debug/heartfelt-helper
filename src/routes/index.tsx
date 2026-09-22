@@ -42,6 +42,16 @@ const coverSources: Record<number, string> = {
   7: "/covers/Atividades_para_Enviar_as_Familias_05_Completo_260921_142043.jpg?v=3",
 };
 
+const coverPreviewSources: Record<number, string> = {
+  1: "/covers/optimized/cover-1.webp?v=1",
+  2: "/covers/optimized/cover-2.webp?v=1",
+  3: "/covers/optimized/cover-3.webp?v=1",
+  4: "/covers/optimized/cover-4.webp?v=1",
+  5: "/covers/optimized/cover-5.webp?v=1",
+  6: "/covers/optimized/cover-6.webp?v=1",
+  7: "/covers/optimized/cover-7.webp?v=1",
+};
+
 const coverDimensions: Record<number, { width: number; height: number }> = {
   1: { width: 1080, height: 1528 },
   2: { width: 1080, height: 1527 },
@@ -54,6 +64,10 @@ const coverDimensions: Record<number, { width: number; height: number }> = {
 
 function getCoverSource(number: number) {
   return coverSources[number] ?? `/covers/Imagens_${number}.jpg?v=3`;
+}
+
+function getCoverPreviewSource(number: number) {
+  return coverPreviewSources[number] ?? getCoverSource(number);
 }
 
 function getCoverDimensions(number: number) {
@@ -75,6 +89,7 @@ function Cover({
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
   const coverSource = getCoverSource(number);
+  const previewSource = getCoverPreviewSource(number);
   const dimensions = getCoverDimensions(number);
 
   useEffect(() => {
@@ -95,7 +110,7 @@ function Cover({
           <img
             ref={imageRef}
             className="cover-image"
-            src={coverSource}
+            src={previewSource}
             alt={`Capa de ${title}`}
             width={dimensions.width}
             height={dimensions.height}
@@ -570,7 +585,7 @@ function Index() {
 
               <div className="premium-cover premium-cover-1">
                 <img
-                  src={getCoverSource(3)}
+                  src={getCoverPreviewSource(3)}
                   alt="Capa do bônus Planejamento de 4 semanas"
                   width={1080}
                   height={1526}
@@ -581,7 +596,7 @@ function Index() {
               </div>
               <div className="premium-cover premium-cover-2">
                 <img
-                  src={getCoverSource(4)}
+                  src={getCoverPreviewSource(4)}
                   alt="Capa do bônus Rotina visual para recortar"
                   width={1080}
                   height={1526}
@@ -592,7 +607,7 @@ function Index() {
               </div>
               <div className="premium-cover premium-cover-3">
                 <img
-                  src={getCoverSource(5)}
+                  src={getCoverPreviewSource(5)}
                   alt="Capa do bônus Jogos de mesa imprimíveis"
                   width={1080}
                   height={1526}
@@ -603,7 +618,7 @@ function Index() {
               </div>
               <div className="premium-cover premium-cover-4">
                 <img
-                  src={getCoverSource(6)}
+                  src={getCoverPreviewSource(6)}
                   alt="Capa do bônus Caderno de observação da aprendizagem"
                   width={getCoverDimensions(6).width}
                   height={getCoverDimensions(6).height}
@@ -614,7 +629,7 @@ function Index() {
               </div>
               <div className="premium-cover premium-cover-5">
                 <img
-                  src={getCoverSource(7)}
+                  src={getCoverPreviewSource(7)}
                   alt="Capa do bônus Atividades para enviar às famílias"
                   width={1080}
                   height={1526}
@@ -951,7 +966,7 @@ function Index() {
                 <div className="cover-button is-loaded" data-cover-number={3}>
                   <img
                     className="cover-image"
-                    src={getCoverSource(3)}
+                    src={getCoverPreviewSource(3)}
                     alt=""
                     width={getCoverDimensions(3).width}
                     height={getCoverDimensions(3).height}
