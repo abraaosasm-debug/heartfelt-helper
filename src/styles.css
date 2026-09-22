@@ -892,6 +892,22 @@
 .bonus-product .cover-button {
   margin-bottom: 28px;
 }
+
+/* A capa original do bônus 04 tinha uma moldura cinza embutida no arquivo.
+   Mantemos o enquadramento do card e recortamos somente essa borda. */
+.bonus-product .cover-button[data-cover-number="6"] {
+  aspect-ratio: 1080 / 1527;
+  overflow: hidden;
+}
+
+.bonus-product .cover-button[data-cover-number="6"] .cover-image {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112% !important;
+  max-width: none;
+  object-fit: cover;
+}
 .bonus-label {
   display: block;
   font-size: 10px;

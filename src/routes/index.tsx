@@ -33,6 +33,10 @@ import {
 import { checkoutUrls } from "@/lib/checkout";
 
 function getCoverSource(number: number) {
+  if (number >= 3 && number <= 5) {
+    return `/covers/bonus-${number - 2}.webp?v=3`;
+  }
+
   return `/covers/Imagens_${number}.jpg?v=2`;
 }
 
@@ -61,6 +65,7 @@ function Cover({
         <button
           type="button"
           className={`cover-button${loaded ? " is-loaded" : ""}${failed ? " is-error" : ""}`}
+          data-cover-number={number}
           aria-label={`Ampliar capa: ${title}`}
         >
           <span className="cover-skeleton" aria-hidden="true" />
