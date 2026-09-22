@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import {
   ArrowRight,
   BookOpen,
   Brain,
+  CalendarCheck2,
   Check,
   CheckCircle2,
   ChevronDown,
   Download,
+  Eye,
   FileText,
   Gift,
   Heart,
@@ -82,6 +85,21 @@ const faqs = [
   ],
 ] as const;
 
+const included = [
+  [
+    "Kit principal — 91 páginas",
+    "Atividades para alfabetização, coordenação, números, percepção, emoções e associação.",
+  ],
+  [
+    "Volume 2 de atividades",
+    "Mais variedade de propostas para manter a rotina de aprendizagem interessante.",
+  ],
+  [
+    "5 bônus — 110 páginas",
+    "Planejamento, rotina visual, jogos, caderno de observação e atividades para enviar às famílias.",
+  ],
+] as const;
+
 function Cta({ children, light = false }: { children: string; light?: boolean }) {
   return (
     <a
@@ -95,8 +113,40 @@ function Cta({ children, light = false }: { children: string; light?: boolean })
 }
 
 function Index() {
+  const page = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const root = page.current;
+    if (!root || !("IntersectionObserver" in window)) return;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (preference.matches) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
+    const elements = root.querySelectorAll(
+      "section:not(#inicio) > div, .feature-card, .bonus-card",
+    );
+    elements.forEach((element) => {
+      element.classList.add("scroll-reveal");
+      observer.observe(element);
+    });
+    const disableMotion = () => elements.forEach((element) => element.classList.add("is-visible"));
+    preference.addEventListener("change", disableMotion);
+    return () => {
+      observer.disconnect();
+      preference.removeEventListener("change", disableMotion);
+      elements.forEach((element) => element.classList.remove("scroll-reveal"));
+    };
+  }, []);
   return (
-    <main className="min-h-screen overflow-hidden bg-background">
+    <main ref={page} className="editorial-page min-h-screen overflow-hidden bg-background">
       <header className="absolute inset-x-0 top-0 z-20 border-b border-white/50 bg-white/70 backdrop-blur-xl">
         <div className="section-shell flex h-18 items-center justify-between">
           <a href="#inicio" className="flex items-center gap-2 font-display font-bold text-deep">
@@ -134,17 +184,17 @@ function Index() {
         <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
           <div className="reveal-up text-center lg:text-left">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-deep/10 bg-white/75 px-4 py-2 text-xs font-black text-deep shadow-sm backdrop-blur">
-              <Sparkles className="size-4 text-coral" /> MATERIAL EDUCATIVO EM PDF
+              <Sparkles className="size-4 text-coral" /> KIT DE ATIVIDADES INFANTIL E AUTISMO
             </div>
             <h1 className="balance text-4xl font-bold leading-[1.03] text-deep sm:text-6xl lg:text-7xl">
-              Menos tempo procurando. <span className="marker-text">Mais tempo ensinando.</span>
+              Prepare menos. <span className="marker-text">Compartilhe mais descobertas.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
-              Um kit de atividades infantis organizado por habilidades, pronto para você escolher,
-              imprimir e aplicar no seu ritmo.
+              Receba um acervo completo de atividades educativas prontas para imprimir, com dois
+              volumes e 5 bônus para transformar a rotina em momentos de aprendizado mais leves.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-              <Cta>CONHECER O KIT COMPLETO</Cta>
+              <Cta>QUERO O KIT COMPLETO AGORA</Cta>
               <span className="inline-flex items-center gap-2 text-sm font-bold text-deep/65">
                 <ShieldCheck className="size-5 text-success" /> 7 dias de garantia
               </span>
@@ -178,9 +228,9 @@ function Index() {
                   </span>
                   <div>
                     <p className="text-xs font-black uppercase tracking-wider text-coral">
-                      Conteúdo digital
+                      Pronto para usar
                     </p>
-                    <p className="font-extrabold text-deep">Volumes + materiais complementares</p>
+                    <p className="font-extrabold text-deep">2 volumes + 5 bônus inclusos</p>
                   </div>
                 </div>
               </div>
@@ -195,9 +245,9 @@ function Index() {
       <section className="border-y border-deep/5 bg-white py-6">
         <div className="section-shell grid grid-cols-3 divide-x divide-deep/10 text-center">
           {[
-            ["2", "volumes"],
-            ["5", "bônus"],
-            ["PDF", "acesso digital"],
+            ["91", "páginas no kit principal"],
+            ["110", "páginas só em bônus"],
+            ["PDF", "pronto para imprimir"],
           ].map(([value, label]) => (
             <div key={label}>
               <strong className="block text-2xl font-black text-deep sm:text-3xl">{value}</strong>
@@ -209,15 +259,68 @@ function Index() {
         </div>
       </section>
 
+      <section className="relative py-18 sm:py-24">
+        <div className="section-shell grid items-center gap-10 lg:grid-cols-[.85fr_1.15fr]">
+          <div>
+            <p className="eyebrow">SE A ROTINA DE ATIVIDADES VIROU UMA CORRERIA</p>
+            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
+              Você não precisa criar tudo do zero.
+            </h2>
+            <p className="mt-5 leading-7 text-muted-foreground">
+              Em vez de abrir dezenas de abas, adaptar materiais confusos e ficar sem ideia na hora
+              de aplicar, você terá atividades separadas por habilidade — prontas para escolher e
+              imprimir.
+            </p>
+            <div className="mt-7 rounded-2xl border border-coral/20 bg-coral-soft p-5 text-sm leading-6 text-deep">
+              <strong className="font-black">O objetivo é simples:</strong> facilitar a preparação e
+              deixar mais energia para a interação com a criança.
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {(
+              [
+                [
+                  CalendarCheck2,
+                  "Economize tempo",
+                  "Tenha propostas prontas para a rotina, sem montar atividade do zero.",
+                ],
+                [
+                  Eye,
+                  "Escolha com clareza",
+                  "Encontre rapidamente uma atividade pela habilidade que quer trabalhar.",
+                ],
+                [
+                  CheckCircle2,
+                  "Aplique com leveza",
+                  "Páginas visuais e instruções simples, feitas para entrar em ação.",
+                ],
+              ] as const
+            ).map(([Icon, title, text]) => (
+              <article
+                key={title}
+                className="feature-card rounded-[1.5rem] border border-deep/8 bg-white p-5"
+              >
+                <span className="grid size-11 place-items-center rounded-xl bg-sun-soft text-deep">
+                  <Icon className="size-5" />
+                </span>
+                <h3 className="mt-5 font-bold text-deep">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="conteudo" className="py-18 sm:py-24">
         <div className="section-shell">
           <div className="mx-auto max-w-2xl text-center reveal-up">
-            <p className="eyebrow">CONTEÚDO PENSADO PARA A ROTINA</p>
+            <p className="eyebrow">UM KIT PARA VOCÊ NUNCA FICAR SEM IDEIA</p>
             <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Atividades claras, variadas e fáceis de encontrar
+              Abra, escolha a habilidade e comece a aplicar.
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              Cada seção trabalha uma habilidade com instruções diretas e uma proposta visual limpa.
+              Cada módulo reduz a dúvida do “o que fazer hoje?” e aumenta a variedade das
+              atividades.
             </p>
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -242,21 +345,33 @@ function Index() {
         <div className="section-shell grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-accent">
-              DO ARQUIVO PARA A MESA
+              NÃO É UM MONTE DE PÁGINAS SOLTAS
             </p>
             <h2 className="mt-3 text-3xl font-bold sm:text-5xl">
-              Uma sequência simples para começar
+              Você recebe um caminho prático para aplicar.
             </h2>
             <p className="mt-4 max-w-xl leading-7 text-white/65">
-              Sem preparação complicada. Escolha uma proposta adequada, imprima e acompanhe como a
-              criança responde.
+              O material vem organizado para você começar pelo que faz sentido agora e avançar no
+              ritmo da criança.
             </p>
           </div>
           <ol className="space-y-3">
             {[
-              ["01", "Escolha", "Selecione a habilidade que deseja trabalhar."],
-              ["02", "Imprima", "Use apenas as páginas necessárias para o dia."],
-              ["03", "Aplique e observe", "Dê uma instrução simples e adapte quando preciso."],
+              [
+                "01",
+                "Encontre a habilidade",
+                "Vogais, números, coordenação, emoções e muito mais.",
+              ],
+              [
+                "02",
+                "Imprima o que precisa",
+                "Use uma página ou monte uma sequência — sem desperdício.",
+              ],
+              [
+                "03",
+                "Aplique e avance",
+                "Observe a resposta e escolha a próxima proposta com mais segurança.",
+              ],
             ].map(([number, title, text]) => (
               <li
                 key={number}
@@ -279,9 +394,9 @@ function Index() {
         <div className="section-shell">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="eyebrow">NO KIT COMPLETO</p>
+              <p className="eyebrow">O QUE VOCÊ LEVA NO KIT COMPLETO</p>
               <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-                Cinco bônus que ampliam as possibilidades
+                Um acervo que continua útil depois da primeira impressão.
               </h2>
             </div>
             <Gift className="hidden size-16 text-coral/70 md:block" />
@@ -305,12 +420,43 @@ function Index() {
         </div>
       </section>
 
+      <section className="py-18 sm:py-24">
+        <div className="section-shell">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">TUDO ORGANIZADO EM UM SÓ LUGAR</p>
+            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
+              Veja exatamente o que entra no seu acesso.
+            </h2>
+          </div>
+          <div className="mx-auto mt-11 grid max-w-4xl gap-4">
+            {included.map(([title, text], index) => (
+              <article
+                key={title}
+                className="flex flex-col gap-4 rounded-2xl border border-deep/8 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:p-6"
+              >
+                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-coral text-sm font-black text-white">
+                  0{index + 1}
+                </span>
+                <div className="flex-1">
+                  <h3 className="font-bold text-deep">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{text}</p>
+                </div>
+                <CheckCircle2 className="size-6 shrink-0 text-success" />
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Cta>SIM, QUERO ACESSAR O KIT COMPLETO</Cta>
+          </div>
+        </div>
+      </section>
+
       <section id="precos" className="py-18 sm:py-24">
         <div className="section-shell">
           <div className="text-center">
-            <p className="eyebrow">ESCOLHA O QUE FAZ SENTIDO PARA VOCÊ</p>
+            <p className="eyebrow">ESCOLHA COMO QUER COMEÇAR</p>
             <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Acesso simples, sem assinatura
+              Leve o material para sua rotina hoje.
             </h2>
           </div>
           <div className="mx-auto mt-11 grid max-w-4xl items-stretch gap-6 md:grid-cols-2">
@@ -319,7 +465,7 @@ function Index() {
                 Kit Essencial
               </p>
               <p className="mt-3 text-sm text-muted-foreground">
-                Para começar com o material principal.
+                Para conhecer o conteúdo-base do kit.
               </p>
               <div className="mt-6 flex items-end gap-1 text-deep">
                 <span className="pb-1.5 font-bold">R$</span>
@@ -337,18 +483,18 @@ function Index() {
                 href="#"
                 className="mt-8 flex h-13 items-center justify-center rounded-full border-2 border-deep text-sm font-black text-deep transition hover:bg-deep hover:text-white"
               >
-                ESCOLHER ESSENCIAL
+                QUERO COMEÇAR PELO ESSENCIAL
               </a>
             </article>
             <article className="price-card popular relative rounded-[1.75rem] bg-deep p-7 text-white sm:p-9">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-coral px-4 py-1.5 text-xs font-black shadow-lg">
-                CONTEÚDO MAIS COMPLETO
+                MELHOR CUSTO-BENEFÍCIO
               </span>
               <p className="text-sm font-black uppercase tracking-wider text-accent">
                 Kit Completo + Bônus
               </p>
               <p className="mt-3 text-sm text-white/60">
-                Para ter mais variedade e apoio na organização.
+                A escolha para quem quer mais variedade desde o primeiro dia.
               </p>
               <div className="mt-6 flex items-end gap-1">
                 <span className="pb-1.5 font-bold">R$</span>
@@ -372,10 +518,10 @@ function Index() {
                 href="#"
                 className="cta-shimmer mt-8 flex h-13 items-center justify-center rounded-full bg-coral text-sm font-black text-white shadow-lg"
               >
-                QUERO O KIT COMPLETO
+                QUERO TUDO QUE ESTÁ INCLUSO
               </a>
               <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-white/50">
-                <LockKeyhole className="size-3.5" /> Pagamento seguro • acesso digital
+                <LockKeyhole className="size-3.5" /> Pagamento seguro • liberação após a compra
               </p>
             </article>
           </div>
