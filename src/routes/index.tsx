@@ -671,15 +671,19 @@ function Index() {
               Comece pelo essencial e avance com novas propostas.
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além das 110
-              páginas de bônus para apoiar planejamento, rotina, jogos e acompanhamento.
+              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além das
+              110 páginas de bônus para apoiar planejamento, rotina, jogos e acompanhamento.
             </p>
           </div>
 
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
             <article className="rounded-[2rem] border border-deep/8 bg-white p-5 shadow-sm sm:p-7">
               <div className="mx-auto max-w-[260px]">
-                <Cover number={1} title="Kit de Atividades Infantil e Autismo — Volume 1" priority />
+                <Cover
+                  number={1}
+                  title="Kit de Atividades Infantil e Autismo — Volume 1"
+                  priority
+                />
               </div>
               <span className="mt-6 inline-flex rounded-full bg-sky-soft px-3 py-1 text-xs font-black text-deep">
                 VOLUME 1 • 91 PÁGINAS
@@ -693,7 +697,11 @@ function Index() {
 
             <article className="rounded-[2rem] border border-coral/20 bg-coral-soft/40 p-5 shadow-sm sm:p-7">
               <div className="mx-auto max-w-[260px]">
-                <Cover number={2} title="Kit de Atividades Infantil e Autismo — Volume 2" priority />
+                <Cover
+                  number={2}
+                  title="Kit de Atividades Infantil e Autismo — Volume 2"
+                  priority
+                />
               </div>
               <span className="mt-6 inline-flex rounded-full bg-coral px-3 py-1 text-xs font-black text-white">
                 VOLUME 2 • 91 PÁGINAS
@@ -1113,8 +1121,8 @@ function Index() {
               <div className="offer-difference">
                 <strong>O que os R$49,90 a mais acrescentam?</strong>
                 <p>
-                  Mais 201 páginas: o Volume 2 com 91 páginas + cinco bônus com 110 páginas.
-                  No total, o Completo reúne 292 páginas de materiais digitais.
+                  Mais 201 páginas: o Volume 2 com 91 páginas + cinco bônus com 110 páginas. No
+                  total, o Completo reúne 292 páginas de materiais digitais.
                 </p>
               </div>
               <PurchaseAction kit="complete" />
