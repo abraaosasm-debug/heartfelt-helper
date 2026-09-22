@@ -77,28 +77,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kit de Atividades Infantil e Autismo" },
-      { name: "description", content: "Atividades educativas em PDF prontas para imprimir." },
+      { title: "Kit de Atividades Infantil e Autismo | PDFs para imprimir" },
+      {
+        name: "description",
+        content:
+          "Atividades educativas em PDF prontas para imprimir. Kit Completo com 2 volumes, 5 bônus e 292 páginas.",
+      },
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
-        content: "Atividades educativas organizadas e prontas para imprimir.",
+        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://kitcompletoautismoeinfantil.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         name: "twitter:description",
-        content: "Atividades educativas organizadas e prontas para imprimir.",
+        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
       },
-      { property: "og:image", content: "/covers/Imagens_1.jpg?v=2" },
+      {
+        property: "og:image",
+        content: "https://kitcompletoautismoeinfantil.lovable.app/covers/Imagens_1.jpg?v=2",
+      },
       { property: "og:image:alt", content: "Capa do Kit de Atividades Infantil e Autismo" },
-      { name: "twitter:image", content: "/covers/Imagens_1.jpg?v=2" },
+      {
+        name: "twitter:image",
+        content: "https://kitcompletoautismoeinfantil.lovable.app/covers/Imagens_1.jpg?v=2",
+      },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "canonical",
+        href: "https://kitcompletoautismoeinfantil.lovable.app/",
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
