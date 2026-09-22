@@ -280,17 +280,77 @@ function GuaranteeSeal() {
 function Index() {
   const page = useRef<HTMLElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
+  const galleryPaused = useRef(false);
+  const galleryResetTimer = useRef<number | null>(null);
+
   const moveGallery = (direction: number) => {
     const rail = gallery.current;
     if (!rail) return;
-    const card = rail.querySelector("article");
-    rail.scrollBy({
-      left: direction * ((card?.getBoundingClientRect().width ?? 280) + 24),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "instant"
-        : "smooth",
+
+    const card = rail.querySelector<HTMLElement>(".bonus-product");
+    const gap = 24;
+    const step = (card?.getBoundingClientRect().width ?? 280) + gap;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const originalCount = bonuses.length;
+    let currentIndex = Math.round(rail.scrollLeft / step);
+
+    if (galleryResetTimer.current) {
+      window.clearTimeout(galleryResetTimer.current);
+      galleryResetTimer.current = null;
+    }
+
+    if (currentIndex >= originalCount) {
+      rail.scrollTo({ left: 0, behavior: "instant" });
+      currentIndex = 0;
+    }
+
+    if (direction > 0 && currentIndex === originalCount - 1) {
+      rail.scrollTo({
+        left: originalCount * step,
+        behavior: reducedMotion ? "instant" : "smooth",
+      });
+
+      if (reducedMotion) {
+        rail.scrollTo({ left: 0, behavior: "instant" });
+      } else {
+        galleryResetTimer.current = window.setTimeout(() => {
+          rail.scrollTo({ left: 0, behavior: "instant" });
+          galleryResetTimer.current = null;
+        }, 760);
+      }
+      return;
+    }
+
+    if (direction < 0 && currentIndex <= 0) {
+      rail.scrollTo({ left: originalCount * step, behavior: "instant" });
+      window.requestAnimationFrame(() => {
+        rail.scrollTo({
+          left: (originalCount - 1) * step,
+          behavior: reducedMotion ? "instant" : "smooth",
+        });
+      });
+      return;
+    }
+
+    rail.scrollTo({
+      left: (currentIndex + direction) * step,
+      behavior: reducedMotion ? "instant" : "smooth",
     });
   };
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return;
+
+    const autoplay = window.setInterval(() => {
+      if (!galleryPaused.current) moveGallery(1);
+    }, 3400);
+
+    return () => {
+      window.clearInterval(autoplay);
+      if (galleryResetTimer.current) window.clearTimeout(galleryResetTimer.current);
+    };
+  }, []);
 
   useEffect(() => {
     const root = page.current;
@@ -612,7 +672,7 @@ function Index() {
                 Cinco apoios para colocar as atividades em prática.
               </h2>
             </div>
-            <Gift className="hidden size-16 text-coral/70 md:block" />
+            <Gift className="bonus-gift hidden size-16 text-coral/70 md:block" />
           </div>
           <p className="mt-5 text-sm text-muted-foreground">
             110 páginas em materiais complementares, incluídas no Completo. Toque para ampliar as
@@ -639,8 +699,26 @@ function Index() {
             ref={gallery}
             className="bonus-gallery"
             role="region"
-            aria-label="Capas dos cinco bônus"
+            aria-label="Capas dos cinco bônus em carrossel automático"
             tabIndex={0}
+            onPointerEnter={() => {
+              galleryPaused.current = true;
+            }}
+            onPointerLeave={() => {
+              galleryPaused.current = false;
+            }}
+            onPointerDown={() => {
+              galleryPaused.current = true;
+            }}
+            onPointerUp={() => {
+              galleryPaused.current = false;
+            }}
+            onFocusCapture={() => {
+              galleryPaused.current = true;
+            }}
+            onBlurCapture={() => {
+              galleryPaused.current = false;
+            }}
           >
             {bonuses.map(([number, title, text, pages], index) => (
               <article key={title} className="bonus-product">
@@ -660,6 +738,37 @@ function Index() {
                 </span>
               </article>
             ))}
+            <article className="bonus-product bonus-clone" aria-hidden="true">
+              <div className="bonus-visual">
+                <span className="bonus-index" aria-hidden="true">
+                  01
+                </span>
+                <div className="cover-button is-loaded" data-cover-number={3}>
+                  <img
+                    className="cover-image"
+                    src={getCoverSource(3)}
+                    alt=""
+                    width={1080}
+                    height={1526}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                  <span className="cover-zoom" aria-hidden="true">
+                    <Eye size={16} />
+                    <span>Ampliar capa</span>
+                  </span>
+                </div>
+              </div>
+              <span className="bonus-label">BÔNUS 01 · 24 páginas</span>
+              <h3 className="font-bold leading-5 text-deep">Planejamento de 4 semanas</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                Organize o foco de cada encontro e o que pretende aplicar.
+              </p>
+              <span className="bonus-included">
+                <Check size={14} /> Incluído no Kit Completo
+              </span>
+            </article>
           </div>
         </div>
       </section>
