@@ -33,10 +33,6 @@ import {
 import { checkoutUrls } from "@/lib/checkout";
 
 function getCoverSource(number: number) {
-  if (number >= 3 && number <= 5) {
-    return `/covers/bonus-${number - 2}.webp?v=3`;
-  }
-
   return `/covers/Imagens_${number}.jpg?v=2`;
 }
 
@@ -94,14 +90,16 @@ function Cover({
       <DialogContent className="cover-dialog">
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>Capa do material digital em PDF.</DialogDescription>
-        <img
-          src={coverSource}
-          alt={`Capa ampliada de ${title}`}
-          width={1080}
-          height={1527}
-          loading="eager"
-          decoding="sync"
-        />
+        <div className="cover-dialog-image-frame" data-cover-number={number}>
+          <img
+            src={coverSource}
+            alt={`Capa ampliada de ${title}`}
+            width={1080}
+            height={1527}
+            loading="eager"
+            decoding="sync"
+          />
+        </div>
       </DialogContent>
     </Dialog>
   );

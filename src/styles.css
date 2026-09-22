@@ -893,13 +893,19 @@
   margin-bottom: 28px;
 }
 
-/* A capa original do bônus 04 tinha uma moldura cinza embutida no arquivo.
-   Mantemos o enquadramento do card e recortamos somente essa borda. */
+/* As quatro primeiras capas de bônus antigas têm uma moldura cinza
+   incorporada ao arquivo. O recorte preserva a arte e remove apenas essa área. */
+.bonus-product .cover-button[data-cover-number="3"],
+.bonus-product .cover-button[data-cover-number="4"],
+.bonus-product .cover-button[data-cover-number="5"],
 .bonus-product .cover-button[data-cover-number="6"] {
   aspect-ratio: 1080 / 1527;
   overflow: hidden;
 }
 
+.bonus-product .cover-button[data-cover-number="3"] .cover-image,
+.bonus-product .cover-button[data-cover-number="4"] .cover-image,
+.bonus-product .cover-button[data-cover-number="5"] .cover-image,
 .bonus-product .cover-button[data-cover-number="6"] .cover-image {
   position: absolute;
   inset: -6%;
@@ -930,11 +936,26 @@
   width: calc(100% - 24px);
   padding: 24px;
 }
-.cover-dialog > img {
+.cover-dialog-image-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  background: white;
+}
+
+.cover-dialog-image-frame > img {
+  display: block;
   width: 100%;
   height: auto;
-  max-height: 72dvh;
   object-fit: contain;
+}
+
+.cover-dialog-image-frame[data-cover-number="3"] > img,
+.cover-dialog-image-frame[data-cover-number="4"] > img,
+.cover-dialog-image-frame[data-cover-number="5"] > img,
+.cover-dialog-image-frame[data-cover-number="6"] > img {
+  transform: scale(1.12);
+  transform-origin: center;
 }
 .cover-button:focus-visible {
   outline: 3px solid oklch(0.6 0.12 80);
