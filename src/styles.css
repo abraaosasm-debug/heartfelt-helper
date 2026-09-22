@@ -72,8 +72,8 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  --background: oklch(0.99 0.008 95);
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.009 91);
   --foreground: oklch(0.25 0.035 238);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -160,11 +160,117 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     letter-spacing: 0;
+    text-rendering: optimizeLegibility;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
-  h1, h2, h3 { font-family: var(--font-display); }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@utility balance {
+  text-wrap: balance;
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: var(--color-success);
+}
+
+@utility hero-grid {
+  background-color: var(--color-sky-soft);
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.48) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.48) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.marker-text {
+  position: relative;
+  display: inline;
+  z-index: 0;
+}
+.marker-text::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.03em;
+  right: -0.03em;
+  bottom: 0.08em;
+  height: 0.27em;
+  border-radius: 999px;
+  background: var(--color-sun-soft);
+  transform: rotate(-1.5deg);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(2px);
+  pointer-events: none;
+}
+.orb-one {
+  width: 22rem;
+  height: 22rem;
+  top: 5rem;
+  left: -13rem;
+  background: oklch(0.94 0.045 300 / 0.72);
+  animation: drift 9s ease-in-out infinite;
+}
+.orb-two {
+  width: 19rem;
+  height: 19rem;
+  right: -9rem;
+  bottom: -7rem;
+  background: oklch(0.95 0.105 95 / 0.72);
+  animation: drift 11s ease-in-out infinite reverse;
+}
+
+.mockup-frame {
+  box-shadow:
+    0 35px 80px oklch(0.31 0.08 226 / 0.17),
+    0 8px 20px oklch(0.31 0.08 226 / 0.08);
+  transform: rotate(1deg);
+}
+.feature-card,
+.bonus-card,
+.price-card,
+.faq {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.feature-card:hover,
+.bonus-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 55px oklch(0.31 0.08 226 / 0.11);
+  border-color: oklch(0.67 0.2 25 / 0.25);
+}
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px oklch(0.31 0.08 226 / 0.12);
+}
+.price-card.popular {
+  box-shadow: 0 28px 70px oklch(0.31 0.08 226 / 0.22);
+}
+.faq[open] {
+  box-shadow: 0 14px 35px oklch(0.31 0.08 226 / 0.07);
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.reveal-card {
+  animation: reveal-up 0.7s both cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @utility section-shell {
@@ -173,7 +279,9 @@
 }
 
 @utility soft-shadow {
-  box-shadow: 0 22px 60px oklch(0.31 0.08 226 / 0.12), 0 3px 10px oklch(0.31 0.08 226 / 0.06);
+  box-shadow:
+    0 22px 60px oklch(0.31 0.08 226 / 0.12),
+    0 3px 10px oklch(0.31 0.08 226 / 0.06);
 }
 
 @utility glass-panel {
@@ -207,21 +315,60 @@
 }
 
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes float-soft {
-  0%, 100% { transform: translateY(0) rotate(1deg); }
-  50% { transform: translateY(-8px) rotate(0deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0deg);
+  }
 }
 
 @keyframes cta-shimmer {
-  0%, 60% { left: -60%; }
-  100% { left: 130%; }
+  0%,
+  60% {
+    left: -60%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -14px, 0) scale(1.05);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .reveal-up, .float-soft, .cta-shimmer::after { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-up,
+  .reveal-card,
+  .float-soft,
+  .cta-shimmer::after,
+  .orb {
+    animation: none;
+  }
+  .feature-card:hover,
+  .bonus-card:hover,
+  .price-card:hover {
+    transform: none;
+  }
 }
