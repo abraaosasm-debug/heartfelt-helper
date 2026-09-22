@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -112,8 +113,40 @@ function Cta({ children, light = false }: { children: string; light?: boolean })
 }
 
 function Index() {
+  const page = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const root = page.current;
+    if (!root || !("IntersectionObserver" in window)) return;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (preference.matches) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
+    const elements = root.querySelectorAll(
+      "section:not(#inicio) > div, .feature-card, .bonus-card",
+    );
+    elements.forEach((element) => {
+      element.classList.add("scroll-reveal");
+      observer.observe(element);
+    });
+    const disableMotion = () => elements.forEach((element) => element.classList.add("is-visible"));
+    preference.addEventListener("change", disableMotion);
+    return () => {
+      observer.disconnect();
+      preference.removeEventListener("change", disableMotion);
+      elements.forEach((element) => element.classList.remove("scroll-reveal"));
+    };
+  }, []);
   return (
-    <main className="min-h-screen overflow-hidden bg-background">
+    <main ref={page} className="editorial-page min-h-screen overflow-hidden bg-background">
       <header className="absolute inset-x-0 top-0 z-20 border-b border-white/50 bg-white/70 backdrop-blur-xl">
         <div className="section-shell flex h-18 items-center justify-between">
           <a href="#inicio" className="flex items-center gap-2 font-display font-bold text-deep">
@@ -151,11 +184,10 @@ function Index() {
         <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
           <div className="reveal-up text-center lg:text-left">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-deep/10 bg-white/75 px-4 py-2 text-xs font-black text-deep shadow-sm backdrop-blur">
-              <Sparkles className="size-4 text-coral" /> KIT COMPLETO • ACESSO DIGITAL IMEDIATO
+              <Sparkles className="size-4 text-coral" /> KIT DE ATIVIDADES INFANTIL E AUTISMO
             </div>
             <h1 className="balance text-4xl font-bold leading-[1.03] text-deep sm:text-6xl lg:text-7xl">
-              Atividades que prendem a atenção da criança —{" "}
-              <span className="marker-text">sem você perder horas procurando o que aplicar.</span>
+              Prepare menos. <span className="marker-text">Compartilhe mais descobertas.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
               Receba um acervo completo de atividades educativas prontas para imprimir, com dois
@@ -164,7 +196,7 @@ function Index() {
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
               <Cta>QUERO O KIT COMPLETO AGORA</Cta>
               <span className="inline-flex items-center gap-2 text-sm font-bold text-deep/65">
-                <ShieldCheck className="size-5 text-success" /> 7 dias para conhecer sem risco
+                <ShieldCheck className="size-5 text-success" /> 7 dias de garantia
               </span>
             </div>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-extrabold text-deep/60 lg:justify-start">
@@ -213,7 +245,7 @@ function Index() {
       <section className="border-y border-deep/5 bg-white py-6">
         <div className="section-shell grid grid-cols-3 divide-x divide-deep/10 text-center">
           {[
-            ["91+", "atividades no kit principal"],
+            ["91", "páginas no kit principal"],
             ["110", "páginas só em bônus"],
             ["PDF", "pronto para imprimir"],
           ].map(([value, label]) => (
@@ -245,23 +277,25 @@ function Index() {
             </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
-            {[
+            {(
               [
-                CalendarCheck2,
-                "Economize tempo",
-                "Tenha propostas prontas para a rotina, sem montar atividade do zero.",
-              ],
-              [
-                Eye,
-                "Escolha com clareza",
-                "Encontre rapidamente uma atividade pela habilidade que quer trabalhar.",
-              ],
-              [
-                CheckCircle2,
-                "Aplique com leveza",
-                "Páginas visuais e instruções simples, feitas para entrar em ação.",
-              ],
-            ].map(([Icon, title, text]) => (
+                [
+                  CalendarCheck2,
+                  "Economize tempo",
+                  "Tenha propostas prontas para a rotina, sem montar atividade do zero.",
+                ],
+                [
+                  Eye,
+                  "Escolha com clareza",
+                  "Encontre rapidamente uma atividade pela habilidade que quer trabalhar.",
+                ],
+                [
+                  CheckCircle2,
+                  "Aplique com leveza",
+                  "Páginas visuais e instruções simples, feitas para entrar em ação.",
+                ],
+              ] as const
+            ).map(([Icon, title, text]) => (
               <article
                 key={title}
                 className="feature-card rounded-[1.5rem] border border-deep/8 bg-white p-5"
