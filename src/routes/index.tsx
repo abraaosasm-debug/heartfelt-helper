@@ -150,16 +150,16 @@ function Cover({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kit de Atividades Infantil e Autismo | Pronto para imprimir" },
+      { title: "Kit de Atividades Infantil e Autismo | 292 páginas no Completo" },
       {
         name: "description",
         content:
-          "Atividades educativas em PDF, organizadas e prontas para imprimir. Um recurso prático para famílias e educadores.",
+          "Atividades educativas em PDF prontas para imprimir. Kit Completo com 2 volumes, 5 bônus e 292 páginas.",
       },
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
-        content: "Atividades educativas organizadas e prontas para imprimir.",
+        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
       },
       { property: "og:type", content: "website" },
     ],
