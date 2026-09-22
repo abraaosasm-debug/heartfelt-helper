@@ -81,7 +81,7 @@ jobs:
 
       - name: Commit optimized previews
         run: |
-          if git diff --quiet -- public/covers/optimized; then
+          if [ -z "$(git status --porcelain -- public/covers/optimized)" ]; then
             echo "No preview changes."
             exit 0
           fi
