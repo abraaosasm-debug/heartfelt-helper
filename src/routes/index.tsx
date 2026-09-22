@@ -14,7 +14,6 @@ import {
   Gift,
   Heart,
   Layers3,
-  LockKeyhole,
   PencilLine,
   Printer,
   Puzzle,
@@ -30,6 +29,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+
+import { checkoutUrls } from "@/lib/checkout";
 
 function getCoverSource(number: number) {
   return `/covers/Imagens_${number}.jpg?v=2`;
@@ -131,33 +132,62 @@ const materials = [
 ] as const;
 
 const bonuses = [
-  ["01", "Planejamento de 4 semanas", "Uma sugestão de sequência para tirar o material do papel."],
-  ["02", "Rotina visual para recortar", "Cartões e quadros para apoiar a organização do dia."],
-  ["03", "Jogos de mesa imprimíveis", "Propostas lúdicas com regras, tabuleiros e peças."],
-  ["04", "Caderno de observação", "Fichas práticas para registrar participação e próximos passos."],
-  ["05", "Atividades para as famílias", "Exercícios e modelos de bilhete para enviar para casa."],
+  [
+    "01",
+    "Planejamento de 4 semanas",
+    "Organize o foco de cada encontro e o que pretende aplicar.",
+    "24 páginas",
+  ],
+  [
+    "02",
+    "Rotina visual para recortar",
+    "Apresente a sequência do dia com cartões e quadros visuais.",
+    "20 páginas",
+  ],
+  [
+    "03",
+    "Jogos de mesa imprimíveis",
+    "Quatro jogos com orientações, tabuleiros e peças para imprimir e montar.",
+    "30 páginas",
+  ],
+  [
+    "04",
+    "Caderno de observação da aprendizagem",
+    "Registre participação, preferências, apoios e próximos passos.",
+    "16 páginas",
+  ],
+  [
+    "05",
+    "Atividades para enviar às famílias",
+    "Dê continuidade em casa com propostas e modelos de bilhetes.",
+    "20 páginas",
+  ],
 ] as const;
 
 const faqs = [
   [
-    "Como recebo o material?",
-    "Após a confirmação do pagamento, o acesso ao material digital é liberado para download.",
+    "Qual a diferença entre Essencial e Completo?",
+    "O Essencial reúne o kit principal de 91 páginas por R$10. O Completo inclui esse mesmo kit, o Volume 2 e os cinco bônus, que somam 110 páginas, por R$59,90. A diferença de R$49,90 acrescenta atividades e recursos para planejar, organizar a rotina e registrar observações.",
   ],
   [
-    "O material é físico?",
-    "Não. Você recebe arquivos digitais em PDF e pode imprimir as páginas que quiser, quando precisar.",
+    "Consigo comprar agora?",
+    "As compras ainda não estão disponíveis nesta página. Você pode conhecer o conteúdo e comparar as opções; os botões de pagamento serão habilitados quando as vendas estiverem abertas.",
   ],
   [
-    "Para qual idade é indicado?",
-    "As propostas trabalham habilidades iniciais. A escolha deve considerar o nível de desenvolvimento e os interesses de cada criança, não apenas a idade.",
+    "O material é físico? Preciso imprimir tudo?",
+    "Você recebe arquivos digitais em PDF, sem envio de material físico. Escolha e imprima apenas as páginas que pretende utilizar. A impressão é por sua conta.",
   ],
   [
-    "Preciso imprimir tudo de uma vez?",
-    "Não. O kit foi organizado para você selecionar e imprimir somente as atividades adequadas para cada momento.",
+    "Como escolher uma atividade para a criança?",
+    "Comece pela habilidade que deseja trabalhar e observe se a instrução e o desafio fazem sentido para a criança. Considere seus interesses e os apoios de que precisa; adapte a proposta quando necessário.",
   ],
   [
-    "O kit substitui acompanhamento profissional?",
-    "Não. O material tem finalidade educativa e não substitui avaliação, terapia ou acompanhamento individualizado.",
+    "Preciso ter formação para usar em casa?",
+    "O kit é um recurso educativo para selecionar e acompanhar atividades. Leia a orientação de cada proposta e ofereça ajuda quando necessário. Ele não substitui avaliação, terapia ou acompanhamento individualizado.",
+  ],
+  [
+    "O que acontece depois da compra?",
+    "Quando as vendas estiverem abertas, o acesso ao material digital será liberado após a confirmação do pagamento. Antes de comprar, confira no checkout as informações de entrega e atendimento.",
   ],
 ] as const;
 
@@ -185,6 +215,35 @@ function Cta({ children, light = false }: { children: string; light?: boolean })
       {children}
       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
     </a>
+  );
+}
+
+function PurchaseAction({ kit }: { kit: "essential" | "complete" }) {
+  const url = checkoutUrls[kit];
+  const complete = kit === "complete";
+  const label = complete ? "Quero o Completo — R$59,90" : "Escolher Essencial — R$10";
+  return (
+    <div className="purchase-action">
+      {url ? (
+        <a className={complete ? "purchase-button primary" : "purchase-button"} href={url}>
+          {label}
+          <ArrowRight size={18} />
+        </a>
+      ) : (
+        <button
+          className={complete ? "purchase-button primary" : "purchase-button"}
+          disabled
+          aria-describedby={`availability-${kit}`}
+        >
+          Compra indisponível no momento
+        </button>
+      )}
+      <p id={`availability-${kit}`}>
+        {url
+          ? "PDF para imprimir • acesso após confirmação do pagamento"
+          : "As vendas ainda não estão abertas nesta página."}
+      </p>
+    </div>
   );
 }
 
@@ -293,16 +352,21 @@ function Index() {
               <Sparkles className="size-4 text-coral" /> KIT DE ATIVIDADES INFANTIL E AUTISMO
             </div>
             <h1 className="balance text-4xl font-bold leading-[1.03] text-deep sm:text-6xl lg:text-7xl">
-              Prepare menos. <span className="marker-text">Compartilhe mais descobertas.</span>
+              Atividades infantis organizadas por habilidade.{" "}
+              <span className="marker-text">Escolha, imprima e comece.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
-              Receba um acervo completo de atividades educativas prontas para imprimir, com dois
-              volumes e 5 bônus para transformar a rotina em momentos de aprendizado mais leves.
+              Tenha propostas de letras, números, coordenação e emoções à mão. No Kit Completo, você
+              também recebe o Volume 2 e cinco materiais para planejar os encontros, organizar a
+              rotina e registrar suas observações.
             </p>
             <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:justify-start">
-              <Cta>QUERO O KIT COMPLETO AGORA</Cta>
+              <Cta>CONHECER O COMPLETO — R$59,90</Cta>
               <GuaranteeSeal />
             </div>
+            <a href="#como-usar" className="usage-link">
+              Veja como começar com uma página <ArrowRight size={16} />
+            </a>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-extrabold text-deep/60 lg:justify-start">
               <span className="flex items-center gap-2">
                 <Download className="size-4 text-coral" /> Acesso digital
@@ -355,6 +419,46 @@ function Index() {
         </div>
       </section>
 
+      <section id="como-usar" className="usage-section">
+        <div className="section-shell">
+          <p className="eyebrow">DO ARQUIVO PARA A SUA ROTINA</p>
+          <h2>
+            Comece com uma página.
+            <br />
+            Uma proposta de cada vez.
+          </h2>
+          <p className="usage-intro">
+            Você não precisa preparar o kit inteiro. Escolha uma atividade, separe o necessário e
+            acompanhe a criança.
+          </p>
+          <ol className="usage-steps">
+            <li>
+              <span>01</span>
+              <h3>Escolha uma habilidade</h3>
+              <p>Encontre o tema que quer trabalhar e leia a instrução da proposta.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <h3>Prepare só o necessário</h3>
+              <p>
+                Imprima a página escolhida e separe os materiais indicados para aquela atividade.
+              </p>
+            </li>
+            <li>
+              <span>03</span>
+              <h3>Apresente e observe</h3>
+              <p>Dê uma instrução clara, acompanhe a resposta e adapte quando necessário.</p>
+            </li>
+          </ol>
+          <div className="usage-note">
+            <BookOpen size={24} aria-hidden="true" />
+            <p>
+              <strong>O que você está comprando é organização.</strong> Atividades reunidas por
+              habilidade e, no Completo, materiais que ajudam a planejar e acompanhar o uso.
+            </p>
+          </div>
+        </div>
+      </section>
       <section className="relative py-18 sm:py-24">
         <div className="section-shell grid items-center gap-10 lg:grid-cols-[.85fr_1.15fr]">
           <div>
@@ -410,13 +514,13 @@ function Index() {
       <section id="conteudo" className="py-18 sm:py-24">
         <div className="section-shell">
           <div className="mx-auto max-w-2xl text-center reveal-up">
-            <p className="eyebrow">UM KIT PARA VOCÊ NUNCA FICAR SEM IDEIA</p>
+            <p className="eyebrow">ESCOLHA PELA HABILIDADE QUE QUER TRABALHAR</p>
             <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Abra, escolha a habilidade e comece a aplicar.
+              Encontre uma proposta para o próximo encontro.
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              Cada módulo reduz a dúvida do “o que fazer hoje?” e aumenta a variedade das
-              atividades.
+              Letras, traçados, números e outras propostas reunidas por tema, para você selecionar o
+              que faz sentido agora.
             </p>
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -492,13 +596,14 @@ function Index() {
             <div className="max-w-2xl">
               <p className="eyebrow">O QUE VOCÊ LEVA NO KIT COMPLETO</p>
               <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-                Um acervo que continua útil depois da primeira impressão.
+                Cinco apoios para colocar as atividades em prática.
               </h2>
             </div>
             <Gift className="hidden size-16 text-coral/70 md:block" />
           </div>
           <p className="mt-5 text-sm text-muted-foreground">
-            Conheça cada material. Toque nas capas para ver os detalhes.
+            110 páginas em materiais complementares, incluídas no Completo. Toque para ampliar as
+            capas.
           </p>
           <div className="gallery-controls">
             <span>
@@ -524,7 +629,7 @@ function Index() {
             aria-label="Capas dos cinco bônus"
             tabIndex={0}
           >
-            {bonuses.map(([number, title, text], index) => (
+            {bonuses.map(([number, title, text, pages], index) => (
               <article key={title} className="bonus-product">
                 <div className="bonus-visual">
                   <span className="bonus-index" aria-hidden="true">
@@ -532,7 +637,9 @@ function Index() {
                   </span>
                   <Cover number={index + 3} title={title} />
                 </div>
-                <span className="bonus-label">BÔNUS {number}</span>
+                <span className="bonus-label">
+                  BÔNUS {number} · {pages}
+                </span>
                 <h3 className="font-bold leading-5 text-deep">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
                 <span className="bonus-included">
@@ -570,85 +677,91 @@ function Index() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <Cta>SIM, QUERO ACESSAR O KIT COMPLETO</Cta>
+            <Cta>COMPARAR OS KITS</Cta>
           </div>
         </div>
       </section>
 
-      <section id="precos" className="py-18 sm:py-24">
+      <section id="precos" className="offer-section">
         <div className="section-shell">
-          <div className="text-center">
-            <p className="eyebrow">ESCOLHA COMO QUER COMEÇAR</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Leve o material para sua rotina hoje.
+          <div className="offer-heading">
+            <p className="eyebrow">O QUE FAZ SENTIDO PARA A SUA ROTINA?</p>
+            <h2>
+              Atividades para começar.
+              <br />
+              Apoios para continuar.
             </h2>
+            <p>Compare o que você recebe em cada opção. Os dois kits são digitais, em PDF.</p>
           </div>
-          <div className="mx-auto mt-11 grid max-w-4xl items-stretch gap-6 md:grid-cols-2">
-            <article className="price-card rounded-[1.75rem] border border-deep/10 bg-white p-7 sm:p-9">
-              <p className="text-sm font-black uppercase tracking-wider text-muted-foreground">
-                Kit Essencial
+          <div className="offer-grid">
+            <article className="offer-card offer-complete">
+              <span className="offer-label">DOIS VOLUMES + CINCO BÔNUS</span>
+              <h3>Kit Completo</h3>
+              <p>
+                Para quem quer atividades e recursos para organizar o uso, do planejamento ao
+                registro.
               </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Para conhecer o conteúdo-base do kit.
-              </p>
-              <div className="mt-6 flex items-end gap-1 text-deep">
-                <span className="pb-1.5 font-bold">R$</span>
-                <strong className="text-5xl font-black">10,00</strong>
+              <div className="offer-price">
+                <span>R$</span>
+                <strong>59,90</strong>
               </div>
-              <ul className="mt-7 space-y-3 text-sm">
-                {["Kit principal em PDF", "Acesso digital", "Pronto para imprimir"].map((item) => (
-                  <li key={item} className="flex gap-2.5">
-                    <Check className="size-5 shrink-0 text-success" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#"
-                className="mt-8 flex h-13 items-center justify-center rounded-full border-2 border-deep text-sm font-black text-deep transition hover:bg-deep hover:text-white"
-              >
-                QUERO COMEÇAR PELO ESSENCIAL
-              </a>
-            </article>
-            <article className="price-card popular relative rounded-[1.75rem] bg-deep p-7 text-white sm:p-9">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-coral px-4 py-1.5 text-xs font-black shadow-lg">
-                MELHOR CUSTO-BENEFÍCIO
-              </span>
-              <p className="text-sm font-black uppercase tracking-wider text-accent">
-                Kit Completo + Bônus
-              </p>
-              <p className="mt-3 text-sm text-white/60">
-                A escolha para quem quer mais variedade desde o primeiro dia.
-              </p>
-              <div className="mt-6 flex items-end gap-1">
-                <span className="pb-1.5 font-bold">R$</span>
-                <strong className="text-5xl font-black">59,90</strong>
-              </div>
-              <ul className="mt-7 space-y-3 text-sm">
+              <p className="offer-payment">Pagamento único • sem assinatura</p>
+              <ul>
                 {[
-                  "Kit principal completo",
-                  "Volume 2",
-                  "Todos os 5 bônus",
-                  "Acesso digital",
-                  "Material pronto para imprimir",
+                  "Kit principal — 91 páginas",
+                  "Volume 2 — mais propostas de atividades",
+                  "Planejamento de 4 semanas",
+                  "Rotina visual para recortar",
+                  "Quatro jogos de mesa imprimíveis",
+                  "Caderno de observação da aprendizagem",
+                  "Atividades para enviar às famílias",
                 ].map((item) => (
-                  <li key={item} className="flex gap-2.5">
-                    <Check className="size-5 shrink-0 text-accent" />
+                  <li key={item}>
+                    <Check size={18} aria-hidden="true" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className="cta-shimmer mt-8 flex h-13 items-center justify-center rounded-full bg-coral text-sm font-black text-white shadow-lg"
-              >
-                QUERO TUDO QUE ESTÁ INCLUSO
-              </a>
-              <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-white/50">
-                <LockKeyhole className="size-3.5" /> Pagamento seguro • liberação após a compra
+              <div className="offer-difference">
+                <strong>O que os R$49,90 a mais acrescentam?</strong>
+                <p>
+                  O Volume 2 e os cinco bônus: 110 páginas de apoio para planejar, organizar a
+                  rotina, jogar e registrar observações.
+                </p>
+              </div>
+              <PurchaseAction kit="complete" />
+            </article>
+            <article className="offer-card offer-essential">
+              <span className="offer-label">O MATERIAL PRINCIPAL</span>
+              <h3>Kit Essencial</h3>
+              <p>Para começar pelas atividades do kit principal.</p>
+              <div className="offer-price">
+                <span>R$</span>
+                <strong>10,00</strong>
+              </div>
+              <p className="offer-payment">Pagamento único • sem assinatura</p>
+              <ul>
+                {[
+                  "Kit principal — 91 páginas",
+                  "Atividades organizadas por habilidade",
+                  "Arquivo digital em PDF para imprimir",
+                ].map((item) => (
+                  <li key={item}>
+                    <Check size={18} aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="essential-limits">
+                O Volume 2 e os cinco bônus fazem parte apenas do Kit Completo.
               </p>
+              <PurchaseAction kit="essential" />
             </article>
           </div>
+          <p className="offer-footnote">
+            Sem envio físico. Imprima as páginas que escolher; os custos de impressão não estão
+            incluídos.
+          </p>
         </div>
       </section>
 
@@ -712,13 +825,14 @@ function Index() {
         <div className="section-shell relative">
           <Users className="mx-auto size-10" />
           <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold sm:text-5xl">
-            Tenha atividades organizadas à mão sempre que precisar.
+            Seu próximo encontro pode começar com uma escolha simples.
           </h2>
           <p className="mx-auto mt-4 max-w-xl leading-7 text-white/80">
-            Escolha seu kit, faça o download e imprima no seu ritmo.
+            Conheça os materiais e escolha entre as atividades do Essencial e os apoios adicionais
+            do Completo.
           </p>
           <div className="mt-8">
-            <Cta light>VER OPÇÕES DE ACESSO</Cta>
+            <Cta light>COMPARAR ESSENCIAL E COMPLETO</Cta>
           </div>
         </div>
       </section>
