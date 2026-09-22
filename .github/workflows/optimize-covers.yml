@@ -90,4 +90,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/covers/optimized
           git commit -m "perf: gerar previews WebP das capas"
+          git pull --rebase origin main
           git push
