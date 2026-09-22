@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -39,20 +39,43 @@ function Cover({
   title: string;
   priority?: boolean;
 }) {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (image?.complete && image.naturalWidth > 0) setLoaded(true);
+  }, []);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button type="button" className="cover-button" aria-label={`Ampliar capa: ${title}`}>
+        <button
+          type="button"
+          className={`cover-button${loaded ? " is-loaded" : ""}${failed ? " is-error" : ""}`}
+          aria-label={`Ampliar capa: ${title}`}
+        >
+          <span className="cover-skeleton" aria-hidden="true" />
           <img
+            ref={imageRef}
+            className="cover-image"
             src={`/covers/Imagens_${number}.jpg`}
             alt={`Capa de ${title}`}
             width={1080}
             height={1527}
             loading={priority ? "eager" : "lazy"}
-            decoding="async"
+            fetchPriority={priority ? "high" : "auto"}
+            decoding={priority ? "sync" : "async"}
+            draggable={false}
+            onLoad={() => setLoaded(true)}
+            onError={() => setFailed(true)}
           />
+          <span className="cover-glare" aria-hidden="true" />
+          {failed ? <span className="cover-error">Não foi possível carregar a capa.</span> : null}
           <span className="cover-zoom">
-            <Eye size={15} /> Ver capa
+            <Eye size={16} />
+            <span>Ampliar capa</span>
           </span>
         </button>
       </DialogTrigger>
@@ -64,6 +87,8 @@ function Cover({
           alt={`Capa ampliada de ${title}`}
           width={1080}
           height={1527}
+          loading="eager"
+          decoding="sync"
         />
       </DialogContent>
     </Dialog>
@@ -157,6 +182,23 @@ function Cta({ children, light = false }: { children: string; light?: boolean })
   );
 }
 
+function GuaranteeSeal() {
+  return (
+    <div className="guarantee-lockup" aria-label="Garantia de 7 dias">
+      <div className="guarantee-seal" aria-hidden="true">
+        <span className="guarantee-glint" />
+        <ShieldCheck className="guarantee-icon" />
+        <strong>7 DIAS</strong>
+        <span>GARANTIA</span>
+      </div>
+      <div className="guarantee-copy">
+        <strong>Garantia de 7 dias</strong>
+        <span>Conheça o material com tranquilidade.</span>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   const page = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -176,7 +218,7 @@ function Index() {
       { threshold: 0.08 },
     );
     const elements = root.querySelectorAll(
-      "section:not(#inicio) > div, .feature-card, .bonus-card",
+      "section:not(#inicio) > div, .feature-card, .bonus-card, .bonus-product",
     );
     elements.forEach((element) => {
       element.classList.add("scroll-reveal");
@@ -238,11 +280,9 @@ function Index() {
               Receba um acervo completo de atividades educativas prontas para imprimir, com dois
               volumes e 5 bônus para transformar a rotina em momentos de aprendizado mais leves.
             </p>
-            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+            <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:justify-start">
               <Cta>QUERO O KIT COMPLETO AGORA</Cta>
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-deep/65">
-                <ShieldCheck className="size-5 text-success" /> 7 dias de garantia
-              </span>
+              <GuaranteeSeal />
             </div>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-extrabold text-deep/60 lg:justify-start">
               <span className="flex items-center gap-2">
@@ -257,6 +297,8 @@ function Index() {
             </div>
           </div>
           <div className="collection-stage">
+            <Sparkles className="stage-spark stage-spark-one" aria-hidden="true" />
+            <Sparkles className="stage-spark stage-spark-two" aria-hidden="true" />
             <div className="collection-caption">
               <span>A SUA PRÓXIMA ATIVIDADE COMEÇA AQUI</span>
               <strong>Uma coleção. Muitas descobertas.</strong>
@@ -439,14 +481,18 @@ function Index() {
           <p className="mt-5 text-sm text-muted-foreground">
             Conheça cada material. Toque nas capas para ver os detalhes.
           </p>
+          <span className="bonus-swipe-hint" aria-hidden="true">
+            Deslize para explorar os 5 bônus <ArrowRight className="size-4" />
+          </span>
           <div className="bonus-gallery">
             {bonuses.map(([number, title, text], index) => (
-              <article
-                key={title}
-                className="bonus-product"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <Cover number={index + 3} title={title} />
+              <article key={title} className="bonus-product">
+                <div className="bonus-visual">
+                  <span className="bonus-index" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                  <Cover number={index + 3} title={title} />
+                </div>
                 <span className="bonus-label">BÔNUS {number}</span>
                 <h3 className="font-bold leading-5 text-deep">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
