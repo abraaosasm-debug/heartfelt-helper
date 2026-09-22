@@ -212,11 +212,11 @@ const bonuses = [
 const faqs = [
   [
     "Qual a diferença entre Essencial e Completo?",
-    "O Essencial reúne o kit principal de 91 páginas por R$10. O Completo inclui esse mesmo kit, o Volume 2 e os cinco bônus, que somam 110 páginas, por R$59,90. A diferença de R$49,90 acrescenta atividades e recursos para planejar, organizar a rotina e registrar observações.",
+    "O Essencial reúne o kit principal de 91 páginas por R$10. O Completo reúne o kit principal de 91 páginas, o Volume 2 com 91 páginas e os cinco bônus com 110 páginas — 292 páginas no total — por R$59,90.",
   ],
   [
     "Consigo comprar agora?",
-    "As compras ainda não estão disponíveis nesta página. Você pode conhecer o conteúdo e comparar as opções; os botões de pagamento serão habilitados quando as vendas estiverem abertas.",
+    "Sim. Escolha o Kit Essencial ou o Kit Completo e toque no botão de compra. Você será direcionado ao checkout da Cakto para concluir o pagamento.",
   ],
   [
     "O material é físico? Preciso imprimir tudo?",
@@ -242,8 +242,8 @@ const included = [
     "Atividades para alfabetização, coordenação, números, percepção, emoções e associação.",
   ],
   [
-    "Volume 2 de atividades",
-    "Mais variedade de propostas para manter a rotina de aprendizagem interessante.",
+    "Volume 2 — 91 páginas",
+    "Continuação do kit principal, com novas propostas de letras, números, comunicação, sequências e situações do cotidiano.",
   ],
   [
     "5 bônus — 110 páginas",
@@ -266,7 +266,7 @@ function Cta({ children, light = false }: { children: string; light?: boolean })
 function PurchaseAction({ kit }: { kit: "essential" | "complete" }) {
   const url = checkoutUrls[kit];
   const complete = kit === "complete";
-  const label = complete ? "Quero o Completo — R$59,90" : "Escolher Essencial — R$10";
+  const label = complete ? "QUERO O KIT COMPLETO — R$59,90" : "QUERO O KIT ESSENCIAL — R$10";
   return (
     <div className="purchase-action">
       {url ? (
@@ -285,7 +285,7 @@ function PurchaseAction({ kit }: { kit: "essential" | "complete" }) {
       )}
       <p id={`availability-${kit}`}>
         {url
-          ? "PDF para imprimir • acesso após confirmação do pagamento"
+          ? "Pagamento único • material digital • acesso após confirmação"
           : "As vendas ainda não estão abertas nesta página."}
       </p>
     </div>
@@ -529,22 +529,22 @@ function Index() {
               </div>
 
               <h1>
-                Mais que atividades.
+                Atividades prontas.
                 <br />
-                Um kit para aplicar
+                Mais organização para
                 <br />
-                <span>com mais clareza.</span>
+                <span>ensinar no dia a dia.</span>
               </h1>
 
               <p className="premium-hero-intro">
-                Atividades prontas para imprimir + recursos para planejar, organizar a rotina,
-                jogar, observar e continuar em casa.
+                Tenha 2 volumes de atividades + 5 bônus para imprimir, planejar, organizar a rotina,
+                jogar, observar e continuar o aprendizado em casa.
               </p>
 
               <div className="premium-hero-badges" aria-label="Destaques do kit">
+                <span>292 PÁGINAS NO COMPLETO</span>
                 <span>2 VOLUMES + 5 BÔNUS</span>
                 <span>PRONTO PARA IMPRIMIR</span>
-                <span>USO SIMPLES</span>
               </div>
 
               <div className="premium-hero-actions">
@@ -568,7 +568,7 @@ function Index() {
               aria-label="Prévia dos cinco bônus do Kit Completo"
             >
               <div className="premium-hero-visual-grid" aria-hidden="true" />
-              <div className="premium-hero-offer-chip">5 BÔNUS • 110 PÁGINAS</div>
+              <div className="premium-hero-offer-chip">292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</div>
 
               <span className="premium-hero-callout callout-plan">
                 <Check size={17} /> PLANEJAR
@@ -646,19 +646,65 @@ function Index() {
       </section>
 
       <section className="border-y border-deep/5 bg-white py-6">
-        <div className="section-shell grid grid-cols-3 divide-x divide-deep/10 text-center">
+        <div className="section-shell grid grid-cols-2 divide-x divide-y divide-deep/10 text-center sm:grid-cols-4 sm:divide-y-0">
           {[
-            ["91", "páginas no kit principal"],
-            ["110", "páginas só em bônus"],
-            ["PDF", "pronto para imprimir"],
+            ["91", "páginas no volume 1"],
+            ["91", "páginas no volume 2"],
+            ["110", "páginas nos 5 bônus"],
+            ["292", "páginas no completo"],
           ].map(([value, label]) => (
-            <div key={label}>
+            <div key={label} className="px-2 py-3 sm:py-0">
               <strong className="block text-2xl font-black text-deep sm:text-3xl">{value}</strong>
               <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">
                 {label}
               </span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="py-18 sm:py-24">
+        <div className="section-shell">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">DOIS VOLUMES DE ATIVIDADES</p>
+            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
+              Comece pelo essencial e avance com novas propostas.
+            </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além dos 110
+              páginas de bônus para apoiar planejamento, rotina, jogos e acompanhamento.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+            <article className="rounded-[2rem] border border-deep/8 bg-white p-5 shadow-sm sm:p-7">
+              <div className="mx-auto max-w-[260px]">
+                <Cover number={1} title="Kit de Atividades Infantil e Autismo — Volume 1" priority />
+              </div>
+              <span className="mt-6 inline-flex rounded-full bg-sky-soft px-3 py-1 text-xs font-black text-deep">
+                VOLUME 1 • 91 PÁGINAS
+              </span>
+              <h3 className="mt-4 text-xl font-bold text-deep">O ponto de partida</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Vogais, alfabeto, coordenação motora, números, sílabas, percepção visual, emoções,
+                associação e revisão.
+              </p>
+            </article>
+
+            <article className="rounded-[2rem] border border-coral/20 bg-coral-soft/40 p-5 shadow-sm sm:p-7">
+              <div className="mx-auto max-w-[260px]">
+                <Cover number={2} title="Kit de Atividades Infantil e Autismo — Volume 2" priority />
+              </div>
+              <span className="mt-6 inline-flex rounded-full bg-coral px-3 py-1 text-xs font-black text-white">
+                VOLUME 2 • 91 PÁGINAS
+              </span>
+              <h3 className="mt-4 text-xl font-bold text-deep">A continuação</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Novas atividades com letras, leitura inicial, quantidades até 20, sequências,
+                escolhas, comunicação e situações do cotidiano.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -1037,11 +1083,11 @@ function Index() {
           </div>
           <div className="offer-grid">
             <article className="offer-card offer-complete">
-              <span className="offer-label">DOIS VOLUMES + CINCO BÔNUS</span>
+              <span className="offer-label">MELHOR CUSTO-BENEFÍCIO • 292 PÁGINAS</span>
               <h3>Kit Completo</h3>
               <p>
-                Para quem quer atividades e recursos para organizar o uso, do planejamento ao
-                registro.
+                Dois volumes de atividades + cinco bônus para ter mais variedade e recursos para
+                planejar, organizar, aplicar e acompanhar.
               </p>
               <div className="offer-price">
                 <span>R$</span>
@@ -1051,7 +1097,7 @@ function Index() {
               <ul>
                 {[
                   "Kit principal — 91 páginas",
-                  "Volume 2 — mais propostas de atividades",
+                  "Volume 2 — 91 páginas",
                   "Planejamento de 4 semanas",
                   "Rotina visual para recortar",
                   "Quatro jogos de mesa imprimíveis",
@@ -1067,8 +1113,8 @@ function Index() {
               <div className="offer-difference">
                 <strong>O que os R$49,90 a mais acrescentam?</strong>
                 <p>
-                  O Volume 2 e os cinco bônus: 110 páginas de apoio para planejar, organizar a
-                  rotina, jogar e registrar observações.
+                  Mais 201 páginas: o Volume 2 com 91 páginas + cinco bônus com 110 páginas.
+                  No total, o Completo reúne 292 páginas de materiais digitais.
                 </p>
               </div>
               <PurchaseAction kit="complete" />
@@ -1101,8 +1147,8 @@ function Index() {
             </article>
           </div>
           <p className="offer-footnote">
-            Sem envio físico. Imprima as páginas que escolher; os custos de impressão não estão
-            incluídos.
+            Produto 100% digital. Sem envio físico. Você imprime apenas as páginas que quiser; os
+            custos de impressão não estão incluídos.
           </p>
         </div>
       </section>
@@ -1174,7 +1220,7 @@ function Index() {
             do Completo.
           </p>
           <div className="mt-8">
-            <Cta light>COMPARAR ESSENCIAL E COMPLETO</Cta>
+            <Cta light>ESCOLHER MEU KIT</Cta>
           </div>
         </div>
       </section>
