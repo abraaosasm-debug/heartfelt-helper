@@ -416,60 +416,123 @@ function Index() {
         </div>
       </header>
 
-      <section id="inicio" className="hero-grid relative pt-32 pb-16 sm:pt-40 sm:pb-24">
+      <section id="inicio" className="premium-hero relative pt-28 pb-12 sm:pt-36 sm:pb-18">
         <div className="orb orb-one" />
         <div className="orb orb-two" />
-        <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
-          <div className="reveal-up text-center lg:text-left">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-deep/10 bg-white/75 px-4 py-2 text-xs font-black text-deep shadow-sm backdrop-blur">
-              <Sparkles className="size-4 text-coral" /> KIT DE ATIVIDADES INFANTIL E AUTISMO
-            </div>
-            <h1 className="balance text-4xl font-bold leading-[1.03] text-deep sm:text-6xl lg:text-7xl">
-              Atividades infantis organizadas por habilidade.{" "}
-              <span className="marker-text">Escolha, imprima e comece.</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg lg:mx-0">
-              Tenha propostas de letras, números, coordenação e emoções à mão. No Kit Completo, você
-              também recebe o Volume 2 e cinco materiais para planejar os encontros, organizar a
-              rotina e registrar suas observações.
-            </p>
-            <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:justify-start">
-              <Cta>CONHECER O COMPLETO — R$59,90</Cta>
-              <GuaranteeSeal />
-            </div>
-            <a href="#como-usar" className="usage-link">
-              Veja como começar com uma página <ArrowRight size={16} />
-            </a>
-            <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-extrabold text-deep/60 lg:justify-start">
-              <span className="flex items-center gap-2">
-                <Download className="size-4 text-coral" /> Acesso digital
-              </span>
-              <span className="flex items-center gap-2">
-                <Printer className="size-4 text-coral" /> Pronto para imprimir
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="size-4 text-coral" /> Uso simples
-              </span>
-            </div>
-          </div>
-          <div className="collection-stage">
-            <Sparkles className="stage-spark stage-spark-one" aria-hidden="true" />
-            <Sparkles className="stage-spark stage-spark-two" aria-hidden="true" />
-            <div className="collection-caption">
-              <span>A SUA PRÓXIMA ATIVIDADE COMEÇA AQUI</span>
-              <strong>Uma coleção. Muitas descobertas.</strong>
-            </div>
-            <div className="book-pair">
-              <div className="book-one">
-                <Cover number={1} title="Kit principal" priority />
+        <div className="section-shell relative">
+          <div className="premium-hero-card">
+            <div className="premium-hero-copy">
+              <div className="premium-hero-eyebrow">
+                <span aria-hidden="true" />
+                KIT COMPLETO • DIGITAL
               </div>
-              <div className="book-two">
-                <Cover number={2} title="Volume 2" priority />
+
+              <h1>
+                Mais que atividades.
+                <br />
+                Um kit para aplicar
+                <br />
+                <span>com mais clareza.</span>
+              </h1>
+
+              <p className="premium-hero-intro">
+                Atividades prontas para imprimir + recursos para planejar, organizar a rotina,
+                jogar, observar e continuar em casa.
+              </p>
+
+              <div className="premium-hero-badges" aria-label="Destaques do kit">
+                <span>2 VOLUMES + 5 BÔNUS</span>
+                <span>PRONTO PARA IMPRIMIR</span>
+                <span>USO SIMPLES</span>
+              </div>
+
+              <div className="premium-hero-actions">
+                <Cta>CONHECER O COMPLETO — R$59,90</Cta>
+                <GuaranteeSeal />
+              </div>
+
+              <a href="#como-usar" className="usage-link premium-hero-link">
+                Veja como começar com uma página <ArrowRight size={16} />
+              </a>
+
+              <div className="premium-hero-topics" aria-label="Conteúdos trabalhados">
+                {["Letras", "Números", "Coordenação", "Emoções", "Rotina", "Jogos"].map(
+                  (topic) => (
+                    <span key={topic}>{topic}</span>
+                  ),
+                )}
               </div>
             </div>
-            <div className="collection-foot">
-              <span>02 volumes + 05 bônus</span>
-              <span>Arquivos digitais · PDF</span>
+
+            <div className="premium-hero-visual" aria-label="Prévia dos cinco bônus do Kit Completo">
+              <div className="premium-hero-visual-grid" aria-hidden="true" />
+              <div className="premium-hero-offer-chip">5 BÔNUS • 110 PÁGINAS</div>
+
+              <span className="premium-hero-callout callout-plan">
+                <Check size={17} /> PLANEJAR
+              </span>
+              <span className="premium-hero-callout callout-routine">
+                <CheckCircle2 size={17} /> ROTINA
+              </span>
+              <span className="premium-hero-callout callout-play">
+                <Sparkles size={17} /> JOGAR
+              </span>
+              <span className="premium-hero-callout callout-observe">
+                <Eye size={17} /> OBSERVAR
+              </span>
+
+              <div className="premium-cover premium-cover-1">
+                <img
+                  src={getCoverSource(3)}
+                  alt="Capa do bônus Planejamento de 4 semanas"
+                  width={1080}
+                  height={1526}
+                  loading="eager"
+                  decoding="sync"
+                />
+              </div>
+              <div className="premium-cover premium-cover-2">
+                <img
+                  src={getCoverSource(4)}
+                  alt="Capa do bônus Rotina visual para recortar"
+                  width={1080}
+                  height={1526}
+                  loading="eager"
+                  decoding="sync"
+                />
+              </div>
+              <div className="premium-cover premium-cover-3">
+                <img
+                  src={getCoverSource(5)}
+                  alt="Capa do bônus Jogos de mesa imprimíveis"
+                  width={1080}
+                  height={1526}
+                  loading="eager"
+                  decoding="sync"
+                />
+              </div>
+              <div className="premium-cover premium-cover-4">
+                <img
+                  src={getCoverSource(6)}
+                  alt="Capa do bônus Caderno de observação da aprendizagem"
+                  width={1080}
+                  height={1526}
+                  loading="eager"
+                  decoding="sync"
+                />
+              </div>
+              <div className="premium-cover premium-cover-5">
+                <img
+                  src={getCoverSource(7)}
+                  alt="Capa do bônus Atividades para enviar às famílias"
+                  width={1080}
+                  height={1526}
+                  loading="eager"
+                  decoding="sync"
+                />
+              </div>
+
+              <div className="premium-hero-ribbon">Escolha • imprima • aplique • acompanhe</div>
             </div>
           </div>
         </div>
