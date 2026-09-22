@@ -64,7 +64,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Voltar ao início
           </a>
         </div>
       </div>
@@ -86,6 +86,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Kit de Atividades Infantil e Autismo" },
+      {
+        name: "twitter:description",
+        content: "Atividades educativas organizadas e prontas para imprimir.",
+      },
       { property: "og:image", content: "/covers/Imagens_1.jpg?v=2" },
       { property: "og:image:alt", content: "Capa do Kit de Atividades Infantil e Autismo" },
       { name: "twitter:image", content: "/covers/Imagens_1.jpg?v=2" },
