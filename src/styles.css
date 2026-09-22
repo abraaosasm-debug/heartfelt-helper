@@ -2385,3 +2385,60 @@
 .editorial-page .bonus-gallery {
   display: grid;
 }
+
+
+/* Uniform bonus cover footer: same image frame and zoom-button slot for all five bonuses. */
+.editorial-page .bonus-product .cover-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 0 0 60px;
+  margin: 0 auto 24px;
+  overflow: visible;
+}
+
+.editorial-page .bonus-product .cover-image {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-width: 100%;
+  aspect-ratio: 1080 / 1527 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  margin: 0;
+  transform: none;
+}
+
+.editorial-page .bonus-product .cover-zoom {
+  position: absolute;
+  z-index: 6;
+  top: auto;
+  right: auto;
+  bottom: 12px;
+  left: 50%;
+  width: max-content;
+  height: 36px;
+  margin: 0;
+  padding: 8px 14px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.editorial-page .bonus-product .cover-button:hover .cover-zoom {
+  transform: translateX(-50%);
+}
+
+@media (max-width: 600px) {
+  .editorial-page .bonus-product .cover-button {
+    padding-bottom: 60px;
+  }
+
+  .editorial-page .bonus-product .cover-zoom {
+    bottom: 12px;
+    height: 36px;
+  }
+}
