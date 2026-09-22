@@ -2453,3 +2453,266 @@
   object-position: center !important;
   background: white;
 }
+
+
+/* High-attention motion layer and infinite bonus-carousel polish. */
+#bonus {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#bonus::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -18%;
+  right: -14%;
+  width: min(520px, 68vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.86 0.09 82 / 0.2), transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: bonus-ambient-drift 9s ease-in-out infinite alternate;
+}
+
+#bonus .section-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.editorial-page .collection-stage {
+  animation: collection-breathe 6.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.editorial-page .marker-text {
+  animation: marker-attention 4.2s ease-in-out infinite;
+}
+
+.editorial-page .cta-shimmer {
+  animation: cta-attention-pulse 3.4s ease-in-out infinite;
+}
+
+.bonus-gift {
+  transform-origin: 50% 70%;
+  animation: bonus-gift-float 3.8s ease-in-out infinite;
+}
+
+.gallery-controls button:last-child {
+  animation: gallery-next-nudge 2.1s ease-in-out infinite;
+}
+
+.editorial-page .bonus-gallery {
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+}
+
+.editorial-page .bonus-product {
+  transform-origin: center;
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.42s ease,
+    border-color 0.42s ease;
+}
+
+.editorial-page .bonus-product:not(.bonus-clone) .bonus-visual {
+  animation: bonus-cover-float 5.2s ease-in-out infinite;
+}
+
+.editorial-page .bonus-product:nth-child(2) .bonus-visual {
+  animation-delay: -1.1s;
+}
+
+.editorial-page .bonus-product:nth-child(3) .bonus-visual {
+  animation-delay: -2.2s;
+}
+
+.editorial-page .bonus-product:nth-child(4) .bonus-visual {
+  animation-delay: -3.3s;
+}
+
+.editorial-page .bonus-product:nth-child(5) .bonus-visual {
+  animation-delay: -4.1s;
+}
+
+.editorial-page .bonus-product:hover {
+  transform: translateY(-8px) scale(1.012);
+  border-color: oklch(0.7 0.08 150 / 0.72);
+  box-shadow: 0 26px 60px oklch(0.28 0.04 165 / 0.14);
+}
+
+.editorial-page .bonus-product:hover .bonus-visual {
+  animation-play-state: paused;
+}
+
+.editorial-page .bonus-product:not(.bonus-clone)::after {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  top: -22%;
+  bottom: -22%;
+  left: -34%;
+  width: 18%;
+  pointer-events: none;
+  transform: rotate(14deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(1 0 0 / 0.3),
+    transparent
+  );
+  animation: bonus-card-sheen 7.2s ease-in-out infinite;
+}
+
+.editorial-page .bonus-product:nth-child(2)::after {
+  animation-delay: -1.4s;
+}
+
+.editorial-page .bonus-product:nth-child(3)::after {
+  animation-delay: -2.8s;
+}
+
+.editorial-page .bonus-product:nth-child(4)::after {
+  animation-delay: -4.2s;
+}
+
+.editorial-page .bonus-product:nth-child(5)::after {
+  animation-delay: -5.6s;
+}
+
+.editorial-page .bonus-clone {
+  pointer-events: none;
+  user-select: none;
+}
+
+.editorial-page .bonus-clone .cover-button {
+  cursor: default;
+}
+
+.editorial-page .scroll-reveal {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(28px) scale(0.985);
+}
+
+.editorial-page .scroll-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+@keyframes collection-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 18px 45px oklch(0.24 0.03 165 / 0.08);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.006);
+    box-shadow: 0 28px 60px oklch(0.24 0.03 165 / 0.13);
+  }
+}
+
+@keyframes marker-attention {
+  0%,
+  100% {
+    text-shadow: 0 0 0 oklch(0.74 0.12 80 / 0);
+  }
+  48% {
+    text-shadow: 0 8px 26px oklch(0.74 0.12 80 / 0.18);
+  }
+}
+
+@keyframes cta-attention-pulse {
+  0%,
+  100% {
+    box-shadow: 0 14px 32px oklch(0.62 0.17 32 / 0.24);
+    filter: saturate(1);
+  }
+  50% {
+    box-shadow:
+      0 18px 42px oklch(0.62 0.17 32 / 0.36),
+      0 0 0 7px oklch(0.72 0.12 35 / 0.08);
+    filter: saturate(1.08);
+  }
+}
+
+@keyframes bonus-gift-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(5deg) scale(1.05);
+  }
+}
+
+@keyframes gallery-next-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(4px);
+  }
+  65% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes bonus-cover-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bonus-card-sheen {
+  0%,
+  60% {
+    left: -34%;
+    opacity: 0;
+  }
+  68% {
+    opacity: 0.78;
+  }
+  86%,
+  100% {
+    left: 122%;
+    opacity: 0;
+  }
+}
+
+@keyframes bonus-ambient-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  to {
+    transform: translate3d(-9%, 12%, 0) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #bonus::before,
+  .editorial-page .collection-stage,
+  .editorial-page .marker-text,
+  .editorial-page .cta-shimmer,
+  .bonus-gift,
+  .gallery-controls button:last-child,
+  .editorial-page .bonus-product .bonus-visual,
+  .editorial-page .bonus-product::after {
+    animation: none !important;
+  }
+
+  .editorial-page .scroll-reveal,
+  .editorial-page .scroll-reveal.is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
