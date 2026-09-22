@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   BookOpen,
   Brain,
@@ -30,12 +31,8 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import { cleanCover1, cleanCover7 } from "@/assets/clean-covers";
-
 function getCoverSource(number: number) {
-  if (number === 1) return cleanCover1;
-  if (number === 7) return cleanCover7;
-  return `/covers/Imagens_${number}.jpg`;
+  return `/covers/Imagens_${number}.jpg?v=2`;
 }
 
 function Cover({
@@ -210,6 +207,19 @@ function GuaranteeSeal() {
 
 function Index() {
   const page = useRef<HTMLElement>(null);
+  const gallery = useRef<HTMLDivElement>(null);
+  const moveGallery = (direction: number) => {
+    const rail = gallery.current;
+    if (!rail) return;
+    const card = rail.querySelector("article");
+    rail.scrollBy({
+      left: direction * ((card?.getBoundingClientRect().width ?? 280) + 24),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  };
+
   useEffect(() => {
     const root = page.current;
     if (!root || !("IntersectionObserver" in window)) return;
@@ -490,10 +500,30 @@ function Index() {
           <p className="mt-5 text-sm text-muted-foreground">
             Conheça cada material. Toque nas capas para ver os detalhes.
           </p>
-          <span className="bonus-swipe-hint" aria-hidden="true">
-            Deslize para explorar os 5 bônus <ArrowRight className="size-4" />
-          </span>
-          <div className="bonus-gallery">
+          <div className="gallery-controls">
+            <span>
+              Explore os 5 bônus <span aria-hidden="true">→</span>
+            </span>
+            <div>
+              <button
+                type="button"
+                onClick={() => moveGallery(-1)}
+                aria-label="Ver bônus anteriores"
+              >
+                <ArrowLeft size={20} />
+              </button>
+              <button type="button" onClick={() => moveGallery(1)} aria-label="Ver próximos bônus">
+                <ArrowRight size={20} />
+              </button>
+            </div>
+          </div>
+          <div
+            ref={gallery}
+            className="bonus-gallery"
+            role="region"
+            aria-label="Capas dos cinco bônus"
+            tabIndex={0}
+          >
             {bonuses.map(([number, title, text], index) => (
               <article key={title} className="bonus-product">
                 <div className="bonus-visual">
@@ -622,6 +652,32 @@ function Index() {
         </div>
       </section>
 
+      <section className="guarantee-section" aria-labelledby="guarantee-title">
+        <div className="section-shell guarantee-layout">
+          <div className="gold-seal" role="img" aria-label="Garantia de 7 dias">
+            <div className="seal-inner">
+              <span className="seal-stars" aria-hidden="true">
+                ★ ★ ★
+              </span>
+              <span className="seal-top">GARANTIA</span>
+              <strong>7</strong>
+              <span className="seal-days">DIAS</span>
+              <ShieldCheck aria-hidden="true" size={24} />
+            </div>
+          </div>
+          <div>
+            <p className="eyebrow">TEMPO PARA CONHECER O MATERIAL</p>
+            <h2 id="guarantee-title">Sua escolha merece tranquilidade.</h2>
+            <p>
+              Você tem 7 dias de garantia para conhecer o kit. Se o material não atender às suas
+              expectativas, solicite o reembolso dentro desse prazo.
+            </p>
+            <a href="#precos" className="guarantee-link">
+              Escolher meu kit <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
       <section id="duvidas" className="bg-sky-soft py-18 sm:py-24">
         <div className="section-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
           <div>
