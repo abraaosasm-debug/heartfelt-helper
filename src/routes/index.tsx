@@ -30,20 +30,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import cover10 from "@/assets/clean-covers/cover1-0";
-import cover11 from "@/assets/clean-covers/cover1-1";
-import cover12 from "@/assets/clean-covers/cover1-2";
-import cover13 from "@/assets/clean-covers/cover1-3";
-import cover70 from "@/assets/clean-covers/cover7-0";
-import cover71 from "@/assets/clean-covers/cover7-1";
-import cover72 from "@/assets/clean-covers/cover7-2";
-import cover73 from "@/assets/clean-covers/cover7-3";
-import cover74 from "@/assets/clean-covers/cover7-4";
-import cover75 from "@/assets/clean-covers/cover7-5";
-
-const cleanCover1 = "data:image/avif;base64," + [cover10, cover11, cover12, cover13].join("");
-const cleanCover7 =
-  "data:image/avif;base64," + [cover70, cover71, cover72, cover73, cover74, cover75].join("");
+import { cleanCover1, cleanCover7 } from "@/assets/clean-covers";
 
 function getCoverSource(number: number) {
   if (number === 1) return cleanCover1;
