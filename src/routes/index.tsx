@@ -538,8 +538,9 @@ function Index() {
                   alt="Capa do bônus Planejamento de 4 semanas"
                   width={1080}
                   height={1526}
-                  loading="eager"
-                  decoding="sync"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                 />
               </div>
               <div className="premium-cover premium-cover-2">
@@ -548,8 +549,9 @@ function Index() {
                   alt="Capa do bônus Rotina visual para recortar"
                   width={1080}
                   height={1526}
-                  loading="eager"
-                  decoding="sync"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                 />
               </div>
               <div className="premium-cover premium-cover-3">
@@ -559,7 +561,8 @@ function Index() {
                   width={1080}
                   height={1526}
                   loading="eager"
-                  decoding="sync"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <div className="premium-cover premium-cover-4">
@@ -568,8 +571,9 @@ function Index() {
                   alt="Capa do bônus Caderno de observação da aprendizagem"
                   width={1080}
                   height={1526}
-                  loading="eager"
-                  decoding="sync"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                 />
               </div>
               <div className="premium-cover premium-cover-5">
@@ -578,8 +582,9 @@ function Index() {
                   alt="Capa do bônus Atividades para enviar às famílias"
                   width={1080}
                   height={1526}
-                  loading="eager"
-                  decoding="sync"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                 />
               </div>
 
