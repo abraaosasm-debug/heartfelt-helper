@@ -2965,3 +2965,73 @@
   background: var(--deep);
   color: white;
 }
+
+
+/* Performance pass: preserve the visual system while keeping scrolling/compositing light. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Continuous motion is restricted to cheap compositor-only accents. */
+  #bonus::before,
+  .editorial-page .collection-stage,
+  .editorial-page .marker-text,
+  .editorial-page .cta-shimmer,
+  .bonus-gift,
+  .gallery-controls button,
+  .editorial-page .bonus-product:not(.bonus-clone) .bonus-visual,
+  .editorial-page .bonus-product::after,
+  .hero-chip,
+  .premium-cover,
+  .guarantee-seal,
+  .guarantee-seal::after,
+  .seal::after {
+    animation: none !important;
+  }
+}
+
+/* Avoid painting/layout for sections that are far outside the viewport.
+   intrinsic size prevents scroll jumps while the browser skips their work. */
+@supports (content-visibility: auto) {
+  .editorial-page section:not(#inicio):not(.premium-hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 760px;
+  }
+}
+
+/* Expensive blur effects are visually similar without per-frame backdrop sampling. */
+.editorial-page header,
+.premium-hero-kicker,
+.premium-hero-callout,
+.guarantee-lockup {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Keep hover/reveal movement on the compositor and promote only while interacting. */
+.editorial-page .scroll-reveal,
+.editorial-page .bonus-product,
+.editorial-page .cover-button,
+.editorial-page .cta-shimmer {
+  backface-visibility: hidden;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .editorial-page .bonus-product:hover,
+  .editorial-page .cover-button:hover,
+  .editorial-page .cta-shimmer:hover {
+    will-change: transform;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile GPUs benefit most from shallower shadows and zero live blur. */
+  .editorial-page .premium-hero,
+  .editorial-page .collection-stage,
+  .editorial-page .bonus-product,
+  .editorial-page .price-card {
+    box-shadow: 0 12px 28px oklch(0.2 0.03 160 / 0.10);
+  }
+
+  .editorial-page .premium-hero::before,
+  #bonus::before {
+    filter: none !important;
+  }
+}
