@@ -83,7 +83,7 @@ function Cover({
             width={1080}
             height={1527}
             loading={priority ? "eager" : "lazy"}
-            fetchPriority={priority ? "high" : "auto"}
+            fetchPriority={priority ? "high" : "low"}
             decoding="async"
             draggable={false}
             onLoad={() => setLoaded(true)}
