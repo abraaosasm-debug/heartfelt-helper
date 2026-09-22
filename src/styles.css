@@ -3035,3 +3035,75 @@
     filter: none !important;
   }
 }
+
+
+/* 60fps pass: remove paint-heavy effects while preserving layout and hierarchy. */
+.premium-hero-card,
+.premium-hero-ribbon,
+.premium-hero-callout,
+.editorial-page header {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.editorial-page .scroll-reveal {
+  filter: none !important;
+  transition:
+    opacity 0.28s ease-out,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.editorial-page .scroll-reveal.is-visible {
+  filter: none !important;
+}
+
+.editorial-page .cta-shimmer::after,
+.editorial-page .cover-skeleton,
+#bonus::before,
+.premium-hero-offer-chip {
+  animation: none !important;
+}
+
+#bonus::before {
+  filter: none !important;
+}
+
+.premium-hero-visual {
+  contain: layout paint style;
+}
+
+.editorial-page .bonus-gallery,
+.editorial-page .bonus-product {
+  contain: layout style;
+}
+
+.premium-cover,
+.editorial-page .bonus-product,
+.editorial-page .cover-button,
+.editorial-page .cta-shimmer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .premium-hero-card,
+  .premium-hero-ribbon,
+  .premium-hero-callout,
+  .guarantee-lockup,
+  .editorial-page header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .editorial-page .feature-card,
+  .editorial-page .bonus-product,
+  .editorial-page .offer-card,
+  .editorial-page .faq {
+    transition-duration: 0.22s !important;
+  }
+
+  .editorial-page .bonus-product:hover,
+  .editorial-page .feature-card:hover {
+    transform: none !important;
+  }
+}
