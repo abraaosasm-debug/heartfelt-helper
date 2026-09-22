@@ -35,5 +35,8 @@ jobs:
       - name: Lint
         run: bun run lint
 
+      - name: Smoke check
+        run: bun run verify:site
+
       - name: Build
         run: bun run build
