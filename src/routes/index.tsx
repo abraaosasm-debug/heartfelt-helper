@@ -486,11 +486,7 @@ function Index() {
           </span>
           <div className="bonus-gallery">
             {bonuses.map(([number, title, text], index) => (
-              <article
-                key={title}
-                className="bonus-product"
-                style={{ transitionDelay: `${index * 70}ms` }}
-              >
+              <article key={title} className="bonus-product">
                 <div className="bonus-visual">
                   <span className="bonus-index" aria-hidden="true">
                     0{index + 1}
