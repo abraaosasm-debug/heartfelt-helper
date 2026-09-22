@@ -84,7 +84,7 @@ function Cover({
             height={1527}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "auto"}
-            decoding={priority ? "sync" : "async"}
+            decoding="async"
             draggable={false}
             onLoad={() => setLoaded(true)}
             onError={() => setFailed(true)}
@@ -282,6 +282,8 @@ function Index() {
   const gallery = useRef<HTMLDivElement>(null);
   const galleryPaused = useRef(false);
   const galleryResetTimer = useRef<number | null>(null);
+  const bonusVisible = useRef(false);
+  const pageVisible = useRef(true);
 
   const moveGallery = (direction: number) => {
     const rail = gallery.current;
@@ -342,14 +344,63 @@ function Index() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reducedMotion.matches) return;
 
+    const bonusSection = document.getElementById("bonus");
+    const updatePageVisibility = () => {
+      pageVisible.current = document.visibilityState === "visible";
+    };
+
+    updatePageVisibility();
+
+    let visibilityObserver: IntersectionObserver | null = null;
+    if (bonusSection && "IntersectionObserver" in window) {
+      visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          bonusVisible.current = entry?.isIntersecting ?? false;
+        },
+        { rootMargin: "180px 0px", threshold: 0.01 },
+      );
+      visibilityObserver.observe(bonusSection);
+    } else {
+      bonusVisible.current = true;
+    }
+
     const autoplay = window.setInterval(() => {
-      if (!galleryPaused.current) moveGallery(1);
+      if (pageVisible.current && bonusVisible.current && !galleryPaused.current) {
+        moveGallery(1);
+      }
     }, 3400);
+
+    document.addEventListener("visibilitychange", updatePageVisibility);
 
     return () => {
       window.clearInterval(autoplay);
+      visibilityObserver?.disconnect();
+      document.removeEventListener("visibilitychange", updatePageVisibility);
       if (galleryResetTimer.current) window.clearTimeout(galleryResetTimer.current);
     };
+  }, []);
+
+  useEffect(() => {
+    const root = page.current;
+    if (!root) return;
+
+    const sections = Array.from(root.querySelectorAll<HTMLElement>("section"));
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach((section) => section.classList.add("motion-active"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("motion-active", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "180px 0px", threshold: 0.01 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
