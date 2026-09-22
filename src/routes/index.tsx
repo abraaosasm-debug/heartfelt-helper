@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Download,
   Eye,
-  FileText,
   Gift,
   Heart,
   Layers3,
@@ -23,7 +22,53 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import kitMockup from "@/assets/kit-atividades-mockup.jpg";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+
+function Cover({
+  number,
+  title,
+  priority = false,
+}: {
+  number: number;
+  title: string;
+  priority?: boolean;
+}) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button type="button" className="cover-button" aria-label={`Ampliar capa: ${title}`}>
+          <img
+            src={`/covers/Imagens_${number}.jpg`}
+            alt={`Capa de ${title}`}
+            width={1080}
+            height={1527}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+          />
+          <span className="cover-zoom">
+            <Eye size={15} /> Ver capa
+          </span>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="cover-dialog">
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>Capa do material digital em PDF.</DialogDescription>
+        <img
+          src={`/covers/Imagens_${number}.jpg`}
+          alt={`Capa ampliada de ${title}`}
+          width={1080}
+          height={1527}
+        />
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -211,33 +256,23 @@ function Index() {
               </span>
             </div>
           </div>
-          <div className="float-soft relative mx-auto w-full max-w-xl">
-            <div className="absolute -inset-8 rounded-full bg-coral/10 blur-3xl" />
-            <div className="mockup-frame relative overflow-hidden rounded-[2rem] bg-white p-3">
-              <img
-                src={kitMockup}
-                width={1408}
-                height={1200}
-                alt="Apostilas e folhas do kit de atividades educativas"
-                className="aspect-[7/6] w-full rounded-[1.35rem] object-cover"
-              />
-              <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/70 bg-white/85 p-4 shadow-xl backdrop-blur">
-                <div className="flex items-center gap-3">
-                  <span className="grid size-11 place-items-center rounded-xl bg-mint-soft text-success">
-                    <FileText className="size-5" />
-                  </span>
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-coral">
-                      Pronto para usar
-                    </p>
-                    <p className="font-extrabold text-deep">2 volumes + 5 bônus inclusos</p>
-                  </div>
-                </div>
+          <div className="collection-stage">
+            <div className="collection-caption">
+              <span>A SUA PRÓXIMA ATIVIDADE COMEÇA AQUI</span>
+              <strong>Uma coleção. Muitas descobertas.</strong>
+            </div>
+            <div className="book-pair">
+              <div className="book-one">
+                <Cover number={1} title="Kit principal" priority />
+              </div>
+              <div className="book-two">
+                <Cover number={2} title="Volume 2" priority />
               </div>
             </div>
-            <span className="absolute -right-2 top-10 rotate-3 rounded-2xl bg-sun-soft px-4 py-3 text-xs font-black text-deep shadow-lg sm:-right-8">
-              ESCOLHA • IMPRIMA • APLIQUE
-            </span>
+            <div className="collection-foot">
+              <span>02 volumes + 05 bônus</span>
+              <span>Arquivos digitais · PDF</span>
+            </div>
           </div>
         </div>
       </section>
@@ -401,19 +436,23 @@ function Index() {
             </div>
             <Gift className="hidden size-16 text-coral/70 md:block" />
           </div>
-          <div className="mt-11 grid gap-4 lg:grid-cols-5">
+          <p className="mt-5 text-sm text-muted-foreground">
+            Conheça cada material. Toque nas capas para ver os detalhes.
+          </p>
+          <div className="bonus-gallery">
             {bonuses.map(([number, title, text], index) => (
               <article
                 key={title}
-                className="bonus-card rounded-[1.5rem] bg-white p-5 shadow-sm"
+                className="bonus-product"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
-                <span className="text-xs font-black tracking-widest text-coral">
-                  BÔNUS {number}
-                </span>
-                <div className="my-5 h-px bg-deep/8" />
+                <Cover number={index + 3} title={title} />
+                <span className="bonus-label">BÔNUS {number}</span>
                 <h3 className="font-bold leading-5 text-deep">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
+                <span className="bonus-included">
+                  <Check size={14} /> Incluído no Kit Completo
+                </span>
               </article>
             ))}
           </div>

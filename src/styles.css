@@ -558,6 +558,204 @@
 .editorial-page .reveal-card {
   animation: none;
 }
+.collection-stage {
+  padding: 28px 24px 20px;
+  background: oklch(0.92 0.028 95);
+  border: 1px solid oklch(0.86 0.025 95);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.collection-caption {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+  color: var(--deep);
+}
+.collection-caption span {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+.collection-caption strong {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+}
+.book-pair {
+  position: relative;
+  height: clamp(310px, 34vw, 420px);
+  perspective: 1200px;
+  margin: 22px 0;
+}
+.book-pair > div {
+  position: absolute;
+  width: 53%;
+  top: 10px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-one {
+  left: 1%;
+  z-index: 2;
+  transform: rotate(-8deg) rotateY(12deg);
+}
+.book-two {
+  right: 1%;
+  top: 24px !important;
+  transform: rotate(8deg) rotateY(-12deg);
+}
+.cover-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+  border-radius: 3px;
+  box-shadow:
+    4px 4px 0 oklch(0.88 0.007 90),
+    8px 8px 0 oklch(0.96 0.006 90),
+    12px 20px 30px oklch(0.2 0.03 160 / 0.18);
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.cover-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1080 / 1527;
+  object-fit: contain;
+  border-radius: 3px;
+  background: white;
+}
+.cover-zoom {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 30px;
+  background: oklch(1 0 0 / 0.94);
+  color: oklch(0.29 0.035 170);
+  font-size: 11px;
+  box-shadow: 0 2px 10px oklch(0 0 0 / 0.12);
+}
+.collection-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid oklch(0.29 0.035 170 / 0.15);
+  font-size: 10px;
+  color: var(--deep);
+}
+.bonus-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+.bonus-product {
+  min-width: 0;
+}
+.bonus-product .cover-button {
+  margin-bottom: 28px;
+}
+.bonus-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--coral);
+  margin-bottom: 10px;
+}
+.bonus-included {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--success);
+  margin-top: 15px;
+}
+.cover-dialog {
+  max-height: 94dvh;
+  max-width: 660px;
+  overflow: auto;
+  width: calc(100% - 24px);
+  padding: 24px;
+}
+.cover-dialog > img {
+  width: 100%;
+  height: auto;
+  max-height: 72dvh;
+  object-fit: contain;
+}
+.cover-button:focus-visible {
+  outline: 3px solid oklch(0.6 0.12 80);
+  outline-offset: 6px;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .book-one:hover,
+  .book-one:focus-within {
+    transform: rotate(-3deg) translateY(-10px);
+    z-index: 3;
+  }
+  .book-two:hover,
+  .book-two:focus-within {
+    transform: rotate(3deg) translateY(-10px);
+    z-index: 3;
+  }
+  .bonus-product .cover-button:hover {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+@media (max-width: 900px) {
+  .bonus-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .collection-stage {
+    padding: 20px 16px 16px;
+  }
+  .book-pair {
+    height: 340px;
+  }
+  .book-pair > div {
+    width: 52%;
+    max-width: 215px;
+  }
+  .bonus-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 20px;
+  }
+  .bonus-product h3 {
+    font-size: 15px;
+  }
+  .bonus-product p {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .bonus-product:last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 10px);
+    justify-self: center;
+  }
+}
+@media (max-width: 390px) {
+  .book-pair {
+    height: 260px;
+  }
+  .collection-caption strong {
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-button,
+  .book-pair > div {
+    transition: none;
+  }
+}
 @keyframes editorial-enter {
   from {
     opacity: 0;
