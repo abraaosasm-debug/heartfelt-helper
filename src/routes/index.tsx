@@ -1,35 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import {
-  ArrowLeft,
   ArrowRight,
   BookOpen,
   Brain,
-  CalendarCheck2,
   Check,
-  CheckCircle2,
-  ChevronDown,
   Eye,
-  Gift,
   Heart,
   Layers3,
-  Pause,
   PencilLine,
-  Play,
-  Puzzle,
   ShieldCheck,
   Sparkles,
-  Target,
-  Users,
 } from "lucide-react";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
-  DialogTitle,
   DialogDescription,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-
 import { checkoutUrls } from "@/lib/checkout";
 
 const coverSources: Record<number, string> = {
@@ -62,8 +51,58 @@ const coverDimensions: Record<number, { width: number; height: number }> = {
   7: { width: 1080, height: 1526 },
 };
 
+const bonuses = [
+  ["Planejamento de 4 semanas", "24 páginas"],
+  ["Rotina visual para recortar", "20 páginas"],
+  ["Jogos de mesa imprimíveis", "30 páginas"],
+  ["Caderno de observação", "16 páginas"],
+  ["Atividades para as famílias", "20 páginas"],
+] as const;
+
+const benefits = [
+  [
+    PencilLine,
+    "Atividades já prontas",
+    "Você não precisa criar exercícios do zero toda vez que quiser trabalhar uma habilidade.",
+  ],
+  [
+    Brain,
+    "Conteúdo organizado",
+    "Letras, números, raciocínio, coordenação e outras propostas separadas por objetivo.",
+  ],
+  [
+    Heart,
+    "Mais opções para variar",
+    "Dois volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
+  ],
+  [
+    Layers3,
+    "Imprima só o necessário",
+    "Use uma página, uma sequência ou um material complementar sem precisar imprimir tudo.",
+  ],
+] as const;
+
+const faqs = [
+  [
+    "Qual a diferença entre o Essencial e o Completo?",
+    "O Essencial tem o Volume 1 com 91 páginas. O Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas no total.",
+  ],
+  [
+    "O material é físico?",
+    "Não. O produto é 100% digital. Você recebe os arquivos em PDF e pode imprimir apenas as páginas que quiser utilizar.",
+  ],
+  [
+    "O que acontece depois da compra?",
+    "Após a confirmação do pagamento, você recebe as instruções de acesso ao material digital conforme as informações apresentadas no checkout.",
+  ],
+  [
+    "Tenho garantia?",
+    "Sim. A oferta informa garantia de 7 dias. Confira as condições no checkout antes de concluir a compra.",
+  ],
+] as const;
+
 function getCoverSource(number: number) {
-  return coverSources[number] ?? `/covers/Imagens_${number}.jpg?v=3`;
+  return coverSources[number] ?? coverSources[1];
 }
 
 function getCoverPreviewSource(number: number) {
@@ -78,1165 +117,418 @@ function Cover({
   number,
   title,
   priority = false,
-  onDialogOpenChange,
+  compact = false,
 }: {
   number: number;
   title: string;
   priority?: boolean;
-  onDialogOpenChange?: (open: boolean) => void;
+  compact?: boolean;
 }) {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const [loaded, setLoaded] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const coverSource = getCoverSource(number);
-  const previewSource = getCoverPreviewSource(number);
   const dimensions = getCoverDimensions(number);
 
-  useEffect(() => {
-    const image = imageRef.current;
-    if (image?.complete && image.naturalWidth > 0) setLoaded(true);
-  }, []);
-
   return (
-    <Dialog {...(onDialogOpenChange ? { onOpenChange: onDialogOpenChange } : {})}>
+    <Dialog>
       <DialogTrigger asChild>
         <button
           type="button"
-          className={`cover-button${loaded ? " is-loaded" : ""}${failed ? " is-error" : ""}`}
-          data-cover-number={number}
+          className={`v3-cover${compact ? " v3-cover-compact" : ""}`}
           aria-label={`Ampliar capa: ${title}`}
         >
-          <span className="cover-skeleton" aria-hidden="true" />
           <img
-            ref={imageRef}
-            className="cover-image"
-            src={previewSource}
+            src={getCoverPreviewSource(number)}
             alt={`Capa de ${title}`}
             width={dimensions.width}
             height={dimensions.height}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "low"}
             decoding="async"
-            draggable={false}
-            onLoad={() => setLoaded(true)}
-            onError={() => setFailed(true)}
           />
-          <span className="cover-glare" aria-hidden="true" />
-          {failed ? <span className="cover-error">Não foi possível carregar a capa.</span> : null}
-          <span className="cover-zoom">
-            <Eye size={16} />
-            <span>Ampliar capa</span>
+          <span className="v3-cover-zoom" aria-hidden="true">
+            <Eye size={15} />
           </span>
         </button>
       </DialogTrigger>
-      <DialogContent className="cover-dialog">
+
+      <DialogContent className="v3-cover-dialog">
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>Capa do material digital em PDF.</DialogDescription>
-        <div className="cover-dialog-image-frame" data-cover-number={number}>
-          <img
-            src={coverSource}
-            alt={`Capa ampliada de ${title}`}
-            width={dimensions.width}
-            height={dimensions.height}
-            loading="eager"
-            decoding="async"
-          />
-        </div>
+        <img
+          src={getCoverSource(number)}
+          alt={`Capa ampliada de ${title}`}
+          width={dimensions.width}
+          height={dimensions.height}
+          loading="eager"
+          decoding="async"
+        />
       </DialogContent>
     </Dialog>
   );
 }
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Kit de Atividades Infantil e Autismo | 292 páginas no Completo" },
-      {
-        name: "description",
-        content:
-          "Atividades educativas em PDF prontas para imprimir. Kit Completo com 2 volumes, 5 bônus e 292 páginas.",
-      },
-      { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
-      {
-        property: "og:description",
-        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: Index,
-});
-
-const materials = [
-  [PencilLine, "Alfabetização inicial", "Letras, vogais, sílabas e formação de palavras."],
-  [Puzzle, "Coordenação motora", "Traçados, recortes e propostas de grafomotricidade."],
-  [Brain, "Números e raciocínio", "Quantidades, sequências, associação e percepção visual."],
-  [Heart, "Emoções e comunicação", "Atividades simples para reconhecer e expressar emoções."],
-  [Target, "Atividades integradas", "Exercícios de revisão que conectam diferentes habilidades."],
-  [Layers3, "Material organizado", "Conteúdo dividido por temas para facilitar a escolha diária."],
-] as const;
-
-const bonuses = [
-  [
-    "01",
-    "Planejamento de 4 semanas",
-    "Organize o foco de cada encontro e o que pretende aplicar.",
-    "24 páginas",
-  ],
-  [
-    "02",
-    "Rotina visual para recortar",
-    "Apresente a sequência do dia com cartões e quadros visuais.",
-    "20 páginas",
-  ],
-  [
-    "03",
-    "Jogos de mesa imprimíveis",
-    "Quatro jogos com orientações, tabuleiros e peças para imprimir e montar.",
-    "30 páginas",
-  ],
-  [
-    "04",
-    "Caderno de observação da aprendizagem",
-    "Registre participação, preferências, apoios e próximos passos.",
-    "16 páginas",
-  ],
-  [
-    "05",
-    "Atividades para enviar às famílias",
-    "Dê continuidade em casa com propostas e modelos de bilhetes.",
-    "20 páginas",
-  ],
-] as const;
-
-const faqs = [
-  [
-    "Qual a diferença entre Essencial e Completo?",
-    "O Essencial reúne o kit principal de 91 páginas por R$10. O Completo reúne o kit principal de 91 páginas, o Volume 2 com 91 páginas e os cinco bônus com 110 páginas — 292 páginas no total — por R$59,90.",
-  ],
-  [
-    "Consigo comprar agora?",
-    "Sim. Escolha o Kit Essencial ou o Kit Completo e toque no botão de compra. Você será direcionado ao checkout da Cakto para concluir o pagamento.",
-  ],
-  [
-    "O material é físico? Preciso imprimir tudo?",
-    "Você recebe arquivos digitais em PDF, sem envio de material físico. Escolha e imprima apenas as páginas que pretende utilizar. A impressão é por sua conta.",
-  ],
-  [
-    "Como escolher uma atividade para a criança?",
-    "Comece pela habilidade que deseja trabalhar e observe se a instrução e o desafio fazem sentido para a criança. Considere seus interesses e os apoios de que precisa; adapte a proposta quando necessário.",
-  ],
-  [
-    "Preciso ter formação para usar em casa?",
-    "O kit é um recurso educativo para selecionar e acompanhar atividades. Leia a orientação de cada proposta e ofereça ajuda quando necessário. Ele não substitui avaliação, terapia ou acompanhamento individualizado.",
-  ],
-  [
-    "O que acontece depois da compra?",
-    "Quando as vendas estiverem abertas, o acesso ao material digital será liberado após a confirmação do pagamento. Antes de comprar, confira no checkout as informações de entrega e atendimento.",
-  ],
-] as const;
-
-const included = [
-  [
-    "Kit principal — 91 páginas",
-    "Atividades para alfabetização, coordenação, números, percepção, emoções e associação.",
-  ],
-  [
-    "Volume 2 — 91 páginas",
-    "Continuação do kit principal, com novas propostas de letras, números, comunicação, sequências e situações do cotidiano.",
-  ],
-  [
-    "5 bônus — 110 páginas",
-    "Planejamento, rotina visual, jogos, caderno de observação e atividades para enviar às famílias.",
-  ],
-] as const;
-
-function Cta({ children, light = false }: { children: string; light?: boolean }) {
+function PrimaryButton({
+  href,
+  children,
+  dark = false,
+}: {
+  href: string;
+  children: ReactNode;
+  dark?: boolean;
+}) {
   return (
-    <a
-      href="#precos"
-      className={`cta-shimmer group inline-flex min-h-14 items-center justify-center gap-2 rounded-full px-7 text-sm font-black tracking-wide transition-all duration-300 hover:-translate-y-1 active:translate-y-0 ${light ? "bg-white text-deep shadow-xl shadow-black/10" : "bg-coral text-white shadow-xl shadow-coral/25"}`}
-    >
-      {children}
-      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+    <a className={`v3-button${dark ? " v3-button-dark" : ""}`} href={href}>
+      <span>{children}</span>
+      <ArrowRight size={18} />
     </a>
   );
 }
 
-function PurchaseAction({ kit }: { kit: "essential" | "complete" }) {
-  const url = checkoutUrls[kit];
-  const complete = kit === "complete";
-  const label = complete ? "QUERO O KIT COMPLETO — R$59,90" : "QUERO O KIT ESSENCIAL — R$10";
-  return (
-    <div className="purchase-action">
-      {url ? (
-        <a className={complete ? "purchase-button primary" : "purchase-button"} href={url}>
-          {label}
-          <ArrowRight size={18} />
-        </a>
-      ) : (
-        <button
-          className={complete ? "purchase-button primary" : "purchase-button"}
-          disabled
-          aria-describedby={`availability-${kit}`}
-        >
-          Compra indisponível no momento
-        </button>
-      )}
-      <p id={`availability-${kit}`}>
-        {url
-          ? "Pagamento único • material digital • acesso após confirmação"
-          : "As vendas ainda não estão abertas nesta página."}
-      </p>
-    </div>
-  );
-}
-
-function GuaranteeSeal() {
-  return (
-    <div className="guarantee-lockup" aria-label="Garantia de 7 dias">
-      <div className="guarantee-seal" aria-hidden="true">
-        <span className="guarantee-glint" />
-        <ShieldCheck className="guarantee-icon" />
-        <strong>7 DIAS</strong>
-        <span>GARANTIA</span>
-      </div>
-      <div className="guarantee-copy">
-        <strong>Garantia de 7 dias</strong>
-        <span>Conheça o material com tranquilidade.</span>
-      </div>
-    </div>
-  );
-}
-
 function Index() {
-  const page = useRef<HTMLElement>(null);
-  const gallery = useRef<HTMLDivElement>(null);
-  const galleryPaused = useRef(false);
-  const galleryModalOpen = useRef(false);
-  const galleryResetTimer = useRef<number | null>(null);
-  const galleryLastInteraction = useRef(0);
-  const bonusVisible = useRef(false);
-  const pageVisible = useRef(true);
-  const [galleryAutoplayEnabled, setGalleryAutoplayEnabled] = useState(true);
-
-  const markGalleryInteraction = useCallback(() => {
-    galleryLastInteraction.current = window.performance?.now?.() ?? Date.now();
-  }, []);
-
-  const moveGallery = useCallback((direction: number) => {
-    const rail = gallery.current;
-    if (!rail) return;
-
-    const card = rail.querySelector<HTMLElement>(".bonus-product");
-    const gap = 24;
-    const step = (card?.getBoundingClientRect().width ?? 280) + gap;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const originalCount = bonuses.length;
-    let currentIndex = Math.round(rail.scrollLeft / step);
-
-    if (galleryResetTimer.current) {
-      window.clearTimeout(galleryResetTimer.current);
-      galleryResetTimer.current = null;
-    }
-
-    if (currentIndex >= originalCount) {
-      rail.scrollTo({ left: 0, behavior: "instant" });
-      currentIndex = 0;
-    }
-
-    if (direction > 0 && currentIndex === originalCount - 1) {
-      rail.scrollTo({
-        left: originalCount * step,
-        behavior: reducedMotion ? "instant" : "smooth",
-      });
-
-      if (reducedMotion) {
-        rail.scrollTo({ left: 0, behavior: "instant" });
-      } else {
-        galleryResetTimer.current = window.setTimeout(() => {
-          rail.scrollTo({ left: 0, behavior: "instant" });
-          galleryResetTimer.current = null;
-        }, 760);
-      }
-      return;
-    }
-
-    if (direction < 0 && currentIndex <= 0) {
-      rail.scrollTo({ left: originalCount * step, behavior: "instant" });
-      window.requestAnimationFrame(() => {
-        rail.scrollTo({
-          left: (originalCount - 1) * step,
-          behavior: reducedMotion ? "instant" : "smooth",
-        });
-      });
-      return;
-    }
-
-    rail.scrollTo({
-      left: (currentIndex + direction) * step,
-      behavior: reducedMotion ? "instant" : "smooth",
-    });
-  }, []);
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches || !galleryAutoplayEnabled) return;
-
-    const bonusSection = document.getElementById("bonus");
-    const updatePageVisibility = () => {
-      pageVisible.current = document.visibilityState === "visible";
-    };
-
-    updatePageVisibility();
-    markGalleryInteraction();
-
-    let visibilityObserver: IntersectionObserver | null = null;
-    if (bonusSection && "IntersectionObserver" in window) {
-      visibilityObserver = new IntersectionObserver(
-        ([entry]) => {
-          bonusVisible.current = entry?.isIntersecting ?? false;
-        },
-        { rootMargin: "180px 0px", threshold: 0.01 },
-      );
-      visibilityObserver.observe(bonusSection);
-    } else {
-      bonusVisible.current = true;
-    }
-
-    const autoplay = window.setInterval(() => {
-      const now = window.performance?.now?.() ?? Date.now();
-      const idleFor = now - galleryLastInteraction.current;
-
-      if (
-        pageVisible.current &&
-        bonusVisible.current &&
-        !galleryPaused.current &&
-        !galleryModalOpen.current &&
-        idleFor >= 3400
-      ) {
-        moveGallery(1);
-        galleryLastInteraction.current = now;
-      }
-    }, 400);
-
-    document.addEventListener("visibilitychange", updatePageVisibility);
-
-    return () => {
-      window.clearInterval(autoplay);
-      visibilityObserver?.disconnect();
-      document.removeEventListener("visibilitychange", updatePageVisibility);
-      if (galleryResetTimer.current) window.clearTimeout(galleryResetTimer.current);
-    };
-  }, [galleryAutoplayEnabled, markGalleryInteraction, moveGallery]);
-
-  useEffect(() => {
-    const root = page.current;
-    if (!root) return;
-
-    const sections = Array.from(root.querySelectorAll<HTMLElement>("section"));
-    if (!("IntersectionObserver" in window)) {
-      sections.forEach((section) => section.classList.add("motion-active"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("motion-active", entry.isIntersecting);
-        });
-      },
-      { rootMargin: "180px 0px", threshold: 0.01 },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const root = page.current;
-    if (!root || !("IntersectionObserver" in window)) return;
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (preference.matches) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 },
-    );
-    const elements = root.querySelectorAll(
-      "section:not(#inicio) > div, .feature-card, .bonus-card, .bonus-product",
-    );
-    elements.forEach((element) => {
-      element.classList.add("scroll-reveal");
-      observer.observe(element);
-    });
-    const disableMotion = () => elements.forEach((element) => element.classList.add("is-visible"));
-    preference.addEventListener("change", disableMotion);
-    return () => {
-      observer.disconnect();
-      preference.removeEventListener("change", disableMotion);
-      elements.forEach((element) => element.classList.remove("scroll-reveal"));
-    };
-  }, []);
   return (
-    <main ref={page} className="editorial-page min-h-screen overflow-hidden bg-background">
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-white/50 bg-white/70 backdrop-blur-xl">
-        <div className="section-shell flex h-18 items-center justify-between">
-          <a href="#inicio" className="flex items-center gap-2 font-display font-bold text-deep">
-            <span className="grid size-9 place-items-center rounded-xl bg-coral text-white">
-              <BookOpen className="size-5" />
+    <main className="v3-page">
+      <header className="v3-header">
+        <div className="v3-shell v3-header-inner">
+          <a className="v3-brand" href="#inicio" aria-label="Ir para o início">
+            <span className="v3-brand-mark">
+              <BookOpen size={18} />
             </span>
-            <span className="hidden sm:block">Kit de Atividades</span>
+            <span>Kit de Atividades</span>
           </a>
-          <nav
-            aria-label="Navegação principal"
-            className="hidden items-center gap-7 text-sm font-bold text-deep/65 md:flex"
-          >
-            <a className="hover:text-deep" href="#conteudo">
-              Conteúdo
-            </a>
-            <a className="hover:text-deep" href="#bonus">
-              Bônus
-            </a>
-            <a className="hover:text-deep" href="#duvidas">
-              Dúvidas
-            </a>
+
+          <nav className="v3-nav" aria-label="Navegação principal">
+            <a href="#conteudo">O que vem</a>
+            <a href="#precos">Preços</a>
+            <a href="#duvidas">Dúvidas</a>
           </nav>
-          <a
-            href="#precos"
-            className="rounded-full bg-deep px-5 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-deep/90"
-          >
-            VER OS KITS
+
+          <a className="v3-header-cta" href="#precos">
+            Ver opções
           </a>
         </div>
       </header>
 
-      <section id="inicio" className="premium-hero relative pt-28 pb-12 sm:pt-36 sm:pb-18">
-        <div className="orb orb-one" />
-        <div className="orb orb-two" />
-        <div className="section-shell relative">
-          <div className="premium-hero-card">
-            <div className="premium-hero-copy">
-              <div className="premium-hero-eyebrow">
-                <span aria-hidden="true" />
-                KIT COMPLETO • DIGITAL
-              </div>
+      <section id="inicio" className="v3-hero">
+        <div className="v3-shell v3-hero-grid">
+          <div className="v3-hero-copy">
+            <span className="v3-kicker">MATERIAL DIGITAL • PRONTO PARA IMPRIMIR</span>
 
-              <h1>
-                Atividades prontas.
-                <br />
-                Mais organização para
-                <br />
-                <span>ensinar no dia a dia.</span>
-              </h1>
+            <h1>
+              Pare de perder tempo
+              <span> procurando atividades.</span>
+            </h1>
 
-              <p className="premium-hero-intro">
-                Tenha 2 volumes de atividades + 5 bônus para imprimir, planejar, organizar a rotina,
-                jogar, observar e continuar o aprendizado em casa.
-              </p>
+            <p className="v3-hero-lead">
+              Tenha <strong>292 páginas</strong> entre atividades e materiais de apoio para
+              trabalhar letras, números, coordenação, emoções, rotina, raciocínio e muito mais.
+            </p>
 
-              <div className="premium-hero-badges" aria-label="Destaques do kit">
-                <span>292 PÁGINAS NO COMPLETO</span>
-                <span>2 VOLUMES + 5 BÔNUS</span>
-                <span>PRONTO PARA IMPRIMIR</span>
-              </div>
+            <div className="v3-proof-row" aria-label="Resumo do Kit Completo">
+              <span>
+                <strong>2</strong>
+                volumes
+              </span>
+              <span>
+                <strong>5</strong>
+                bônus
+              </span>
+              <span>
+                <strong>292</strong>
+                páginas
+              </span>
+              <span>
+                <strong>R$59,90</strong>
+                pagamento único
+              </span>
+            </div>
 
-              <div className="premium-hero-actions">
-                <Cta>CONHECER O COMPLETO — R$59,90</Cta>
-                <GuaranteeSeal />
-              </div>
-
-              <a href="#como-usar" className="usage-link premium-hero-link">
-                Veja como começar com uma página <ArrowRight size={16} />
+            <div className="v3-hero-actions">
+              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
+              <a className="v3-text-link" href="#precos">
+                Comparar com o Essencial
               </a>
-
-              <div className="premium-hero-topics" aria-label="Conteúdos trabalhados">
-                {["Letras", "Números", "Coordenação", "Emoções", "Rotina", "Jogos"].map((topic) => (
-                  <span key={topic}>{topic}</span>
-                ))}
-              </div>
             </div>
 
-            <div
-              className="premium-hero-visual"
-              aria-label="Prévia dos cinco bônus do Kit Completo"
-            >
-              <div className="premium-hero-visual-grid" aria-hidden="true" />
-              <div className="premium-hero-offer-chip">292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</div>
-
-              <span className="premium-hero-callout callout-plan">
-                <Check size={17} /> PLANEJAR
-              </span>
-              <span className="premium-hero-callout callout-routine">
-                <CheckCircle2 size={17} /> ROTINA
-              </span>
-              <span className="premium-hero-callout callout-play">
-                <Sparkles size={17} /> JOGAR
-              </span>
-              <span className="premium-hero-callout callout-observe">
-                <Eye size={17} /> OBSERVAR
-              </span>
-
-              <div className="premium-cover premium-cover-1">
-                <img
-                  src={getCoverPreviewSource(3)}
-                  alt="Capa do bônus Planejamento de 4 semanas"
-                  width={1080}
-                  height={1526}
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </div>
-              <div className="premium-cover premium-cover-2">
-                <img
-                  src={getCoverPreviewSource(4)}
-                  alt="Capa do bônus Rotina visual para recortar"
-                  width={1080}
-                  height={1526}
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </div>
-              <div className="premium-cover premium-cover-3">
-                <img
-                  src={getCoverPreviewSource(5)}
-                  alt="Capa do bônus Jogos de mesa imprimíveis"
-                  width={1080}
-                  height={1526}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-              <div className="premium-cover premium-cover-4">
-                <img
-                  src={getCoverPreviewSource(6)}
-                  alt="Capa do bônus Caderno de observação da aprendizagem"
-                  width={getCoverDimensions(6).width}
-                  height={getCoverDimensions(6).height}
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </div>
-              <div className="premium-cover premium-cover-5">
-                <img
-                  src={getCoverPreviewSource(7)}
-                  alt="Capa do bônus Atividades para enviar às famílias"
-                  width={1080}
-                  height={1526}
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="premium-hero-ribbon">Escolha • imprima • aplique • acompanhe</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-deep/5 bg-white py-6">
-        <div className="section-shell grid grid-cols-2 divide-x divide-y divide-deep/10 text-center sm:grid-cols-4 sm:divide-y-0">
-          {[
-            ["91", "páginas no volume 1"],
-            ["91", "páginas no volume 2"],
-            ["110", "páginas nos 5 bônus"],
-            ["292", "páginas no completo"],
-          ].map(([value, label]) => (
-            <div key={label} className="px-2 py-3 sm:py-0">
-              <strong className="block text-2xl font-black text-deep sm:text-3xl">{value}</strong>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">
-                {label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-18 sm:py-24">
-        <div className="section-shell">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">DOIS VOLUMES DE ATIVIDADES</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Comece pelo essencial e avance com novas propostas.
-            </h2>
-            <p className="mt-4 leading-7 text-muted-foreground">
-              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além das
-              110 páginas de bônus para apoiar planejamento, rotina, jogos e acompanhamento.
+            <p className="v3-microcopy">
+              Produto digital • acesso após confirmação do pagamento • garantia informada de 7 dias
             </p>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-            <article className="rounded-[2rem] border border-deep/8 bg-white p-5 shadow-sm sm:p-7">
-              <div className="mx-auto max-w-[260px]">
-                <Cover
-                  number={1}
-                  title="Kit de Atividades Infantil e Autismo — Volume 1"
-                  priority
-                />
-              </div>
-              <span className="mt-6 inline-flex rounded-full bg-sky-soft px-3 py-1 text-xs font-black text-deep">
-                VOLUME 1 • 91 PÁGINAS
-              </span>
-              <h3 className="mt-4 text-xl font-bold text-deep">O ponto de partida</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Vogais, alfabeto, coordenação motora, números, sílabas, percepção visual, emoções,
-                associação e revisão.
-              </p>
-            </article>
+          <div className="v3-hero-art" aria-label="Capas dos materiais do Kit Completo">
+            <div className="v3-art-orbit v3-art-orbit-one" />
+            <div className="v3-art-orbit v3-art-orbit-two" />
 
-            <article className="rounded-[2rem] border border-coral/20 bg-coral-soft/40 p-5 shadow-sm sm:p-7">
-              <div className="mx-auto max-w-[260px]">
-                <Cover
-                  number={2}
-                  title="Kit de Atividades Infantil e Autismo — Volume 2"
-                  priority
+            <div className="v3-book v3-book-one">
+              <img
+                src={getCoverPreviewSource(1)}
+                alt="Capa do Volume 1"
+                width={1080}
+                height={1528}
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+
+            <div className="v3-book v3-book-two">
+              <img
+                src={getCoverPreviewSource(2)}
+                alt="Capa do Volume 2"
+                width={1080}
+                height={1527}
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+
+            <div className="v3-mini-stack" aria-hidden="true">
+              {[3, 4, 5].map((number) => (
+                <img
+                  key={number}
+                  src={getCoverPreviewSource(number)}
+                  alt=""
+                  width={1080}
+                  height={1526}
+                  loading="lazy"
+                  decoding="async"
                 />
-              </div>
-              <span className="mt-6 inline-flex rounded-full bg-coral px-3 py-1 text-xs font-black text-white">
-                VOLUME 2 • 91 PÁGINAS
-              </span>
-              <h3 className="mt-4 text-xl font-bold text-deep">A continuação</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Novas atividades com letras, leitura inicial, quantidades até 20, sequências,
-                escolhas, comunicação e situações do cotidiano.
-              </p>
-            </article>
+              ))}
+            </div>
+
+            <span className="v3-art-chip v3-art-chip-top">2 VOLUMES</span>
+            <span className="v3-art-chip v3-art-chip-bottom">+ 5 BÔNUS</span>
           </div>
         </div>
       </section>
 
-      <section id="como-usar" className="usage-section">
-        <div className="section-shell">
-          <p className="eyebrow">DO ARQUIVO PARA A SUA ROTINA</p>
-          <h2>
-            Comece com uma página.
-            <br />
-            Uma proposta de cada vez.
-          </h2>
-          <p className="usage-intro">
-            Você não precisa preparar o kit inteiro. Escolha uma atividade, separe o necessário e
-            acompanhe a criança.
-          </p>
-          <ol className="usage-steps">
-            <li>
-              <span>01</span>
-              <h3>Escolha uma habilidade</h3>
-              <p>Encontre o tema que quer trabalhar e leia a instrução da proposta.</p>
-            </li>
-            <li>
-              <span>02</span>
-              <h3>Prepare só o necessário</h3>
-              <p>
-                Imprima a página escolhida e separe os materiais indicados para aquela atividade.
-              </p>
-            </li>
-            <li>
-              <span>03</span>
-              <h3>Apresente e observe</h3>
-              <p>Dê uma instrução clara, acompanhe a resposta e adapte quando necessário.</p>
-            </li>
-          </ol>
-          <div className="usage-note">
-            <BookOpen size={24} aria-hidden="true" />
+      <section id="conteudo" className="v3-section v3-section-light">
+        <div className="v3-shell">
+          <div className="v3-section-heading">
+            <span className="v3-kicker">VOCÊ RECEBE</span>
+            <h2>Um pacote completo, sem transformar a página em um catálogo infinito.</h2>
             <p>
-              <strong>O que você está comprando é organização.</strong> Atividades reunidas por
-              habilidade e, no Completo, materiais que ajudam a planejar e acompanhar o uso.
+              Dois volumes de atividades e cinco materiais complementares. Tudo separado para você
+              entender rapidamente o que está comprando.
             </p>
           </div>
-        </div>
-      </section>
-      <section className="relative py-18 sm:py-24">
-        <div className="section-shell grid items-center gap-10 lg:grid-cols-[.85fr_1.15fr]">
-          <div>
-            <p className="eyebrow">SE A ROTINA DE ATIVIDADES VIROU UMA CORRERIA</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Você não precisa criar tudo do zero.
-            </h2>
-            <p className="mt-5 leading-7 text-muted-foreground">
-              Em vez de abrir dezenas de abas, adaptar materiais confusos e ficar sem ideia na hora
-              de aplicar, você terá atividades separadas por habilidade — prontas para escolher e
-              imprimir.
-            </p>
-            <div className="mt-7 rounded-2xl border border-coral/20 bg-coral-soft p-5 text-sm leading-6 text-deep">
-              <strong className="font-black">O objetivo é simples:</strong> facilitar a preparação e
-              deixar mais energia para a interação com a criança.
-            </div>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {(
-              [
-                [
-                  CalendarCheck2,
-                  "Economize tempo",
-                  "Tenha propostas prontas para a rotina, sem montar atividade do zero.",
-                ],
-                [
-                  Eye,
-                  "Escolha com clareza",
-                  "Encontre rapidamente uma atividade pela habilidade que quer trabalhar.",
-                ],
-                [
-                  CheckCircle2,
-                  "Aplique com leveza",
-                  "Páginas visuais e instruções simples, feitas para entrar em ação.",
-                ],
-              ] as const
-            ).map(([Icon, title, text]) => (
-              <article
-                key={title}
-                className="feature-card rounded-[1.5rem] border border-deep/8 bg-white p-5"
-              >
-                <span className="grid size-11 place-items-center rounded-xl bg-sun-soft text-deep">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="mt-5 font-bold text-deep">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section id="conteudo" className="py-18 sm:py-24">
-        <div className="section-shell">
-          <div className="mx-auto max-w-2xl text-center reveal-up">
-            <p className="eyebrow">ESCOLHA PELA HABILIDADE QUE QUER TRABALHAR</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Encontre uma proposta para o próximo encontro.
-            </h2>
-            <p className="mt-4 leading-7 text-muted-foreground">
-              Letras, traçados, números e outras propostas reunidas por tema, para você selecionar o
-              que faz sentido agora.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {materials.map(([Icon, title, description], index) => (
-              <article
-                key={title}
-                className="feature-card reveal-card rounded-[1.5rem] border border-deep/8 bg-white p-6"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <span className="grid size-12 place-items-center rounded-2xl bg-sky-soft text-deep">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-bold text-deep">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-deep py-18 text-white sm:py-24">
-        <div className="section-shell grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">
-              NÃO É UM MONTE DE PÁGINAS SOLTAS
-            </p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-5xl">
-              Você recebe um caminho prático para aplicar.
-            </h2>
-            <p className="mt-4 max-w-xl leading-7 text-white/65">
-              O material vem organizado para você começar pelo que faz sentido agora e avançar no
-              ritmo da criança.
-            </p>
-          </div>
-          <ol className="space-y-3">
-            {[
-              [
-                "01",
-                "Encontre a habilidade",
-                "Vogais, números, coordenação, emoções e muito mais.",
-              ],
-              [
-                "02",
-                "Imprima o que precisa",
-                "Use uma página ou monte uma sequência — sem desperdício.",
-              ],
-              [
-                "03",
-                "Aplique e avance",
-                "Observe a resposta e escolha a próxima proposta com mais segurança.",
-              ],
-            ].map(([number, title, text]) => (
-              <li
-                key={number}
-                className="group flex gap-4 rounded-2xl border border-white/10 bg-white/6 p-5 transition hover:translate-x-1 hover:bg-white/10"
-              >
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-coral font-black">
-                  {number}
-                </span>
-                <div>
-                  <h3 className="font-bold">{title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-white/60">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="bonus" className="bg-mint-soft py-18 sm:py-24">
-        <div className="section-shell">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
-              <p className="eyebrow">O QUE VOCÊ LEVA NO KIT COMPLETO</p>
-              <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-                Cinco apoios para colocar as atividades em prática.
-              </h2>
-            </div>
-            <Gift className="bonus-gift hidden size-16 text-coral/70 md:block" />
-          </div>
-          <p className="mt-5 text-sm text-muted-foreground">
-            110 páginas em materiais complementares, incluídas no Completo. Toque para ampliar as
-            capas.
-          </p>
-          <div className="gallery-controls">
-            <span>
-              Explore os 5 bônus <span aria-hidden="true">→</span>
-            </span>
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  markGalleryInteraction();
-                  moveGallery(-1);
-                }}
-                aria-label="Ver bônus anteriores"
-              >
-                <ArrowLeft size={20} />
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  markGalleryInteraction();
-                  moveGallery(1);
-                }}
-                aria-label="Ver próximos bônus"
-              >
-                <ArrowRight size={20} />
-              </button>
-              <button
-                type="button"
-                className="gallery-autoplay-toggle"
-                onClick={() => {
-                  markGalleryInteraction();
-                  setGalleryAutoplayEnabled((enabled) => !enabled);
-                }}
-                aria-pressed={!galleryAutoplayEnabled}
-                aria-label={
-                  galleryAutoplayEnabled
-                    ? "Pausar rotação automática dos bônus"
-                    : "Retomar rotação automática dos bônus"
-                }
-                title={
-                  galleryAutoplayEnabled
-                    ? "Pausar rotação automática"
-                    : "Retomar rotação automática"
-                }
-              >
-                {galleryAutoplayEnabled ? <Pause size={18} /> : <Play size={18} />}
-              </button>
-            </div>
-          </div>
-          <div
-            ref={gallery}
-            className="bonus-gallery"
-            role="region"
-            aria-roledescription="carrossel"
-            aria-label="Capas dos cinco bônus em carrossel automático"
-            aria-live="off"
-            tabIndex={0}
-            onPointerEnter={() => {
-              galleryPaused.current = true;
-            }}
-            onPointerLeave={() => {
-              galleryPaused.current = galleryModalOpen.current;
-              markGalleryInteraction();
-            }}
-            onPointerDown={() => {
-              galleryPaused.current = true;
-              markGalleryInteraction();
-            }}
-            onPointerUp={() => {
-              galleryPaused.current = galleryModalOpen.current;
-              markGalleryInteraction();
-            }}
-            onPointerCancel={() => {
-              galleryPaused.current = galleryModalOpen.current;
-              markGalleryInteraction();
-            }}
-            onFocusCapture={() => {
-              galleryPaused.current = true;
-              markGalleryInteraction();
-            }}
-            onBlurCapture={() => {
-              galleryPaused.current = galleryModalOpen.current;
-              markGalleryInteraction();
-            }}
-          >
-            {bonuses.map(([number, title, text, pages], index) => (
-              <article key={title} className="bonus-product">
-                <div className="bonus-visual">
-                  <span className="bonus-index" aria-hidden="true">
-                    0{index + 1}
-                  </span>
-                  <Cover
-                    number={index + 3}
-                    title={title}
-                    onDialogOpenChange={(open) => {
-                      galleryModalOpen.current = open;
-                      galleryPaused.current = open;
-                      markGalleryInteraction();
-                    }}
-                  />
-                </div>
-                <span className="bonus-label">
-                  BÔNUS {number} · {pages}
-                </span>
-                <h3 className="font-bold leading-5 text-deep">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
-                <span className="bonus-included">
-                  <Check size={14} /> Incluído no Kit Completo
-                </span>
-              </article>
-            ))}
-            <article className="bonus-product bonus-clone" aria-hidden="true">
-              <div className="bonus-visual">
-                <span className="bonus-index" aria-hidden="true">
-                  01
-                </span>
-                <div className="cover-button is-loaded" data-cover-number={3}>
-                  <img
-                    className="cover-image"
-                    src={getCoverPreviewSource(3)}
-                    alt=""
-                    width={getCoverDimensions(3).width}
-                    height={getCoverDimensions(3).height}
-                    loading="lazy"
-                    decoding="async"
-                    draggable={false}
-                  />
-                  <span className="cover-zoom" aria-hidden="true">
-                    <Eye size={16} />
-                    <span>Ampliar capa</span>
-                  </span>
-                </div>
+          <div className="v3-product-grid">
+            <article className="v3-product-card v3-product-card-dark">
+              <div className="v3-product-cover">
+                <Cover number={1} title="Volume 1 — Kit de Atividades Infantil e Autismo" />
               </div>
-              <span className="bonus-label">BÔNUS 01 · 24 páginas</span>
-              <h3 className="font-bold leading-5 text-deep">Planejamento de 4 semanas</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                Organize o foco de cada encontro e o que pretende aplicar.
-              </p>
-              <span className="bonus-included">
-                <Check size={14} /> Incluído no Kit Completo
-              </span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-18 sm:py-24">
-        <div className="section-shell">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">TUDO ORGANIZADO EM UM SÓ LUGAR</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">
-              Veja exatamente o que entra no seu acesso.
-            </h2>
-          </div>
-          <div className="mx-auto mt-11 grid max-w-4xl gap-4">
-            {included.map(([title, text], index) => (
-              <article
-                key={title}
-                className="flex flex-col gap-4 rounded-2xl border border-deep/8 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:p-6"
-              >
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-coral text-sm font-black text-white">
-                  0{index + 1}
-                </span>
-                <div className="flex-1">
-                  <h3 className="font-bold text-deep">{title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{text}</p>
-                </div>
-                <CheckCircle2 className="size-6 shrink-0 text-success" />
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Cta>COMPARAR OS KITS</Cta>
-          </div>
-        </div>
-      </section>
-
-      <section id="precos" className="offer-section">
-        <div className="section-shell">
-          <div className="offer-heading">
-            <p className="eyebrow">O QUE FAZ SENTIDO PARA A SUA ROTINA?</p>
-            <h2>
-              Atividades para começar.
-              <br />
-              Apoios para continuar.
-            </h2>
-            <p>Compare o que você recebe em cada opção. Os dois kits são digitais, em PDF.</p>
-          </div>
-          <div className="offer-grid">
-            <article className="offer-card offer-complete">
-              <span className="offer-label">MELHOR CUSTO-BENEFÍCIO • 292 PÁGINAS</span>
-              <h3>Kit Completo</h3>
-              <p>
-                Dois volumes de atividades + cinco bônus para ter mais variedade e recursos para
-                planejar, organizar, aplicar e acompanhar.
-              </p>
-              <div className="offer-price">
-                <span>R$</span>
-                <strong>59,90</strong>
-              </div>
-              <p className="offer-payment">Pagamento único • sem assinatura</p>
-              <ul>
-                {[
-                  "Kit principal — 91 páginas",
-                  "Volume 2 — 91 páginas",
-                  "Planejamento de 4 semanas",
-                  "Rotina visual para recortar",
-                  "Quatro jogos de mesa imprimíveis",
-                  "Caderno de observação da aprendizagem",
-                  "Atividades para enviar às famílias",
-                ].map((item) => (
-                  <li key={item}>
-                    <Check size={18} aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="offer-difference">
-                <strong>O que os R$49,90 a mais acrescentam?</strong>
+              <div className="v3-product-copy">
+                <span>VOLUME 1 • 91 PÁGINAS</span>
+                <h3>O ponto de partida</h3>
                 <p>
-                  Mais 201 páginas: o Volume 2 com 91 páginas + cinco bônus com 110 páginas. No
-                  total, o Completo reúne 292 páginas de materiais digitais.
+                  Vogais, alfabeto, coordenação motora, números, sílabas, percepção visual, emoções,
+                  associação e revisão.
                 </p>
               </div>
-              <PurchaseAction kit="complete" />
             </article>
-            <article className="offer-card offer-essential">
-              <span className="offer-label">O MATERIAL PRINCIPAL</span>
-              <h3>Kit Essencial</h3>
-              <p>Para começar pelas atividades do kit principal.</p>
-              <div className="offer-price">
-                <span>R$</span>
-                <strong>10,00</strong>
+
+            <article className="v3-product-card v3-product-card-orange">
+              <div className="v3-product-cover">
+                <Cover number={2} title="Volume 2 — Kit de Atividades Infantil e Autismo" />
               </div>
-              <p className="offer-payment">Pagamento único • sem assinatura</p>
+              <div className="v3-product-copy">
+                <span>VOLUME 2 • 91 PÁGINAS</span>
+                <h3>Mais desafios e continuidade</h3>
+                <p>
+                  Leitura inicial, quantidades até 20, sequências, escolhas, comunicação e situações
+                  do cotidiano.
+                </p>
+              </div>
+            </article>
+
+            <article id="bonus" className="v3-bonus-card">
+              <div className="v3-bonus-copy">
+                <span>5 BÔNUS • 110 PÁGINAS</span>
+                <h3>Apoios que fazem o material sair do PDF e entrar na rotina.</h3>
+                <p>
+                  Planejamento, rotina visual, jogos, observação e atividades para enviar às
+                  famílias.
+                </p>
+              </div>
+
+              <div className="v3-bonus-covers" aria-label="Capas dos cinco bônus">
+                {bonuses.map(([title, pages], index) => (
+                  <div className="v3-bonus-item" key={title}>
+                    <Cover number={index + 3} title={title} compact />
+                    <span>{pages}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="como-usar" className="v3-section v3-benefits">
+        <div className="v3-shell">
+          <div className="v3-benefit-intro">
+            <span className="v3-kicker v3-kicker-light">MENOS PREPARAÇÃO. MAIS AÇÃO.</span>
+            <h2>Material feito para você abrir, escolher e usar.</h2>
+          </div>
+
+          <div className="v3-benefit-grid">
+            {benefits.map(([Icon, title, text]) => (
+              <article className="v3-benefit" key={title}>
+                <span className="v3-benefit-icon">
+                  <Icon size={22} />
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="precos" className="v3-section v3-pricing-section">
+        <div className="v3-shell">
+          <div className="v3-section-heading v3-pricing-heading">
+            <span className="v3-kicker">ESCOLHA SEM COMPLICAÇÃO</span>
+            <h2>Quer começar ou quer levar o pacote completo?</h2>
+          </div>
+
+          <div className="v3-pricing-grid">
+            <article className="v3-price-card v3-price-card-essential">
+              <span className="v3-price-tag">PARA COMEÇAR</span>
+              <h3>Kit Essencial</h3>
+              <p className="v3-price-description">O Volume 1 com as atividades principais.</p>
+
+              <div className="v3-price">
+                <span>R$</span>
+                <strong>10</strong>
+                <small>,00</small>
+              </div>
+
+              <ul>
+                {["91 páginas", "Volume 1 completo", "PDF para imprimir", "Pagamento único"].map(
+                  (item) => (
+                    <li key={item}>
+                      <Check size={17} />
+                      {item}
+                    </li>
+                  ),
+                )}
+              </ul>
+
+              <PrimaryButton href={checkoutUrls.essential} dark>
+                QUERO O ESSENCIAL
+              </PrimaryButton>
+            </article>
+
+            <article className="v3-price-card v3-price-card-complete">
+              <span className="v3-popular-badge">
+                <Sparkles size={14} />
+                MAIS COMPLETO
+              </span>
+
+              <span className="v3-price-tag">2 VOLUMES + 5 BÔNUS</span>
+              <h3>Kit Completo</h3>
+              <p className="v3-price-description">
+                A coleção inteira para ter mais variedade e recursos de apoio.
+              </p>
+
+              <div className="v3-price">
+                <span>R$</span>
+                <strong>59</strong>
+                <small>,90</small>
+              </div>
+
               <ul>
                 {[
-                  "Kit principal — 91 páginas",
-                  "Atividades organizadas por habilidade",
-                  "Arquivo digital em PDF para imprimir",
+                  "292 páginas no total",
+                  "Volume 1 — 91 páginas",
+                  "Volume 2 — 91 páginas",
+                  "5 bônus — 110 páginas",
+                  "Pagamento único",
                 ].map((item) => (
                   <li key={item}>
-                    <Check size={18} aria-hidden="true" />
+                    <Check size={17} />
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="essential-limits">
-                O Volume 2 e os cinco bônus fazem parte apenas do Kit Completo.
+
+              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
+
+              <p className="v3-price-difference">
+                Por R$49,90 a mais, você acrescenta <strong>201 páginas</strong> ao Essencial.
               </p>
-              <PurchaseAction kit="essential" />
             </article>
           </div>
-          <p className="offer-footnote">
-            Produto 100% digital. Sem envio físico. Você imprime apenas as páginas que quiser; os
-            custos de impressão não estão incluídos.
-          </p>
         </div>
       </section>
 
-      <section className="guarantee-section" aria-labelledby="guarantee-title">
-        <div className="section-shell guarantee-layout">
-          <div className="gold-seal" role="img" aria-label="Garantia de 7 dias">
-            <div className="seal-inner">
-              <span className="seal-stars" aria-hidden="true">
-                ★ ★ ★
-              </span>
-              <span className="seal-top">GARANTIA</span>
-              <strong>7</strong>
-              <span className="seal-days">DIAS</span>
-              <ShieldCheck aria-hidden="true" size={24} />
-            </div>
-          </div>
-          <div>
-            <p className="eyebrow">TEMPO PARA CONHECER O MATERIAL</p>
-            <h2 id="guarantee-title">Sua escolha merece tranquilidade.</h2>
+      <section id="duvidas" className="v3-section v3-assurance-section">
+        <div className="v3-shell v3-assurance-grid">
+          <div className="v3-guarantee">
+            <span className="v3-guarantee-icon">
+              <ShieldCheck size={34} />
+            </span>
+            <span className="v3-kicker">GARANTIA INFORMADA DE 7 DIAS</span>
+            <h2>Escolha com mais tranquilidade.</h2>
             <p>
-              Você tem 7 dias de garantia para conhecer o kit. Se o material não atender às suas
-              expectativas, solicite o reembolso dentro desse prazo.
+              Você pode conferir as condições da garantia e as informações de entrega diretamente no
+              checkout antes de concluir o pagamento.
             </p>
-            <a href="#precos" className="guarantee-link">
-              Escolher meu kit <ArrowRight size={18} />
+            <a href="#precos">
+              Ver opções <ArrowRight size={16} />
             </a>
           </div>
-        </div>
-      </section>
-      <section id="duvidas" className="bg-sky-soft py-18 sm:py-24">
-        <div className="section-shell grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
-          <div>
-            <p className="eyebrow">ANTES DE COMEÇAR</p>
-            <h2 className="mt-3 text-3xl font-bold text-deep sm:text-5xl">Dúvidas frequentes</h2>
-            <p className="mt-4 leading-7 text-muted-foreground">
-              Informações diretas para você saber exatamente o que está adquirindo.
-            </p>
-          </div>
-          <div className="space-y-3">
-            {faqs.map(([question, answer], index) => (
-              <details
-                key={question}
-                className="faq group rounded-2xl border border-deep/8 bg-white p-5"
-                open={index === 0}
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-deep">
-                  {question}
-                  <ChevronDown className="size-5 shrink-0 transition-transform group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-muted-foreground">
-                  {answer}
-                </p>
+
+          <div className="v3-faq">
+            <span className="v3-kicker">DÚVIDAS RÁPIDAS</span>
+            {faqs.map(([question, answer]) => (
+              <details key={question}>
+                <summary>{question}</summary>
+                <p>{answer}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-coral py-18 text-center text-white sm:py-24">
-        <div className="absolute inset-0 opacity-15 hero-grid" />
-        <div className="section-shell relative">
-          <Users className="mx-auto size-10" />
-          <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-bold sm:text-5xl">
-            Seu próximo encontro pode começar com uma escolha simples.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl leading-7 text-white/80">
-            Conheça os materiais e escolha entre as atividades do Essencial e os apoios adicionais
-            do Completo.
-          </p>
-          <div className="mt-8">
-            <Cta light>ESCOLHER MEU KIT</Cta>
+      <section className="v3-final-cta">
+        <div className="v3-shell v3-final-inner">
+          <div>
+            <span className="v3-kicker v3-kicker-light">PRONTO PARA COMEÇAR?</span>
+            <h2>292 páginas. Dois volumes. Cinco bônus. Uma escolha.</h2>
           </div>
+
+          <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO — R$59,90</PrimaryButton>
         </div>
       </section>
-      <footer className="bg-deep px-4 py-8 text-center text-xs leading-5 text-white/45">
-        © 2026 Kit de Atividades Infantil e Autismo. Material digital educativo.
-        <br />
-        Não substitui acompanhamento profissional ou avaliação individualizada.
+
+      <footer className="v3-footer">
+        <div className="v3-shell">
+          <p>© 2026 Kit de Atividades Infantil e Autismo. Material digital educativo.</p>
+          <p>
+            Não substitui avaliação, terapia ou acompanhamento individualizado. Confira as
+            informações de pagamento, entrega e atendimento no checkout antes da compra.
+          </p>
+        </div>
       </footer>
     </main>
   );
 }
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Kit de Atividades Infantil e Autismo | 292 páginas" },
+      {
+        name: "description",
+        content:
+          "Kit digital com 2 volumes, 5 bônus e 292 páginas de atividades e materiais educativos para imprimir.",
+      },
+      { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
+      {
+        property: "og:description",
+        content: "2 volumes + 5 bônus. 292 páginas de materiais digitais para imprimir.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+  }),
+  component: Index,
+});
