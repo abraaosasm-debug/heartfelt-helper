@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -355,7 +355,274 @@
   }
 }
 
+.editorial-page {
+  --deep: oklch(0.29 0.035 170);
+  --coral: oklch(0.48 0.09 166);
+  --sky-soft: oklch(0.965 0.009 90);
+  --mint-soft: oklch(0.945 0.019 146);
+  --sun-soft: oklch(0.9 0.06 80);
+  --success: oklch(0.43 0.075 161);
+  --muted-foreground: oklch(0.46 0.015 165);
+  --background: oklch(0.99 0.004 85);
+  --coral-soft: oklch(0.96 0.017 146);
+}
+.editorial-page h1,
+.editorial-page h2 {
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+.editorial-page h3 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+.editorial-page .font-black {
+  font-weight: 700;
+}
+.editorial-page .hero-grid {
+  background-image: none;
+}
+.editorial-page .orb {
+  display: none;
+}
+.editorial-page header {
+  position: relative;
+  background: var(--background);
+  border-bottom: 1px solid oklch(0.29 0.035 170 / 0.1);
+}
+.editorial-page #inicio {
+  padding-top: 64px;
+  padding-bottom: 72px;
+}
+.editorial-page #inicio h1 {
+  font-size: clamp(2.7rem, 5vw, 4.6rem);
+  line-height: 1.08;
+}
+.editorial-page #inicio .marker-text {
+  color: var(--coral);
+}
+.editorial-page .marker-text::after {
+  display: none;
+}
+.editorial-page #inicio .reveal-up {
+  text-align: left;
+}
+.editorial-page #inicio .reveal-up > div:first-child {
+  border: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.editorial-page #inicio .reveal-up > div:first-child svg {
+  display: none;
+}
+.editorial-page #inicio .reveal-up > div {
+  justify-content: flex-start;
+}
+.editorial-page .float-soft {
+  animation: editorial-enter 1s both;
+}
+.editorial-page .mockup-frame {
+  padding: 0;
+  border-radius: 4px;
+  transform: none;
+  box-shadow: 0 16px 40px oklch(0.29 0.035 170 / 0.1);
+}
+.editorial-page .mockup-frame img {
+  border-radius: 4px;
+}
+.editorial-page .mockup-frame > div {
+  position: relative;
+  inset: auto;
+  border-radius: 0;
+  box-shadow: none;
+  background: white;
+  padding: 18px;
+}
+.editorial-page .float-soft > span {
+  top: 18px;
+  right: -8px;
+  border-radius: 3px;
+  transform: none;
+  font-size: 10px;
+  box-shadow: 0 4px 12px oklch(0 0 0 / 0.08);
+}
+.editorial-page .cta-shimmer {
+  border-radius: 6px;
+  box-shadow: none;
+  font-size: 12px;
+  letter-spacing: 0.015em;
+  min-height: 54px;
+}
+.editorial-page .cta-shimmer::after {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.editorial-page .cta-shimmer:hover::after {
+  animation: cta-shimmer 0.7s ease-out;
+  opacity: 1;
+}
+.editorial-page .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+.editorial-page .feature-card {
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid oklch(0.29 0.035 170 / 0.17);
+  box-shadow: none;
+  padding: 24px 0;
+}
+.editorial-page .feature-card > span {
+  background: transparent;
+  width: 28px;
+  height: 28px;
+}
+.editorial-page .feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: none;
+}
+.editorial-page #conteudo .grid {
+  column-gap: 40px;
+  row-gap: 0;
+}
+.editorial-page #bonus .grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.editorial-page .bonus-card {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 24px;
+  align-items: baseline;
+  background: transparent;
+  border-radius: 0;
+  border-top: 1px solid oklch(0.29 0.035 170 / 0.15);
+  box-shadow: none;
+  padding: 25px 0;
+}
+.editorial-page .bonus-card > div {
+  display: none;
+}
+.editorial-page .bonus-card p {
+  margin: 0;
+}
+.editorial-page .bonus-card:hover {
+  transform: translateX(4px);
+  box-shadow: none;
+}
+.editorial-page .price-card {
+  border-radius: 8px;
+  box-shadow: none;
+}
+.editorial-page .price-card.popular {
+  box-shadow: 0 20px 50px oklch(0.29 0.035 170 / 0.14);
+}
+.editorial-page .price-card > a {
+  border-radius: 6px;
+  padding-inline: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+.editorial-page .faq {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid oklch(0.29 0.035 170 / 0.18);
+  border-radius: 0;
+  padding: 22px 0;
+  box-shadow: none;
+}
+.editorial-page section {
+  scroll-margin-top: 24px;
+}
+.editorial-page a:focus-visible,
+.editorial-page summary:focus-visible {
+  outline: 3px solid oklch(0.65 0.12 80);
+  outline-offset: 5px;
+}
+.editorial-page .scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.editorial-page .scroll-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.editorial-page .reveal-card {
+  animation: none;
+}
+@keyframes editorial-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 767px) {
+  .editorial-page .section-shell {
+    width: calc(100% - 40px);
+  }
+  .editorial-page section {
+    padding-block: 48px;
+  }
+  .editorial-page #inicio {
+    padding-block: 36px 44px;
+  }
+  .editorial-page #inicio h1 {
+    font-size: clamp(2.4rem, 9.5vw, 3.5rem);
+  }
+  .editorial-page h2 {
+    font-size: 30px;
+    line-height: 1.18;
+  }
+  .editorial-page #inicio p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .editorial-page #inicio .reveal-up > div {
+    align-items: flex-start;
+  }
+  .editorial-page #inicio .cta-shimmer {
+    width: 100%;
+  }
+  .editorial-page .bonus-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-block: 22px;
+  }
+  .editorial-page .feature-card {
+    padding-block: 20px;
+  }
+  .editorial-page .feature-card h3 {
+    margin-top: 12px;
+  }
+  .editorial-page .price-card {
+    padding: 28px 22px;
+  }
+  .editorial-page .price-card > span {
+    font-size: 10px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  .editorial-page *,
+  .editorial-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .editorial-page .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
   html {
     scroll-behavior: auto;
   }
