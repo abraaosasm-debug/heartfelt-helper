@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,13 +9,13 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
-  Download,
   Eye,
   Gift,
   Heart,
   Layers3,
+  Pause,
   PencilLine,
-  Printer,
+  Play,
   Puzzle,
   ShieldCheck,
   Sparkles,
@@ -42,23 +42,40 @@ const coverSources: Record<number, string> = {
   7: "/covers/Atividades_para_Enviar_as_Familias_05_Completo_260921_142043.jpg?v=3",
 };
 
+const coverDimensions: Record<number, { width: number; height: number }> = {
+  1: { width: 1080, height: 1528 },
+  2: { width: 1080, height: 1527 },
+  3: { width: 1080, height: 1526 },
+  4: { width: 1080, height: 1526 },
+  5: { width: 1080, height: 1526 },
+  6: { width: 1080, height: 1396 },
+  7: { width: 1080, height: 1526 },
+};
+
 function getCoverSource(number: number) {
   return coverSources[number] ?? `/covers/Imagens_${number}.jpg?v=3`;
+}
+
+function getCoverDimensions(number: number) {
+  return coverDimensions[number] ?? { width: 1080, height: 1527 };
 }
 
 function Cover({
   number,
   title,
   priority = false,
+  onDialogOpenChange,
 }: {
   number: number;
   title: string;
   priority?: boolean;
+  onDialogOpenChange?: (open: boolean) => void;
 }) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
   const coverSource = getCoverSource(number);
+  const dimensions = getCoverDimensions(number);
 
   useEffect(() => {
     const image = imageRef.current;
@@ -66,7 +83,7 @@ function Cover({
   }, []);
 
   return (
-    <Dialog>
+    <Dialog onOpenChange={onDialogOpenChange}>
       <DialogTrigger asChild>
         <button
           type="button"
@@ -80,8 +97,8 @@ function Cover({
             className="cover-image"
             src={coverSource}
             alt={`Capa de ${title}`}
-            width={1080}
-            height={1527}
+            width={dimensions.width}
+            height={dimensions.height}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "low"}
             decoding="async"
@@ -104,10 +121,10 @@ function Cover({
           <img
             src={coverSource}
             alt={`Capa ampliada de ${title}`}
-            width={1080}
-            height={1527}
+            width={dimensions.width}
+            height={dimensions.height}
             loading="eager"
-            decoding="sync"
+            decoding="async"
           />
         </div>
       </DialogContent>
@@ -281,11 +298,18 @@ function Index() {
   const page = useRef<HTMLElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
   const galleryPaused = useRef(false);
+  const galleryModalOpen = useRef(false);
   const galleryResetTimer = useRef<number | null>(null);
+  const galleryLastInteraction = useRef(0);
   const bonusVisible = useRef(false);
   const pageVisible = useRef(true);
+  const [galleryAutoplayEnabled, setGalleryAutoplayEnabled] = useState(true);
 
-  const moveGallery = (direction: number) => {
+  const markGalleryInteraction = useCallback(() => {
+    galleryLastInteraction.current = window.performance?.now?.() ?? Date.now();
+  }, []);
+
+  const moveGallery = useCallback((direction: number) => {
     const rail = gallery.current;
     if (!rail) return;
 
@@ -338,11 +362,11 @@ function Index() {
       left: (currentIndex + direction) * step,
       behavior: reducedMotion ? "instant" : "smooth",
     });
-  };
+  }, []);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) return;
+    if (reducedMotion.matches || !galleryAutoplayEnabled) return;
 
     const bonusSection = document.getElementById("bonus");
     const updatePageVisibility = () => {
@@ -350,6 +374,7 @@ function Index() {
     };
 
     updatePageVisibility();
+    markGalleryInteraction();
 
     let visibilityObserver: IntersectionObserver | null = null;
     if (bonusSection && "IntersectionObserver" in window) {
@@ -365,10 +390,20 @@ function Index() {
     }
 
     const autoplay = window.setInterval(() => {
-      if (pageVisible.current && bonusVisible.current && !galleryPaused.current) {
+      const now = window.performance?.now?.() ?? Date.now();
+      const idleFor = now - galleryLastInteraction.current;
+
+      if (
+        pageVisible.current &&
+        bonusVisible.current &&
+        !galleryPaused.current &&
+        !galleryModalOpen.current &&
+        idleFor >= 3400
+      ) {
         moveGallery(1);
+        galleryLastInteraction.current = now;
       }
-    }, 3400);
+    }, 400);
 
     document.addEventListener("visibilitychange", updatePageVisibility);
 
@@ -378,7 +413,7 @@ function Index() {
       document.removeEventListener("visibilitychange", updatePageVisibility);
       if (galleryResetTimer.current) window.clearTimeout(galleryResetTimer.current);
     };
-  }, []);
+  }, [galleryAutoplayEnabled, markGalleryInteraction, moveGallery]);
 
   useEffect(() => {
     const root = page.current;
@@ -569,8 +604,8 @@ function Index() {
                 <img
                   src={getCoverSource(6)}
                   alt="Capa do bônus Caderno de observação da aprendizagem"
-                  width={1080}
-                  height={1526}
+                  width={getCoverDimensions(6).width}
+                  height={getCoverDimensions(6).height}
                   loading="lazy"
                   fetchPriority="low"
                   decoding="async"
@@ -804,13 +839,44 @@ function Index() {
             <div>
               <button
                 type="button"
-                onClick={() => moveGallery(-1)}
+                onClick={() => {
+                  markGalleryInteraction();
+                  moveGallery(-1);
+                }}
                 aria-label="Ver bônus anteriores"
               >
                 <ArrowLeft size={20} />
               </button>
-              <button type="button" onClick={() => moveGallery(1)} aria-label="Ver próximos bônus">
+              <button
+                type="button"
+                onClick={() => {
+                  markGalleryInteraction();
+                  moveGallery(1);
+                }}
+                aria-label="Ver próximos bônus"
+              >
                 <ArrowRight size={20} />
+              </button>
+              <button
+                type="button"
+                className="gallery-autoplay-toggle"
+                onClick={() => {
+                  markGalleryInteraction();
+                  setGalleryAutoplayEnabled((enabled) => !enabled);
+                }}
+                aria-pressed={!galleryAutoplayEnabled}
+                aria-label={
+                  galleryAutoplayEnabled
+                    ? "Pausar rotação automática dos bônus"
+                    : "Retomar rotação automática dos bônus"
+                }
+                title={
+                  galleryAutoplayEnabled
+                    ? "Pausar rotação automática"
+                    : "Retomar rotação automática"
+                }
+              >
+                {galleryAutoplayEnabled ? <Pause size={18} /> : <Play size={18} />}
               </button>
             </div>
           </div>
@@ -818,25 +884,36 @@ function Index() {
             ref={gallery}
             className="bonus-gallery"
             role="region"
+            aria-roledescription="carrossel"
             aria-label="Capas dos cinco bônus em carrossel automático"
+            aria-live="off"
             tabIndex={0}
             onPointerEnter={() => {
               galleryPaused.current = true;
             }}
             onPointerLeave={() => {
-              galleryPaused.current = false;
+              galleryPaused.current = galleryModalOpen.current;
+              markGalleryInteraction();
             }}
             onPointerDown={() => {
               galleryPaused.current = true;
+              markGalleryInteraction();
             }}
             onPointerUp={() => {
-              galleryPaused.current = false;
+              galleryPaused.current = galleryModalOpen.current;
+              markGalleryInteraction();
+            }}
+            onPointerCancel={() => {
+              galleryPaused.current = galleryModalOpen.current;
+              markGalleryInteraction();
             }}
             onFocusCapture={() => {
               galleryPaused.current = true;
+              markGalleryInteraction();
             }}
             onBlurCapture={() => {
-              galleryPaused.current = false;
+              galleryPaused.current = galleryModalOpen.current;
+              markGalleryInteraction();
             }}
           >
             {bonuses.map(([number, title, text, pages], index) => (
@@ -845,7 +922,15 @@ function Index() {
                   <span className="bonus-index" aria-hidden="true">
                     0{index + 1}
                   </span>
-                  <Cover number={index + 3} title={title} />
+                  <Cover
+                    number={index + 3}
+                    title={title}
+                    onDialogOpenChange={(open) => {
+                      galleryModalOpen.current = open;
+                      galleryPaused.current = open;
+                      markGalleryInteraction();
+                    }}
+                  />
                 </div>
                 <span className="bonus-label">
                   BÔNUS {number} · {pages}
@@ -867,8 +952,8 @@ function Index() {
                     className="cover-image"
                     src={getCoverSource(3)}
                     alt=""
-                    width={1080}
-                    height={1526}
+                    width={getCoverDimensions(3).width}
+                    height={getCoverDimensions(3).height}
                     loading="lazy"
                     decoding="async"
                     draggable={false}
