@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -66,6 +66,9 @@
   --color-mint-soft: var(--mint-soft);
   --color-sun-soft: var(--sun-soft);
   --color-success: var(--success);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-lilac-soft: var(--lilac-soft);
 }
 
 :root {
@@ -94,6 +97,9 @@
   --mint-soft: oklch(0.95 0.055 154);
   --sun-soft: oklch(0.95 0.105 95);
   --success: oklch(0.57 0.15 153);
+  --coral: oklch(0.67 0.2 25);
+  --coral-soft: oklch(0.95 0.045 25);
+  --lilac-soft: oklch(0.94 0.045 300);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -167,5 +173,55 @@
 }
 
 @utility soft-shadow {
-  box-shadow: 0 18px 45px oklch(0.31 0.08 226 / 0.1);
+  box-shadow: 0 22px 60px oklch(0.31 0.08 226 / 0.12), 0 3px 10px oklch(0.31 0.08 226 / 0.06);
+}
+
+@utility glass-panel {
+  background: oklch(1 0 0 / 0.72);
+  backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid oklch(1 0 0 / 0.8);
+  box-shadow: 0 18px 50px oklch(0.31 0.08 226 / 0.09);
+}
+
+@utility reveal-up {
+  animation: reveal-up 0.7s both cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+@utility cta-shimmer {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: -60%;
+    width: 35%;
+    transform: skewX(-20deg);
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.4), transparent);
+    animation: cta-shimmer 3.8s ease-in-out infinite;
+  }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-8px) rotate(0deg); }
+}
+
+@keyframes cta-shimmer {
+  0%, 60% { left: -60%; }
+  100% { left: 130%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal-up, .float-soft, .cta-shimmer::after { animation: none; }
 }
