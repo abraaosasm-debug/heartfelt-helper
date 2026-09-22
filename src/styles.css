@@ -2442,3 +2442,14 @@
     height: 36px;
   }
 }
+
+
+/* Normalize all bonus cover image slots to the standard 1080x1526 ratio. */
+.editorial-page .bonus-product .cover-button[data-cover-number] .cover-image {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 1080 / 1526 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: white;
+}
