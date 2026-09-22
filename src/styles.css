@@ -3346,3 +3346,44 @@
     animation: none !important;
   }
 }
+
+
+/* Performance layer: preserve appearance while skipping offscreen work. */
+@supports (content-visibility: auto) {
+  .editorial-page > section:nth-of-type(n + 3) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
+
+.editorial-page section:not(.motion-active) .cta-shimmer,
+#inicio:not(.motion-active) .premium-hero-offer-chip,
+#inicio:not(.motion-active) .premium-cover,
+#bonus:not(.motion-active) .bonus-gift,
+#bonus:not(.motion-active) .bonus-product .bonus-visual,
+#bonus:not(.motion-active) .bonus-product::after,
+#bonus:not(.motion-active) .gallery-controls button:last-child {
+  animation-play-state: paused !important;
+}
+
+#bonus:not(.motion-active)::before {
+  animation-play-state: paused !important;
+}
+
+#inicio .premium-cover {
+  will-change: auto;
+}
+
+#inicio.motion-active .premium-cover {
+  will-change: transform;
+}
+
+.editorial-page img {
+  content-visibility: auto;
+}
+
+@media (max-width: 600px) {
+  .editorial-page > section:nth-of-type(n + 3) {
+    contain-intrinsic-size: auto 760px;
+  }
+}
