@@ -907,12 +907,15 @@
 .bonus-product .cover-button[data-cover-number="4"] .cover-image,
 .bonus-product .cover-button[data-cover-number="5"] .cover-image,
 .bonus-product .cover-button[data-cover-number="6"] .cover-image {
-  position: absolute;
-  inset: -6%;
-  width: 112%;
-  height: 112% !important;
-  max-width: none;
-  object-fit: cover;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto !important;
+  max-width: 100%;
+  aspect-ratio: auto !important;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
 }
 .bonus-label {
   display: block;
@@ -954,8 +957,12 @@
 .cover-dialog-image-frame[data-cover-number="4"] > img,
 .cover-dialog-image-frame[data-cover-number="5"] > img,
 .cover-dialog-image-frame[data-cover-number="6"] > img {
-  transform: scale(1.12);
-  transform-origin: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
 }
 .cover-button:focus-visible {
   outline: 3px solid oklch(0.6 0.12 80);
