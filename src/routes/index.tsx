@@ -32,8 +32,18 @@ import {
 
 import { checkoutUrls } from "@/lib/checkout";
 
+const coverSources: Record<number, string> = {
+  1: "/covers/Imagens_1.jpg?v=2",
+  2: "/covers/Imagens_2.jpg?v=2",
+  3: "/covers/Planejamento_de_4_Semanas_Completo_260921_141949.jpg?v=3",
+  4: "/covers/Rotina_Visual_para_Recortar_Completo_260921_141935.jpg?v=3",
+  5: "/covers/Jogos_de_Mesa_Imprimiveis_03_Completo_260921_142019.jpg?v=3",
+  6: "/covers/Caderno_de_Observacao_da_Aprendizagem_04_Completo_260921_142033.jpg?v=3",
+  7: "/covers/Atividades_para_Enviar_as_Familias_05_Completo_260921_142043.jpg?v=3",
+};
+
 function getCoverSource(number: number) {
-  return `/covers/Imagens_${number}.jpg?v=2`;
+  return coverSources[number] ?? `/covers/Imagens_${number}.jpg?v=3`;
 }
 
 function Cover({
