@@ -671,7 +671,7 @@ function Index() {
               Comece pelo essencial e avance com novas propostas.
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além dos 110
+              O Kit Completo reúne os dois volumes: 182 páginas de atividades educativas, além das 110
               páginas de bônus para apoiar planejamento, rotina, jogos e acompanhamento.
             </p>
           </div>
