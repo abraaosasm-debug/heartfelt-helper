@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -56,6 +57,29 @@ const bonuses = [
   ["Jogos de mesa imprimíveis", "30 páginas"],
   ["Caderno de observação", "16 páginas"],
   ["Atividades para as famílias", "20 páginas"],
+] as const;
+
+const benefits = [
+  [
+    PencilLine,
+    "Atividades já prontas",
+    "Você não precisa criar exercícios do zero toda vez que quiser trabalhar uma habilidade.",
+  ],
+  [
+    Brain,
+    "Conteúdo organizado",
+    "Letras, números, raciocínio, coordenação e outras propostas separadas por objetivo.",
+  ],
+  [
+    Heart,
+    "Mais opções para variar",
+    "Dois volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
+  ],
+  [
+    Layers3,
+    "Imprima só o necessário",
+    "Use uma página, uma sequência ou um material complementar sem precisar imprimir tudo.",
+  ],
 ] as const;
 
 const faqs = [
@@ -147,7 +171,7 @@ function PrimaryButton({
   dark = false,
 }: {
   href: string;
-  children: React.ReactNode;
+  children: ReactNode;
   dark?: boolean;
 }) {
   return (
@@ -345,34 +369,13 @@ function Index() {
           </div>
 
           <div className="v3-benefit-grid">
-            {[
-              [
-                PencilLine,
-                "Atividades já prontas",
-                "Você não precisa criar exercícios do zero toda vez que quiser trabalhar uma habilidade.",
-              ],
-              [
-                Brain,
-                "Conteúdo organizado",
-                "Letras, números, raciocínio, coordenação e outras propostas separadas por objetivo.",
-              ],
-              [
-                Heart,
-                "Mais opções para variar",
-                "Dois volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
-              ],
-              [
-                Layers3,
-                "Imprima só o necessário",
-                "Use uma página, uma sequência ou um material complementar sem precisar imprimir tudo.",
-              ],
-            ].map(([Icon, title, text]) => (
-              <article className="v3-benefit" key={title as string}>
+            {benefits.map(([Icon, title, text]) => (
+              <article className="v3-benefit" key={title}>
                 <span className="v3-benefit-icon">
                   <Icon size={22} />
                 </span>
-                <h3>{title as string}</h3>
-                <p>{text as string}</p>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </article>
             ))}
           </div>
