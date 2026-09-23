@@ -99,6 +99,10 @@ if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
   errors.push("Cor branca explícita do CTA escuro não encontrada.");
 }
 
+if (!/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO O KIT COMPLETO — R\$59,90[\s\S]*<\/PrimaryButton>/.test(index)) {
+  errors.push("CTA final precisa usar explicitamente a variante escura.");
+}
+
 for (const number of [3, 4, 5, 6, 7]) {
   if (index.includes(`/covers/Imagens_${number}.jpg`)) {
     errors.push(`Referência legada encontrada: Imagens_${number}.jpg`);
