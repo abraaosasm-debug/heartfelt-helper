@@ -62,12 +62,12 @@ const bonuses = [
 ] as const;
 
 const previewPages = [
-  ["Encontre e Circule", "Vogais", "0%"],
-  ["Trace as Vogais", "Grafomotricidade", "20%"],
-  ["Siga a Linha", "Coordenação motora", "40%"],
-  ["Conhecendo os Números", "Números e quantidades", "60%"],
-  ["Qual Está Diferente?", "Percepção visual", "80%"],
-  ["Emoções e Comunicação", "Emoções", "100%"],
+  ["Encontre e Circule", "Vogais", 0],
+  ["Trace as Vogais", "Grafomotricidade", 1],
+  ["Siga a Linha", "Coordenação motora", 2],
+  ["Conhecendo os Números", "Números e quantidades", 3],
+  ["Qual Está Diferente?", "Percepção visual", 4],
+  ["Emoções e Comunicação", "Emoções", 5],
 ] as const;
 
 const benefits = [
@@ -179,12 +179,12 @@ function Cover({
 function PreviewPage({
   title,
   skill,
-  position,
+  spriteIndex,
   number,
 }: {
   title: string;
   skill: string;
-  position: string;
+  spriteIndex: number;
   number: number;
 }) {
   return (
@@ -193,10 +193,19 @@ function PreviewPage({
         <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
           <div
             className="v33-preview-page"
-            style={{ backgroundPosition: `${position} center` }}
             role="img"
             aria-label={`Página real do Volume 1: ${title}`}
-          />
+          >
+            <img
+              src="/previews/kit1-pages-sprite.webp"
+              alt=""
+              width={4824}
+              height={1137}
+              loading="lazy"
+              decoding="async"
+              style={{ transform: `translateX(-${spriteIndex * (100 / 6)}%)` }}
+            />
+          </div>
           <div className="v33-preview-card-copy">
             <div>
               <span>{skill}</span>
@@ -219,10 +228,18 @@ function PreviewPage({
         <div className="v33-preview-dialog-scroll">
           <div
             className="v33-preview-dialog-page"
-            style={{ backgroundPosition: `${position} center` }}
             role="img"
             aria-label={`Página ampliada do Volume 1: ${title}`}
-          />
+          >
+            <img
+              src="/previews/kit1-pages-sprite.webp"
+              alt=""
+              width={4824}
+              height={1137}
+              decoding="async"
+              style={{ transform: `translateX(-${spriteIndex * (100 / 6)}%)` }}
+            />
+          </div>
         </div>
       </DialogContent>
     </Dialog>
@@ -529,12 +546,12 @@ function Index() {
             role="region"
             aria-label="Carrossel com páginas reais do Volume 1"
           >
-            {previewPages.map(([title, skill, position], index) => (
+            {previewPages.map(([title, skill, spriteIndex], index) => (
               <PreviewPage
                 key={title}
                 title={title}
                 skill={skill}
-                position={position}
+                spriteIndex={spriteIndex}
                 number={index + 1}
               />
             ))}
