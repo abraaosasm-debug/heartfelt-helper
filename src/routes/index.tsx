@@ -214,7 +214,8 @@ function PreviewPage({
               alt={`Página real do Volume 1: ${title}`}
               width={1086}
               height={1536}
-              loading={number <= 2 ? "eager" : "lazy"}
+              loading="lazy"
+              fetchPriority="low"
               decoding="async"
             />
             {badge ? <span className="v34-preview-badge">{badge}</span> : null}
@@ -299,31 +300,31 @@ function OfferCountdown() {
   const seconds = remaining % 60;
 
   return (
-    <div
-      className={`v32-offer-bar${expired ? " is-expired" : ""}`}
-      role="status"
-      aria-live="polite"
-    >
+    <div className={`v32-offer-bar${expired ? " is-expired" : ""}`}>
       <div className="v3-shell v32-offer-bar-inner">
         <div className="v32-offer-message">
           <Clock3 size={17} aria-hidden="true" />
-          <span>{expired ? "TEMPO ENCERRADO" : "OFERTA ESPECIAL DESTA SESSÃO"}</span>
+          <span>{expired ? "TEMPO DE REVISÃO ENCERRADO" : "REVISE ESTA OFERTA COM CALMA"}</span>
         </div>
 
+        <span className="v32-timer-status" aria-live="polite">
+          {expired ? "O tempo de revisão terminou. A oferta continua disponível abaixo." : ""}
+        </span>
+
         {expired ? (
-          <a href="#precos">Confira a condição atual</a>
+          <a href="#precos">Ver a oferta</a>
         ) : (
           <>
-            <strong>termina em</strong>
-            <div
-              className="v32-countdown"
-              aria-label={`${minutes} minutos e ${seconds} segundos restantes`}
-            >
+            <strong>tempo restante</strong>
+            <div className="v32-countdown" aria-hidden="true">
               <span>{String(minutes).padStart(2, "0")}</span>
               <b>:</b>
               <span>{String(seconds).padStart(2, "0")}</span>
             </div>
-            <a href="#precos">Aproveitar agora</a>
+            <span className="v32-timer-a11y">
+              Contador visual de cinco minutos para revisar esta oferta.
+            </span>
+            <a href="#precos">Ver o Kit Completo</a>
           </>
         )}
       </div>
@@ -665,8 +666,9 @@ function Index() {
               <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
 
               <p className="v3-price-difference">
-                Por R$49,90 a mais, você acrescenta <strong>201 páginas</strong>: 91 do Volume 2 +
-                110 páginas dos cinco bônus.
+                Por R$49,90 a mais, você leva o <strong>Volume 2 completo</strong> e
+                <strong> todos os 5 bônus</strong>: 201 páginas adicionais para ampliar as opções de
+                atividades e apoio.
               </p>
             </article>
           </div>
