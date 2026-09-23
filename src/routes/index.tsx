@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
+  Clock3,
   Brain,
   Check,
   Eye,
@@ -182,6 +184,62 @@ function PrimaryButton({
   );
 }
 
+function OfferCountdown() {
+  const [remaining, setRemaining] = useState(300);
+  const [expired, setExpired] = useState(false);
+
+  useEffect(() => {
+    const storageKey = "kit-offer-session-deadline";
+    let deadline = Number(window.sessionStorage.getItem(storageKey));
+
+    if (!Number.isFinite(deadline) || deadline <= 0) {
+      deadline = Date.now() + 5 * 60 * 1000;
+      window.sessionStorage.setItem(storageKey, String(deadline));
+    }
+
+    const update = () => {
+      const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      setRemaining(seconds);
+      setExpired(seconds === 0);
+    };
+
+    update();
+    const interval = window.setInterval(update, 1000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const minutes = Math.floor(remaining / 60);
+  const seconds = remaining % 60;
+
+  return (
+    <div className={`v32-offer-bar${expired ? " is-expired" : ""}`} role="status" aria-live="polite">
+      <div className="v3-shell v32-offer-bar-inner">
+        <div className="v32-offer-message">
+          <Clock3 size={17} aria-hidden="true" />
+          <span>
+            {expired ? "TEMPO ENCERRADO" : "CONDIÇÃO ESPECIAL DESTA SESSÃO"}
+          </span>
+        </div>
+
+        {expired ? (
+          <a href="#precos">Confira a condição atual</a>
+        ) : (
+          <>
+            <strong>termina em</strong>
+            <div className="v32-countdown" aria-label={`${minutes} minutos e ${seconds} segundos restantes`}>
+              <span>{String(minutes).padStart(2, "0")}</span>
+              <b>:</b>
+              <span>{String(seconds).padStart(2, "0")}</span>
+            </div>
+            <a href="#precos">Aproveitar agora</a>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function GuaranteeSeal() {
   return (
     <div className="v31-guarantee-seal" role="img" aria-label="Garantia de 7 dias">
@@ -201,6 +259,8 @@ function GuaranteeSeal() {
 function Index() {
   return (
     <main className="v3-page">
+      <OfferCountdown />
+
       <header className="v3-header">
         <div className="v3-shell v3-header-inner">
           <a className="v3-brand" href="#inicio" aria-label="Ir para o início">
@@ -375,6 +435,42 @@ function Index() {
                 ))}
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="v32-preview-section" aria-labelledby="preview-title">
+        <div className="v3-shell">
+          <div className="v32-preview-heading">
+            <div>
+              <span className="v3-kicker">AMOSTRA REAL DO VOLUME 1</span>
+              <h2 id="preview-title">Veja por dentro antes de comprar.</h2>
+            </div>
+            <p>
+              Páginas reais do Kit 1 mostrando diferentes tipos de atividade: letras, traçado,
+              números, percepção visual e emoções.
+            </p>
+          </div>
+
+          <figure className="v32-preview-frame">
+            <span className="v32-preview-badge">AMOSTRA • VOLUME 1</span>
+            <img
+              src="/previews/kit1-amostras.webp"
+              alt="Amostras reais de seis páginas do Volume 1 com atividades de números, emoções, vogais, coordenação motora e percepção visual"
+              width={840}
+              height={776}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              Seis exemplos do Volume 1, que possui 91 páginas no arquivo completo.
+            </figcaption>
+          </figure>
+
+          <div className="v32-preview-tags" aria-label="Habilidades mostradas nas amostras">
+            {["Vogais", "Coordenação", "Números", "Percepção visual", "Emoções"].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
         </div>
       </section>
