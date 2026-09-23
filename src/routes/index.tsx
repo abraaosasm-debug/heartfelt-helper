@@ -62,12 +62,27 @@ const bonuses = [
 ] as const;
 
 const previewPages = [
-  ["Encontre e Circule", "Vogais", "100% 0%"],
-  ["Trace as Vogais", "Grafomotricidade", "100% 100%"],
-  ["Siga a Linha", "Coordenação motora", "50% 100%"],
-  ["Conhecendo os Números", "Números e quantidades", "0% 0%"],
-  ["Qual Está Diferente?", "Percepção visual", "0% 100%"],
-  ["Emoções e Comunicação", "Emoções", "50% 0%"],
+  [
+    "Sumário do Kit",
+    "Visão geral",
+    "/previews/selected/kit1-selected-1.jpg",
+    "9 MÓDULOS + ENCERRAMENTO",
+  ],
+  [
+    "Trace as Vogais",
+    "Alfabetização + grafomotricidade",
+    "/previews/selected/kit1-selected-2.jpg",
+    null,
+  ],
+  ["Coordenação Motora", "Grafomotricidade", "/previews/selected/kit1-selected-3.jpg", null],
+  ["Quantos Você Vê?", "Números e quantidades", "/previews/selected/kit1-selected-4.jpg", null],
+  [
+    "Qual Sílaba Está Faltando?",
+    "Formação de palavras",
+    "/previews/selected/kit1-selected-5.jpg",
+    null,
+  ],
+  ["Emoções e Comunicação", "Emoções", "/previews/selected/kit1-selected-6.jpg", null],
 ] as const;
 
 const benefits = [
@@ -179,48 +194,58 @@ function Cover({
 function PreviewPage({
   title,
   skill,
-  position,
+  source,
+  badge,
   number,
 }: {
   title: string;
   skill: string;
-  position: string;
+  source: string;
+  badge: string | null;
   number: number;
 }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div
-            className="v33-preview-page"
-            style={{ backgroundPosition: position }}
-            role="img"
-            aria-label={`Página real do Volume 1: ${title}`}
-          />
-          <div className="v33-preview-card-copy">
+        <button type="button" className="v34-preview-card" aria-label={`Ampliar página: ${title}`}>
+          <div className="v34-preview-media">
+            <img
+              src={source}
+              alt={`Página real do Volume 1: ${title}`}
+              width={1086}
+              height={1536}
+              loading={number <= 2 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            {badge ? <span className="v34-preview-badge">{badge}</span> : null}
+            <span className="v34-preview-zoom-icon" aria-hidden="true">
+              <Eye size={18} />
+            </span>
+          </div>
+
+          <div className="v34-preview-card-copy">
             <div>
               <span>{skill}</span>
               <strong>{title}</strong>
             </div>
-            <span className="v33-preview-index">{String(number).padStart(2, "0")} / 06</span>
+            <span className="v34-preview-index">{String(number).padStart(2, "0")} / 06</span>
           </div>
-          <span className="v33-preview-zoom-icon" aria-hidden="true">
-            <Eye size={18} />
-          </span>
         </button>
       </DialogTrigger>
 
-      <DialogContent className="v33-preview-dialog">
+      <DialogContent className="v34-preview-dialog">
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>
-          Página real do Volume 1. Toque e observe os detalhes da atividade.
+          Página real do Volume 1. Visualização individual em alta nitidez.
         </DialogDescription>
-        <div className="v33-preview-dialog-scroll">
-          <div
-            className="v33-preview-dialog-page"
-            style={{ backgroundPosition: position }}
-            role="img"
-            aria-label={`Página ampliada do Volume 1: ${title}`}
+        <div className="v34-preview-dialog-scroll">
+          <img
+            src={source}
+            alt={`Página ampliada do Volume 1: ${title}`}
+            width={1086}
+            height={1536}
+            loading="eager"
+            decoding="async"
           />
         </div>
       </DialogContent>
@@ -513,13 +538,13 @@ function Index() {
               <h2 id="preview-title">Veja o material de verdade.</h2>
             </div>
             <p>
-              Nada de miniaturas ilegíveis. Cada exemplo abaixo é uma página real do Kit 1. Deslize
-              no celular e toque para ampliar.
+              Estas são páginas reais escolhidas diretamente do Volume 1. Veja o conteúdo inteiro,
+              deslize no celular e toque em qualquer página para ampliar.
             </p>
           </div>
 
           <div className="v33-preview-meta">
-            <span>6 páginas selecionadas</span>
+            <span>6 páginas escolhidas do material real</span>
             <span>Volume 1 • 91 páginas no total</span>
           </div>
 
@@ -528,12 +553,13 @@ function Index() {
             role="region"
             aria-label="Carrossel com páginas reais do Volume 1"
           >
-            {previewPages.map(([title, skill, position], index) => (
+            {previewPages.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={title}
                 title={title}
                 skill={skill}
-                position={position}
+                source={source}
+                badge={badge}
                 number={index + 1}
               />
             ))}
