@@ -191,7 +191,11 @@ function PreviewPage({
     <Dialog>
       <DialogTrigger asChild>
         <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div className="v33-preview-page" role="img" aria-label={`Página real do Volume 1: ${title}`}>
+          <div
+            className="v33-preview-page"
+            role="img"
+            aria-label={`Página real do Volume 1: ${title}`}
+          >
             <img
               src="/previews/kit1-pages-sprite.webp"
               alt=""
@@ -222,7 +226,11 @@ function PreviewPage({
           detalhes com mais aproximação.
         </DialogDescription>
         <div className="v33-preview-dialog-scroll">
-          <div className="v33-preview-dialog-page" role="img" aria-label={`Página ampliada do Volume 1: ${title}`}>
+          <div
+            className="v33-preview-dialog-page"
+            role="img"
+            aria-label={`Página ampliada do Volume 1: ${title}`}
+          >
             <img
               src="/previews/kit1-pages-sprite.webp"
               alt=""
