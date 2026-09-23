@@ -4976,16 +4976,26 @@
 
 .v33-preview-page,
 .v33-preview-dialog-page {
-  background-image: url("/previews/kit1-pages-sprite.webp");
-  background-repeat: no-repeat;
-  background-size: 600% 100%;
-  background-color: white;
+  position: relative;
+  overflow: hidden;
+  background: white;
 }
 
 .v33-preview-page {
   width: 100%;
-  aspect-ratio: 1405 / 1989;
+  aspect-ratio: 804 / 1137;
   border-bottom: 1px solid var(--v3-line);
+}
+
+.v33-preview-page > img,
+.v33-preview-dialog-page > img {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 600%;
+  max-width: none;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
 }
 
 .v33-preview-card-copy {
@@ -5073,8 +5083,8 @@
 }
 
 .v33-preview-dialog-page {
-  width: min(1405px, 180vw);
-  aspect-ratio: 1405 / 1989;
+  width: min(804px, 180vw);
+  aspect-ratio: 804 / 1137;
   border-radius: 8px;
   box-shadow: 0 10px 28px oklch(0.16 0.03 245 / 0.16);
 }
