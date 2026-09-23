@@ -190,11 +190,7 @@ function PreviewPage({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          type="button"
-          className="v33-preview-card"
-          aria-label={`Ampliar página: ${title}`}
-        >
+        <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
           <div
             className="v33-preview-page"
             style={{ backgroundPosition: `${position} center` }}
