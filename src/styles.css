@@ -4976,9 +4976,9 @@
 
 .v33-preview-page,
 .v33-preview-dialog-page {
-  background-image: url("/previews/kit1-pages-sprite.webp");
+  background-image: url("/previews/kit1-amostras.webp");
   background-repeat: no-repeat;
-  background-size: 600% 100%;
+  background-size: 300% 200%;
   background-color: white;
 }
 
