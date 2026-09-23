@@ -34,13 +34,13 @@ const coverSources: Record<number, string> = {
 };
 
 const coverPreviewSources: Record<number, string> = {
-  1: "/covers/optimized/cover-1.webp?v=1",
-  2: "/covers/optimized/cover-2.webp?v=1",
-  3: "/covers/optimized/cover-3.webp?v=1",
-  4: "/covers/optimized/cover-4.webp?v=1",
-  5: "/covers/optimized/cover-5.webp?v=1",
-  6: "/covers/optimized/cover-6.webp?v=1",
-  7: "/covers/optimized/cover-7.webp?v=1",
+  1: "/covers/optimized/cover-1.jpg?v=1",
+  2: "/covers/optimized/cover-2.jpg?v=1",
+  3: "/covers/optimized/cover-3.jpg?v=1",
+  4: "/covers/optimized/cover-4.jpg?v=1",
+  5: "/covers/optimized/cover-5.jpg?v=1",
+  6: "/covers/optimized/cover-6.jpg?v=1",
+  7: "/covers/optimized/cover-7.jpg?v=1",
 };
 
 const coverDimensions: Record<number, { width: number; height: number }> = {
@@ -179,49 +179,48 @@ function Cover({
 function PreviewPage({
   title,
   skill,
-  position,
+  source,
+  badge,
   number,
 }: {
   title: string;
   skill: string;
-  position: string;
+  source: string;
+  badge: string | null;
   number: number;
 }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div
-            className="v33-preview-page"
-            style={{ backgroundPosition: position }}
-            role="img"
-            aria-label={`Página real do Volume 1: ${title}`}
-          />
-          <div className="v33-preview-card-copy">
+        <button type="button" className="v34-preview-card" aria-label={`Ampliar página: ${title}`}>
+          <div className="v34-preview-media">
+            <img
+              src={source}
+              alt={`Página real do Volume 1: ${title}`}
+              width={1086}
+              height={1536}
+              loading={number <= 2 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            {badge ? <span className="v34-preview-badge">{badge}</span> : null}
+            <span className="v34-preview-zoom-icon" aria-hidden="true">
+              <Eye size={18} />
+            </span>
+          </div>
+          <div className="v34-preview-card-copy">
             <div>
               <span>{skill}</span>
               <strong>{title}</strong>
             </div>
-            <span className="v33-preview-index">{String(number).padStart(2, "0")} / 06</span>
+            <span className="v34-preview-index">{String(number).padStart(2, "0")} / 06</span>
           </div>
-          <span className="v33-preview-zoom-icon" aria-hidden="true">
-            <Eye size={18} />
-          </span>
         </button>
       </DialogTrigger>
-
-      <DialogContent className="v33-preview-dialog">
+      <DialogContent className="v34-preview-dialog">
         <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>
-          Página real do Volume 1. Toque e observe os detalhes da atividade.
-        </DialogDescription>
-        <div className="v33-preview-dialog-scroll">
-          <div
-            className="v33-preview-dialog-page"
-            style={{ backgroundPosition: position }}
-            role="img"
-            aria-label={`Página ampliada do Volume 1: ${title}`}
-          />
+        <DialogDescription>Página real do Volume 1. Visualização individual em alta nitidez.</DialogDescription>
+        <div className="v34-preview-dialog-scroll">
+          <img src={source} alt={`Página ampliada do Volume 1: ${title}`} width={1086} height={1536} loading="eager" decoding="async" />
         </div>
       </DialogContent>
     </Dialog>
@@ -519,7 +518,7 @@ function Index() {
           </div>
 
           <div className="v33-preview-meta">
-            <span>6 páginas selecionadas</span>
+            <span>6 páginas escolhidas do material real</span>
             <span>Volume 1 • 91 páginas no total</span>
           </div>
 
