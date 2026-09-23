@@ -4978,24 +4978,16 @@
 .v33-preview-dialog-page {
   position: relative;
   overflow: hidden;
-  background: white;
+  background-color: white;
+  background-image: url("/previews/kit1-amostras.webp");
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
 }
 
 .v33-preview-page {
   width: 100%;
-  aspect-ratio: 804 / 1137;
+  aspect-ratio: 280 / 388;
   border-bottom: 1px solid var(--v3-line);
-}
-
-.v33-preview-page > img,
-.v33-preview-dialog-page > img {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 600%;
-  max-width: none;
-  height: 100%;
-  object-fit: fill;
-  pointer-events: none;
 }
 
 .v33-preview-card-copy {
@@ -5083,8 +5075,8 @@
 }
 
 .v33-preview-dialog-page {
-  width: min(804px, 180vw);
-  aspect-ratio: 804 / 1137;
+  width: min(720px, 180vw);
+  aspect-ratio: 280 / 388;
   border-radius: 8px;
   box-shadow: 0 10px 28px oklch(0.16 0.03 245 / 0.16);
 }
