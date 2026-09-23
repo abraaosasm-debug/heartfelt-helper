@@ -316,10 +316,7 @@ function OfferCountdown() {
         ) : (
           <>
             <strong>tempo restante</strong>
-            <div
-              className="v32-countdown"
-              aria-hidden="true"
-            >
+            <div className="v32-countdown" aria-hidden="true">
               <span>{String(minutes).padStart(2, "0")}</span>
               <b>:</b>
               <span>{String(seconds).padStart(2, "0")}</span>
@@ -670,8 +667,8 @@ function Index() {
 
               <p className="v3-price-difference">
                 Por R$49,90 a mais, você leva o <strong>Volume 2 completo</strong> e
-                <strong> todos os 5 bônus</strong>: 201 páginas adicionais para ampliar as opções
-                de atividades e apoio.
+                <strong> todos os 5 bônus</strong>: 201 páginas adicionais para ampliar as opções de
+                atividades e apoio.
               </p>
             </article>
           </div>
