@@ -714,7 +714,9 @@ function Index() {
             <h2>292 páginas. Dois volumes. Cinco bônus. Uma escolha.</h2>
           </div>
 
-          <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO — R$59,90</PrimaryButton>
+          <PrimaryButton href={checkoutUrls.complete} dark>
+            QUERO O KIT COMPLETO — R$59,90
+          </PrimaryButton>
         </div>
       </section>
 
