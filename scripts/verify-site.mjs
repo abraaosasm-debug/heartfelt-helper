@@ -124,6 +124,33 @@ for (const [, url] of checkoutMatches) {
   }
 }
 
+const canonicalCheckouts = {
+  essential: "https://pay.cakto.com.br/4aafyxo_1130411",
+  complete: "https://pay.cakto.com.br/5q3o7zo_1130394",
+};
+
+for (const [offer, url] of Object.entries(canonicalCheckouts)) {
+  if (!checkout.includes(`${offer}: "${url}"`)) {
+    errors.push(`Checkout canônico divergente para ${offer}: ${url}`);
+  }
+}
+
+if (!index.includes("<strong>10</strong>") || !index.includes("<small>,00</small>")) {
+  errors.push("Preço visual do Kit Essencial deve permanecer em R$10,00.");
+}
+
+if (!index.includes("<strong>59</strong>") || !index.includes("<small>,90</small>")) {
+  errors.push("Preço visual do Kit Completo deve permanecer em R$59,90.");
+}
+
+if (!index.includes("href={checkoutUrls.essential}")) {
+  errors.push("CTA do Kit Essencial não está ligado ao checkout canônico.");
+}
+
+if (!index.includes("href={checkoutUrls.complete}")) {
+  errors.push("CTA do Kit Completo não está ligado ao checkout canônico.");
+}
+
 if (errors.length > 0) {
   console.error("\nFalhas na verificação da landing page:");
   for (const error of errors) console.error(`- ${error}`);
