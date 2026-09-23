@@ -3392,13 +3392,17 @@
   transform: translateX(3px);
 }
 
-.v3-button-dark {
+.v3-page a.v3-button {
+  color: var(--v3-ink);
+}
+
+.v3-page a.v3-button-dark {
   border-color: var(--v3-ink);
   background: var(--v3-ink);
   color: white;
 }
 
-.v3-button-dark:hover {
+.v3-page a.v3-button-dark:hover {
   background: var(--v3-ink-soft);
   box-shadow: 0 14px 34px oklch(0.22 0.045 248 / 0.18);
 }

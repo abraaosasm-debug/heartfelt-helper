@@ -5,9 +5,11 @@ const root = process.cwd();
 const indexPath = resolve(root, "src/routes/index.tsx");
 const checkoutPath = resolve(root, "src/lib/checkout.ts");
 const dialogPath = resolve(root, "src/components/ui/dialog.tsx");
+const cssPath = resolve(root, "src/styles.css");
 const index = readFileSync(indexPath, "utf8");
 const checkout = readFileSync(checkoutPath, "utf8");
 const dialog = readFileSync(dialogPath, "utf8");
+const css = readFileSync(cssPath, "utf8");
 const errors = [];
 
 const requiredIds = ["inicio", "como-usar", "conteudo", "bonus", "precos", "duvidas"];
@@ -87,6 +89,14 @@ if (index.includes("/previews/kit1-amostras.webp")) {
 
 if (!dialog.includes("z-[100]") || !dialog.includes("z-[110]")) {
   errors.push("Camadas dos modais não estão acima da barra fixa de compra.");
+}
+
+if (!/\.v3-page a\.v3-button\s*\{[^}]*color:\s*var\(--v3-ink\);[^}]*\}/s.test(css)) {
+  errors.push("Cor explícita dos CTAs principais não encontrada.");
+}
+
+if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
+  errors.push("Cor branca explícita do CTA escuro não encontrada.");
 }
 
 for (const number of [3, 4, 5, 6, 7]) {
