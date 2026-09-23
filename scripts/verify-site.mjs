@@ -4,8 +4,10 @@ import { resolve } from "node:path";
 const root = process.cwd();
 const indexPath = resolve(root, "src/routes/index.tsx");
 const checkoutPath = resolve(root, "src/lib/checkout.ts");
+const dialogPath = resolve(root, "src/components/ui/dialog.tsx");
 const index = readFileSync(indexPath, "utf8");
 const checkout = readFileSync(checkoutPath, "utf8");
+const dialog = readFileSync(dialogPath, "utf8");
 const errors = [];
 
 const requiredIds = ["inicio", "como-usar", "conteudo", "bonus", "precos", "duvidas"];
@@ -44,6 +46,47 @@ for (let number = 1; number <= 7; number += 1) {
   if (size > 200 * 1024) {
     errors.push(`Preview WebP acima de 200 KB: ${relative} (${Math.round(size / 1024)} KB)`);
   }
+}
+
+const selectedPreviews = Array.from(
+  { length: 6 },
+  (_, index) => `public/previews/selected/kit1-selected-${index + 1}.jpg`,
+);
+
+for (const relative of selectedPreviews) {
+  const absolute = resolve(root, relative);
+  const publicPath = `/${relative.replace("public/", "")}`;
+
+  if (!existsSync(absolute)) {
+    errors.push(`Página real ausente: ${relative}`);
+    continue;
+  }
+
+  const size = statSync(absolute).size;
+  if (size < 100 * 1024) {
+    errors.push(`Página real suspeitamente pequena: ${relative} (${Math.round(size / 1024)} KB)`);
+  }
+  if (size > 2 * 1024 * 1024) {
+    errors.push(`Página real acima de 2 MB: ${relative} (${Math.round(size / 1024)} KB)`);
+  }
+  if (!index.includes(publicPath)) {
+    errors.push(`Página real não referenciada na landing: ${publicPath}`);
+  }
+}
+
+for (let number = 1; number <= 6; number += 1) {
+  const legacy = `public/previews/KIT_ATIVIDADES_INFANTIL_AUTISMO_COMPLETO_260921_141803 (${number}).jpg`;
+  if (existsSync(resolve(root, legacy))) {
+    errors.push(`Preview duplicado legado encontrado: ${legacy}`);
+  }
+}
+
+if (index.includes("/previews/kit1-amostras.webp")) {
+  errors.push("Referência ao sprite comprimido legado encontrada.");
+}
+
+if (!dialog.includes("z-[100]") || !dialog.includes("z-[110]")) {
+  errors.push("Camadas dos modais não estão acima da barra fixa de compra.");
 }
 
 for (const number of [3, 4, 5, 6, 7]) {

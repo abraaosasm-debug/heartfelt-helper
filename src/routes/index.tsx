@@ -288,10 +288,15 @@ function OfferCountdown() {
       const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
       setRemaining(seconds);
       setExpired(seconds === 0);
+
+      return seconds;
     };
 
-    update();
-    const interval = window.setInterval(update, 1000);
+    if (update() === 0) return undefined;
+
+    const interval = window.setInterval(() => {
+      if (update() === 0) window.clearInterval(interval);
+    }, 1000);
 
     return () => window.clearInterval(interval);
   }, []);
