@@ -179,48 +179,49 @@ function Cover({
 function PreviewPage({
   title,
   skill,
-  source,
-  badge,
+  position,
   number,
 }: {
   title: string;
   skill: string;
-  source: string;
-  badge: string | null;
+  position: string;
   number: number;
 }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button type="button" className="v34-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div className="v34-preview-media">
-            <img
-              src={source}
-              alt={`Página real do Volume 1: ${title}`}
-              width={600}
-              height={848}
-              loading={number <= 2 ? "eager" : "lazy"}
-              decoding="async"
-            />
-            {badge ? <span className="v34-preview-badge">{badge}</span> : null}
-            <span className="v34-preview-zoom-icon" aria-hidden="true">
-              <Eye size={18} />
-            </span>
-          </div>
-          <div className="v34-preview-card-copy">
+        <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
+          <div
+            className="v33-preview-page"
+            style={{ backgroundPosition: position }}
+            role="img"
+            aria-label={`Página real do Volume 1: ${title}`}
+          />
+          <div className="v33-preview-card-copy">
             <div>
               <span>{skill}</span>
               <strong>{title}</strong>
             </div>
-            <span className="v34-preview-index">{String(number).padStart(2, "0")} / 06</span>
+            <span className="v33-preview-index">{String(number).padStart(2, "0")} / 06</span>
           </div>
+          <span className="v33-preview-zoom-icon" aria-hidden="true">
+            <Eye size={18} />
+          </span>
         </button>
       </DialogTrigger>
-      <DialogContent className="v34-preview-dialog">
+
+      <DialogContent className="v33-preview-dialog">
         <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>Página real do Volume 1. Visualização individual em alta nitidez.</DialogDescription>
-        <div className="v34-preview-dialog-scroll">
-          <img src={source} alt={`Página ampliada do Volume 1: ${title}`} width={600} height={848} loading="eager" decoding="async" />
+        <DialogDescription>
+          Página real do Volume 1. Toque e observe os detalhes da atividade.
+        </DialogDescription>
+        <div className="v33-preview-dialog-scroll">
+          <div
+            className="v33-preview-dialog-page"
+            style={{ backgroundPosition: position }}
+            role="img"
+            aria-label={`Página ampliada do Volume 1: ${title}`}
+          />
         </div>
       </DialogContent>
     </Dialog>
@@ -518,7 +519,7 @@ function Index() {
           </div>
 
           <div className="v33-preview-meta">
-            <span>6 páginas escolhidas do material real</span>
+            <span>6 páginas selecionadas</span>
             <span>Volume 1 • 91 páginas no total</span>
           </div>
 
