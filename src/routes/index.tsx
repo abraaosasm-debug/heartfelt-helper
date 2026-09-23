@@ -354,6 +354,38 @@ function GuaranteeSeal() {
 }
 
 function Index() {
+  useEffect(() => {
+    const page = document.querySelector<HTMLElement>(".v3-page");
+    if (!page) return undefined;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const targets = Array.from(
+      page.querySelectorAll<HTMLElement>(
+        ".v3-section-heading, .v32-preview-heading, .v33-preview-meta, .v3-product-card, .v3-bonus-card, .v34-preview-card, .v3-benefit, .v3-price-card, .v3-guarantee, .v3-faq details, .v3-final-inner",
+      ),
+    );
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      targets.forEach((target) => target.classList.add("is-visible"));
+      return undefined;
+    }
+
+    page.classList.add("v3-motion-ready");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -9%", threshold: 0.08 },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="v3-page">
       <OfferCountdown />
@@ -448,8 +480,9 @@ function Index() {
                 alt="Capa do Volume 2"
                 width={1080}
                 height={1527}
-                loading="eager"
-                fetchPriority="high"
+                loading="lazy"
+                fetchPriority="low"
+                decoding="async"
               />
             </div>
 
