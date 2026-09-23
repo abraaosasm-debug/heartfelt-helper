@@ -62,12 +62,12 @@ const bonuses = [
 ] as const;
 
 const previewPages = [
-  ["Encontre e Circule", "Vogais", "0%"],
-  ["Trace as Vogais", "Grafomotricidade", "20%"],
-  ["Siga a Linha", "Coordenação motora", "40%"],
-  ["Conhecendo os Números", "Números e quantidades", "60%"],
-  ["Qual Está Diferente?", "Percepção visual", "80%"],
-  ["Emoções e Comunicação", "Emoções", "100%"],
+  ["Encontre e Circule", "Vogais", "100% 0%"],
+  ["Trace as Vogais", "Grafomotricidade", "100% 100%"],
+  ["Siga a Linha", "Coordenação motora", "50% 100%"],
+  ["Conhecendo os Números", "Números e quantidades", "0% 0%"],
+  ["Qual Está Diferente?", "Percepção visual", "0% 100%"],
+  ["Emoções e Comunicação", "Emoções", "50% 0%"],
 ] as const;
 
 const benefits = [
@@ -193,7 +193,7 @@ function PreviewPage({
         <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
           <div
             className="v33-preview-page"
-            style={{ backgroundPosition: `${position} center` }}
+            style={{ backgroundPosition: position }}
             role="img"
             aria-label={`Página real do Volume 1: ${title}`}
           />
@@ -219,7 +219,7 @@ function PreviewPage({
         <div className="v33-preview-dialog-scroll">
           <div
             className="v33-preview-dialog-page"
-            style={{ backgroundPosition: `${position} center` }}
+            style={{ backgroundPosition: position }}
             role="img"
             aria-label={`Página ampliada do Volume 1: ${title}`}
           />
