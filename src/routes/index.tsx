@@ -97,7 +97,7 @@ const faqs = [
   ],
   [
     "Tenho garantia?",
-    "Sim. A oferta informa garantia de 7 dias. Confira as condições no checkout antes de concluir a compra.",
+    "Sim. A oferta apresenta garantia de 7 dias. Confira no checkout as condições, os prazos e o canal de atendimento antes de concluir a compra.",
   ],
 ] as const;
 
@@ -182,6 +182,22 @@ function PrimaryButton({
   );
 }
 
+function GuaranteeSeal() {
+  return (
+    <div className="v31-guarantee-seal" role="img" aria-label="Garantia de 7 dias">
+      <div className="v31-guarantee-seal-inner">
+        <span className="v31-seal-stars" aria-hidden="true">
+          ★ ★ ★
+        </span>
+        <span className="v31-seal-top">GARANTIA</span>
+        <strong>7</strong>
+        <span className="v31-seal-days">DIAS</span>
+        <ShieldCheck className="v31-seal-icon" size={24} aria-hidden="true" />
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <main className="v3-page">
@@ -212,13 +228,14 @@ function Index() {
             <span className="v3-kicker">MATERIAL DIGITAL • PRONTO PARA IMPRIMIR</span>
 
             <h1>
-              Pare de perder tempo
-              <span> procurando atividades.</span>
+              Atividades prontas
+              <span> para imprimir.</span>
             </h1>
 
             <p className="v3-hero-lead">
-              Tenha <strong>292 páginas</strong> entre atividades e materiais de apoio para
-              trabalhar letras, números, coordenação, emoções, rotina, raciocínio e muito mais.
+              Sem passar horas procurando o que aplicar. Tenha <strong>292 páginas</strong> entre
+              atividades e materiais de apoio para trabalhar letras, números, coordenação, emoções,
+              rotina, raciocínio e muito mais.
             </p>
 
             <div className="v3-proof-row" aria-label="Resumo do Kit Completo">
@@ -247,9 +264,10 @@ function Index() {
               </a>
             </div>
 
-            <p className="v3-microcopy">
-              Produto digital • acesso após confirmação do pagamento • garantia informada de 7 dias
-            </p>
+            <div className="v31-hero-trust">
+              <ShieldCheck size={16} aria-hidden="true" />
+              <span>Produto digital • acesso após confirmação • garantia de 7 dias</span>
+            </div>
           </div>
 
           <div className="v3-hero-art" aria-label="Capas dos materiais do Kit Completo">
@@ -302,10 +320,10 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading">
             <span className="v3-kicker">VOCÊ RECEBE</span>
-            <h2>Um pacote completo, sem transformar a página em um catálogo infinito.</h2>
+            <h2>Tudo o que você recebe, organizado de forma simples.</h2>
             <p>
-              Dois volumes de atividades e cinco materiais complementares. Tudo separado para você
-              entender rapidamente o que está comprando.
+              Dois volumes de atividades e cinco materiais complementares para você entender
+              rapidamente o que está comprando e escolher o que usar.
             </p>
           </div>
 
@@ -418,12 +436,14 @@ function Index() {
             </article>
 
             <article className="v3-price-card v3-price-card-complete">
+              <span className="v31-complete-ribbon">292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
+
               <span className="v3-popular-badge">
                 <Sparkles size={14} />
                 MAIS COMPLETO
               </span>
 
-              <span className="v3-price-tag">2 VOLUMES + 5 BÔNUS</span>
+              <span className="v3-price-tag">COLEÇÃO COMPLETA</span>
               <h3>Kit Completo</h3>
               <p className="v3-price-description">
                 A coleção inteira para ter mais variedade e recursos de apoio.
@@ -453,7 +473,8 @@ function Index() {
               <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
 
               <p className="v3-price-difference">
-                Por R$49,90 a mais, você acrescenta <strong>201 páginas</strong> ao Essencial.
+                Por R$49,90 a mais, você acrescenta <strong>201 páginas</strong>: 91 do Volume 2 +
+                110 páginas dos cinco bônus.
               </p>
             </article>
           </div>
@@ -463,14 +484,12 @@ function Index() {
       <section id="duvidas" className="v3-section v3-assurance-section">
         <div className="v3-shell v3-assurance-grid">
           <div className="v3-guarantee">
-            <span className="v3-guarantee-icon">
-              <ShieldCheck size={34} />
-            </span>
-            <span className="v3-kicker">GARANTIA INFORMADA DE 7 DIAS</span>
-            <h2>Escolha com mais tranquilidade.</h2>
+            <GuaranteeSeal />
+            <span className="v3-kicker">GARANTIA DE 7 DIAS</span>
+            <h2>Conheça o material com mais tranquilidade.</h2>
             <p>
-              Você pode conferir as condições da garantia e as informações de entrega diretamente no
-              checkout antes de concluir o pagamento.
+              Você tem 7 dias para conhecer o produto. Confira no checkout as condições da garantia,
+              entrega e atendimento antes de concluir o pagamento.
             </p>
             <a href="#precos">
               Ver opções <ArrowRight size={16} />
@@ -499,6 +518,20 @@ function Index() {
           <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO — R$59,90</PrimaryButton>
         </div>
       </section>
+
+      <a
+        className="v31-mobile-buybar"
+        href={checkoutUrls.complete}
+        aria-label="Comprar Kit Completo por R$59,90"
+      >
+        <span>
+          <small>KIT COMPLETO</small>
+          <strong>R$59,90</strong>
+        </span>
+        <b>
+          QUERO AGORA <ArrowRight size={16} />
+        </b>
+      </a>
 
       <footer className="v3-footer">
         <div className="v3-shell">
