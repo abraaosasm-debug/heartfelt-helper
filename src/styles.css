@@ -5092,6 +5092,194 @@
   .v34-preview-card { transition: none !important; }
 }
 
+/* =========================================================
+   V3.7 — GPU-SAFE MOTION + RENDERING PERFORMANCE
+   ========================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .v3-motion-ready :is(
+    .v3-section-heading,
+    .v32-preview-heading,
+    .v33-preview-meta,
+    .v3-product-card,
+    .v3-bonus-card,
+    .v34-preview-card,
+    .v3-benefit,
+    .v3-price-card,
+    .v3-guarantee,
+    .v3-faq details,
+    .v3-final-inner
+  ) {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.985);
+    transition:
+      opacity 0.58s ease-out,
+      transform 0.72s cubic-bezier(0.2, 0.72, 0.2, 1);
+  }
+
+  .v3-motion-ready :is(
+    .v3-section-heading,
+    .v32-preview-heading,
+    .v33-preview-meta,
+    .v3-product-card,
+    .v3-bonus-card,
+    .v34-preview-card,
+    .v3-benefit,
+    .v3-price-card,
+    .v3-guarantee,
+    .v3-faq details,
+    .v3-final-inner
+  ).is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .v3-motion-ready .v3-product-card:nth-child(2),
+  .v3-motion-ready .v3-benefit:nth-child(2),
+  .v3-motion-ready .v34-preview-card:nth-child(2),
+  .v3-motion-ready .v3-faq details:nth-of-type(2) {
+    transition-delay: 70ms;
+  }
+
+  .v3-motion-ready .v3-benefit:nth-child(3),
+  .v3-motion-ready .v34-preview-card:nth-child(3),
+  .v3-motion-ready .v3-faq details:nth-of-type(3) {
+    transition-delay: 140ms;
+  }
+
+  .v3-motion-ready .v3-benefit:nth-child(4),
+  .v3-motion-ready .v34-preview-card:nth-child(4),
+  .v3-motion-ready .v3-faq details:nth-of-type(4) {
+    transition-delay: 210ms;
+  }
+
+  .v3-hero-copy > * {
+    animation: v37-hero-enter 0.72s both cubic-bezier(0.2, 0.72, 0.2, 1);
+  }
+
+  .v3-hero-copy > :nth-child(2) { animation-delay: 70ms; }
+  .v3-hero-copy > :nth-child(3) { animation-delay: 130ms; }
+  .v3-hero-copy > :nth-child(4) { animation-delay: 190ms; }
+  .v3-hero-copy > :nth-child(5) { animation-delay: 250ms; }
+  .v3-hero-copy > :nth-child(6) { animation-delay: 310ms; }
+
+  .v3-book-one {
+    animation: v37-book-one 6.8s ease-in-out infinite;
+  }
+
+  .v3-book-two {
+    animation: v37-book-two 7.4s -1.1s ease-in-out infinite;
+  }
+
+  .v3-mini-stack {
+    animation: v37-stack-float 6.2s -2s ease-in-out infinite;
+  }
+
+  .v3-art-orbit-one {
+    animation: v37-orbit 18s linear infinite;
+  }
+
+  .v3-art-orbit-two {
+    animation: v37-orbit 24s linear infinite reverse;
+  }
+
+  .v3-art-chip-top {
+    animation: v37-chip-float 4.8s ease-in-out infinite;
+  }
+
+  .v3-art-chip-bottom {
+    animation: v37-chip-float 5.4s -1.7s ease-in-out infinite;
+  }
+
+  .v3-button:active,
+  .v3-header-cta:active,
+  .v31-mobile-buybar:active {
+    transform: translate3d(0, 1px, 0) scale(0.985);
+  }
+
+  .v3-cover,
+  .v34-preview-card,
+  .v3-price-card,
+  .v3-button,
+  .v3-header-cta {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .v3-cover img,
+  .v34-preview-media img {
+    transition: transform 0.5s cubic-bezier(0.2, 0.72, 0.2, 1);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .v3-cover:hover img,
+  .v34-preview-card:hover .v34-preview-media img {
+    transform: scale(1.018);
+  }
+
+  .v3-product-card,
+  .v3-price-card {
+    transition:
+      opacity 0.58s ease-out,
+      transform 0.28s cubic-bezier(0.2, 0.72, 0.2, 1),
+      box-shadow 0.28s ease;
+  }
+
+  .v3-product-card:hover,
+  .v3-price-card:hover {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes v37-hero-enter {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes v37-book-one {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50% { transform: translate3d(0, -9px, 0) rotate(-6.8deg); }
+}
+
+@keyframes v37-book-two {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(7deg); }
+  50% { transform: translate3d(0, -11px, 0) rotate(5.7deg); }
+}
+
+@keyframes v37-stack-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
+}
+
+@keyframes v37-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes v37-chip-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -5px, 0); }
+}
+
+@supports (content-visibility: auto) {
+  .v3-page > :is(.v3-section, .v32-preview-section, .v3-final-cta, .v3-footer) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 760px;
+  }
+}
+
+@media (max-width: 760px) {
+  .v3-header {
+    backdrop-filter: none;
+  }
+
+  .v3-hero-art,
+  .v3-price-card-complete,
+  .v31-mobile-buybar {
+    box-shadow: 0 14px 34px oklch(0.12 0.03 245 / 0.2);
+  }
+}
+
 
 /* =========================================================
    V3.6 — PERFORMANCE + ACCESSIBILITY POLISH
