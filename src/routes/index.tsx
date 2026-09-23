@@ -34,13 +34,13 @@ const coverSources: Record<number, string> = {
 };
 
 const coverPreviewSources: Record<number, string> = {
-  1: "/covers/optimized/cover-1.jpg?v=1",
-  2: "/covers/optimized/cover-2.jpg?v=1",
-  3: "/covers/optimized/cover-3.jpg?v=1",
-  4: "/covers/optimized/cover-4.jpg?v=1",
-  5: "/covers/optimized/cover-5.jpg?v=1",
-  6: "/covers/optimized/cover-6.jpg?v=1",
-  7: "/covers/optimized/cover-7.jpg?v=1",
+  1: "/covers/optimized/cover-1.webp?v=1",
+  2: "/covers/optimized/cover-2.webp?v=1",
+  3: "/covers/optimized/cover-3.webp?v=1",
+  4: "/covers/optimized/cover-4.webp?v=1",
+  5: "/covers/optimized/cover-5.webp?v=1",
+  6: "/covers/optimized/cover-6.webp?v=1",
+  7: "/covers/optimized/cover-7.webp?v=1",
 };
 
 const coverDimensions: Record<number, { width: number; height: number }> = {
@@ -62,12 +62,42 @@ const bonuses = [
 ] as const;
 
 const previewPages = [
-  ["Encontre e Circule", "Vogais", "100% 0%"],
-  ["Trace as Vogais", "Grafomotricidade", "100% 100%"],
-  ["Siga a Linha", "Coordenação motora", "50% 100%"],
-  ["Conhecendo os Números", "Números e quantidades", "0% 0%"],
-  ["Qual Está Diferente?", "Percepção visual", "0% 100%"],
-  ["Emoções e Comunicação", "Emoções", "50% 0%"],
+  [
+    "Sumário do Kit",
+    "Visão geral",
+    "/previews/selected/kit1-selected-1.jpg",
+    "9 MÓDULOS + ENCERRAMENTO",
+  ],
+  [
+    "Trace as Vogais",
+    "Alfabetização + grafomotricidade",
+    "/previews/selected/kit1-selected-2.jpg",
+    null,
+  ],
+  [
+    "Coordenação Motora",
+    "Grafomotricidade",
+    "/previews/selected/kit1-selected-3.jpg",
+    null,
+  ],
+  [
+    "Quantos Você Vê?",
+    "Números e quantidades",
+    "/previews/selected/kit1-selected-4.jpg",
+    null,
+  ],
+  [
+    "Qual Sílaba Está Faltando?",
+    "Formação de palavras",
+    "/previews/selected/kit1-selected-5.jpg",
+    null,
+  ],
+  [
+    "Emoções e Comunicação",
+    "Emoções",
+    "/previews/selected/kit1-selected-6.jpg",
+    null,
+  ],
 ] as const;
 
 const benefits = [
@@ -207,6 +237,7 @@ function PreviewPage({
               <Eye size={18} />
             </span>
           </div>
+
           <div className="v34-preview-card-copy">
             <div>
               <span>{skill}</span>
@@ -216,11 +247,21 @@ function PreviewPage({
           </div>
         </button>
       </DialogTrigger>
+
       <DialogContent className="v34-preview-dialog">
         <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>Página real do Volume 1. Visualização individual em alta nitidez.</DialogDescription>
+        <DialogDescription>
+          Página real do Volume 1. Visualização individual em alta nitidez.
+        </DialogDescription>
         <div className="v34-preview-dialog-scroll">
-          <img src={source} alt={`Página ampliada do Volume 1: ${title}`} width={1086} height={1536} loading="eager" decoding="async" />
+          <img
+            src={source}
+            alt={`Página ampliada do Volume 1: ${title}`}
+            width={1086}
+            height={1536}
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </DialogContent>
     </Dialog>
@@ -512,8 +553,8 @@ function Index() {
               <h2 id="preview-title">Veja o material de verdade.</h2>
             </div>
             <p>
-              Nada de miniaturas ilegíveis. Cada exemplo abaixo é uma página real do Kit 1. Deslize
-              no celular e toque para ampliar.
+              Estas são páginas reais escolhidas diretamente do Volume 1. Veja o conteúdo inteiro,
+              deslize no celular e toque em qualquer página para ampliar.
             </p>
           </div>
 
@@ -527,12 +568,13 @@ function Index() {
             role="region"
             aria-label="Carrossel com páginas reais do Volume 1"
           >
-            {previewPages.map(([title, skill, position], index) => (
+            {previewPages.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={title}
                 title={title}
                 skill={skill}
-                position={position}
+                source={source}
+                badge={badge}
                 number={index + 1}
               />
             ))}
