@@ -61,6 +61,15 @@ const bonuses = [
   ["Atividades para as famílias", "20 páginas"],
 ] as const;
 
+const previewPages = [
+  ["Encontre e Circule", "Vogais", "0%"],
+  ["Trace as Vogais", "Grafomotricidade", "20%"],
+  ["Siga a Linha", "Coordenação motora", "40%"],
+  ["Conhecendo os Números", "Números e quantidades", "60%"],
+  ["Qual Está Diferente?", "Percepção visual", "80%"],
+  ["Emoções e Comunicação", "Emoções", "100%"],
+] as const;
+
 const benefits = [
   [
     PencilLine,
@@ -162,6 +171,63 @@ function Cover({
           loading="eager"
           decoding="async"
         />
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function PreviewPage({
+  title,
+  skill,
+  position,
+  number,
+}: {
+  title: string;
+  skill: string;
+  position: string;
+  number: number;
+}) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          className="v33-preview-card"
+          aria-label={`Ampliar página: ${title}`}
+        >
+          <div
+            className="v33-preview-page"
+            style={{ backgroundPosition: `${position} center` }}
+            role="img"
+            aria-label={`Página real do Volume 1: ${title}`}
+          />
+          <div className="v33-preview-card-copy">
+            <div>
+              <span>{skill}</span>
+              <strong>{title}</strong>
+            </div>
+            <span className="v33-preview-index">{String(number).padStart(2, "0")} / 06</span>
+          </div>
+          <span className="v33-preview-zoom-icon" aria-hidden="true">
+            <Eye size={18} />
+          </span>
+        </button>
+      </DialogTrigger>
+
+      <DialogContent className="v33-preview-dialog">
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>
+          Página real do Volume 1. Arraste horizontalmente dentro da imagem se quiser observar os
+          detalhes com mais aproximação.
+        </DialogDescription>
+        <div className="v33-preview-dialog-scroll">
+          <div
+            className="v33-preview-dialog-page"
+            style={{ backgroundPosition: `${position} center` }}
+            role="img"
+            aria-label={`Página ampliada do Volume 1: ${title}`}
+          />
+        </div>
       </DialogContent>
     </Dialog>
   );
@@ -448,35 +514,39 @@ function Index() {
         <div className="v3-shell">
           <div className="v32-preview-heading">
             <div>
-              <span className="v3-kicker">AMOSTRA REAL DO VOLUME 1</span>
-              <h2 id="preview-title">Veja por dentro antes de comprar.</h2>
+              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 1</span>
+              <h2 id="preview-title">Veja o material de verdade.</h2>
             </div>
             <p>
-              Páginas reais do Kit 1 mostrando diferentes tipos de atividade: letras, traçado,
-              números, percepção visual e emoções.
+              Nada de miniaturas ilegíveis. Cada exemplo abaixo é uma página real do Kit 1. Deslize
+              no celular e toque para ampliar.
             </p>
           </div>
 
-          <figure className="v32-preview-frame">
-            <span className="v32-preview-badge">AMOSTRA • VOLUME 1</span>
-            <img
-              src="/previews/kit1-amostras.webp"
-              alt="Amostras reais de seis páginas do Volume 1 com atividades de números, emoções, vogais, coordenação motora e percepção visual"
-              width={840}
-              height={776}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              Seis exemplos do Volume 1, que possui 91 páginas no arquivo completo.
-            </figcaption>
-          </figure>
+          <div className="v33-preview-meta">
+            <span>6 páginas selecionadas</span>
+            <span>Volume 1 • 91 páginas no total</span>
+          </div>
 
-          <div className="v32-preview-tags" aria-label="Habilidades mostradas nas amostras">
-            {["Vogais", "Coordenação", "Números", "Percepção visual", "Emoções"].map((item) => (
-              <span key={item}>{item}</span>
+          <div
+            className="v33-preview-carousel"
+            role="region"
+            aria-label="Carrossel com páginas reais do Volume 1"
+          >
+            {previewPages.map(([title, skill, position], index) => (
+              <PreviewPage
+                key={title}
+                title={title}
+                skill={skill}
+                position={position}
+                number={index + 1}
+              />
             ))}
           </div>
+
+          <p className="v33-preview-hint">
+            Deslize para o lado para ver mais • toque em uma página para ampliar
+          </p>
         </div>
       </section>
 
