@@ -62,12 +62,12 @@ const bonuses = [
 ] as const;
 
 const previewPages = [
-  ["Encontre e Circule", "Vogais", "0%"],
-  ["Trace as Vogais", "Grafomotricidade", "20%"],
-  ["Siga a Linha", "Coordenação motora", "40%"],
-  ["Conhecendo os Números", "Números e quantidades", "60%"],
-  ["Qual Está Diferente?", "Percepção visual", "80%"],
-  ["Emoções e Comunicação", "Emoções", "100%"],
+  ["Encontre e Circule", "Vogais", "/previews/encontre-circule.webp"],
+  ["Trace as Vogais", "Grafomotricidade", "/previews/trace-vogais.webp"],
+  ["Siga a Linha", "Coordenação motora", "/previews/siga-linha.webp"],
+  ["Conhecendo os Números", "Números e quantidades", "/previews/conhecendo-numeros.webp"],
+  ["Qual Está Diferente?", "Percepção visual", "/previews/qual-diferente.webp"],
+  ["Emoções e Comunicação", "Emoções", "/previews/emocoes-comunicacao.webp"],
 ] as const;
 
 const benefits = [
@@ -179,23 +179,26 @@ function Cover({
 function PreviewPage({
   title,
   skill,
-  position,
+  src,
   number,
 }: {
   title: string;
   skill: string;
-  position: string;
+  src: string;
   number: number;
 }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <button type="button" className="v33-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div
+          <img
             className="v33-preview-page"
-            style={{ backgroundPosition: `${position} center` }}
-            role="img"
-            aria-label={`Página real do Volume 1: ${title}`}
+            src={src}
+            alt={`Página real do Volume 1: ${title}`}
+            width={804}
+            height={1137}
+            loading="lazy"
+            decoding="async"
           />
           <div className="v33-preview-card-copy">
             <div>
@@ -217,11 +220,13 @@ function PreviewPage({
           detalhes com mais aproximação.
         </DialogDescription>
         <div className="v33-preview-dialog-scroll">
-          <div
+          <img
             className="v33-preview-dialog-page"
-            style={{ backgroundPosition: `${position} center` }}
-            role="img"
-            aria-label={`Página ampliada do Volume 1: ${title}`}
+            src={src}
+            alt={`Página ampliada do Volume 1: ${title}`}
+            width={804}
+            height={1137}
+            decoding="async"
           />
         </div>
       </DialogContent>
@@ -529,12 +534,12 @@ function Index() {
             role="region"
             aria-label="Carrossel com páginas reais do Volume 1"
           >
-            {previewPages.map(([title, skill, position], index) => (
+            {previewPages.map(([title, skill, src], index) => (
               <PreviewPage
                 key={title}
                 title={title}
                 skill={skill}
-                position={position}
+                src={src}
                 number={index + 1}
               />
             ))}
