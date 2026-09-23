@@ -90,7 +90,7 @@
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 24px;
-  max-width: 980px;
+  max-width: 760px;
   margin: auto;
   align-items: start;
 }
