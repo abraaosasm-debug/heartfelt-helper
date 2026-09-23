@@ -218,7 +218,7 @@ function OfferCountdown() {
         <div className="v32-offer-message">
           <Clock3 size={17} aria-hidden="true" />
           <span>
-            {expired ? "TEMPO ENCERRADO" : "CONDIÇÃO ESPECIAL DESTA SESSÃO"}
+            {expired ? "TEMPO ENCERRADO" : "OFERTA ESPECIAL DESTA SESSÃO"}
           </span>
         </div>
 
