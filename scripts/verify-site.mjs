@@ -91,11 +91,11 @@ if (!dialog.includes("z-[100]") || !dialog.includes("z-[110]")) {
   errors.push("Camadas dos modais não estão acima da barra fixa de compra.");
 }
 
-if (!css.includes(".v3-page a.v3-button {") || !css.includes("color: var(--v3-ink);")) {
+if (!/\.v3-page a\.v3-button\s*\{[^}]*color:\s*var\(--v3-ink\);[^}]*\}/s.test(css)) {
   errors.push("Cor explícita dos CTAs principais não encontrada.");
 }
 
-if (!css.includes(".v3-page a.v3-button-dark {") || !css.includes("color: white;")) {
+if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
   errors.push("Cor branca explícita do CTA escuro não encontrada.");
 }
 
