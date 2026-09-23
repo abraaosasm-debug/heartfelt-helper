@@ -74,30 +74,15 @@ const previewPages = [
     "/previews/selected/kit1-selected-2.jpg",
     null,
   ],
-  [
-    "Coordenação Motora",
-    "Grafomotricidade",
-    "/previews/selected/kit1-selected-3.jpg",
-    null,
-  ],
-  [
-    "Quantos Você Vê?",
-    "Números e quantidades",
-    "/previews/selected/kit1-selected-4.jpg",
-    null,
-  ],
+  ["Coordenação Motora", "Grafomotricidade", "/previews/selected/kit1-selected-3.jpg", null],
+  ["Quantos Você Vê?", "Números e quantidades", "/previews/selected/kit1-selected-4.jpg", null],
   [
     "Qual Sílaba Está Faltando?",
     "Formação de palavras",
     "/previews/selected/kit1-selected-5.jpg",
     null,
   ],
-  [
-    "Emoções e Comunicação",
-    "Emoções",
-    "/previews/selected/kit1-selected-6.jpg",
-    null,
-  ],
+  ["Emoções e Comunicação", "Emoções", "/previews/selected/kit1-selected-6.jpg", null],
 ] as const;
 
 const benefits = [
