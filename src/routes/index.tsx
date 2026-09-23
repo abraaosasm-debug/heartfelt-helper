@@ -213,13 +213,15 @@ function OfferCountdown() {
   const seconds = remaining % 60;
 
   return (
-    <div className={`v32-offer-bar${expired ? " is-expired" : ""}`} role="status" aria-live="polite">
+    <div
+      className={`v32-offer-bar${expired ? " is-expired" : ""}`}
+      role="status"
+      aria-live="polite"
+    >
       <div className="v3-shell v32-offer-bar-inner">
         <div className="v32-offer-message">
           <Clock3 size={17} aria-hidden="true" />
-          <span>
-            {expired ? "TEMPO ENCERRADO" : "OFERTA ESPECIAL DESTA SESSÃO"}
-          </span>
+          <span>{expired ? "TEMPO ENCERRADO" : "OFERTA ESPECIAL DESTA SESSÃO"}</span>
         </div>
 
         {expired ? (
@@ -227,7 +229,10 @@ function OfferCountdown() {
         ) : (
           <>
             <strong>termina em</strong>
-            <div className="v32-countdown" aria-label={`${minutes} minutos e ${seconds} segundos restantes`}>
+            <div
+              className="v32-countdown"
+              aria-label={`${minutes} minutos e ${seconds} segundos restantes`}
+            >
               <span>{String(minutes).padStart(2, "0")}</span>
               <b>:</b>
               <span>{String(seconds).padStart(2, "0")}</span>
