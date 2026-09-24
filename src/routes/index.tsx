@@ -326,18 +326,21 @@ function PrimaryButton({
 
 function TrustStrip() {
   return (
-    <div className="v32-offer-bar v38-trust-strip">
-      <div className="v3-shell v32-offer-bar-inner v38-trust-strip-inner">
-        <div className="v32-offer-message">
-          <ShieldCheck size={17} aria-hidden="true" />
-          <span>COMPRA CLARA</span>
+    <div className="v32-offer-bar v38-trust-strip v41-offer-strip">
+      <div className="v3-shell v32-offer-bar-inner v38-trust-strip-inner v41-offer-strip-inner">
+        <div className="v41-offer-strip-main">
+          <Sparkles size={16} aria-hidden="true" />
+          <strong>OFERTA DE LANÇAMENTO</strong>
+          <span>
+            de <s>R$59,90</s> por <b>R$39,90</b>
+          </span>
+          <em>ECONOMIZE R$20</em>
         </div>
-        <span>Pagamento único</span>
-        <span aria-hidden="true">•</span>
-        <span>Material digital</span>
-        <span aria-hidden="true">•</span>
-        <span>7 dias de garantia</span>
-        <a href="#precos">Ver opções</a>
+        <div className="v41-offer-strip-trust">
+          <ShieldCheck size={15} aria-hidden="true" />
+          <span>Pagamento único • material digital • 7 dias de garantia</span>
+        </div>
+        <a href="#precos">Ver oferta</a>
       </div>
     </div>
   );
@@ -433,7 +436,7 @@ function Index() {
               rotina, raciocínio e muito mais.
             </p>
 
-            <div className="v3-proof-row" aria-label="Resumo do Kit Completo">
+            <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
               <span>
                 <strong>2</strong>
                 volumes
@@ -446,13 +449,24 @@ function Index() {
                 <strong>292</strong>
                 páginas
               </span>
-              <span className="v40-proof-price">
-                <small>
+            </div>
+
+            <div className="v41-hero-offer" aria-label="Oferta de lançamento do Kit Completo">
+              <div className="v41-hero-offer-label">
+                <Sparkles size={15} aria-hidden="true" />
+                OFERTA DE LANÇAMENTO
+              </div>
+              <div className="v41-hero-offer-prices">
+                <span>
                   de <s>R$59,90</s>
-                </small>
+                </span>
                 <strong>R$39,90</strong>
-                preço de lançamento
-              </span>
+              </div>
+              <div className="v41-hero-offer-meta">
+                <b>ECONOMIZE R$20</b>
+                <span>Pagamento único</span>
+              </div>
+              <p>292 páginas • 2 volumes • 5 bônus</p>
             </div>
 
             <div className="v3-hero-actions">
@@ -463,10 +477,6 @@ function Index() {
                 Comparar com o Essencial
               </a>
             </div>
-
-            <p className="v40-hero-promo">
-              Oferta de lançamento • economize R$20,00 • pagamento único
-            </p>
 
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
@@ -689,7 +699,7 @@ function Index() {
               uma única compra.
             </p>
             <PrimaryButton href={checkoutUrls.complete}>
-              QUERO O KIT COMPLETO — 292 PÁGINAS
+              QUERO O KIT COMPLETO — R$39,90
             </PrimaryButton>
           </div>
         </div>
@@ -732,7 +742,9 @@ function Index() {
               </li>
             </ul>
 
-            <PrimaryButton href={checkoutUrls.complete}>QUERO AS 292 PÁGINAS</PrimaryButton>
+            <PrimaryButton href={checkoutUrls.complete}>
+              QUERO AS 292 PÁGINAS — R$39,90
+            </PrimaryButton>
           </div>
 
           <div className="v38-upgrade-visual" aria-label="Materiais adicionais do Kit Completo">
@@ -834,6 +846,10 @@ function Index() {
               </span>
 
               <span className="v3-price-tag">COLEÇÃO COMPLETA</span>
+              <div className="v41-price-promo-headline">
+                <strong>R$20 DE DESCONTO</strong>
+                <span>preço de lançamento</span>
+              </div>
               <h3>Kit Completo</h3>
               <p className="v3-price-description">
                 A coleção inteira para ter mais variedade e recursos de apoio.
@@ -972,9 +988,9 @@ function Index() {
         href={checkoutUrls.complete}
         ariaLabel="Comprar Kit Completo por R$39,90, preço promocional de lançamento"
       >
-        <span>
+        <span className="v41-mobile-price">
           <small>
-            KIT COMPLETO • <s>R$59,90</s>
+            OFERTA • <s>R$59,90</s>
           </small>
           <strong>R$39,90</strong>
         </span>
