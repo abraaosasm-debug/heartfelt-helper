@@ -76,6 +76,36 @@ for (const relative of selectedPreviews) {
   }
 }
 
+const volume2Previews = Array.from(
+  { length: 6 },
+  (_, index) => `public/previews/selected/${index + 1}.jpg`,
+);
+
+for (const relative of volume2Previews) {
+  const absolute = resolve(root, relative);
+  const publicPath = `/${relative.replace("public/", "")}`;
+
+  if (!existsSync(absolute)) {
+    errors.push(`Página real do Volume 2 ausente: ${relative}`);
+    continue;
+  }
+
+  const size = statSync(absolute).size;
+  if (size < 100 * 1024) {
+    errors.push(
+      `Página real do Volume 2 suspeitamente pequena: ${relative} (${Math.round(size / 1024)} KB)`,
+    );
+  }
+  if (size > 2 * 1024 * 1024) {
+    errors.push(
+      `Página real do Volume 2 acima de 2 MB: ${relative} (${Math.round(size / 1024)} KB)`,
+    );
+  }
+  if (!index.includes(publicPath)) {
+    errors.push(`Página real do Volume 2 não referenciada na landing: ${publicPath}`);
+  }
+}
+
 for (let number = 1; number <= 6; number += 1) {
   const legacy = `public/previews/KIT_ATIVIDADES_INFANTIL_AUTISMO_COMPLETO_260921_141803 (${number}).jpg`;
   if (existsSync(resolve(root, legacy))) {
@@ -173,6 +203,21 @@ for (const requiredConversionMarker of [
 
 if (!css.includes("V3.8 — CONVERSION CLARITY + TRUST + VALUE PROOF")) {
   errors.push("Camada de estilos V3.8 ausente.");
+}
+
+for (const requiredVolume2Marker of [
+  "previewPagesVolume2",
+  "preview-volume2-title",
+  "v39-preview-section-volume2",
+  "QUERO O KIT COMPLETO — 292 PÁGINAS",
+]) {
+  if (!index.includes(requiredVolume2Marker)) {
+    errors.push(`Prova do Volume 2 ausente: ${requiredVolume2Marker}`);
+  }
+}
+
+if (!css.includes("V3.9 — REAL VOLUME 2 PREVIEWS")) {
+  errors.push("Camada de estilos V3.9 ausente.");
 }
 
 if (errors.length > 0) {
