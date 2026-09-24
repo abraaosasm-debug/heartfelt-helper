@@ -456,7 +456,9 @@ function Index() {
             </div>
 
             <div className="v3-hero-actions">
-              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO — R$39,90</PrimaryButton>
+              <PrimaryButton href={checkoutUrls.complete}>
+                QUERO O KIT COMPLETO — R$39,90
+              </PrimaryButton>
               <a className="v3-text-link" href="#precos">
                 Comparar com o Essencial
               </a>
