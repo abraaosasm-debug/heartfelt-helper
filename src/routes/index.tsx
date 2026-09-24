@@ -60,7 +60,7 @@ const bonuses = [
   ["Atividades para as famílias", "20 páginas"],
 ] as const;
 
-const previewPages = [
+const previewPagesVolume1 = [
   [
     "Sumário do Kit",
     "Visão geral",
@@ -82,6 +82,15 @@ const previewPages = [
     null,
   ],
   ["Emoções e Comunicação", "Emoções", "/previews/selected/kit1-selected-6.jpg", null],
+] as const;
+
+const previewPagesVolume2 = [
+  ["Amostra real 01", "Volume 2", "/previews/selected/1.jpg", "VOLUME 2 • CONTEÚDO REAL"],
+  ["Amostra real 02", "Volume 2", "/previews/selected/2.jpg", null],
+  ["Amostra real 03", "Volume 2", "/previews/selected/3.jpg", null],
+  ["Amostra real 04", "Volume 2", "/previews/selected/4.jpg", null],
+  ["Amostra real 05", "Volume 2", "/previews/selected/5.jpg", null],
+  ["Amostra real 06", "Volume 2", "/previews/selected/6.jpg", null],
 ] as const;
 
 const benefits = [
@@ -196,12 +205,14 @@ function PreviewPage({
   source,
   badge,
   number,
+  volume,
 }: {
   title: string;
   skill: string;
   source: string;
   badge: string | null;
   number: number;
+  volume: "Volume 1" | "Volume 2";
 }) {
   return (
     <Dialog>
@@ -210,7 +221,7 @@ function PreviewPage({
           <div className="v34-preview-media">
             <img
               src={source}
-              alt={`Página real do Volume 1: ${title}`}
+              alt={`Página real do ${volume}: ${title}`}
               width={1086}
               height={1536}
               loading="lazy"
@@ -236,12 +247,12 @@ function PreviewPage({
       <DialogContent className="v34-preview-dialog">
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>
-          Página real do Volume 1. Visualização individual em alta nitidez.
+          Página real do {volume}. Visualização individual em alta nitidez.
         </DialogDescription>
         <div className="v34-preview-dialog-scroll">
           <img
             src={source}
-            alt={`Página ampliada do Volume 1: ${title}`}
+            alt={`Página ampliada do ${volume}: ${title}`}
             width={1086}
             height={1536}
             loading="eager"
@@ -571,7 +582,7 @@ function Index() {
           <div className="v32-preview-heading">
             <div>
               <span className="v3-kicker">PÁGINAS REAIS • VOLUME 1</span>
-              <h2 id="preview-title">Veja o material de verdade.</h2>
+              <h2 id="preview-title">Veja o Volume 1 por dentro.</h2>
             </div>
             <p>
               Estas são páginas reais escolhidas diretamente do Volume 1. Veja o conteúdo inteiro,
@@ -589,7 +600,7 @@ function Index() {
             role="region"
             aria-label="Carrossel com páginas reais do Volume 1"
           >
-            {previewPages.map(([title, skill, source, badge], index) => (
+            {previewPagesVolume1.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={title}
                 title={title}
@@ -597,6 +608,7 @@ function Index() {
                 source={source}
                 badge={badge}
                 number={index + 1}
+                volume="Volume 1"
               />
             ))}
           </div>
@@ -607,14 +619,81 @@ function Index() {
         </div>
       </section>
 
+      <section
+        className="v32-preview-section v39-preview-section-volume2"
+        aria-labelledby="preview-volume2-title"
+      >
+        <div className="v3-shell">
+          <div className="v32-preview-heading">
+            <div>
+              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 2</span>
+              <h2 id="preview-volume2-title">Agora veja o segundo volume por dentro.</h2>
+            </div>
+            <p>
+              O Volume 2 não aparece aqui só como uma capa. Estas são páginas reais do arquivo que
+              faz parte do Kit Completo, para você avaliar o material antes de comprar.
+            </p>
+          </div>
+
+          <div className="v33-preview-meta">
+            <span>6 páginas reais do Volume 2</span>
+            <span>Volume 2 • 91 páginas no total</span>
+          </div>
+
+          <div
+            className="v33-preview-carousel"
+            role="region"
+            aria-label="Carrossel com páginas reais do Volume 2"
+          >
+            {previewPagesVolume2.map(([title, skill, source, badge], index) => (
+              <PreviewPage
+                key={source}
+                title={title}
+                skill={skill}
+                source={source}
+                badge={badge}
+                number={index + 1}
+                volume="Volume 2"
+              />
+            ))}
+          </div>
+
+          <p className="v33-preview-hint">
+            Deslize para o lado para ver mais • toque em uma página para ampliar
+          </p>
+
+          <div className="v39-preview-proof">
+            <span>
+              <Check size={16} /> Leitura inicial e formação de sentido
+            </span>
+            <span>
+              <Check size={16} /> Quantidades até 20 e sequências
+            </span>
+            <span>
+              <Check size={16} /> Comunicação, escolhas e situações do cotidiano
+            </span>
+          </div>
+
+          <div className="v39-preview-cta">
+            <p>
+              O Kit Completo reúne os dois volumes e os cinco bônus: <strong>292 páginas</strong> em
+              uma única compra.
+            </p>
+            <PrimaryButton href={checkoutUrls.complete}>
+              QUERO O KIT COMPLETO — 292 PÁGINAS
+            </PrimaryButton>
+          </div>
+        </div>
+      </section>
+
       <section className="v38-upgrade-section" aria-labelledby="upgrade-title">
         <div className="v3-shell v38-upgrade-grid">
           <div className="v38-upgrade-copy">
             <span className="v3-kicker">ALÉM DO ESSENCIAL</span>
-            <h2 id="upgrade-title">As páginas acima são só o Volume 1.</h2>
+            <h2 id="upgrade-title">Você já viu os dois volumes por dentro.</h2>
             <p>
-              No Kit Completo você mantém as 91 páginas do Essencial e acrescenta
-              <strong> mais 201 páginas</strong>: o Volume 2 inteiro e cinco materiais de apoio.
+              No Kit Completo, os dois volumes somam 182 páginas. Com os cinco bônus, você recebe
+              <strong> 292 páginas no total</strong> — 201 páginas além do Essencial.
             </p>
 
             <div className="v38-upgrade-stats" aria-label="Conteúdo adicional do Kit Completo">
