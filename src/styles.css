@@ -5923,3 +5923,331 @@
     width: 100%;
   }
 }
+
+
+/* =========================================================
+   V4.1 — PROMOTION CLARITY
+   ========================================================= */
+
+.v41-offer-strip {
+  border-bottom: 1px solid oklch(0.2 0.045 248 / 0.14);
+  background: linear-gradient(90deg, var(--v3-orange), var(--v3-gold));
+  color: var(--v3-ink);
+}
+
+.v41-offer-strip-inner {
+  min-height: 58px;
+  justify-content: space-between;
+  gap: 18px;
+  text-align: left;
+}
+
+.v41-offer-strip-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--v3-ink);
+}
+
+.v41-offer-strip-main svg {
+  flex: 0 0 auto;
+}
+
+.v41-offer-strip-main > strong {
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+  white-space: nowrap;
+}
+
+.v41-offer-strip-main > span {
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.v41-offer-strip-main s {
+  opacity: 0.72;
+  text-decoration-thickness: 2px;
+}
+
+.v41-offer-strip-main b {
+  font-size: 16px;
+  font-weight: 950;
+  letter-spacing: -0.035em;
+}
+
+.v41-offer-strip-main em {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--v3-ink);
+  color: white;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+.v41-offer-strip-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: oklch(0.29 0.04 248);
+  font-size: 9px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.v41-offer-strip a {
+  flex: 0 0 auto;
+  color: var(--v3-ink);
+  font-weight: 950;
+}
+
+.v41-proof-row {
+  width: fit-content;
+  min-width: min(100%, 390px);
+}
+
+.v41-proof-row > span {
+  min-width: 108px;
+}
+
+.v41-hero-offer {
+  display: grid;
+  width: min(100%, 520px);
+  gap: 10px;
+  margin-top: 26px;
+  padding: 20px 22px;
+  border: 1px solid oklch(0.74 0.16 66 / 0.68);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, oklch(1 0 0 / 0.98), oklch(0.97 0.025 82 / 0.98));
+  box-shadow:
+    0 22px 52px oklch(0.1 0.03 248 / 0.24),
+    inset 0 1px 0 oklch(1 0 0 / 0.9);
+  color: var(--v3-ink);
+}
+
+.v41-hero-offer-label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--v3-ink);
+  color: white;
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.085em;
+}
+
+.v41-hero-offer-label svg {
+  color: var(--v3-gold);
+}
+
+.v41-hero-offer-prices {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.v41-hero-offer-prices > span {
+  color: oklch(0.5 0.025 245);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.v41-hero-offer-prices s {
+  font-size: 17px;
+  text-decoration-color: var(--v3-orange-dark);
+  text-decoration-thickness: 2.5px;
+}
+
+.v41-hero-offer-prices > strong {
+  color: var(--v3-orange-dark);
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: clamp(2.85rem, 5.5vw, 4.4rem);
+  font-weight: 750;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.v41-hero-offer-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.v41-hero-offer-meta b {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--v3-orange);
+  color: var(--v3-ink);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.055em;
+}
+
+.v41-hero-offer-meta span {
+  color: oklch(0.43 0.025 245);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.v41-hero-offer > p {
+  margin: 0 !important;
+  padding-top: 9px;
+  border-top: 1px solid oklch(0.3 0.025 245 / 0.1);
+  color: oklch(0.4 0.025 245);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.v41-price-promo-headline {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 2px;
+  padding: 7px 9px;
+  border: 1px solid oklch(0.76 0.13 86 / 0.28);
+  border-radius: 999px;
+  background: oklch(0.76 0.13 86 / 0.12);
+}
+
+.v41-price-promo-headline strong {
+  color: var(--v3-gold);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.075em;
+}
+
+.v41-price-promo-headline span {
+  color: oklch(0.82 0.018 245);
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.v41-mobile-price small {
+  color: var(--v3-gold);
+}
+
+.v41-mobile-price strong {
+  color: var(--v3-gold);
+  font-size: 20px;
+}
+
+@media (max-width: 980px) {
+  .v41-offer-strip-trust {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .v41-offer-strip-inner {
+    min-height: 72px;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding-block: 9px;
+  }
+
+  .v41-offer-strip-main {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .v41-offer-strip-main > strong {
+    width: 100%;
+    font-size: 8px;
+  }
+
+  .v41-offer-strip-main > span {
+    font-size: 10px;
+  }
+
+  .v41-offer-strip-main b {
+    font-size: 15px;
+  }
+
+  .v41-offer-strip-main em {
+    font-size: 7px;
+  }
+
+  .v41-offer-strip-inner > a {
+    display: none;
+  }
+
+  .v41-proof-row {
+    width: 100%;
+  }
+
+  .v41-proof-row > span {
+    min-width: 33.333%;
+    margin: 0;
+    padding: 14px 8px 14px 0;
+  }
+
+  .v41-hero-offer {
+    width: 100%;
+    margin-top: 22px;
+    padding: 17px 16px;
+    border-radius: 17px;
+  }
+
+  .v41-hero-offer-prices {
+    gap: 8px 11px;
+  }
+
+  .v41-hero-offer-prices > strong {
+    font-size: clamp(3rem, 15vw, 4rem);
+  }
+
+  .v41-hero-offer > p {
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .v41-price-promo-headline {
+    border-radius: 12px;
+    flex-wrap: wrap;
+  }
+
+  .v31-mobile-buybar {
+    border-color: oklch(0.74 0.16 66 / 0.42);
+  }
+
+  .v41-mobile-price small {
+    font-size: 7px;
+  }
+
+  .v41-mobile-price strong {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .v41-offer-strip-main > span {
+    width: 100%;
+  }
+
+  .v41-hero-offer-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .v41-proof-row > span {
+    font-size: 8px;
+  }
+}
