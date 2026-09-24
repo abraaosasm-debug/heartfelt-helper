@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
-  Clock3,
   Brain,
   Check,
   Eye,
@@ -119,7 +118,7 @@ const faqs = [
   ],
   [
     "O que acontece depois da compra?",
-    "Após a confirmação do pagamento, você recebe as instruções de acesso ao material digital conforme as informações apresentadas no checkout.",
+    "Você finaliza o pagamento no checkout da Cakto. Após a confirmação, siga as instruções de acesso apresentadas pela plataforma para receber o material digital. Como é um produto digital, não há frete.",
   ],
   [
     "Tenho garantia?",
@@ -254,6 +253,49 @@ function PreviewPage({
   );
 }
 
+const attributionKeys = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "fbclid",
+  "gclid",
+  "ttclid",
+] as const;
+
+function AttributionLink({
+  href,
+  className,
+  children,
+  ariaLabel,
+}: {
+  href: string;
+  className?: string;
+  children: ReactNode;
+  ariaLabel?: string;
+}) {
+  const [resolvedHref, setResolvedHref] = useState(href);
+
+  useEffect(() => {
+    const source = new URL(window.location.href);
+    const target = new URL(href);
+
+    attributionKeys.forEach((key) => {
+      const value = source.searchParams.get(key);
+      if (value) target.searchParams.set(key, value);
+    });
+
+    setResolvedHref(target.toString());
+  }, [href]);
+
+  return (
+    <a className={className} href={resolvedHref} aria-label={ariaLabel}>
+      {children}
+    </a>
+  );
+}
+
 function PrimaryButton({
   href,
   children,
@@ -264,74 +306,27 @@ function PrimaryButton({
   dark?: boolean;
 }) {
   return (
-    <a className={`v3-button${dark ? " v3-button-dark" : ""}`} href={href}>
+    <AttributionLink className={`v3-button${dark ? " v3-button-dark" : ""}`} href={href}>
       <span>{children}</span>
       <ArrowRight size={18} />
-    </a>
+    </AttributionLink>
   );
 }
 
-function OfferCountdown() {
-  const [remaining, setRemaining] = useState(300);
-  const [expired, setExpired] = useState(false);
-
-  useEffect(() => {
-    const storageKey = "kit-offer-session-deadline";
-    let deadline = Number(window.sessionStorage.getItem(storageKey));
-
-    if (!Number.isFinite(deadline) || deadline <= 0) {
-      deadline = Date.now() + 5 * 60 * 1000;
-      window.sessionStorage.setItem(storageKey, String(deadline));
-    }
-
-    const update = () => {
-      const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-      setRemaining(seconds);
-      setExpired(seconds === 0);
-
-      return seconds;
-    };
-
-    if (update() === 0) return undefined;
-
-    const interval = window.setInterval(() => {
-      if (update() === 0) window.clearInterval(interval);
-    }, 1000);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
-  const minutes = Math.floor(remaining / 60);
-  const seconds = remaining % 60;
-
+function TrustStrip() {
   return (
-    <div className={`v32-offer-bar${expired ? " is-expired" : ""}`}>
-      <div className="v3-shell v32-offer-bar-inner">
+    <div className="v32-offer-bar v38-trust-strip">
+      <div className="v3-shell v32-offer-bar-inner v38-trust-strip-inner">
         <div className="v32-offer-message">
-          <Clock3 size={17} aria-hidden="true" />
-          <span>{expired ? "TEMPO DE REVISÃO ENCERRADO" : "REVISE ESTA OFERTA COM CALMA"}</span>
+          <ShieldCheck size={17} aria-hidden="true" />
+          <span>COMPRA CLARA</span>
         </div>
-
-        <span className="v32-timer-status" aria-live="polite">
-          {expired ? "O tempo de revisão terminou. A oferta continua disponível abaixo." : ""}
-        </span>
-
-        {expired ? (
-          <a href="#precos">Ver a oferta</a>
-        ) : (
-          <>
-            <strong>tempo restante</strong>
-            <div className="v32-countdown" aria-hidden="true">
-              <span>{String(minutes).padStart(2, "0")}</span>
-              <b>:</b>
-              <span>{String(seconds).padStart(2, "0")}</span>
-            </div>
-            <span className="v32-timer-a11y">
-              Contador visual de cinco minutos para revisar esta oferta.
-            </span>
-            <a href="#precos">Ver o Kit Completo</a>
-          </>
-        )}
+        <span>Pagamento único</span>
+        <span aria-hidden="true">•</span>
+        <span>Material digital</span>
+        <span aria-hidden="true">•</span>
+        <span>7 dias de garantia</span>
+        <a href="#precos">Ver opções</a>
       </div>
     </div>
   );
@@ -388,7 +383,7 @@ function Index() {
 
   return (
     <main className="v3-page">
-      <OfferCountdown />
+      <TrustStrip />
 
       <header className="v3-header">
         <div className="v3-shell v3-header-inner">
@@ -455,7 +450,9 @@ function Index() {
 
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
-              <span>Produto digital • acesso após confirmação • garantia de 7 dias</span>
+              <span>
+                Produto digital • pagamento único • acesso após confirmação • garantia de 7 dias
+              </span>
             </div>
           </div>
 
@@ -610,6 +607,80 @@ function Index() {
         </div>
       </section>
 
+      <section className="v38-upgrade-section" aria-labelledby="upgrade-title">
+        <div className="v3-shell v38-upgrade-grid">
+          <div className="v38-upgrade-copy">
+            <span className="v3-kicker">ALÉM DO ESSENCIAL</span>
+            <h2 id="upgrade-title">As páginas acima são só o Volume 1.</h2>
+            <p>
+              No Kit Completo você mantém as 91 páginas do Essencial e acrescenta
+              <strong> mais 201 páginas</strong>: o Volume 2 inteiro e cinco materiais de apoio.
+            </p>
+
+            <div className="v38-upgrade-stats" aria-label="Conteúdo adicional do Kit Completo">
+              <span>
+                <strong>+91</strong>
+                páginas do Volume 2
+              </span>
+              <span>
+                <strong>+110</strong>
+                páginas em 5 bônus
+              </span>
+              <span>
+                <strong>292</strong>
+                páginas no total
+              </span>
+            </div>
+
+            <ul className="v38-upgrade-list">
+              <li>
+                <Check size={17} /> Leitura inicial, quantidades até 20, sequências e cotidiano
+              </li>
+              <li>
+                <Check size={17} /> Planejamento de 4 semanas e rotina visual
+              </li>
+              <li>
+                <Check size={17} /> Jogos imprimíveis, observação e atividades para famílias
+              </li>
+            </ul>
+
+            <PrimaryButton href={checkoutUrls.complete}>QUERO AS 292 PÁGINAS</PrimaryButton>
+          </div>
+
+          <div className="v38-upgrade-visual" aria-label="Materiais adicionais do Kit Completo">
+            <div className="v38-upgrade-volume">
+              <img
+                src={getCoverPreviewSource(2)}
+                alt="Capa do Volume 2"
+                width={1080}
+                height={1527}
+                loading="lazy"
+                decoding="async"
+              />
+              <span>VOLUME 2 • 91 PÁGINAS</span>
+            </div>
+
+            <div className="v38-upgrade-bonuses">
+              {[3, 4, 5, 6, 7].map((number) => {
+                const dimensions = getCoverDimensions(number);
+                return (
+                  <img
+                    key={number}
+                    src={getCoverPreviewSource(number)}
+                    alt={`Capa do bônus ${number - 2}`}
+                    width={dimensions.width}
+                    height={dimensions.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                );
+              })}
+            </div>
+            <span className="v38-upgrade-caption">+ 5 BÔNUS • 110 PÁGINAS</span>
+          </div>
+        </div>
+      </section>
+
       <section id="como-usar" className="v3-section v3-benefits">
         <div className="v3-shell">
           <div className="v3-benefit-intro">
@@ -704,11 +775,49 @@ function Index() {
               <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
 
               <p className="v3-price-difference">
-                Por R$49,90 a mais, você leva o <strong>Volume 2 completo</strong> e
-                <strong> todos os 5 bônus</strong>: 201 páginas adicionais para ampliar as opções de
-                atividades e apoio.
+                <strong>Inclui tudo do Essencial + 201 páginas extras:</strong> Volume 2 completo e
+                todos os 5 bônus. São 292 páginas no total por R$59,90 em pagamento único.
               </p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="v3-section v38-purchase-section" aria-labelledby="purchase-title">
+        <div className="v3-shell">
+          <div className="v3-section-heading v38-purchase-heading">
+            <span className="v3-kicker">SEM SURPRESA NA HORA DE COMPRAR</span>
+            <h2 id="purchase-title">O que acontece depois que você escolhe seu kit.</h2>
+            <p>O fluxo é simples e o produto é totalmente digital.</p>
+          </div>
+
+          <ol className="v38-purchase-grid">
+            <li>
+              <span>01</span>
+              <strong>Escolha a versão</strong>
+              <p>Essencial com 91 páginas ou Completo com 292 páginas.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>Finalize na Cakto</strong>
+              <p>O botão leva você ao checkout seguro da plataforma para concluir o pagamento.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>Acesse o material</strong>
+              <p>
+                Após a confirmação do pagamento, siga as instruções de acesso apresentadas pela
+                plataforma.
+              </p>
+            </li>
+          </ol>
+
+          <div className="v38-purchase-note">
+            <ShieldCheck size={18} aria-hidden="true" />
+            <span>
+              Produto digital • sem frete • garantia de 7 dias conforme as condições informadas no
+              checkout.
+            </span>
           </div>
         </div>
       </section>
@@ -753,10 +862,10 @@ function Index() {
         </div>
       </section>
 
-      <a
+      <AttributionLink
         className="v31-mobile-buybar"
         href={checkoutUrls.complete}
-        aria-label="Comprar Kit Completo por R$59,90"
+        ariaLabel="Comprar Kit Completo por R$59,90"
       >
         <span>
           <small>KIT COMPLETO</small>
@@ -765,7 +874,7 @@ function Index() {
         <b>
           QUERO AGORA <ArrowRight size={16} />
         </b>
-      </a>
+      </AttributionLink>
 
       <footer className="v3-footer">
         <div className="v3-shell">
