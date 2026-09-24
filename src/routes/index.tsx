@@ -446,18 +446,25 @@ function Index() {
                 <strong>292</strong>
                 páginas
               </span>
-              <span>
-                <strong>R$59,90</strong>
-                pagamento único
+              <span className="v40-proof-price">
+                <small>
+                  de <s>R$59,90</s>
+                </small>
+                <strong>R$39,90</strong>
+                preço de lançamento
               </span>
             </div>
 
             <div className="v3-hero-actions">
-              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
+              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO — R$39,90</PrimaryButton>
               <a className="v3-text-link" href="#precos">
                 Comparar com o Essencial
               </a>
             </div>
+
+            <p className="v40-hero-promo">
+              Oferta de lançamento • economize R$20,00 • pagamento único
+            </p>
 
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
@@ -821,7 +828,7 @@ function Index() {
 
               <span className="v3-popular-badge">
                 <Sparkles size={14} />
-                MAIS COMPLETO
+                OFERTA DE LANÇAMENTO
               </span>
 
               <span className="v3-price-tag">COLEÇÃO COMPLETA</span>
@@ -830,11 +837,17 @@ function Index() {
                 A coleção inteira para ter mais variedade e recursos de apoio.
               </p>
 
-              <div className="v3-price">
+              <div className="v40-price-anchor">
+                Preço normal <s>R$59,90</s>
+              </div>
+
+              <div className="v3-price v40-promo-price">
                 <span>R$</span>
-                <strong>59</strong>
+                <strong>39</strong>
                 <small>,90</small>
               </div>
+
+              <p className="v40-price-savings">Você economiza R$20,00</p>
 
               <ul>
                 {[
@@ -851,11 +864,17 @@ function Index() {
                 ))}
               </ul>
 
-              <PrimaryButton href={checkoutUrls.complete}>QUERO O KIT COMPLETO</PrimaryButton>
+              <PrimaryButton href={checkoutUrls.complete}>
+                QUERO O KIT COMPLETO — R$39,90
+              </PrimaryButton>
 
-              <p className="v3-price-difference">
+              <p className="v3-price-difference v40-price-difference">
                 <strong>Inclui tudo do Essencial + 201 páginas extras:</strong> Volume 2 completo e
-                todos os 5 bônus. São 292 páginas no total por R$59,90 em pagamento único.
+                todos os 5 bônus. Hoje, o Kit Completo sai por R$39,90 em pagamento único.
+              </p>
+
+              <p className="v40-upgrade-delta">
+                Por R$29,90 além do Essencial, você acrescenta o Volume 2 e todos os 5 bônus.
               </p>
             </article>
           </div>
@@ -935,20 +954,27 @@ function Index() {
             <h2>292 páginas. Dois volumes. Cinco bônus. Uma escolha.</h2>
           </div>
 
-          <PrimaryButton href={checkoutUrls.complete} dark>
-            QUERO O KIT COMPLETO — R$59,90
-          </PrimaryButton>
+          <div className="v40-final-offer">
+            <span>
+              de <s>R$59,90</s> por <strong>R$39,90</strong>
+            </span>
+            <PrimaryButton href={checkoutUrls.complete} dark>
+              QUERO O KIT COMPLETO — R$39,90
+            </PrimaryButton>
+          </div>
         </div>
       </section>
 
       <AttributionLink
         className="v31-mobile-buybar"
         href={checkoutUrls.complete}
-        ariaLabel="Comprar Kit Completo por R$59,90"
+        ariaLabel="Comprar Kit Completo por R$39,90, preço promocional de lançamento"
       >
         <span>
-          <small>KIT COMPLETO</small>
-          <strong>R$59,90</strong>
+          <small>
+            KIT COMPLETO • <s>R$59,90</s>
+          </small>
+          <strong>R$39,90</strong>
         </span>
         <b>
           QUERO AGORA <ArrowRight size={16} />
