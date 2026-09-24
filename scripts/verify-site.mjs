@@ -225,7 +225,7 @@ for (const requiredVolume2Marker of [
   "previewPagesVolume2",
   "preview-volume2-title",
   "v39-preview-section-volume2",
-  "QUERO O KIT COMPLETO — 292 PÁGINAS",
+  "QUERO O KIT COMPLETO — R$39,90",
 ]) {
   if (!index.includes(requiredVolume2Marker)) {
     errors.push(`Prova do Volume 2 ausente: ${requiredVolume2Marker}`);
@@ -237,12 +237,16 @@ if (!css.includes("V3.9 — REAL VOLUME 2 PREVIEWS")) {
 }
 
 for (const launchOfferMarker of [
-  "v40-proof-price",
   "v40-price-anchor",
   "v40-promo-price",
   "v40-final-offer",
+  "v41-offer-strip",
+  "v41-hero-offer",
+  "v41-price-promo-headline",
+  "v41-mobile-price",
   "R$39,90",
-  "Oferta de lançamento",
+  "OFERTA DE LANÇAMENTO",
+  "ECONOMIZE R$20",
 ]) {
   if (!index.includes(launchOfferMarker)) {
     errors.push(`Oferta promocional ausente: ${launchOfferMarker}`);
@@ -251,6 +255,20 @@ for (const launchOfferMarker of [
 
 if (!css.includes("V4.0 — LAUNCH PRICE PRESENTATION")) {
   errors.push("Camada de estilos V4.0 ausente.");
+}
+
+if (!css.includes("V4.1 — PROMOTION CLARITY")) {
+  errors.push("Camada de estilos V4.1 ausente.");
+}
+
+for (const requiredPromoCopy of [
+  "de <s>R$59,90</s> por <b>R$39,90</b>",
+  "292 páginas • 2 volumes • 5 bônus",
+  "QUERO AS 292 PÁGINAS — R$39,90",
+]) {
+  if (!index.includes(requiredPromoCopy)) {
+    errors.push(`Clareza promocional ausente: ${requiredPromoCopy}`);
+  }
 }
 
 if (errors.length > 0) {
