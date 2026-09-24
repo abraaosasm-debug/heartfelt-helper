@@ -5320,3 +5320,358 @@
     width: 100%;
   }
 }
+
+
+/* =========================================================
+   V3.8 — CONVERSION CLARITY + TRUST + VALUE PROOF
+   ========================================================= */
+
+.v38-trust-strip {
+  background: var(--v3-ink);
+  color: white;
+}
+
+.v38-trust-strip .v32-offer-message {
+  color: var(--v3-gold);
+}
+
+.v38-trust-strip-inner > span {
+  color: oklch(0.9 0.012 245);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.v38-trust-strip a {
+  color: white;
+}
+
+.v38-upgrade-section {
+  padding: 92px 0;
+  background:
+    radial-gradient(circle at 85% 15%, oklch(0.69 0.19 42 / 0.13), transparent 30%),
+    var(--v3-ink);
+  color: white;
+}
+
+.v38-upgrade-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  gap: 70px;
+  align-items: center;
+}
+
+.v38-upgrade-copy {
+  max-width: 590px;
+}
+
+.v38-upgrade-copy .v3-kicker {
+  color: var(--v3-gold);
+}
+
+.v38-upgrade-copy h2 {
+  margin-top: 16px;
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: clamp(2.55rem, 4.8vw, 4.6rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.v38-upgrade-copy > p {
+  margin-top: 24px;
+  color: oklch(0.78 0.016 245);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.v38-upgrade-copy > p strong {
+  color: white;
+}
+
+.v38-upgrade-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.v38-upgrade-stats > span {
+  display: grid;
+  min-height: 100px;
+  align-content: center;
+  gap: 5px;
+  padding: 16px;
+  border: 1px solid oklch(1 0 0 / 0.12);
+  border-radius: 16px;
+  background: oklch(1 0 0 / 0.045);
+  color: oklch(0.75 0.014 245);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.v38-upgrade-stats strong {
+  color: var(--v3-gold);
+  font-size: 27px;
+  letter-spacing: -0.04em;
+}
+
+.v38-upgrade-list {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 30px;
+  padding: 0;
+  list-style: none;
+}
+
+.v38-upgrade-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: oklch(0.88 0.012 245);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.v38-upgrade-list svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--v3-gold);
+}
+
+.v38-upgrade-visual {
+  position: relative;
+  min-height: 560px;
+  padding: 34px;
+  border: 1px solid oklch(1 0 0 / 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 10%, oklch(1 0 0 / 0.08), transparent 34%),
+    oklch(0.24 0.05 248);
+  box-shadow: 0 34px 80px oklch(0.1 0.025 245 / 0.35);
+}
+
+.v38-upgrade-volume {
+  display: grid;
+  width: min(51%, 270px);
+  gap: 12px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.v38-upgrade-volume img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 42px oklch(0.1 0.025 245 / 0.32);
+}
+
+.v38-upgrade-volume span,
+.v38-upgrade-caption {
+  color: oklch(0.82 0.018 245);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.v38-upgrade-bonuses {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.v38-upgrade-bonuses img {
+  display: block;
+  width: 100%;
+  height: 142px;
+  object-fit: contain;
+  border-radius: 7px;
+  background: white;
+  box-shadow: 0 12px 28px oklch(0.1 0.025 245 / 0.22);
+}
+
+.v38-upgrade-caption {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.v38-purchase-section {
+  background: oklch(0.975 0.012 82);
+}
+
+.v38-purchase-heading {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.v38-purchase-heading p {
+  margin-inline: auto;
+}
+
+.v38-purchase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 980px;
+  margin: 44px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v38-purchase-grid li {
+  min-height: 210px;
+  padding: 28px;
+  border: 1px solid var(--v3-line);
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 16px 38px oklch(0.22 0.045 248 / 0.06);
+}
+
+.v38-purchase-grid li > span {
+  display: inline-grid;
+  min-width: 38px;
+  height: 30px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--v3-ink);
+  color: white;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+}
+
+.v38-purchase-grid strong {
+  display: block;
+  margin-top: 24px;
+  color: var(--v3-ink);
+  font-size: 17px;
+}
+
+.v38-purchase-grid p {
+  margin-top: 9px !important;
+  color: var(--v3-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.v38-purchase-note {
+  display: flex;
+  width: fit-content;
+  max-width: 880px;
+  align-items: center;
+  gap: 10px;
+  margin: 22px auto 0;
+  padding: 12px 16px;
+  border: 1px solid oklch(0.65 0.05 155 / 0.25);
+  border-radius: 999px;
+  background: oklch(0.96 0.025 150);
+  color: var(--v3-ink);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.v38-purchase-note svg {
+  flex: 0 0 auto;
+  color: oklch(0.48 0.12 155);
+}
+
+@media (max-width: 900px) {
+  .v38-upgrade-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .v38-upgrade-copy {
+    max-width: 720px;
+  }
+
+  .v38-upgrade-visual {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .v38-trust-strip-inner {
+    min-height: 52px;
+    gap: 5px 8px;
+    padding-block: 7px;
+  }
+
+  .v38-trust-strip .v32-offer-message {
+    width: 100%;
+  }
+
+  .v38-trust-strip-inner > span {
+    font-size: 8px;
+  }
+
+  .v38-upgrade-section {
+    padding: 62px 0 68px;
+  }
+
+  .v38-upgrade-copy h2 {
+    font-size: clamp(2.55rem, 12vw, 3.75rem);
+  }
+
+  .v38-upgrade-copy > p {
+    font-size: 14px;
+  }
+
+  .v38-upgrade-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .v38-upgrade-stats > span {
+    min-height: 78px;
+  }
+
+  .v38-upgrade-visual {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+
+  .v38-upgrade-volume {
+    width: min(62%, 250px);
+  }
+
+  .v38-upgrade-bonuses {
+    gap: 6px;
+  }
+
+  .v38-upgrade-bonuses img {
+    height: 96px;
+  }
+
+  .v38-purchase-grid {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+
+  .v38-purchase-grid li {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .v38-purchase-note {
+    align-items: flex-start;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .v38-trust-strip-inner > span[aria-hidden="true"] {
+    display: none;
+  }
+
+  .v38-upgrade-bonuses img {
+    height: 82px;
+  }
+}
