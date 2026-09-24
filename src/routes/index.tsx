@@ -450,7 +450,9 @@ function Index() {
 
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
-              <span>Produto digital • pagamento único • acesso após confirmação • garantia de 7 dias</span>
+              <span>
+                Produto digital • pagamento único • acesso após confirmação • garantia de 7 dias
+              </span>
             </div>
           </div>
 
@@ -631,9 +633,15 @@ function Index() {
             </div>
 
             <ul className="v38-upgrade-list">
-              <li><Check size={17} /> Leitura inicial, quantidades até 20, sequências e cotidiano</li>
-              <li><Check size={17} /> Planejamento de 4 semanas e rotina visual</li>
-              <li><Check size={17} /> Jogos imprimíveis, observação e atividades para famílias</li>
+              <li>
+                <Check size={17} /> Leitura inicial, quantidades até 20, sequências e cotidiano
+              </li>
+              <li>
+                <Check size={17} /> Planejamento de 4 semanas e rotina visual
+              </li>
+              <li>
+                <Check size={17} /> Jogos imprimíveis, observação e atividades para famílias
+              </li>
             </ul>
 
             <PrimaryButton href={checkoutUrls.complete}>QUERO AS 292 PÁGINAS</PrimaryButton>
@@ -797,13 +805,19 @@ function Index() {
             <li>
               <span>03</span>
               <strong>Acesse o material</strong>
-              <p>Após a confirmação do pagamento, siga as instruções de acesso apresentadas pela plataforma.</p>
+              <p>
+                Após a confirmação do pagamento, siga as instruções de acesso apresentadas pela
+                plataforma.
+              </p>
             </li>
           </ol>
 
           <div className="v38-purchase-note">
             <ShieldCheck size={18} aria-hidden="true" />
-            <span>Produto digital • sem frete • garantia de 7 dias conforme as condições informadas no checkout.</span>
+            <span>
+              Produto digital • sem frete • garantia de 7 dias conforme as condições informadas no
+              checkout.
+            </span>
           </div>
         </div>
       </section>
