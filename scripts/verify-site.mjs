@@ -130,11 +130,11 @@ if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
 }
 
 if (
-  !/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO O KIT COMPLETO — R\$59,90[\s\S]*<\/PrimaryButton>/.test(
+  !/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO O KIT COMPLETO — R\$39,90[\s\S]*<\/PrimaryButton>/.test(
     index,
   )
 ) {
-  errors.push("CTA final precisa usar explicitamente a variante escura.");
+  errors.push("CTA final precisa usar explicitamente a variante escura e o preço promocional.");
 }
 
 for (const number of [3, 4, 5, 6, 7]) {
@@ -169,8 +169,24 @@ if (!index.includes("<strong>10</strong>") || !index.includes("<small>,00</small
   errors.push("Preço visual do Kit Essencial deve permanecer em R$10,00.");
 }
 
-if (!index.includes("<strong>59</strong>") || !index.includes("<small>,90</small>")) {
-  errors.push("Preço visual do Kit Completo deve permanecer em R$59,90.");
+if (!index.includes("<strong>39</strong>") || !index.includes("<small>,90</small>")) {
+  errors.push("Preço visual atual do Kit Completo deve ser R$39,90.");
+}
+
+if (!index.includes('<div className="v40-price-anchor">') || !index.includes("<s>R$59,90</s>")) {
+  errors.push("Preço normal riscado de R$59,90 precisa aparecer na oferta promocional.");
+}
+
+if (!index.includes("Você economiza R$20,00")) {
+  errors.push("Economia de R$20,00 precisa aparecer no card do Kit Completo.");
+}
+
+if (!index.includes("Por R$29,90 além do Essencial")) {
+  errors.push("Comparação de valor entre Essencial e Completo está ausente.");
+}
+
+if (index.includes("R$79,90")) {
+  errors.push("Preço de referência não histórico R$79,90 não deve ser usado.");
 }
 
 if (!index.includes("href={checkoutUrls.essential}")) {
@@ -218,6 +234,23 @@ for (const requiredVolume2Marker of [
 
 if (!css.includes("V3.9 — REAL VOLUME 2 PREVIEWS")) {
   errors.push("Camada de estilos V3.9 ausente.");
+}
+
+for (const launchOfferMarker of [
+  "v40-proof-price",
+  "v40-price-anchor",
+  "v40-promo-price",
+  "v40-final-offer",
+  "R$39,90",
+  "Oferta de lançamento",
+]) {
+  if (!index.includes(launchOfferMarker)) {
+    errors.push(`Oferta promocional ausente: ${launchOfferMarker}`);
+  }
+}
+
+if (!css.includes("V4.0 — LAUNCH PRICE PRESENTATION")) {
+  errors.push("Camada de estilos V4.0 ausente.");
 }
 
 if (errors.length > 0) {
