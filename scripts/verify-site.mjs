@@ -151,6 +151,30 @@ if (!index.includes("href={checkoutUrls.complete}")) {
   errors.push("CTA do Kit Completo não está ligado ao checkout canônico.");
 }
 
+if (index.includes("OfferCountdown")) {
+  errors.push("Contador de urgência artificial não deve voltar para a landing.");
+}
+
+if (index.includes("R$49,90 a mais")) {
+  errors.push("Comparação de preço regressiva encontrada no Kit Completo.");
+}
+
+for (const requiredConversionMarker of [
+  "v38-upgrade-section",
+  "v38-purchase-section",
+  "attributionKeys",
+  '"utm_campaign"',
+  '"fbclid"',
+]) {
+  if (!index.includes(requiredConversionMarker)) {
+    errors.push(`Otimização de conversão ausente: ${requiredConversionMarker}`);
+  }
+}
+
+if (!css.includes("V3.8 — CONVERSION CLARITY + TRUST + VALUE PROOF")) {
+  errors.push("Camada de estilos V3.8 ausente.");
+}
+
 if (errors.length > 0) {
   console.error("\nFalhas na verificação da landing page:");
   for (const error of errors) console.error(`- ${error}`);
