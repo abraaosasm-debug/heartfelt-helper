@@ -6251,3 +6251,154 @@
     font-size: 8px;
   }
 }
+
+/* =========================================================
+   V4.2 — REGIONAL MARKETING CONSENT
+   ========================================================= */
+
+.v42-consent {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 120;
+  display: flex;
+  max-width: 760px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--v3-line);
+  border-radius: 8px;
+  background: var(--v3-paper);
+  color: var(--v3-ink);
+  box-shadow: 0 18px 50px oklch(0.14 0.03 245 / 0.28);
+}
+
+.v42-consent-copy {
+  display: grid;
+  gap: 7px;
+}
+
+.v42-consent-copy strong {
+  font-size: 15px;
+}
+
+.v42-consent-copy p {
+  max-width: 540px;
+  color: var(--v3-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.v42-consent-copy a,
+.v42-footer-links a,
+.v42-cookie-settings {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.v42-consent-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.v42-consent-actions button {
+  min-width: 94px;
+  min-height: 42px;
+  border-color: var(--v3-ink);
+}
+
+.v42-consent-actions button:last-child {
+  background: var(--v3-ink);
+  color: var(--v3-paper);
+}
+
+.v42-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: 8px;
+  font-size: 10px;
+}
+
+.v42-cookie-settings {
+  height: auto;
+  padding: 0;
+  font: inherit;
+}
+
+.v42-privacy-page {
+  min-height: 100vh;
+  padding: 48px 20px 80px;
+  background: var(--v3-cream);
+  color: var(--v3-ink);
+}
+
+.v42-privacy-content {
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.v42-privacy-back {
+  display: inline-flex;
+  margin-bottom: 48px;
+  color: var(--v3-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.v42-privacy-content h1 {
+  margin-top: 14px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.6rem, 8vw, 4.8rem);
+  line-height: 1;
+}
+
+.v42-privacy-updated {
+  margin: 16px 0 48px;
+  color: var(--v3-muted);
+  font-size: 11px;
+}
+
+.v42-privacy-content section {
+  padding: 26px 0;
+  border-top: 1px solid var(--v3-line);
+}
+
+.v42-privacy-content h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.v42-privacy-content section p {
+  color: var(--v3-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.v42-privacy-content section .v42-cookie-settings {
+  margin-top: 14px;
+  color: var(--v3-orange-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .v42-consent {
+    bottom: calc(88px + env(safe-area-inset-bottom));
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .v42-consent-actions button {
+    flex: 1 1 50%;
+  }
+}

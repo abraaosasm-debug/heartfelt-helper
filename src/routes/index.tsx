@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -21,6 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { checkoutUrls } from "@/lib/checkout";
+import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 
 const coverSources: Record<number, string> = {
   1: "/covers/Imagens_1.jpg?v=2",
@@ -1006,6 +1007,10 @@ function Index() {
             Não substitui avaliação, terapia ou acompanhamento individualizado. Confira as
             informações de pagamento, entrega e atendimento no checkout antes da compra.
           </p>
+          <div className="v42-footer-links">
+            <Link to="/privacidade">Política de privacidade</Link>
+            <CookieSettingsButton />
+          </div>
         </div>
       </footer>
     </main>
@@ -1027,6 +1032,13 @@ export const Route = createFileRoute("/")({
         content: "2 volumes + 5 bônus. 292 páginas de materiais digitais para imprimir.",
       },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://kitcompletoautismoeinfantil.lovable.app/",
+      },
     ],
   }),
   component: Index,
