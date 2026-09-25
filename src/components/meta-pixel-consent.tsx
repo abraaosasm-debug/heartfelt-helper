@@ -21,15 +21,17 @@ type ConsentRecord = {
   region: string;
 };
 
+type MetaPixelFunction = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue: unknown[][];
+  loaded: boolean;
+  version: string;
+  push: (...args: unknown[]) => void;
+};
+
 declare global {
   interface Window {
-    fbq?: ((...args: unknown[]) => void) & {
-      callMethod?: (...args: unknown[]) => void;
-      queue?: unknown[][];
-      loaded?: boolean;
-      version?: string;
-      push?: (...args: unknown[]) => void;
-    };
+    fbq?: MetaPixelFunction;
     _fbq?: Window["fbq"];
   }
 }
@@ -56,11 +58,10 @@ function readConsent(): ConsentRecord | null {
 function loadMetaPixel() {
   if (window.fbq) return;
 
-  const fbq = ((...args: unknown[]) => {
+  const fbq: MetaPixelFunction = (...args: unknown[]) => {
     if (fbq.callMethod) fbq.callMethod(...args);
-    else fbq.queue?.push(args);
-  }) as Window["fbq"];
-  if (!fbq) return;
+    else fbq.queue.push(args);
+  };
 
   fbq.push = fbq;
   fbq.loaded = true;
@@ -160,7 +161,12 @@ export function MetaPixelConsent() {
     };
     window.localStorage.setItem(CONSENT_KEY, JSON.stringify(record));
     setShowBanner(false);
-    if (choice === "accepted") loadMetaPixel();
+    if (choice === "accepted") {
+      loadMetaPixel();
+      window.fbq?.("consent", "grant");
+    } else {
+      window.fbq?.("consent", "revoke");
+    }
   };
 
   if (!showBanner) return null;
