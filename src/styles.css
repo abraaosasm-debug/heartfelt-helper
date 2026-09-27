@@ -6516,3 +6516,292 @@
     width: 100%;
   }
 }
+
+
+/* =========================================================
+   V4.4 — BONUS VALUE + COLLAPSED DOWNSELL
+   ========================================================= */
+
+.v3-bonus-item small {
+  display: block;
+  margin-top: 7px;
+  color: var(--v3-muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.v44-bonus-proof {
+  margin-top: 36px;
+  padding: clamp(26px, 4vw, 44px);
+  border: 1px solid var(--v3-line);
+  border-radius: 24px;
+  background: var(--v3-paper);
+}
+
+.v44-bonus-proof-heading {
+  max-width: 760px;
+}
+
+.v44-bonus-proof-heading h2 {
+  max-width: 760px;
+  margin-top: 10px;
+  color: var(--v3-ink);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.v44-bonus-proof-heading p {
+  max-width: 680px;
+  margin-top: 16px;
+  color: var(--v3-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.v44-bonus-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 30px;
+  overflow: hidden;
+  border: 1px solid var(--v3-line);
+  border-radius: 16px;
+  background: var(--v3-line);
+}
+
+.v44-bonus-proof-grid article {
+  display: flex;
+  min-height: 190px;
+  gap: 14px;
+  padding: 20px 16px;
+  background: var(--v3-cream);
+}
+
+.v44-bonus-proof-grid article > span {
+  flex: 0 0 auto;
+  color: var(--v3-orange-dark);
+  font-size: 10px;
+  font-weight: 950;
+}
+
+.v44-bonus-proof-grid article > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.v44-bonus-proof-grid strong {
+  color: var(--v3-ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.v44-bonus-proof-grid small {
+  margin-top: 5px;
+  color: var(--v3-orange-dark);
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.v44-bonus-proof-grid p {
+  margin-top: 14px;
+  color: var(--v3-muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.v44-bonus-proof-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.v44-bonus-proof-cta p {
+  max-width: 500px;
+  color: var(--v3-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.v44-bonus-proof-cta p strong {
+  color: var(--v3-ink);
+}
+
+.v44-bonus-proof-cta .v3-button {
+  flex: 0 0 auto;
+}
+
+.v43-essential-downsell {
+  display: block;
+  width: min(100%, 760px);
+  margin: 26px auto 0;
+  padding: 0;
+  border: 1px solid var(--v3-line);
+  border-radius: 12px;
+  background: color-mix(in oklch, var(--v3-paper) 92%, var(--v3-cream));
+  color: var(--v3-ink);
+  overflow: hidden;
+}
+
+.v43-essential-downsell > summary {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.v43-essential-downsell > summary::-webkit-details-marker {
+  display: none;
+}
+
+.v43-essential-downsell > summary > span {
+  display: grid;
+  gap: 3px;
+  color: var(--v3-ink);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.v43-essential-downsell > summary small {
+  color: var(--v3-muted);
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.v43-essential-downsell > summary b {
+  color: var(--v3-muted);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.v43-essential-downsell-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  padding: 18px;
+  border-top: 1px solid var(--v3-line);
+}
+
+.v43-essential-downsell-body > div:first-child {
+  display: grid;
+  max-width: 480px;
+  gap: 6px;
+}
+
+.v43-essential-downsell-body > div:first-child > strong {
+  color: var(--v3-ink);
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: 18px;
+}
+
+.v43-essential-downsell-body > div:first-child > p {
+  color: var(--v3-muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.v43-essential-downsell-action {
+  display: grid;
+  flex: 0 0 190px;
+  gap: 8px;
+}
+
+.v43-essential-downsell-action > span {
+  color: var(--v3-muted);
+  font-size: 12px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.v43-essential-downsell-action .v3-button {
+  min-height: 42px;
+  padding: 10px 14px;
+  font-size: 9px;
+  opacity: 0.82;
+}
+
+.v43-essential-downsell-action .v3-button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 980px) {
+  .v44-bonus-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .v44-bonus-proof-grid article:last-child {
+    grid-column: 1 / -1;
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 760px) {
+  .v44-bonus-proof {
+    margin-top: 26px;
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .v44-bonus-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v44-bonus-proof-grid article,
+  .v44-bonus-proof-grid article:last-child {
+    grid-column: auto;
+    min-height: auto;
+  }
+
+  .v44-bonus-proof-cta {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .v44-bonus-proof-cta .v3-button {
+    width: 100%;
+  }
+
+  .v43-essential-downsell-body {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .v43-essential-downsell-action {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .v43-essential-downsell-action .v3-button {
+    width: auto;
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 420px) {
+  .v43-essential-downsell > summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .v43-essential-downsell-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .v43-essential-downsell-action .v3-button {
+    width: 100%;
+  }
+}
