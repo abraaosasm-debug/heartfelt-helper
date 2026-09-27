@@ -54,11 +54,11 @@ const coverDimensions: Record<number, { width: number; height: number }> = {
 };
 
 const bonuses = [
-  ["Planejamento de 4 semanas", "24 páginas"],
-  ["Rotina visual para recortar", "20 páginas"],
-  ["Jogos de mesa imprimíveis", "30 páginas"],
-  ["Caderno de observação", "16 páginas"],
-  ["Atividades para as famílias", "20 páginas"],
+  ["Planejamento de 4 semanas", "24 páginas", "20 planos de encontros + mapas semanais"],
+  ["Rotina visual para recortar", "20 páginas", "Cartões de rotina + quadros personalizáveis"],
+  ["Jogos de mesa imprimíveis", "30 páginas", "4 jogos com regras, tabuleiros e peças"],
+  ["Caderno de observação", "16 páginas", "14 fichas para acompanhar a aprendizagem"],
+  ["Atividades para as famílias", "20 páginas", "15 atividades + 3 modelos de bilhetes"],
 ] as const;
 
 const previewPagesVolume1 = [
@@ -120,7 +120,15 @@ const benefits = [
 const faqs = [
   [
     "O que está incluído no Kit Completo?",
-    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas no total. O Kit Essencial, com apenas o Volume 1 e 91 páginas, continua disponível como uma opção menor.",
+    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas digitais no total.",
+  ],
+  [
+    "Preciso imprimir as 292 páginas de uma vez?",
+    "Não. Você recebe os PDFs e pode escolher apenas as páginas, sequências ou materiais que quiser usar em cada momento.",
+  ],
+  [
+    "O material pode ser usado com diferentes crianças?",
+    "Sim. As propostas são educativas e podem ser selecionadas conforme o objetivo e o nível de cada criança. O material não substitui avaliação, terapia ou acompanhamento individualizado.",
   ],
   [
     "O material é físico?",
@@ -276,6 +284,24 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
+function trackCheckoutIntent(href: string) {
+  const offer =
+    href === checkoutUrls.complete
+      ? { name: "Kit Completo", value: 39.9 }
+      : href === checkoutUrls.essential
+        ? { name: "Kit Essencial", value: 10 }
+        : null;
+
+  if (!offer || !window.fbq) return;
+
+  window.fbq("track", "InitiateCheckout", {
+    content_name: offer.name,
+    content_type: "product",
+    currency: "BRL",
+    value: offer.value,
+  });
+}
+
 function AttributionLink({
   href,
   className,
@@ -302,7 +328,12 @@ function AttributionLink({
   }, [href]);
 
   return (
-    <a className={className} href={resolvedHref} aria-label={ariaLabel}>
+    <a
+      className={className}
+      href={resolvedHref}
+      aria-label={ariaLabel}
+      onClick={() => trackCheckoutIntent(href)}
+    >
       {children}
     </a>
   );
@@ -482,7 +513,7 @@ function Index() {
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
               <span>
-                Produto digital • pagamento único • acesso após confirmação • garantia de 7 dias
+                Checkout via Cakto • produto digital • pagamento único • garantia de 7 dias
               </span>
             </div>
           </div>
@@ -587,14 +618,50 @@ function Index() {
               </div>
 
               <div className="v3-bonus-covers" aria-label="Capas dos cinco bônus">
-                {bonuses.map(([title, pages], index) => (
+                {bonuses.map(([title, pages, details], index) => (
                   <div className="v3-bonus-item" key={title}>
                     <Cover number={index + 3} title={title} compact />
                     <span>{pages}</span>
+                    <small>{details}</small>
                   </div>
                 ))}
               </div>
             </article>
+          </div>
+
+          <div className="v44-bonus-proof" aria-labelledby="bonus-proof-title">
+            <div className="v44-bonus-proof-heading">
+              <span className="v3-kicker">O QUE EXISTE NOS 5 BÔNUS</span>
+              <h2 id="bonus-proof-title">Mais 110 páginas para transformar atividades em rotina.</h2>
+              <p>
+                Além dos dois volumes, você recebe materiais complementares com funções diferentes.
+                Assim, os bônus não ficam apenas como “extras”: cada um resolve uma parte prática do
+                uso do kit.
+              </p>
+            </div>
+
+            <div className="v44-bonus-proof-grid">
+              {bonuses.map(([title, pages, details], index) => (
+                <article key={title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <strong>{title}</strong>
+                    <small>{pages}</small>
+                    <p>{details}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="v44-bonus-proof-cta">
+              <p>
+                Somando os 5 bônus: <strong>110 páginas.</strong> Com os dois volumes, o Kit Completo
+                chega a <strong>292 páginas.</strong>
+              </p>
+              <PrimaryButton href={checkoutUrls.complete}>
+                QUERO OS 2 VOLUMES + 5 BÔNUS — R$39,90
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       </section>
@@ -846,7 +913,9 @@ function Index() {
                 <small>,90</small>
               </div>
 
-              <p className="v40-price-savings">Você economiza R$20,00</p>
+              <p className="v40-price-savings">
+                Você economiza R$20,00 • cerca de R$0,14 por página
+              </p>
 
               <ul>
                 {[
@@ -876,22 +945,30 @@ function Index() {
             </article>
           </div>
 
-          <div className="v43-essential-downsell">
-            <div>
-              <span>OPÇÃO MENOR</span>
-              <strong>Quer somente o Volume 1?</strong>
-              <p>
-                O Kit Essencial continua disponível com 91 páginas, sem o Volume 2 e sem os cinco
-                bônus do Kit Completo.
-              </p>
+          <details className="v43-essential-downsell">
+            <summary>
+              <span>
+                Prefere começar com uma opção menor?
+                <small>Ver Kit Essencial de 91 páginas</small>
+              </span>
+              <b>R$10,00</b>
+            </summary>
+            <div className="v43-essential-downsell-body">
+              <div>
+                <strong>Kit Essencial — somente Volume 1</strong>
+                <p>
+                  91 páginas, sem o Volume 2 e sem os cinco bônus. Esta opção permanece disponível
+                  para quem prefere começar com uma versão menor.
+                </p>
+              </div>
+              <div className="v43-essential-downsell-action">
+                <span>R$10,00</span>
+                <PrimaryButton href={checkoutUrls.essential} dark>
+                  VER KIT ESSENCIAL
+                </PrimaryButton>
+              </div>
             </div>
-            <div className="v43-essential-downsell-action">
-              <span>R$10,00</span>
-              <PrimaryButton href={checkoutUrls.essential} dark>
-                VER KIT ESSENCIAL
-              </PrimaryButton>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
