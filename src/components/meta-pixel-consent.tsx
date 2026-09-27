@@ -7,9 +7,40 @@ const META_PIXEL_ID = "1100314516014264";
 const CONSENT_KEY = "marketing-consent-v1";
 const CONSENT_VERSION = "2026-09-25";
 const REGULATED_REGIONS = new Set([
-  "AT", "BE", "BG", "BR", "CA", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR",
-  "GB", "GR", "HR", "HU", "IE", "IS", "IT", "LI", "LT", "LU", "LV", "MT", "NL", "NO",
-  "PL", "PT", "RO", "SE", "SI", "SK",
+  "AT",
+  "BE",
+  "BG",
+  "BR",
+  "CA",
+  "CH",
+  "CY",
+  "CZ",
+  "DE",
+  "DK",
+  "EE",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "GR",
+  "HR",
+  "HU",
+  "IE",
+  "IS",
+  "IT",
+  "LI",
+  "LT",
+  "LU",
+  "LV",
+  "MT",
+  "NL",
+  "NO",
+  "PL",
+  "PT",
+  "RO",
+  "SE",
+  "SI",
+  "SK",
 ]);
 
 type ConsentChoice = "accepted" | "rejected";
@@ -176,9 +207,9 @@ export function MetaPixelConsent() {
       <div className="v42-consent-copy">
         <strong>Privacidade e anúncios</strong>
         <p>
-          Podemos usar o Pixel da Meta para medir visitas e compras e melhorar anúncios. A Meta
-          pode receber dados do navegador e identificadores. Você pode aceitar ou recusar e mudar
-          sua escolha depois. <Link to="/privacidade">Saiba mais</Link>
+          Podemos usar o Pixel da Meta para medir visitas e compras e melhorar anúncios. A Meta pode
+          receber dados do navegador e identificadores. Você pode aceitar ou recusar e mudar sua
+          escolha depois. <Link to="/privacidade">Saiba mais</Link>
         </p>
       </div>
       <div className="v42-consent-actions">
