@@ -287,6 +287,32 @@ if (!css.includes("V4.3 — COMPLETE OFFER FOCUS")) {
   errors.push("Camada de estilos V4.3 para foco no Kit Completo ausente.");
 }
 
+if (!css.includes("V4.4 — BONUS VALUE + COLLAPSED DOWNSELL")) {
+  errors.push("Camada V4.4 de valor dos bônus e downsell recolhido ausente.");
+}
+
+for (const conversionTrackingMarker of [
+  "InitiateCheckout",
+  'content_name: offer.name',
+  'currency: "BRL"',
+]) {
+  if (!index.includes(conversionTrackingMarker)) {
+    errors.push(`Rastreamento de intenção de checkout ausente: ${conversionTrackingMarker}`);
+  }
+}
+
+for (const bonusValueMarker of [
+  "O QUE EXISTE NOS 5 BÔNUS",
+  "20 planos de encontros + mapas semanais",
+  "4 jogos com regras, tabuleiros e peças",
+  "15 atividades + 3 modelos de bilhetes",
+  'details className="v43-essential-downsell"',
+]) {
+  if (!index.includes(bonusValueMarker)) {
+    errors.push(`Prova de valor dos bônus/downsell ausente: ${bonusValueMarker}`);
+  }
+}
+
 for (const requiredPromoCopy of [
   "de <s>R$59,90</s> por <b>R$39,90</b>",
   "292 páginas • 2 volumes • 5 bônus",
