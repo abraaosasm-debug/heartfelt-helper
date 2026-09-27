@@ -632,7 +632,9 @@ function Index() {
           <div className="v44-bonus-proof" aria-labelledby="bonus-proof-title">
             <div className="v44-bonus-proof-heading">
               <span className="v3-kicker">O QUE EXISTE NOS 5 BÔNUS</span>
-              <h2 id="bonus-proof-title">Mais 110 páginas para transformar atividades em rotina.</h2>
+              <h2 id="bonus-proof-title">
+                Mais 110 páginas para transformar atividades em rotina.
+              </h2>
               <p>
                 Além dos dois volumes, você recebe materiais complementares com funções diferentes.
                 Assim, os bônus não ficam apenas como “extras”: cada um resolve uma parte prática do
@@ -655,8 +657,8 @@ function Index() {
 
             <div className="v44-bonus-proof-cta">
               <p>
-                Somando os 5 bônus: <strong>110 páginas.</strong> Com os dois volumes, o Kit Completo
-                chega a <strong>292 páginas.</strong>
+                Somando os 5 bônus: <strong>110 páginas.</strong> Com os dois volumes, o Kit
+                Completo chega a <strong>292 páginas.</strong>
               </p>
               <PrimaryButton href={checkoutUrls.complete}>
                 QUERO OS 2 VOLUMES + 5 BÔNUS — R$39,90
