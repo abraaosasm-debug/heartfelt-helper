@@ -538,7 +538,9 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading">
             <span className="v3-kicker">VOCÊ RECEBE</span>
-            <h2>Uma coleção completa, organizada para você saber exatamente o que está comprando.</h2>
+            <h2>
+              Uma coleção completa, organizada para você saber exatamente o que está comprando.
+            </h2>
             <p>
               São 182 páginas nos dois volumes de atividades e mais 110 páginas em cinco materiais
               complementares. No total, <strong>292 páginas digitais prontas para imprimir.</strong>
@@ -1022,7 +1024,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
-        content: "Kit Completo: 292 páginas, 2 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
+        content:
+          "Kit Completo: 292 páginas, 2 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
