@@ -165,8 +165,8 @@ for (const [offer, url] of Object.entries(canonicalCheckouts)) {
   }
 }
 
-if (!index.includes("<strong>10</strong>") || !index.includes("<small>,00</small>")) {
-  errors.push("Preço visual do Kit Essencial deve permanecer em R$10,00.");
+if (!index.includes("v43-essential-downsell") || !index.includes("R$10,00")) {
+  errors.push("Kit Essencial deve permanecer disponível como opção menor por R$10,00.");
 }
 
 if (!index.includes("<strong>39</strong>") || !index.includes("<small>,90</small>")) {
@@ -181,8 +181,28 @@ if (!index.includes("Você economiza R$20,00")) {
   errors.push("Economia de R$20,00 precisa aparecer no card do Kit Completo.");
 }
 
-if (!index.includes("Por R$29,90 além do Essencial")) {
-  errors.push("Comparação de valor entre Essencial e Completo está ausente.");
+for (const obsoletePositioning of [
+  "Comparar com o Essencial",
+  "ALÉM DO ESSENCIAL",
+  "Por R$29,90 além do Essencial",
+  "Quer começar ou quer levar o pacote completo?",
+]) {
+  if (index.includes(obsoletePositioning)) {
+    errors.push(`Posicionamento antigo do Essencial voltou para a rota principal: ${obsoletePositioning}`);
+  }
+}
+
+for (const completeFocusMarker of [
+  "KIT COMPLETO • 292 PÁGINAS • 2 VOLUMES + 5 BÔNUS",
+  "292 páginas de atividades e materiais",
+  "Ver tudo o que vem no Kit Completo",
+  "v43-pricing-focus",
+  "OFERTA PRINCIPAL",
+  "Leve o Kit Completo com 292 páginas por R$39,90.",
+]) {
+  if (!index.includes(completeFocusMarker)) {
+    errors.push(`Foco do Kit Completo ausente: ${completeFocusMarker}`);
+  }
 }
 
 if (index.includes("R$79,90")) {
@@ -259,6 +279,10 @@ if (!css.includes("V4.0 — LAUNCH PRICE PRESENTATION")) {
 
 if (!css.includes("V4.1 — PROMOTION CLARITY")) {
   errors.push("Camada de estilos V4.1 ausente.");
+}
+
+if (!css.includes("V4.3 — COMPLETE OFFER FOCUS")) {
+  errors.push("Camada de estilos V4.3 para foco no Kit Completo ausente.");
 }
 
 for (const requiredPromoCopy of [
