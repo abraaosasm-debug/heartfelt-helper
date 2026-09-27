@@ -119,8 +119,8 @@ const benefits = [
 
 const faqs = [
   [
-    "Qual a diferença entre o Essencial e o Completo?",
-    "O Essencial tem o Volume 1 com 91 páginas. O Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas no total.",
+    "O que está incluído no Kit Completo?",
+    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas no total. O Kit Essencial, com apenas o Volume 1 e 91 páginas, continua disponível como uma opção menor.",
   ],
   [
     "O material é físico?",
@@ -411,12 +411,12 @@ function Index() {
 
           <nav className="v3-nav" aria-label="Navegação principal">
             <a href="#conteudo">O que vem</a>
-            <a href="#precos">Preços</a>
+            <a href="#precos">Oferta</a>
             <a href="#duvidas">Dúvidas</a>
           </nav>
 
           <a className="v3-header-cta" href="#precos">
-            Ver opções
+            Ver Kit Completo
           </a>
         </div>
       </header>
@@ -424,17 +424,17 @@ function Index() {
       <section id="inicio" className="v3-hero">
         <div className="v3-shell v3-hero-grid">
           <div className="v3-hero-copy">
-            <span className="v3-kicker">MATERIAL DIGITAL • PRONTO PARA IMPRIMIR</span>
+            <span className="v3-kicker">KIT COMPLETO • 292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
 
             <h1>
-              Atividades prontas
-              <span> para imprimir.</span>
+              292 páginas de atividades e materiais
+              <span> prontos para imprimir.</span>
             </h1>
 
             <p className="v3-hero-lead">
-              Sem passar horas procurando o que aplicar. Tenha <strong>292 páginas</strong> entre
-              atividades e materiais de apoio para trabalhar letras, números, coordenação, emoções,
-              rotina, raciocínio e muito mais.
+              Tenha em uma única compra <strong>2 volumes de atividades + 5 bônus</strong> para
+              trabalhar letras, números, coordenação, leitura inicial, emoções, raciocínio, rotina
+              visual, jogos e muito mais — sem precisar criar tudo do zero.
             </p>
 
             <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
@@ -474,8 +474,8 @@ function Index() {
               <PrimaryButton href={checkoutUrls.complete}>
                 QUERO O KIT COMPLETO — R$39,90
               </PrimaryButton>
-              <a className="v3-text-link" href="#precos">
-                Comparar com o Essencial
+              <a className="v3-text-link" href="#conteudo">
+                Ver tudo o que vem no Kit Completo
               </a>
             </div>
 
@@ -538,10 +538,10 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading">
             <span className="v3-kicker">VOCÊ RECEBE</span>
-            <h2>Tudo o que você recebe, organizado de forma simples.</h2>
+            <h2>Uma coleção completa, organizada para você saber exatamente o que está comprando.</h2>
             <p>
-              Dois volumes de atividades e cinco materiais complementares para você entender
-              rapidamente o que está comprando e escolher o que usar.
+              São 182 páginas nos dois volumes de atividades e mais 110 páginas em cinco materiais
+              complementares. No total, <strong>292 páginas digitais prontas para imprimir.</strong>
             </p>
           </div>
 
@@ -709,21 +709,22 @@ function Index() {
       <section className="v38-upgrade-section" aria-labelledby="upgrade-title">
         <div className="v3-shell v38-upgrade-grid">
           <div className="v38-upgrade-copy">
-            <span className="v3-kicker">ALÉM DO ESSENCIAL</span>
-            <h2 id="upgrade-title">Você já viu os dois volumes por dentro.</h2>
+            <span className="v3-kicker">UMA COLEÇÃO, SETE MATERIAIS</span>
+            <h2 id="upgrade-title">O Kit Completo vai muito além de um único PDF de atividades.</h2>
             <p>
-              No Kit Completo, os dois volumes somam 182 páginas. Com os cinco bônus, você recebe
-              <strong> 292 páginas no total</strong> — 201 páginas além do Essencial.
+              Os dois volumes somam 182 páginas de atividades. Os cinco bônus acrescentam mais
+              <strong> 110 páginas de apoio</strong> para planejamento, rotina, jogos, observação e
+              participação das famílias.
             </p>
 
-            <div className="v38-upgrade-stats" aria-label="Conteúdo adicional do Kit Completo">
+            <div className="v38-upgrade-stats" aria-label="Resumo do Kit Completo">
               <span>
-                <strong>+91</strong>
-                páginas do Volume 2
+                <strong>182</strong>
+                páginas nos 2 volumes
               </span>
               <span>
-                <strong>+110</strong>
-                páginas em 5 bônus
+                <strong>110</strong>
+                páginas nos 5 bônus
               </span>
               <span>
                 <strong>292</strong>
@@ -733,13 +734,13 @@ function Index() {
 
             <ul className="v38-upgrade-list">
               <li>
-                <Check size={17} /> Leitura inicial, quantidades até 20, sequências e cotidiano
+                <Check size={17} /> Atividades de alfabetização, números, coordenação e raciocínio
               </li>
               <li>
-                <Check size={17} /> Planejamento de 4 semanas e rotina visual
+                <Check size={17} /> Leitura inicial, comunicação, escolhas e situações do cotidiano
               </li>
               <li>
-                <Check size={17} /> Jogos imprimíveis, observação e atividades para famílias
+                <Check size={17} /> Planejamento, rotina visual, jogos e materiais para famílias
               </li>
             </ul>
 
@@ -748,7 +749,7 @@ function Index() {
             </PrimaryButton>
           </div>
 
-          <div className="v38-upgrade-visual" aria-label="Materiais adicionais do Kit Completo">
+          <div className="v38-upgrade-visual" aria-label="Volume 2 e cinco bônus do Kit Completo">
             <div className="v38-upgrade-volume">
               <img
                 src={getCoverPreviewSource(2)}
@@ -777,7 +778,7 @@ function Index() {
                 );
               })}
             </div>
-            <span className="v38-upgrade-caption">+ 5 BÔNUS • 110 PÁGINAS</span>
+            <span className="v38-upgrade-caption">5 BÔNUS • 110 PÁGINAS EXTRAS</span>
           </div>
         </div>
       </section>
@@ -806,38 +807,15 @@ function Index() {
       <section id="precos" className="v3-section v3-pricing-section">
         <div className="v3-shell">
           <div className="v3-section-heading v3-pricing-heading">
-            <span className="v3-kicker">ESCOLHA SEM COMPLICAÇÃO</span>
-            <h2>Quer começar ou quer levar o pacote completo?</h2>
+            <span className="v3-kicker">OFERTA PRINCIPAL</span>
+            <h2>Leve o Kit Completo com 292 páginas por R$39,90.</h2>
+            <p>
+              Uma única compra com os dois volumes e todos os cinco bônus. Sem assinatura e sem
+              frete: o material é digital e pronto para imprimir.
+            </p>
           </div>
 
-          <div className="v3-pricing-grid">
-            <article className="v3-price-card v3-price-card-essential">
-              <span className="v3-price-tag">PARA COMEÇAR</span>
-              <h3>Kit Essencial</h3>
-              <p className="v3-price-description">O Volume 1 com as atividades principais.</p>
-
-              <div className="v3-price">
-                <span>R$</span>
-                <strong>10</strong>
-                <small>,00</small>
-              </div>
-
-              <ul>
-                {["91 páginas", "Volume 1 completo", "PDF para imprimir", "Pagamento único"].map(
-                  (item) => (
-                    <li key={item}>
-                      <Check size={17} />
-                      {item}
-                    </li>
-                  ),
-                )}
-              </ul>
-
-              <PrimaryButton href={checkoutUrls.essential} dark>
-                QUERO O ESSENCIAL
-              </PrimaryButton>
-            </article>
-
+          <div className="v3-pricing-grid v43-pricing-focus">
             <article className="v3-price-card v3-price-card-complete">
               <span className="v31-complete-ribbon">292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
 
@@ -846,14 +824,14 @@ function Index() {
                 OFERTA DE LANÇAMENTO
               </span>
 
-              <span className="v3-price-tag">COLEÇÃO COMPLETA</span>
+              <span className="v3-price-tag">KIT COMPLETO</span>
               <div className="v41-price-promo-headline">
                 <strong>R$20 DE DESCONTO</strong>
                 <span>preço de lançamento</span>
               </div>
-              <h3>Kit Completo</h3>
+              <h3>Receba a coleção inteira</h3>
               <p className="v3-price-description">
-                A coleção inteira para ter mais variedade e recursos de apoio.
+                Dois volumes de atividades e cinco bônus para ampliar as possibilidades de uso.
               </p>
 
               <div className="v40-price-anchor">
@@ -874,6 +852,7 @@ function Index() {
                   "Volume 1 — 91 páginas",
                   "Volume 2 — 91 páginas",
                   "5 bônus — 110 páginas",
+                  "PDFs digitais prontos para imprimir",
                   "Pagamento único",
                 ].map((item) => (
                   <li key={item}>
@@ -888,14 +867,28 @@ function Index() {
               </PrimaryButton>
 
               <p className="v3-price-difference v40-price-difference">
-                <strong>Inclui tudo do Essencial + 201 páginas extras:</strong> Volume 2 completo e
-                todos os 5 bônus. Hoje, o Kit Completo sai por R$39,90 em pagamento único.
-              </p>
-
-              <p className="v40-upgrade-delta">
-                Por R$29,90 além do Essencial, você acrescenta o Volume 2 e todos os 5 bônus.
+                <strong>Você recebe os 7 materiais da coleção:</strong> os dois volumes completos
+                mais Planejamento de 4 Semanas, Rotina Visual, Jogos de Mesa, Caderno de Observação
+                e Atividades para as Famílias.
               </p>
             </article>
+          </div>
+
+          <div className="v43-essential-downsell">
+            <div>
+              <span>OPÇÃO MENOR</span>
+              <strong>Quer somente o Volume 1?</strong>
+              <p>
+                O Kit Essencial continua disponível com 91 páginas, sem o Volume 2 e sem os cinco
+                bônus do Kit Completo.
+              </p>
+            </div>
+            <div className="v43-essential-downsell-action">
+              <span>R$10,00</span>
+              <PrimaryButton href={checkoutUrls.essential} dark>
+                VER KIT ESSENCIAL
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       </section>
@@ -904,15 +897,15 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading v38-purchase-heading">
             <span className="v3-kicker">SEM SURPRESA NA HORA DE COMPRAR</span>
-            <h2 id="purchase-title">O que acontece depois que você escolhe seu kit.</h2>
+            <h2 id="purchase-title">Da página ao acesso do Kit Completo em três passos.</h2>
             <p>O fluxo é simples e o produto é totalmente digital.</p>
           </div>
 
           <ol className="v38-purchase-grid">
             <li>
               <span>01</span>
-              <strong>Escolha a versão</strong>
-              <p>Essencial com 91 páginas ou Completo com 292 páginas.</p>
+              <strong>Garanta o Kit Completo</strong>
+              <p>Clique no botão da oferta de R$39,90 para seguir ao checkout.</p>
             </li>
             <li>
               <span>02</span>
@@ -950,7 +943,7 @@ function Index() {
               entrega e atendimento antes de concluir o pagamento.
             </p>
             <a href="#precos">
-              Ver opções <ArrowRight size={16} />
+              Ver oferta <ArrowRight size={16} />
             </a>
           </div>
 
@@ -1024,12 +1017,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Kit digital com 2 volumes, 5 bônus e 292 páginas de atividades e materiais educativos para imprimir.",
+          "Kit Completo digital com 292 páginas: 2 volumes de atividades + 5 bônus, prontos para imprimir. Oferta de lançamento por R$39,90.",
       },
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
-        content: "2 volumes + 5 bônus. 292 páginas de materiais digitais para imprimir.",
+        content: "Kit Completo: 292 páginas, 2 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
