@@ -6402,3 +6402,117 @@
     flex: 1 1 50%;
   }
 }
+
+
+/* =========================================================
+   V4.3 — COMPLETE OFFER FOCUS
+   ========================================================= */
+
+.v43-pricing-focus {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.v43-pricing-focus .v3-price-card-complete {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.v43-essential-downsell {
+  display: flex;
+  width: min(100%, 760px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 28px auto 0;
+  padding: 20px 22px;
+  border: 1px solid var(--v3-line);
+  border-radius: 14px;
+  background: color-mix(in oklch, var(--v3-paper) 88%, var(--v3-cream));
+  color: var(--v3-ink);
+}
+
+.v43-essential-downsell > div:first-child {
+  display: grid;
+  max-width: 490px;
+  gap: 6px;
+}
+
+.v43-essential-downsell > div:first-child > span {
+  color: var(--v3-muted);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+}
+
+.v43-essential-downsell > div:first-child > strong {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.v43-essential-downsell > div:first-child > p {
+  color: var(--v3-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.v43-essential-downsell-action {
+  display: grid;
+  flex: 0 0 190px;
+  gap: 9px;
+  justify-items: stretch;
+}
+
+.v43-essential-downsell-action > span {
+  color: var(--v3-muted);
+  font-size: 13px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.v43-essential-downsell-action .v3-button {
+  min-height: 42px;
+  padding: 10px 14px;
+  font-size: 9px;
+  opacity: 0.84;
+}
+
+.v43-essential-downsell-action .v3-button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .v43-essential-downsell {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 16px;
+  }
+
+  .v43-essential-downsell-action {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .v43-essential-downsell-action .v3-button {
+    width: auto;
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 420px) {
+  .v43-essential-downsell-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .v43-essential-downsell-action .v3-button {
+    width: 100%;
+  }
+}
