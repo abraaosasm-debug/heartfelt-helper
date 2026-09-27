@@ -293,7 +293,7 @@ if (!css.includes("V4.4 — BONUS VALUE + COLLAPSED DOWNSELL")) {
 
 for (const conversionTrackingMarker of [
   "InitiateCheckout",
-  'content_name: offer.name',
+  "content_name: offer.name",
   'currency: "BRL"',
 ]) {
   if (!index.includes(conversionTrackingMarker)) {
