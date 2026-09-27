@@ -188,7 +188,9 @@ for (const obsoletePositioning of [
   "Quer começar ou quer levar o pacote completo?",
 ]) {
   if (index.includes(obsoletePositioning)) {
-    errors.push(`Posicionamento antigo do Essencial voltou para a rota principal: ${obsoletePositioning}`);
+    errors.push(
+      `Posicionamento antigo do Essencial voltou para a rota principal: ${obsoletePositioning}`,
+    );
   }
 }
 
