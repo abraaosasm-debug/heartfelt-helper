@@ -7029,3 +7029,185 @@
     font-size: 7px;
   }
 }
+
+
+/* =========================================================
+   V4.6 — COMPACT SALES FUNNEL
+   ========================================================= */
+
+.v46-compact-preview-section {
+  padding: 68px 0;
+  border-top: 1px solid var(--v3-line);
+  background:
+    radial-gradient(circle at 10% 10%, oklch(0.72 0.11 80 / 0.07), transparent 26%),
+    oklch(0.982 0.009 82);
+}
+
+.v46-preview-heading {
+  align-items: end;
+}
+
+.v46-preview-heading h2 {
+  max-width: 760px;
+}
+
+.v46-preview-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.v46-preview-summary > span {
+  padding: 12px 14px;
+  border: 1px solid var(--v3-line);
+  border-radius: 12px;
+  background: white;
+  color: var(--v3-muted);
+  font-size: 9px;
+  text-align: center;
+}
+
+.v46-preview-summary strong {
+  color: var(--v3-ink);
+}
+
+.v46-preview-carousel {
+  margin-top: 22px;
+}
+
+.v46-volume3-highlight {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) 1.3fr;
+  gap: 22px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 20px 22px;
+  border: 1px solid oklch(0.72 0.11 80 / 0.24);
+  border-radius: 18px;
+  background: white;
+}
+
+.v46-volume3-highlight > div:first-child {
+  display: grid;
+  gap: 7px;
+}
+
+.v46-volume3-highlight > div:first-child > span {
+  color: var(--v3-orange-dark);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+}
+
+.v46-volume3-highlight > div:first-child > strong {
+  color: var(--v3-ink);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.v46-theme-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.v46-theme-chips span {
+  padding: 8px 10px;
+  border: 1px solid var(--v3-line);
+  border-radius: 999px;
+  background: var(--v3-cream);
+  color: var(--v3-ink);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.v46-preview-cta {
+  margin-top: 22px;
+}
+
+.v3-benefits {
+  padding: 62px 0;
+}
+
+.v3-benefit-intro h2 {
+  max-width: 620px;
+}
+
+.v3-benefit-grid {
+  margin-top: 28px;
+}
+
+.v3-benefit {
+  min-height: 0;
+}
+
+.v3-pricing-section {
+  padding-top: 72px;
+  padding-bottom: 68px;
+}
+
+.v3-assurance-section {
+  padding-top: 62px;
+  padding-bottom: 62px;
+}
+
+.v46-checkout-note {
+  display: flex;
+  width: fit-content;
+  max-width: 760px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 18px auto 0;
+  padding: 10px 14px;
+  border: 1px solid oklch(0.65 0.05 155 / 0.22);
+  border-radius: 999px;
+  background: oklch(0.97 0.02 150);
+  color: var(--v3-ink);
+  font-size: 9px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.v46-checkout-note svg {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 760px) {
+  .v46-compact-preview-section {
+    padding: 52px 0;
+  }
+
+  .v46-preview-summary {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .v46-preview-summary > span {
+    text-align: left;
+  }
+
+  .v46-volume3-highlight {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .v46-preview-cta {
+    margin-top: 18px;
+  }
+
+  .v3-benefits,
+  .v3-pricing-section,
+  .v3-assurance-section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .v46-checkout-note {
+    align-items: flex-start;
+    border-radius: 14px;
+    text-align: left;
+  }
+}
