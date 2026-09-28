@@ -334,6 +334,18 @@ if (!css.includes("V4.6 — COMPACT SALES FUNNEL")) {
   errors.push("Camada V4.6 de compactação do funil ausente.");
 }
 
+if (!css.includes("V4.7 — MOBILE HERO CONVERSION PASS")) {
+  errors.push("Camada V4.7 de otimização mobile do hero ausente.");
+}
+
+if (!index.includes('className="v47-preview-summary-new"')) {
+  errors.push("Volume 3 precisa permanecer destacado primeiro na prova compacta.");
+}
+
+if (index.includes("R$0,08 por página")) {
+  errors.push("Argumento de preço por página não deve voltar para a oferta principal.");
+}
+
 for (const removedLongSection of ["v38-upgrade-section", "v38-purchase-section"]) {
   if (index.includes(removedLongSection)) {
     errors.push(`Seção longa removida voltou para a landing: ${removedLongSection}`);
