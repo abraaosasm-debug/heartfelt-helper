@@ -98,12 +98,11 @@ const previewPagesVolume2 = [
 ] as const;
 
 const previewPagesVolume3 = [
-  ["Amostra real 01", "Volume 3", "/previews/1_v3.jpg", "VOLUME 3 • CONTEÚDO REAL"],
-  ["Amostra real 02", "Volume 3", "/previews/2_v3.jpg", null],
-  ["Amostra real 03", "Volume 3", "/previews/3_v3.jpg", null],
-  ["Amostra real 04", "Volume 3", "/previews/4_v3.jpg", null],
-  ["Amostra real 05", "Volume 3", "/previews/5_v3.jpg", null],
-  ["Amostra real 06", "Volume 3", "/previews/6_v3.jpg", null],
+  ["Amostra real 01", "Volume 3", "/previews/2_v3.jpg", "VOLUME 3 • CONTEÚDO REAL"],
+  ["Amostra real 02", "Volume 3", "/previews/3_v3.jpg", null],
+  ["Amostra real 03", "Volume 3", "/previews/4_v3.jpg", null],
+  ["Amostra real 04", "Volume 3", "/previews/5_v3.jpg", null],
+  ["Amostra real 05", "Volume 3", "/previews/6_v3.jpg", null],
 ] as const;
 
 const benefits = [
@@ -227,6 +226,7 @@ function PreviewPage({
   badge,
   number,
   volume,
+  total = 6,
 }: {
   title: string;
   skill: string;
@@ -234,6 +234,7 @@ function PreviewPage({
   badge: string | null;
   number: number;
   volume: "Volume 1" | "Volume 2" | "Volume 3";
+  total?: number;
 }) {
   return (
     <Dialog>
@@ -260,7 +261,9 @@ function PreviewPage({
               <span>{skill}</span>
               <strong>{title}</strong>
             </div>
-            <span className="v34-preview-index">{String(number).padStart(2, "0")} / 06</span>
+            <span className="v34-preview-index">
+              {String(number).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
           </div>
         </button>
       </DialogTrigger>
@@ -827,13 +830,13 @@ function Index() {
               <h2 id="preview-volume3-title">Veja o novo Volume 3 por dentro.</h2>
             </div>
             <p>
-              O maior volume da coleção acrescenta 200 páginas novas. Estas seis imagens são páginas
-              reais do arquivo que passa a fazer parte do Kit Completo.
+              O maior volume da coleção acrescenta 200 páginas novas. Estas cinco imagens são
+              páginas internas reais do arquivo que passa a fazer parte do Kit Completo.
             </p>
           </div>
 
           <div className="v33-preview-meta">
-            <span>6 páginas reais do Volume 3</span>
+            <span>5 páginas internas reais do Volume 3</span>
             <span>Volume 3 • 200 páginas no total</span>
           </div>
 
@@ -851,6 +854,7 @@ function Index() {
                 badge={badge}
                 number={index + 1}
                 volume="Volume 3"
+                total={5}
               />
             ))}
           </div>
