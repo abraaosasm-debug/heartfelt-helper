@@ -27,6 +27,7 @@ const originalCovers = [
   "public/covers/Jogos_de_Mesa_Imprimiveis_03_Completo_260921_142019.jpg",
   "public/covers/Caderno_de_Observacao_da_Aprendizagem_04_Completo_260921_142033.jpg",
   "public/covers/Atividades_para_Enviar_as_Familias_05_Completo_260921_142043.jpg",
+  "public/covers/1_v3.jpg",
 ];
 
 for (const path of originalCovers) {
@@ -104,6 +105,40 @@ for (const relative of volume2Previews) {
   if (!index.includes(publicPath)) {
     errors.push(`Página real do Volume 2 não referenciada na landing: ${publicPath}`);
   }
+}
+
+const volume3Previews = Array.from(
+  { length: 5 },
+  (_, index) => `public/previews/${index + 2}_v3.jpg`,
+);
+
+for (const relative of volume3Previews) {
+  const absolute = resolve(root, relative);
+  const publicPath = `/${relative.replace("public/", "")}`;
+
+  if (!existsSync(absolute)) {
+    errors.push(`Página interna real do Volume 3 ausente: ${relative}`);
+    continue;
+  }
+
+  const size = statSync(absolute).size;
+  if (size < 100 * 1024) {
+    errors.push(
+      `Página interna do Volume 3 suspeitamente pequena: ${relative} (${Math.round(size / 1024)} KB)`,
+    );
+  }
+  if (size > 2 * 1024 * 1024) {
+    errors.push(
+      `Página interna do Volume 3 acima de 2 MB: ${relative} (${Math.round(size / 1024)} KB)`,
+    );
+  }
+  if (!index.includes(publicPath)) {
+    errors.push(`Página interna do Volume 3 não referenciada na landing: ${publicPath}`);
+  }
+}
+
+if (index.includes("/previews/1_v3.jpg")) {
+  errors.push("A capa duplicada do Volume 3 não deve ser apresentada como página interna.");
 }
 
 for (let number = 1; number <= 6; number += 1) {
@@ -195,12 +230,12 @@ for (const obsoletePositioning of [
 }
 
 for (const completeFocusMarker of [
-  "KIT COMPLETO • 292 PÁGINAS • 2 VOLUMES + 5 BÔNUS",
-  "292 páginas de atividades e materiais",
+  "KIT COMPLETO • 492 PÁGINAS • 3 VOLUMES + 5 BÔNUS",
+  "492 páginas de atividades e materiais",
   "Ver tudo o que vem no Kit Completo",
   "v43-pricing-focus",
   "OFERTA PRINCIPAL",
-  "Leve o Kit Completo com 292 páginas por R$39,90.",
+  "Leve o Kit Completo com 492 páginas por R$39,90.",
 ]) {
   if (!index.includes(completeFocusMarker)) {
     errors.push(`Foco do Kit Completo ausente: ${completeFocusMarker}`);
@@ -291,6 +326,24 @@ if (!css.includes("V4.4 — BONUS VALUE + COLLAPSED DOWNSELL")) {
   errors.push("Camada V4.4 de valor dos bônus e downsell recolhido ausente.");
 }
 
+if (!css.includes("V4.5 — VOLUME 3 INTEGRATION")) {
+  errors.push("Camada V4.5 de integração visual do Volume 3 ausente.");
+}
+
+for (const requiredVolume3Marker of [
+  "previewPagesVolume3",
+  "preview-volume3-title",
+  "v45-preview-section-volume3",
+  "VOLUME 3 • 200 PÁGINAS",
+  "3 volumes + 5 bônus",
+  "492 páginas",
+  "382 páginas nos três volumes",
+]) {
+  if (!index.includes(requiredVolume3Marker)) {
+    errors.push(`Integração do Volume 3 ausente: ${requiredVolume3Marker}`);
+  }
+}
+
 for (const conversionTrackingMarker of [
   "InitiateCheckout",
   "content_name: offer.name",
@@ -315,8 +368,8 @@ for (const bonusValueMarker of [
 
 for (const requiredPromoCopy of [
   "de <s>R$59,90</s> por <b>R$39,90</b>",
-  "292 páginas • 2 volumes • 5 bônus",
-  "QUERO AS 292 PÁGINAS — R$39,90",
+  "492 páginas • 3 volumes • 5 bônus",
+  "QUERO AS 492 PÁGINAS — R$39,90",
 ]) {
   if (!index.includes(requiredPromoCopy)) {
     errors.push(`Clareza promocional ausente: ${requiredPromoCopy}`);
