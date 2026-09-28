@@ -131,7 +131,7 @@ const benefits = [
 const faqs = [
   [
     "O que está incluído no Kit Completo?",
-    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 492 páginas digitais no total.",
+    "O Kit Completo reúne os Volumes 1, 2 e 3 e os cinco bônus — 492 páginas digitais no total.",
   ],
   [
     "Preciso imprimir as 492 páginas de uma vez?",
@@ -417,7 +417,7 @@ function Index() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const targets = Array.from(
       page.querySelectorAll<HTMLElement>(
-        ".v3-section-heading, .v32-preview-heading, .v33-preview-meta, .v3-product-card, .v3-bonus-card, .v34-preview-card, .v3-benefit, .v3-price-card, .v3-guarantee, .v3-faq details, .v3-final-inner",
+        ".v3-section-heading, .v32-preview-heading, .v3-product-card, .v3-bonus-card, .v34-preview-card, .v46-volume3-highlight, .v3-benefit, .v3-price-card, .v3-guarantee, .v3-faq details, .v3-final-inner",
       ),
     );
 
@@ -485,7 +485,7 @@ function Index() {
 
             <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
               <span>
-                <strong>2</strong>
+                <strong>3</strong>
                 volumes
               </span>
               <span>
@@ -671,71 +671,40 @@ function Index() {
             </article>
           </div>
 
-          <div className="v44-bonus-proof" aria-labelledby="bonus-proof-title">
-            <div className="v44-bonus-proof-heading">
-              <span className="v3-kicker">O QUE EXISTE NOS 5 BÔNUS</span>
-              <h2 id="bonus-proof-title">
-                Mais 110 páginas para transformar atividades em rotina.
-              </h2>
-              <p>
-                Além dos três volumes, você recebe materiais complementares com funções diferentes.
-                Assim, os bônus não ficam apenas como “extras”: cada um resolve uma parte prática do
-                uso do kit.
-              </p>
-            </div>
-
-            <div className="v44-bonus-proof-grid">
-              {bonuses.map(([title, pages, details], index) => (
-                <article key={title}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <strong>{title}</strong>
-                    <small>{pages}</small>
-                    <p>{details}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="v44-bonus-proof-cta">
-              <p>
-                Somando os 5 bônus: <strong>110 páginas.</strong> Com os três volumes, o Kit
-                Completo chega a <strong>492 páginas.</strong>
-              </p>
-              <PrimaryButton href={checkoutUrls.complete}>
-                QUERO OS 3 VOLUMES + 5 BÔNUS — R$39,90
-              </PrimaryButton>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="v32-preview-section" aria-labelledby="preview-title">
+      <section
+        id="amostras"
+        className="v32-preview-section v46-compact-preview-section"
+        aria-labelledby="preview-title"
+      >
         <div className="v3-shell">
-          <div className="v32-preview-heading">
+          <div className="v32-preview-heading v46-preview-heading">
             <div>
-              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 1</span>
-              <h2 id="preview-title">Veja o Volume 1 por dentro.</h2>
+              <span className="v3-kicker">PÁGINAS REAIS • 3 VOLUMES</span>
+              <h2 id="preview-title">Veja o material por dentro antes de comprar.</h2>
             </div>
             <p>
-              Estas são páginas reais escolhidas diretamente do Volume 1. Veja o conteúdo inteiro,
-              deslize no celular e toque em qualquer página para ampliar.
+              Uma única galeria reúne páginas reais dos Volumes 1, 2 e 3. Deslize no celular e
+              toque em qualquer página para ampliar.
             </p>
           </div>
 
-          <div className="v33-preview-meta">
-            <span>6 páginas escolhidas do material real</span>
-            <span>Volume 1 • 91 páginas no total</span>
+          <div className="v46-preview-summary" aria-label="Resumo das amostras">
+            <span><strong>Volume 1</strong> • 91 páginas</span>
+            <span><strong>Volume 2</strong> • 91 páginas</span>
+            <span><strong>Volume 3</strong> • 200 páginas</span>
           </div>
 
           <div
-            className="v33-preview-carousel"
+            className="v33-preview-carousel v46-preview-carousel"
             role="region"
-            aria-label="Carrossel com páginas reais do Volume 1"
+            aria-label="Galeria com páginas reais dos três volumes"
           >
             {previewPagesVolume1.map(([title, skill, source, badge], index) => (
               <PreviewPage
-                key={title}
+                key={source}
                 title={title}
                 skill={skill}
                 source={source}
@@ -744,40 +713,6 @@ function Index() {
                 volume="Volume 1"
               />
             ))}
-          </div>
-
-          <p className="v33-preview-hint">
-            Deslize para o lado para ver mais • toque em uma página para ampliar
-          </p>
-        </div>
-      </section>
-
-      <section
-        className="v32-preview-section v39-preview-section-volume2"
-        aria-labelledby="preview-volume2-title"
-      >
-        <div className="v3-shell">
-          <div className="v32-preview-heading">
-            <div>
-              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 2</span>
-              <h2 id="preview-volume2-title">Agora veja o segundo volume por dentro.</h2>
-            </div>
-            <p>
-              O Volume 2 não aparece aqui só como uma capa. Estas são páginas reais do arquivo que
-              faz parte do Kit Completo, para você avaliar o material antes de comprar.
-            </p>
-          </div>
-
-          <div className="v33-preview-meta">
-            <span>6 páginas reais do Volume 2</span>
-            <span>Volume 2 • 91 páginas no total</span>
-          </div>
-
-          <div
-            className="v33-preview-carousel"
-            role="region"
-            aria-label="Carrossel com páginas reais do Volume 2"
-          >
             {previewPagesVolume2.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={source}
@@ -789,62 +724,6 @@ function Index() {
                 volume="Volume 2"
               />
             ))}
-          </div>
-
-          <p className="v33-preview-hint">
-            Deslize para o lado para ver mais • toque em uma página para ampliar
-          </p>
-
-          <div className="v39-preview-proof">
-            <span>
-              <Check size={16} /> Leitura inicial e formação de sentido
-            </span>
-            <span>
-              <Check size={16} /> Quantidades até 20 e sequências
-            </span>
-            <span>
-              <Check size={16} /> Comunicação, escolhas e situações do cotidiano
-            </span>
-          </div>
-
-          <div className="v39-preview-cta">
-            <p>
-              O Kit Completo reúne os três volumes e os cinco bônus: <strong>492 páginas</strong> em
-              uma única compra.
-            </p>
-            <PrimaryButton href={checkoutUrls.complete}>
-              QUERO O KIT COMPLETO — R$39,90
-            </PrimaryButton>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="v32-preview-section v45-preview-section-volume3"
-        aria-labelledby="preview-volume3-title"
-      >
-        <div className="v3-shell">
-          <div className="v32-preview-heading">
-            <div>
-              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 3</span>
-              <h2 id="preview-volume3-title">Veja o novo Volume 3 por dentro.</h2>
-            </div>
-            <p>
-              O maior volume da coleção acrescenta 200 páginas novas. Estas cinco imagens são
-              páginas internas reais do arquivo que passa a fazer parte do Kit Completo.
-            </p>
-          </div>
-
-          <div className="v33-preview-meta">
-            <span>5 páginas internas reais do Volume 3</span>
-            <span>Volume 3 • 200 páginas no total</span>
-          </div>
-
-          <div
-            className="v33-preview-carousel"
-            role="region"
-            aria-label="Carrossel com páginas reais do Volume 3"
-          >
             {previewPagesVolume3.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={source}
@@ -860,130 +739,29 @@ function Index() {
           </div>
 
           <p className="v33-preview-hint">
-            Deslize para o lado para ver mais • toque em uma página para ampliar
+            17 amostras reais • deslize para o lado • toque para ampliar
           </p>
 
-          <div className="v45-volume3-themes" aria-label="Quatro eixos do Volume 3">
-            <article>
-              <span>01</span>
-              <strong>Traçados e Pré-Escrita</strong>
-              <p>Coordenação motora, caminhos, contornos, padrões e precisão gráfica.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <strong>Letras e Leitura Inicial</strong>
-              <p>Letras, sílabas, formação de palavras e leitura inicial.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <strong>Números e Raciocínio</strong>
-              <p>Quantidades, sequências, comparação e raciocínio matemático visual.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <strong>Percepção Visual e Desenho</strong>
-              <p>Observação, padrões, desenho guiado e raciocínio visual.</p>
-            </article>
+          <div className="v46-volume3-highlight">
+            <div>
+              <span>NOVO VOLUME 3 • 200 PÁGINAS</span>
+              <strong>Quatro eixos em um único volume.</strong>
+            </div>
+            <div className="v46-theme-chips">
+              <span>Traçados e pré-escrita</span>
+              <span>Letras e leitura inicial</span>
+              <span>Números e raciocínio</span>
+              <span>Percepção visual e desenho</span>
+            </div>
           </div>
 
-          <div className="v39-preview-cta v45-preview-cta">
+          <div className="v39-preview-cta v46-preview-cta">
             <p>
-              Agora o Kit Completo reúne <strong>3 volumes + 5 bônus</strong>:
-              <strong> 492 páginas</strong> em uma única compra.
+              <strong>492 páginas no total:</strong> 3 volumes de atividades + 5 bônus por R$39,90.
             </p>
             <PrimaryButton href={checkoutUrls.complete}>
-              QUERO AS 492 PÁGINAS — R$39,90
+              QUERO O KIT COMPLETO — R$39,90
             </PrimaryButton>
-          </div>
-        </div>
-      </section>
-
-      <section className="v38-upgrade-section" aria-labelledby="upgrade-title">
-        <div className="v3-shell v38-upgrade-grid">
-          <div className="v38-upgrade-copy">
-            <span className="v3-kicker">UMA COLEÇÃO, OITO MATERIAIS</span>
-            <h2 id="upgrade-title">O Kit Completo vai muito além de um único PDF de atividades.</h2>
-            <p>
-              Os três volumes somam 382 páginas de atividades. Os cinco bônus acrescentam mais
-              <strong> 110 páginas de apoio</strong> para planejamento, rotina, jogos, observação e
-              participação das famílias.
-            </p>
-
-            <div className="v38-upgrade-stats" aria-label="Resumo do Kit Completo">
-              <span>
-                <strong>382</strong>
-                páginas nos 3 volumes
-              </span>
-              <span>
-                <strong>110</strong>
-                páginas nos 5 bônus
-              </span>
-              <span>
-                <strong>492</strong>
-                páginas no total
-              </span>
-            </div>
-
-            <ul className="v38-upgrade-list">
-              <li>
-                <Check size={17} /> Atividades de alfabetização, números, coordenação e raciocínio
-              </li>
-              <li>
-                <Check size={17} /> Leitura inicial, comunicação, escolhas e situações do cotidiano
-              </li>
-              <li>
-                <Check size={17} /> Planejamento, rotina visual, jogos e materiais para famílias
-              </li>
-            </ul>
-
-            <PrimaryButton href={checkoutUrls.complete}>
-              QUERO AS 492 PÁGINAS — R$39,90
-            </PrimaryButton>
-          </div>
-
-          <div className="v38-upgrade-visual" aria-label="Volume 2 e cinco bônus do Kit Completo">
-            <div className="v45-upgrade-volumes">
-              <div className="v38-upgrade-volume">
-                <img
-                  src={getCoverPreviewSource(2)}
-                  alt="Capa do Volume 2"
-                  width={1080}
-                  height={1527}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>VOLUME 2 • 91 PÁGINAS</span>
-              </div>
-              <div className="v38-upgrade-volume v45-upgrade-volume3">
-                <img
-                  src={getCoverPreviewSource(8)}
-                  alt="Capa do Volume 3"
-                  width={1080}
-                  height={1528}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>VOLUME 3 • 200 PÁGINAS</span>
-              </div>
-            </div>
-
-            <div className="v38-upgrade-bonuses">
-              {[3, 4, 5, 6, 7].map((number) => {
-                const dimensions = getCoverDimensions(number);
-                return (
-                  <img
-                    key={number}
-                    src={getCoverPreviewSource(number)}
-                    alt={`Capa do bônus ${number - 2}`}
-                    width={dimensions.width}
-                    height={dimensions.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                );
-              })}
-            </div>
-            <span className="v38-upgrade-caption">5 BÔNUS • 110 PÁGINAS EXTRAS</span>
           </div>
         </div>
       </section>
@@ -992,7 +770,7 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-benefit-intro">
             <span className="v3-kicker v3-kicker-light">MENOS PREPARAÇÃO. MAIS AÇÃO.</span>
-            <h2>Material feito para você abrir, escolher e usar.</h2>
+            <h2>Abra, escolha, imprima e use.</h2>
           </div>
 
           <div className="v3-benefit-grid">
@@ -1106,44 +884,10 @@ function Index() {
               </div>
             </div>
           </details>
-        </div>
-      </section>
 
-      <section className="v3-section v38-purchase-section" aria-labelledby="purchase-title">
-        <div className="v3-shell">
-          <div className="v3-section-heading v38-purchase-heading">
-            <span className="v3-kicker">SEM SURPRESA NA HORA DE COMPRAR</span>
-            <h2 id="purchase-title">Da página ao acesso do Kit Completo em três passos.</h2>
-            <p>O fluxo é simples e o produto é totalmente digital.</p>
-          </div>
-
-          <ol className="v38-purchase-grid">
-            <li>
-              <span>01</span>
-              <strong>Garanta o Kit Completo</strong>
-              <p>Clique no botão da oferta de R$39,90 para seguir ao checkout.</p>
-            </li>
-            <li>
-              <span>02</span>
-              <strong>Finalize na Cakto</strong>
-              <p>O botão leva você ao checkout seguro da plataforma para concluir o pagamento.</p>
-            </li>
-            <li>
-              <span>03</span>
-              <strong>Acesse o material</strong>
-              <p>
-                Após a confirmação do pagamento, siga as instruções de acesso apresentadas pela
-                plataforma.
-              </p>
-            </li>
-          </ol>
-
-          <div className="v38-purchase-note">
-            <ShieldCheck size={18} aria-hidden="true" />
-            <span>
-              Produto digital • sem frete • garantia de 7 dias conforme as condições informadas no
-              checkout.
-            </span>
+          <div className="v46-checkout-note">
+            <ShieldCheck size={17} aria-hidden="true" />
+            <span>Checkout via Cakto • produto digital • sem frete • garantia de 7 dias</span>
           </div>
         </div>
       </section>
@@ -1153,10 +897,10 @@ function Index() {
           <div className="v3-guarantee">
             <GuaranteeSeal />
             <span className="v3-kicker">GARANTIA DE 7 DIAS</span>
-            <h2>Conheça o material com mais tranquilidade.</h2>
+            <h2>Compra digital com garantia de 7 dias.</h2>
             <p>
-              Você tem 7 dias para conhecer o produto. Confira no checkout as condições da garantia,
-              entrega e atendimento antes de concluir o pagamento.
+              Confira no checkout as condições da garantia, entrega e atendimento antes de concluir
+              o pagamento.
             </p>
             <a href="#precos">
               Ver oferta <ArrowRight size={16} />
