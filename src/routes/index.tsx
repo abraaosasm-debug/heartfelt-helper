@@ -670,7 +670,6 @@ function Index() {
               </div>
             </article>
           </div>
-
         </div>
       </section>
 
@@ -686,15 +685,21 @@ function Index() {
               <h2 id="preview-title">Veja o material por dentro antes de comprar.</h2>
             </div>
             <p>
-              Uma única galeria reúne páginas reais dos Volumes 1, 2 e 3. Deslize no celular e
-              toque em qualquer página para ampliar.
+              Uma única galeria reúne páginas reais dos Volumes 1, 2 e 3. Deslize no celular e toque
+              em qualquer página para ampliar.
             </p>
           </div>
 
           <div className="v46-preview-summary" aria-label="Resumo das amostras">
-            <span><strong>Volume 1</strong> • 91 páginas</span>
-            <span><strong>Volume 2</strong> • 91 páginas</span>
-            <span><strong>Volume 3</strong> • 200 páginas</span>
+            <span>
+              <strong>Volume 1</strong> • 91 páginas
+            </span>
+            <span>
+              <strong>Volume 2</strong> • 91 páginas
+            </span>
+            <span>
+              <strong>Volume 3</strong> • 200 páginas
+            </span>
           </div>
 
           <div
