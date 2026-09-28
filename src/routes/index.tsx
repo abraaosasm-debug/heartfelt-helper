@@ -470,7 +470,7 @@ function Index() {
       <section id="inicio" className="v3-hero">
         <div className="v3-shell v3-hero-grid">
           <div className="v3-hero-copy">
-            <span className="v3-kicker">KIT COMPLETO • 492 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
+            <span className="v3-kicker">KIT COMPLETO • 492 PÁGINAS • 3 VOLUMES + 5 BÔNUS</span>
 
             <h1>
               492 páginas de atividades e materiais
@@ -585,7 +585,7 @@ function Index() {
               ))}
             </div>
 
-            <span className="v3-art-chip v3-art-chip-top">2 VOLUMES</span>
+            <span className="v3-art-chip v3-art-chip-top">3 VOLUMES</span>
             <span className="v3-art-chip v3-art-chip-bottom">+ 5 BÔNUS</span>
           </div>
         </div>
@@ -1022,7 +1022,7 @@ function Index() {
 
           <div className="v3-pricing-grid v43-pricing-focus">
             <article className="v3-price-card v3-price-card-complete">
-              <span className="v31-complete-ribbon">492 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
+              <span className="v31-complete-ribbon">492 PÁGINAS • 3 VOLUMES + 5 BÔNUS</span>
 
               <span className="v3-popular-badge">
                 <Sparkles size={14} />
