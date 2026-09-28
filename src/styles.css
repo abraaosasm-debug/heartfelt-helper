@@ -7211,3 +7211,92 @@
     text-align: left;
   }
 }
+
+
+/* =========================================================
+   V4.7 — MOBILE HERO CONVERSION PASS
+   ========================================================= */
+
+.v47-preview-summary-new {
+  border-color: oklch(0.72 0.11 80 / 0.3) !important;
+  background: oklch(0.97 0.025 82) !important;
+  color: var(--v3-orange-dark) !important;
+  font-weight: 850;
+}
+
+@media (max-width: 760px) {
+  .v3-hero {
+    padding: 36px 0 40px;
+  }
+
+  .v3-proof-row {
+    display: none;
+  }
+
+  .v3-hero-lead {
+    margin-top: 20px !important;
+  }
+
+  .v41-hero-offer {
+    margin-top: 20px;
+    padding: 17px 18px;
+  }
+
+  .v3-hero-actions {
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .v3-text-link {
+    display: none;
+  }
+
+  .v31-hero-trust {
+    margin-top: 14px;
+  }
+
+  .v3-hero-art {
+    min-height: 320px;
+    margin-top: 8px;
+  }
+
+  .v3-mini-stack {
+    display: none;
+  }
+
+  .v3-book-one {
+    width: 38%;
+    top: 62px;
+    left: 5%;
+  }
+
+  .v3-book-two {
+    width: 38%;
+    top: 70px;
+    right: 5%;
+  }
+
+  .v3-book-three {
+    width: 45%;
+    top: 38px;
+    left: 27.5%;
+  }
+
+  .v3-art-chip-top {
+    top: 14px;
+    right: 14px;
+  }
+
+  .v3-art-chip-bottom {
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .v46-preview-summary {
+    margin-top: 18px;
+  }
+
+  .v46-preview-carousel {
+    margin-top: 18px;
+  }
+}
