@@ -832,9 +832,7 @@ function Index() {
                 <small>,90</small>
               </div>
 
-              <p className="v40-price-savings">
-                Você economiza R$20,00 • pagamento único
-              </p>
+              <p className="v40-price-savings">Você economiza R$20,00 • pagamento único</p>
 
               <ul>
                 {[
