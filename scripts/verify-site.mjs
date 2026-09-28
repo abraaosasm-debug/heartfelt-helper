@@ -367,7 +367,7 @@ for (const conversionTrackingMarker of [
 }
 
 for (const bonusValueMarker of [
-  "O QUE EXISTE NOS 5 BÔNUS",
+  "5 BÔNUS • 110 PÁGINAS",
   "20 planos de encontros + mapas semanais",
   "4 jogos com regras, tabuleiros e peças",
   "15 atividades + 3 modelos de bilhetes",
@@ -381,7 +381,7 @@ for (const bonusValueMarker of [
 for (const requiredPromoCopy of [
   "de <s>R$59,90</s> por <b>R$39,90</b>",
   "492 páginas • 3 volumes • 5 bônus",
-  "QUERO AS 492 PÁGINAS — R$39,90",
+  "QUERO O KIT COMPLETO — R$39,90",
 ]) {
   if (!index.includes(requiredPromoCopy)) {
     errors.push(`Clareza promocional ausente: ${requiredPromoCopy}`);
