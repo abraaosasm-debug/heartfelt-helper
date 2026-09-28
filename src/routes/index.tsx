@@ -691,14 +691,14 @@ function Index() {
           </div>
 
           <div className="v46-preview-summary" aria-label="Resumo das amostras">
+            <span className="v47-preview-summary-new">
+              <strong>Volume 3</strong> • 200 páginas • novo
+            </span>
             <span>
               <strong>Volume 1</strong> • 91 páginas
             </span>
             <span>
               <strong>Volume 2</strong> • 91 páginas
-            </span>
-            <span>
-              <strong>Volume 3</strong> • 200 páginas
             </span>
           </div>
 
@@ -707,6 +707,18 @@ function Index() {
             role="region"
             aria-label="Galeria com páginas reais dos três volumes"
           >
+            {previewPagesVolume3.map(([title, skill, source, badge], index) => (
+              <PreviewPage
+                key={source}
+                title={title}
+                skill={skill}
+                source={source}
+                badge={badge}
+                number={index + 1}
+                volume="Volume 3"
+                total={5}
+              />
+            ))}
             {previewPagesVolume1.map(([title, skill, source, badge], index) => (
               <PreviewPage
                 key={source}
@@ -727,18 +739,6 @@ function Index() {
                 badge={badge}
                 number={index + 1}
                 volume="Volume 2"
-              />
-            ))}
-            {previewPagesVolume3.map(([title, skill, source, badge], index) => (
-              <PreviewPage
-                key={source}
-                title={title}
-                skill={skill}
-                source={source}
-                badge={badge}
-                number={index + 1}
-                volume="Volume 3"
-                total={5}
               />
             ))}
           </div>
@@ -833,7 +833,7 @@ function Index() {
               </div>
 
               <p className="v40-price-savings">
-                Você economiza R$20,00 • cerca de R$0,08 por página
+                Você economiza R$20,00 • pagamento único
               </p>
 
               <ul>
