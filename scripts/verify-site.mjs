@@ -263,8 +263,8 @@ if (index.includes("R$49,90 a mais")) {
 }
 
 for (const requiredConversionMarker of [
-  "v38-upgrade-section",
-  "v38-purchase-section",
+  "v46-compact-preview-section",
+  "v46-checkout-note",
   "attributionKeys",
   '"utm_campaign"',
   '"fbclid"',
@@ -280,8 +280,8 @@ if (!css.includes("V3.8 — CONVERSION CLARITY + TRUST + VALUE PROOF")) {
 
 for (const requiredVolume2Marker of [
   "previewPagesVolume2",
-  "preview-volume2-title",
-  "v39-preview-section-volume2",
+  "PÁGINAS REAIS • 3 VOLUMES",
+  "v46-compact-preview-section",
   "QUERO O KIT COMPLETO — R$39,90",
 ]) {
   if (!index.includes(requiredVolume2Marker)) {
@@ -330,14 +330,26 @@ if (!css.includes("V4.5 — VOLUME 3 INTEGRATION")) {
   errors.push("Camada V4.5 de integração visual do Volume 3 ausente.");
 }
 
+if (!css.includes("V4.6 — COMPACT SALES FUNNEL")) {
+  errors.push("Camada V4.6 de compactação do funil ausente.");
+}
+
+for (const removedLongSection of ["v38-upgrade-section", "v38-purchase-section"]) {
+  if (index.includes(removedLongSection)) {
+    errors.push(`Seção longa removida voltou para a landing: ${removedLongSection}`);
+  }
+}
+
+if ((index.match(/className="v32-preview-section/g) ?? []).length !== 1) {
+  errors.push("A landing deve manter apenas uma seção principal de prévias.");
+}
+
 for (const requiredVolume3Marker of [
   "previewPagesVolume3",
-  "preview-volume3-title",
-  "v45-preview-section-volume3",
+  "v46-volume3-highlight",
   "VOLUME 3 • 200 PÁGINAS",
   "3 volumes + 5 bônus",
   "492 páginas",
-  "382 páginas nos três volumes",
 ]) {
   if (!index.includes(requiredVolume3Marker)) {
     errors.push(`Integração do Volume 3 ausente: ${requiredVolume3Marker}`);
