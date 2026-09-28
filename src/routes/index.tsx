@@ -31,6 +31,7 @@ const coverSources: Record<number, string> = {
   5: "/covers/Jogos_de_Mesa_Imprimiveis_03_Completo_260921_142019.jpg?v=3",
   6: "/covers/Caderno_de_Observacao_da_Aprendizagem_04_Completo_260921_142033.jpg?v=3",
   7: "/covers/Atividades_para_Enviar_as_Familias_05_Completo_260921_142043.jpg?v=3",
+  8: "/covers/1_v3.jpg?v=1",
 };
 
 const coverPreviewSources: Record<number, string> = {
@@ -41,6 +42,7 @@ const coverPreviewSources: Record<number, string> = {
   5: "/covers/optimized/cover-5.webp?v=1",
   6: "/covers/optimized/cover-6.webp?v=1",
   7: "/covers/optimized/cover-7.webp?v=1",
+  8: "/covers/1_v3.jpg?v=1",
 };
 
 const coverDimensions: Record<number, { width: number; height: number }> = {
@@ -51,6 +53,7 @@ const coverDimensions: Record<number, { width: number; height: number }> = {
   5: { width: 1080, height: 1526 },
   6: { width: 1080, height: 1396 },
   7: { width: 1080, height: 1526 },
+  8: { width: 1080, height: 1528 },
 };
 
 const bonuses = [
@@ -94,6 +97,15 @@ const previewPagesVolume2 = [
   ["Amostra real 06", "Volume 2", "/previews/selected/6.jpg", null],
 ] as const;
 
+const previewPagesVolume3 = [
+  ["Amostra real 01", "Volume 3", "/previews/1_v3.jpg", "VOLUME 3 • CONTEÚDO REAL"],
+  ["Amostra real 02", "Volume 3", "/previews/2_v3.jpg", null],
+  ["Amostra real 03", "Volume 3", "/previews/3_v3.jpg", null],
+  ["Amostra real 04", "Volume 3", "/previews/4_v3.jpg", null],
+  ["Amostra real 05", "Volume 3", "/previews/5_v3.jpg", null],
+  ["Amostra real 06", "Volume 3", "/previews/6_v3.jpg", null],
+] as const;
+
 const benefits = [
   [
     PencilLine,
@@ -108,7 +120,7 @@ const benefits = [
   [
     Heart,
     "Mais opções para variar",
-    "Dois volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
+    "Três volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
   ],
   [
     Layers3,
@@ -120,10 +132,10 @@ const benefits = [
 const faqs = [
   [
     "O que está incluído no Kit Completo?",
-    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 292 páginas digitais no total.",
+    "O Kit Completo reúne o Volume 1, o Volume 2 e os cinco bônus — 492 páginas digitais no total.",
   ],
   [
-    "Preciso imprimir as 292 páginas de uma vez?",
+    "Preciso imprimir as 492 páginas de uma vez?",
     "Não. Você recebe os PDFs e pode escolher apenas as páginas, sequências ou materiais que quiser usar em cada momento.",
   ],
   [
@@ -221,7 +233,7 @@ function PreviewPage({
   source: string;
   badge: string | null;
   number: number;
-  volume: "Volume 1" | "Volume 2";
+  volume: "Volume 1" | "Volume 2" | "Volume 3";
 }) {
   return (
     <Dialog>
@@ -455,15 +467,15 @@ function Index() {
       <section id="inicio" className="v3-hero">
         <div className="v3-shell v3-hero-grid">
           <div className="v3-hero-copy">
-            <span className="v3-kicker">KIT COMPLETO • 292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
+            <span className="v3-kicker">KIT COMPLETO • 492 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
 
             <h1>
-              292 páginas de atividades e materiais
+              492 páginas de atividades e materiais
               <span> prontos para imprimir.</span>
             </h1>
 
             <p className="v3-hero-lead">
-              Tenha em uma única compra <strong>2 volumes de atividades + 5 bônus</strong> para
+              Tenha em uma única compra <strong>3 volumes de atividades + 5 bônus</strong> para
               trabalhar letras, números, coordenação, leitura inicial, emoções, raciocínio, rotina
               visual, jogos e muito mais — sem precisar criar tudo do zero.
             </p>
@@ -478,7 +490,7 @@ function Index() {
                 bônus
               </span>
               <span>
-                <strong>292</strong>
+                <strong>492</strong>
                 páginas
               </span>
             </div>
@@ -498,7 +510,7 @@ function Index() {
                 <b>ECONOMIZE R$20</b>
                 <span>Pagamento único</span>
               </div>
-              <p>292 páginas • 2 volumes • 5 bônus</p>
+              <p>492 páginas • 3 volumes • 5 bônus</p>
             </div>
 
             <div className="v3-hero-actions">
@@ -545,6 +557,17 @@ function Index() {
               />
             </div>
 
+            <div className="v3-book v3-book-three">
+              <img
+                src={getCoverPreviewSource(8)}
+                alt="Capa do Volume 3"
+                width={1080}
+                height={1528}
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+
             <div className="v3-mini-stack" aria-hidden="true">
               {[3, 4, 5].map((number) => (
                 <img
@@ -573,8 +596,8 @@ function Index() {
               Uma coleção completa, organizada para você saber exatamente o que está comprando.
             </h2>
             <p>
-              São 182 páginas nos dois volumes de atividades e mais 110 páginas em cinco materiais
-              complementares. No total, <strong>292 páginas digitais prontas para imprimir.</strong>
+              São 382 páginas nos três volumes de atividades e mais 110 páginas em cinco materiais
+              complementares. No total, <strong>492 páginas digitais prontas para imprimir.</strong>
             </p>
           </div>
 
@@ -607,6 +630,22 @@ function Index() {
               </div>
             </article>
 
+            <article className="v3-product-card v45-product-card-volume3">
+              <div className="v3-product-cover">
+                <Cover number={8} title="Volume 3 — Kit de Atividades Infantil e Autismo" />
+              </div>
+              <div className="v3-product-copy">
+                <span>VOLUME 3 • 200 PÁGINAS</span>
+                <h3>O maior volume da coleção</h3>
+                <p>
+                  200 páginas organizadas em quatro grandes eixos: traçados e pré-escrita; letras,
+                  sílabas, palavras e leitura inicial; números e raciocínio matemático; percepção
+                  visual, desenho e raciocínio.
+                </p>
+                <strong className="v45-new-volume-badge">NOVO • 200 PÁGINAS</strong>
+              </div>
+            </article>
+
             <article id="bonus" className="v3-bonus-card">
               <div className="v3-bonus-copy">
                 <span>5 BÔNUS • 110 PÁGINAS</span>
@@ -636,7 +675,7 @@ function Index() {
                 Mais 110 páginas para transformar atividades em rotina.
               </h2>
               <p>
-                Além dos dois volumes, você recebe materiais complementares com funções diferentes.
+                Além dos três volumes, você recebe materiais complementares com funções diferentes.
                 Assim, os bônus não ficam apenas como “extras”: cada um resolve uma parte prática do
                 uso do kit.
               </p>
@@ -657,11 +696,11 @@ function Index() {
 
             <div className="v44-bonus-proof-cta">
               <p>
-                Somando os 5 bônus: <strong>110 páginas.</strong> Com os dois volumes, o Kit
-                Completo chega a <strong>292 páginas.</strong>
+                Somando os 5 bônus: <strong>110 páginas.</strong> Com os três volumes, o Kit
+                Completo chega a <strong>492 páginas.</strong>
               </p>
               <PrimaryButton href={checkoutUrls.complete}>
-                QUERO OS 2 VOLUMES + 5 BÔNUS — R$39,90
+                QUERO OS 3 VOLUMES + 5 BÔNUS — R$39,90
               </PrimaryButton>
             </div>
           </div>
@@ -767,7 +806,7 @@ function Index() {
 
           <div className="v39-preview-cta">
             <p>
-              O Kit Completo reúne os dois volumes e os cinco bônus: <strong>292 páginas</strong> em
+              O Kit Completo reúne os três volumes e os cinco bônus: <strong>492 páginas</strong> em
               uma única compra.
             </p>
             <PrimaryButton href={checkoutUrls.complete}>
@@ -777,28 +816,106 @@ function Index() {
         </div>
       </section>
 
+      <section
+        className="v32-preview-section v45-preview-section-volume3"
+        aria-labelledby="preview-volume3-title"
+      >
+        <div className="v3-shell">
+          <div className="v32-preview-heading">
+            <div>
+              <span className="v3-kicker">PÁGINAS REAIS • VOLUME 3</span>
+              <h2 id="preview-volume3-title">Veja o novo Volume 3 por dentro.</h2>
+            </div>
+            <p>
+              O maior volume da coleção acrescenta 200 páginas novas. Estas seis imagens são páginas
+              reais do arquivo que passa a fazer parte do Kit Completo.
+            </p>
+          </div>
+
+          <div className="v33-preview-meta">
+            <span>6 páginas reais do Volume 3</span>
+            <span>Volume 3 • 200 páginas no total</span>
+          </div>
+
+          <div
+            className="v33-preview-carousel"
+            role="region"
+            aria-label="Carrossel com páginas reais do Volume 3"
+          >
+            {previewPagesVolume3.map(([title, skill, source, badge], index) => (
+              <PreviewPage
+                key={source}
+                title={title}
+                skill={skill}
+                source={source}
+                badge={badge}
+                number={index + 1}
+                volume="Volume 3"
+              />
+            ))}
+          </div>
+
+          <p className="v33-preview-hint">
+            Deslize para o lado para ver mais • toque em uma página para ampliar
+          </p>
+
+          <div className="v45-volume3-themes" aria-label="Quatro eixos do Volume 3">
+            <article>
+              <span>01</span>
+              <strong>Traçados e Pré-Escrita</strong>
+              <p>Coordenação motora, caminhos, contornos, padrões e precisão gráfica.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <strong>Letras e Leitura Inicial</strong>
+              <p>Letras, sílabas, formação de palavras e leitura inicial.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <strong>Números e Raciocínio</strong>
+              <p>Quantidades, sequências, comparação e raciocínio matemático visual.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <strong>Percepção Visual e Desenho</strong>
+              <p>Observação, padrões, desenho guiado e raciocínio visual.</p>
+            </article>
+          </div>
+
+          <div className="v39-preview-cta v45-preview-cta">
+            <p>
+              Agora o Kit Completo reúne <strong>3 volumes + 5 bônus</strong>:
+              <strong> 492 páginas</strong> em uma única compra.
+            </p>
+            <PrimaryButton href={checkoutUrls.complete}>
+              QUERO AS 492 PÁGINAS — R$39,90
+            </PrimaryButton>
+          </div>
+        </div>
+      </section>
+
       <section className="v38-upgrade-section" aria-labelledby="upgrade-title">
         <div className="v3-shell v38-upgrade-grid">
           <div className="v38-upgrade-copy">
-            <span className="v3-kicker">UMA COLEÇÃO, SETE MATERIAIS</span>
+            <span className="v3-kicker">UMA COLEÇÃO, OITO MATERIAIS</span>
             <h2 id="upgrade-title">O Kit Completo vai muito além de um único PDF de atividades.</h2>
             <p>
-              Os dois volumes somam 182 páginas de atividades. Os cinco bônus acrescentam mais
+              Os três volumes somam 382 páginas de atividades. Os cinco bônus acrescentam mais
               <strong> 110 páginas de apoio</strong> para planejamento, rotina, jogos, observação e
               participação das famílias.
             </p>
 
             <div className="v38-upgrade-stats" aria-label="Resumo do Kit Completo">
               <span>
-                <strong>182</strong>
-                páginas nos 2 volumes
+                <strong>382</strong>
+                páginas nos 3 volumes
               </span>
               <span>
                 <strong>110</strong>
                 páginas nos 5 bônus
               </span>
               <span>
-                <strong>292</strong>
+                <strong>492</strong>
                 páginas no total
               </span>
             </div>
@@ -816,21 +933,34 @@ function Index() {
             </ul>
 
             <PrimaryButton href={checkoutUrls.complete}>
-              QUERO AS 292 PÁGINAS — R$39,90
+              QUERO AS 492 PÁGINAS — R$39,90
             </PrimaryButton>
           </div>
 
           <div className="v38-upgrade-visual" aria-label="Volume 2 e cinco bônus do Kit Completo">
-            <div className="v38-upgrade-volume">
-              <img
-                src={getCoverPreviewSource(2)}
-                alt="Capa do Volume 2"
-                width={1080}
-                height={1527}
-                loading="lazy"
-                decoding="async"
-              />
-              <span>VOLUME 2 • 91 PÁGINAS</span>
+            <div className="v45-upgrade-volumes">
+              <div className="v38-upgrade-volume">
+                <img
+                  src={getCoverPreviewSource(2)}
+                  alt="Capa do Volume 2"
+                  width={1080}
+                  height={1527}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>VOLUME 2 • 91 PÁGINAS</span>
+              </div>
+              <div className="v38-upgrade-volume v45-upgrade-volume3">
+                <img
+                  src={getCoverPreviewSource(8)}
+                  alt="Capa do Volume 3"
+                  width={1080}
+                  height={1528}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>VOLUME 3 • 200 PÁGINAS</span>
+              </div>
             </div>
 
             <div className="v38-upgrade-bonuses">
@@ -879,16 +1009,16 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading v3-pricing-heading">
             <span className="v3-kicker">OFERTA PRINCIPAL</span>
-            <h2>Leve o Kit Completo com 292 páginas por R$39,90.</h2>
+            <h2>Leve o Kit Completo com 492 páginas por R$39,90.</h2>
             <p>
-              Uma única compra com os dois volumes e todos os cinco bônus. Sem assinatura e sem
+              Uma única compra com os três volumes e todos os cinco bônus. Sem assinatura e sem
               frete: o material é digital e pronto para imprimir.
             </p>
           </div>
 
           <div className="v3-pricing-grid v43-pricing-focus">
             <article className="v3-price-card v3-price-card-complete">
-              <span className="v31-complete-ribbon">292 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
+              <span className="v31-complete-ribbon">492 PÁGINAS • 2 VOLUMES + 5 BÔNUS</span>
 
               <span className="v3-popular-badge">
                 <Sparkles size={14} />
@@ -902,7 +1032,7 @@ function Index() {
               </div>
               <h3>Receba a coleção inteira</h3>
               <p className="v3-price-description">
-                Dois volumes de atividades e cinco bônus para ampliar as possibilidades de uso.
+                Três volumes de atividades e cinco bônus para ampliar as possibilidades de uso.
               </p>
 
               <div className="v40-price-anchor">
@@ -916,14 +1046,15 @@ function Index() {
               </div>
 
               <p className="v40-price-savings">
-                Você economiza R$20,00 • cerca de R$0,14 por página
+                Você economiza R$20,00 • cerca de R$0,08 por página
               </p>
 
               <ul>
                 {[
-                  "292 páginas no total",
+                  "492 páginas no total",
                   "Volume 1 — 91 páginas",
                   "Volume 2 — 91 páginas",
+                  "Volume 3 — 200 páginas",
                   "5 bônus — 110 páginas",
                   "PDFs digitais prontos para imprimir",
                   "Pagamento único",
@@ -940,7 +1071,7 @@ function Index() {
               </PrimaryButton>
 
               <p className="v3-price-difference v40-price-difference">
-                <strong>Você recebe os 7 materiais da coleção:</strong> os dois volumes completos
+                <strong>Você recebe os 8 materiais da coleção:</strong> os três volumes completos
                 mais Planejamento de 4 Semanas, Rotina Visual, Jogos de Mesa, Caderno de Observação
                 e Atividades para as Famílias.
               </p>
@@ -959,8 +1090,8 @@ function Index() {
               <div>
                 <strong>Kit Essencial — somente Volume 1</strong>
                 <p>
-                  91 páginas, sem o Volume 2 e sem os cinco bônus. Esta opção permanece disponível
-                  para quem prefere começar com uma versão menor.
+                  91 páginas, sem os Volumes 2 e 3 e sem os cinco bônus. Esta opção permanece
+                  disponível para quem prefere começar com uma versão menor.
                 </p>
               </div>
               <div className="v43-essential-downsell-action">
@@ -1044,7 +1175,7 @@ function Index() {
         <div className="v3-shell v3-final-inner">
           <div>
             <span className="v3-kicker v3-kicker-light">PRONTO PARA COMEÇAR?</span>
-            <h2>292 páginas. Dois volumes. Cinco bônus. Uma escolha.</h2>
+            <h2>492 páginas. Três volumes. Cinco bônus. Uma escolha.</h2>
           </div>
 
           <div className="v40-final-offer">
@@ -1094,17 +1225,17 @@ function Index() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kit de Atividades Infantil e Autismo | 292 páginas" },
+      { title: "Kit de Atividades Infantil e Autismo | 492 páginas" },
       {
         name: "description",
         content:
-          "Kit Completo digital com 292 páginas: 2 volumes de atividades + 5 bônus, prontos para imprimir. Oferta de lançamento por R$39,90.",
+          "Kit Completo digital com 492 páginas: 3 volumes de atividades + 5 bônus, prontos para imprimir. Oferta de lançamento por R$39,90.",
       },
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
         content:
-          "Kit Completo: 292 páginas, 2 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
+          "Kit Completo: 492 páginas, 3 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
