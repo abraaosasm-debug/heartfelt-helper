@@ -166,10 +166,7 @@ function Index() {
             </div>
           </div>
 
-          <div
-            className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`}
-            aria-live="polite"
-          >
+          <div className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`} aria-live="polite">
             {showOffer ? (
               <>
                 <span>AGORA VEJA A COLEÇÃO COMPLETA</span>
