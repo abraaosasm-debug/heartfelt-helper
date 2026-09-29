@@ -8169,3 +8169,19 @@
   .v3-book-two { transform: rotate(9deg) !important; }
   .v3-book-three { transform: rotate(-1deg) !important; }
 }
+
+
+/* =========================================================
+   V5.1 — 30 DAY GUARANTEE SEAL
+   ========================================================= */
+
+.v31-guarantee-seal strong {
+  font-size: 64px;
+  letter-spacing: -0.085em;
+}
+
+@media (max-width: 760px) {
+  .v31-guarantee-seal strong {
+    font-size: 48px;
+  }
+}
