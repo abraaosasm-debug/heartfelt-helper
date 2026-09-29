@@ -95,6 +95,14 @@ if (!css.includes("V6.3 — VSL COMPLETION POLISH")) {
   errors.push("Camada V6.3 de acabamento final da VSL ausente.");
 }
 
+if (!css.includes("V6.4 — COMPACT MOBILE VSL PLAYER")) {
+  errors.push("Camada V6.4 de compactação do player mobile ausente.");
+}
+
+if (!css.includes("width: min(88vw, 360px);")) {
+  errors.push("Player mobile da VSL precisa manter largura compactada.");
+}
+
 for (const completionMarker of [
   "Vídeo curto • 1min44s",
   "vsl-video-progress",
