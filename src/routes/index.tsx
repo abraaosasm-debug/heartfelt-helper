@@ -29,6 +29,8 @@ function Index() {
   const [offerHref, setOfferHref] = useState("/oferta");
   const [videoState, setVideoState] = useState<"loading" | "ready" | "fallback">("loading");
   const [showOffer, setShowOffer] = useState(false);
+  const [showPreplay, setShowPreplay] = useState(true);
+  const [completed, setCompleted] = useState(false);
   const [started, setStarted] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -46,7 +48,8 @@ function Index() {
 
   const handlePlay = () => {
     setVideoState("ready");
-    setShowOffer(false);
+    setShowPreplay(false);
+    if (!completed) setShowOffer(false);
 
     if (started) return;
     setStarted(true);
@@ -54,7 +57,10 @@ function Index() {
   };
 
   const handleEnded = () => {
+    setCompleted(true);
+    setShowPreplay(true);
     setShowOffer(true);
+    setProgress(100);
     trackVslEvent("VSLCompleted");
   };
 
@@ -119,13 +125,23 @@ function Index() {
                 <source src={VSL_VIDEO_SRC} type="video/mp4" />
               </video>
 
-              {!started && videoState !== "fallback" ? (
+              {showPreplay && videoState !== "fallback" ? (
                 <button
                   type="button"
-                  className="vsl-preplay"
-                  aria-label="Reproduzir apresentação do Kit de Atividades"
+                  className={`vsl-preplay${completed ? " is-replay" : ""}`}
+                  aria-label={
+                    completed
+                      ? "Assistir novamente à apresentação do Kit de Atividades"
+                      : "Reproduzir apresentação do Kit de Atividades"
+                  }
                   onClick={() => {
-                    void videoRef.current?.play();
+                    const video = videoRef.current;
+                    if (!video) return;
+                    if (completed) {
+                      video.currentTime = 0;
+                      setProgress(0);
+                    }
+                    void video.play();
                   }}
                 >
                   <span className="vsl-preplay-covers" aria-hidden="true">
@@ -148,8 +164,10 @@ function Index() {
                     <span className="vsl-preplay-button" aria-hidden="true">
                       <Play size={24} fill="currentColor" />
                     </span>
-                    <strong>Assista à apresentação</strong>
-                    <small>1min44s • veja o kit por dentro</small>
+                    <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
+                    <small>
+                      {completed ? "Rever apresentação • 1min44s" : "1min44s • veja o kit por dentro"}
+                    </small>
                   </span>
                 </button>
               ) : null}
