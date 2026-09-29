@@ -99,7 +99,7 @@ if (!css.includes("V6.4 — COMPACT MOBILE VSL PLAYER")) {
   errors.push("Camada V6.4 de compactação do player mobile ausente.");
 }
 
-if (!css.includes("width: min(88vw, 360px);")) {
+if (!css.includes("width: min(84vw, 340px);")) {
   errors.push("Player mobile da VSL precisa manter largura compactada.");
 }
 
