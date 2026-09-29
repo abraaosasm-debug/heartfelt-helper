@@ -7465,3 +7465,296 @@
     border-top-color: oklch(0.235 0.036 248 / 0.11);
   }
 }
+
+
+/* =========================================================
+   V4.9 — EDUCATIONAL STATIONERY BRAND SYSTEM
+   Product-first visual language: warm paper + learning blue + soft yellow + coral action
+   ========================================================= */
+
+.v3-page {
+  --v3-ink: oklch(0.285 0.035 248);
+  --v3-ink-soft: oklch(0.36 0.03 244);
+  --v3-cream: oklch(0.982 0.013 82);
+  --v3-paper: oklch(0.998 0.004 82);
+  --v3-orange: oklch(0.72 0.14 42);
+  --v3-orange-dark: oklch(0.56 0.135 40);
+  --v3-teal: oklch(0.945 0.028 235);
+  --v3-gold: oklch(0.89 0.095 90);
+  --v3-line: oklch(0.875 0.014 82);
+  --v3-muted: oklch(0.50 0.018 245);
+  background: var(--v3-cream);
+}
+
+/* Hero: make the product feel educational and approachable before it feels premium. */
+.v3-hero {
+  border-bottom: 1px solid var(--v3-line);
+  background:
+    radial-gradient(circle at 4% 8%, oklch(0.92 0.045 235 / 0.72), transparent 28%),
+    radial-gradient(circle at 92% 12%, oklch(0.93 0.085 92 / 0.52), transparent 24%),
+    linear-gradient(180deg, oklch(0.995 0.006 82), var(--v3-cream));
+  color: var(--v3-ink);
+}
+
+.v3-hero .v3-kicker {
+  color: var(--v3-orange-dark);
+}
+
+.v3-hero h1 {
+  color: var(--v3-ink);
+}
+
+.v3-hero h1 span {
+  color: var(--v3-orange-dark);
+}
+
+.v3-hero-lead {
+  color: var(--v3-muted);
+}
+
+.v3-hero-lead strong {
+  color: var(--v3-ink);
+}
+
+.v3-proof-row {
+  border-block-color: oklch(0.285 0.035 248 / 0.13);
+}
+
+.v3-proof-row > span {
+  color: var(--v3-muted);
+}
+
+.v3-proof-row strong {
+  color: var(--v3-ink);
+}
+
+.v3-text-link {
+  color: var(--v3-ink);
+}
+
+.v31-hero-trust {
+  color: var(--v3-muted);
+}
+
+.v31-hero-trust svg {
+  color: var(--v3-orange-dark);
+}
+
+.v3-hero-art {
+  border-color: oklch(0.285 0.035 248 / 0.08);
+  background:
+    radial-gradient(circle at 18% 20%, oklch(0.93 0.055 235), transparent 35%),
+    radial-gradient(circle at 82% 25%, oklch(0.93 0.09 92), transparent 32%),
+    linear-gradient(145deg, oklch(0.995 0.006 82), oklch(0.965 0.025 82));
+  box-shadow: 0 28px 70px oklch(0.285 0.035 248 / 0.13);
+}
+
+.v3-art-orbit {
+  border-color: oklch(0.285 0.035 248 / 0.08);
+}
+
+/* All three volumes now belong to one visual family. */
+.v3-product-card-dark,
+.v3-product-card-orange,
+.v45-product-card-volume3 {
+  position: relative;
+  border: 1px solid var(--v3-line);
+  background: var(--v3-paper);
+  color: var(--v3-ink);
+  box-shadow: 0 18px 44px oklch(0.285 0.035 248 / 0.07);
+}
+
+.v3-product-card-dark::before,
+.v3-product-card-orange::before,
+.v45-product-card-volume3::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  border-radius: 24px 24px 0 0;
+}
+
+.v3-product-card-dark::before {
+  background: oklch(0.79 0.075 235);
+}
+
+.v3-product-card-orange::before {
+  background: var(--v3-gold);
+}
+
+.v45-product-card-volume3::before {
+  background: oklch(0.84 0.075 42);
+}
+
+.v3-product-card-dark .v3-product-copy > span {
+  color: oklch(0.52 0.075 235);
+}
+
+.v3-product-card-orange .v3-product-copy > span,
+.v45-product-card-volume3 .v3-product-copy > span {
+  color: var(--v3-orange-dark);
+}
+
+.v3-product-card-dark .v3-product-copy h3,
+.v3-product-card-orange .v3-product-copy h3,
+.v45-product-card-volume3 .v3-product-copy h3 {
+  color: var(--v3-ink);
+}
+
+.v3-product-card-dark .v3-product-copy p,
+.v3-product-card-orange .v3-product-copy p,
+.v45-product-card-volume3 .v3-product-copy p {
+  color: var(--v3-muted);
+}
+
+.v45-new-volume-badge {
+  border-color: oklch(0.72 0.14 42 / 0.24);
+  background: oklch(0.72 0.14 42 / 0.09);
+  color: var(--v3-orange-dark);
+}
+
+.v3-bonus-card {
+  background:
+    radial-gradient(circle at 93% 8%, oklch(0.93 0.085 92 / 0.28), transparent 27%),
+    var(--v3-paper);
+}
+
+/* Benefits: learning-blue paper, not wellness/sage. */
+.v3-benefits {
+  background:
+    radial-gradient(circle at 88% 15%, oklch(0.93 0.085 92 / 0.22), transparent 28%),
+    oklch(0.955 0.027 235);
+  color: var(--v3-ink);
+}
+
+.v3-benefits .v3-kicker-light {
+  color: var(--v3-orange-dark);
+}
+
+.v3-benefit-intro h2,
+.v3-benefit h3 {
+  color: var(--v3-ink);
+}
+
+.v3-benefit-grid {
+  border-block-color: oklch(0.285 0.035 248 / 0.12);
+}
+
+.v3-benefit,
+.v3-benefit + .v3-benefit {
+  border-color: oklch(0.285 0.035 248 / 0.10);
+}
+
+.v3-benefit-icon {
+  background: var(--v3-paper);
+  color: var(--v3-orange-dark);
+  box-shadow: 0 8px 20px oklch(0.285 0.035 248 / 0.08);
+}
+
+.v3-benefit p {
+  color: var(--v3-muted);
+}
+
+/* Proof/gallery stays paper-like so the worksheets are the visual focus. */
+.v46-compact-preview-section {
+  background:
+    radial-gradient(circle at 9% 8%, oklch(0.93 0.055 235 / 0.24), transparent 25%),
+    var(--v3-cream);
+}
+
+.v47-preview-summary-new {
+  border-color: oklch(0.72 0.14 42 / 0.20) !important;
+  background: oklch(0.975 0.018 58) !important;
+  color: var(--v3-orange-dark) !important;
+}
+
+.v46-volume3-highlight {
+  background:
+    linear-gradient(135deg, oklch(0.998 0.004 82), oklch(0.974 0.022 58));
+}
+
+/* The offer remains the single dominant dark block. */
+.v3-pricing-section {
+  background:
+    radial-gradient(circle at 8% 10%, oklch(0.93 0.055 235 / 0.18), transparent 24%),
+    linear-gradient(oklch(0.285 0.035 248 / 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.285 0.035 248 / 0.02) 1px, transparent 1px),
+    var(--v3-cream);
+  background-size: auto, 36px 36px, 36px 36px, auto;
+}
+
+.v3-price-card-complete {
+  background:
+    radial-gradient(circle at 92% 7%, oklch(0.72 0.14 42 / 0.16), transparent 25%),
+    var(--v3-ink);
+  box-shadow: 0 28px 60px oklch(0.285 0.035 248 / 0.17);
+}
+
+/* Trust section returns to clean white paper. */
+.v3-assurance-section {
+  background: var(--v3-paper);
+}
+
+/* Closing: warm, optimistic and product-like rather than another dark corporate panel. */
+.v3-final-cta {
+  border-top: 1px solid var(--v3-line);
+  background:
+    radial-gradient(circle at 90% 15%, oklch(0.93 0.085 92 / 0.5), transparent 26%),
+    radial-gradient(circle at 8% 90%, oklch(0.93 0.055 235 / 0.35), transparent 28%),
+    oklch(0.976 0.02 58);
+  color: var(--v3-ink);
+}
+
+.v3-final-inner .v3-kicker {
+  color: var(--v3-orange-dark);
+}
+
+.v3-final-inner h2 {
+  color: var(--v3-ink);
+}
+
+.v3-final-inner .v3-button,
+.v3-final-inner .v3-button.v3-button-dark {
+  border-color: var(--v3-orange);
+  background: var(--v3-orange);
+  color: var(--v3-ink);
+}
+
+.v3-final-inner .v3-button:hover,
+.v3-final-inner .v3-button.v3-button-dark:hover {
+  border-color: var(--v3-gold);
+  background: var(--v3-gold);
+  color: var(--v3-ink);
+}
+
+/* The mobile buy bar can stay dark: it is a functional conversion control. */
+.v31-mobile-buybar {
+  background: oklch(0.285 0.035 248 / 0.98);
+}
+
+/* CTA coral should be the strongest warm accent throughout the page. */
+.v3-button,
+.v3-popular-badge,
+.v41-hero-offer-meta b {
+  border-color: var(--v3-orange);
+  background: var(--v3-orange);
+}
+
+.v3-button:hover {
+  background: var(--v3-gold);
+  border-color: var(--v3-gold);
+}
+
+@media (max-width: 980px) {
+  .v3-benefit:nth-child(3),
+  .v3-benefit:nth-child(4) {
+    border-top-color: oklch(0.285 0.035 248 / 0.10);
+  }
+}
+
+@media (max-width: 760px) {
+  .v3-benefit,
+  .v3-benefit + .v3-benefit {
+    border-top-color: oklch(0.285 0.035 248 / 0.10);
+  }
+}
