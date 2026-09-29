@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Check, LockKeyhole, Play, ShieldCheck } from "lucide-react";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 
@@ -25,6 +25,7 @@ function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") 
 }
 
 function Index() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [offerHref, setOfferHref] = useState("/oferta");
   const [videoState, setVideoState] = useState<"loading" | "ready" | "fallback">("loading");
   const [showOffer, setShowOffer] = useState(false);
@@ -97,6 +98,7 @@ function Index() {
           <div className="vsl-player-wrap">
             <div className="vsl-player-frame" data-state={videoState}>
               <video
+                ref={videoRef}
                 className="vsl-video"
                 controls
                 playsInline
@@ -116,6 +118,41 @@ function Index() {
               >
                 <source src={VSL_VIDEO_SRC} type="video/mp4" />
               </video>
+
+              {!started && videoState !== "fallback" ? (
+                <button
+                  type="button"
+                  className="vsl-preplay"
+                  aria-label="Reproduzir apresentação do Kit de Atividades"
+                  onClick={() => {
+                    void videoRef.current?.play();
+                  }}
+                >
+                  <span className="vsl-preplay-covers" aria-hidden="true">
+                    <img
+                      src="/covers/optimized/cover-1.webp?v=1"
+                      alt=""
+                      width={1080}
+                      height={1528}
+                    />
+                    <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
+                    <img
+                      src="/covers/optimized/cover-2.webp?v=1"
+                      alt=""
+                      width={1080}
+                      height={1527}
+                    />
+                  </span>
+
+                  <span className="vsl-preplay-action">
+                    <span className="vsl-preplay-button" aria-hidden="true">
+                      <Play size={24} fill="currentColor" />
+                    </span>
+                    <strong>Assista à apresentação</strong>
+                    <small>1min44s • veja o kit por dentro</small>
+                  </span>
+                </button>
+              ) : null}
 
               {videoState === "fallback" ? (
                 <div className="vsl-fallback" aria-live="polite">
