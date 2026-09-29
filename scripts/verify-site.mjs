@@ -62,7 +62,11 @@ if (!/\.vsl-video\s*\{[^}]*opacity:\s*1;/s.test(vslVisibilityLayer)) {
   errors.push("Camada V6.2 precisa manter o vídeo visível por padrão.");
 }
 
-if (!/data-state="fallback"[^}]*\.vsl-video|\[data-state="fallback"\][^{]*\.vsl-video/s.test(vslVisibilityLayer)) {
+if (
+  !/data-state="fallback"[^}]*\.vsl-video|\[data-state="fallback"\][^{]*\.vsl-video/s.test(
+    vslVisibilityLayer,
+  )
+) {
   errors.push("Estado de fallback da VSL precisa continuar isolado do estado padrão.");
 }
 
