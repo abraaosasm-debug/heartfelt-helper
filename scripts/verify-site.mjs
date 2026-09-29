@@ -60,7 +60,11 @@ if (vsl.includes("Pare de começar do zero toda vez que precisar de uma atividad
   errors.push("Headline longa anterior não deve voltar à VSL.");
 }
 
-if (!/\.vsl-player-frame\s*\{[^}]*aspect-ratio:\s*4\s*\/\s*5;/s.test(css.slice(css.indexOf("V6.1 — MOBILE VSL CONVERSION PASS")))) {
+if (
+  !/\.vsl-player-frame\s*\{[^}]*aspect-ratio:\s*4\s*\/\s*5;/s.test(
+    css.slice(css.indexOf("V6.1 — MOBILE VSL CONVERSION PASS")),
+  )
+) {
   errors.push("Player mobile da VSL precisa manter proporção 4:5 na camada V6.1.");
 }
 
