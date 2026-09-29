@@ -568,7 +568,8 @@ function Index() {
             <p className="v3-hero-lead">
               Tenha uma coleção organizada com <strong>492 páginas digitais</strong> para encontrar
               com facilidade atividades de letras, números, coordenação, leitura inicial, emoções,
-              raciocínio, rotina visual, jogos e muito mais sempre que precisar de uma nova proposta.
+              raciocínio, rotina visual, jogos e muito mais sempre que precisar de uma nova
+              proposta.
             </p>
 
             <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
@@ -686,8 +687,10 @@ function Index() {
             <h2>Pare de começar do zero toda vez que precisar de uma atividade.</h2>
             <p>
               São 382 páginas nos três volumes de atividades e mais 110 páginas em cinco materiais
-              complementares. No total, <strong>492 páginas organizadas para consultar, escolher e
-              imprimir conforme a necessidade.</strong>
+              complementares. No total,{" "}
+              <strong>
+                492 páginas organizadas para consultar, escolher e imprimir conforme a necessidade.
+              </strong>
             </p>
           </div>
 
