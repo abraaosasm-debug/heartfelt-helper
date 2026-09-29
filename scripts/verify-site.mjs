@@ -48,23 +48,27 @@ if (/setTimeout\s*\(/.test(vsl)) {
   errors.push("A VSL não deve liberar fallback ou oferta por timeout.");
 }
 
-if (vsl.includes('setShowOffer(true);\n  };\n\n  return (') && !vsl.includes('const handleEnded')) {
-  errors.push("Oferta da VSL precisa continuar vinculada ao término do vídeo.");
+if (/const handleVideoError[\s\S]*?setShowOffer\(true\)/.test(vsl)) {
+  errors.push("Erro de vídeo não deve liberar automaticamente a oferta.");
 }
 
-if (!vsl.includes('const handleEnded = () => {\n    setShowOffer(true);')) {
+if (!vsl.includes("const handleEnded = () => {\n    setShowOffer(true);")) {
   errors.push("CTA da VSL precisa ser liberado pelo evento ended.");
 }
 
-if (/\.vsl-video\s*\{[^}]*opacity:\s*0;/s.test(css.slice(css.indexOf("V6.2 — VSL VIDEO VISIBILITY FIX")))) {
+if (
+  /\.vsl-video\s*\{[^}]*opacity:\s*0;/s.test(
+    css.slice(css.indexOf("V6.2 — VSL VIDEO VISIBILITY FIX")),
+  )
+) {
   errors.push("Camada V6.2 não pode esconder o vídeo por padrão.");
 }
 
 for (const refinedVslMarker of [
   "ASSISTA À APRESENTAÇÃO",
   "492 páginas organizadas",
-  'onLoadedData={handleVideoReady}',
-  'onPlaying={handleVideoReady}',
+  "onLoadedData={handleVideoReady}",
+  "onPlaying={handleVideoReady}",
   'videoState === "fallback"',
   "3 volumes + 5 bônus",
 ]) {
