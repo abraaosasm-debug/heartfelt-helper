@@ -555,3 +555,5 @@ if (errors.length > 0) {
 }
 
 console.log("Verificação da landing page concluída com sucesso.");
+
+// VSL player fix validated at source level.
