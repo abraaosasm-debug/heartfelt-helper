@@ -8988,3 +8988,156 @@
     box-shadow: 0 16px 38px oklch(0.285 0.035 248 / 0.12);
   }
 }
+
+
+/* =========================================================
+   V6.5 — PRE-PLAY THUMBNAIL
+   ========================================================= */
+
+.vsl-preplay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 20% 18%, oklch(0.93 0.055 235 / 0.12), transparent 28%),
+    radial-gradient(circle at 82% 22%, oklch(0.93 0.085 92 / 0.11), transparent 24%),
+    linear-gradient(180deg, oklch(0.24 0.037 248), oklch(0.19 0.034 248));
+  color: white;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.vsl-preplay::after {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 46%;
+  background: linear-gradient(180deg, transparent, oklch(0.13 0.03 248 / 0.82));
+  content: "";
+  pointer-events: none;
+}
+
+.vsl-preplay-covers {
+  position: relative;
+  display: block;
+  min-height: 0;
+}
+
+.vsl-preplay-covers img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42%;
+  height: auto;
+  border: 4px solid white;
+  border-radius: 9px;
+  background: white;
+  box-shadow: 0 18px 38px oklch(0 0 0 / 0.3);
+}
+
+.vsl-preplay-covers img:nth-child(1) {
+  z-index: 1;
+  transform: translate(-103%, -47%) rotate(-8deg);
+}
+
+.vsl-preplay-covers img:nth-child(2) {
+  z-index: 3;
+  width: 49%;
+  transform: translate(-50%, -51%) rotate(-0.5deg);
+}
+
+.vsl-preplay-covers img:nth-child(3) {
+  z-index: 2;
+  transform: translate(3%, -46%) rotate(8deg);
+}
+
+.vsl-preplay-action {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 0 18px 24px;
+  text-align: center;
+}
+
+.vsl-preplay-button {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: oklch(0.72 0.14 42);
+  color: oklch(0.285 0.035 248);
+  box-shadow:
+    0 12px 28px oklch(0.72 0.14 42 / 0.3),
+    0 0 0 7px oklch(1 0 0 / 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.vsl-preplay-action strong {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.vsl-preplay-action small {
+  color: oklch(0.84 0.015 245);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .vsl-preplay:hover .vsl-preplay-button {
+    transform: translate3d(0, -2px, 0) scale(1.04);
+    box-shadow:
+      0 16px 34px oklch(0.72 0.14 42 / 0.34),
+      0 0 0 9px oklch(1 0 0 / 0.09);
+  }
+}
+
+@media (max-width: 760px) {
+  .vsl-preplay-covers img {
+    width: 40%;
+    border-width: 3px;
+  }
+
+  .vsl-preplay-covers img:nth-child(2) {
+    width: 47%;
+  }
+
+  .vsl-preplay-action {
+    gap: 4px;
+    padding: 0 14px 18px;
+  }
+
+  .vsl-preplay-button {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 3px;
+  }
+
+  .vsl-preplay-action strong {
+    font-size: 1.18rem;
+  }
+
+  .vsl-preplay-action small {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vsl-preplay-button {
+    transition: none !important;
+  }
+}
