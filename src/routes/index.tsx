@@ -558,17 +558,17 @@ function Index() {
       <section id="inicio" className="v3-hero">
         <div className="v3-shell v3-hero-grid">
           <div className="v3-hero-copy">
-            <span className="v3-kicker">KIT COMPLETO • 492 PÁGINAS • 3 VOLUMES + 5 BÔNUS</span>
+            <span className="v3-kicker">ATIVIDADES PRONTAS • 3 VOLUMES + 5 BÔNUS</span>
 
             <h1>
-              492 páginas de atividades e materiais
-              <span> prontos para imprimir.</span>
+              Tenha atividades prontas para escolher, imprimir e usar.
+              <span> Sem precisar criar tudo do zero.</span>
             </h1>
 
             <p className="v3-hero-lead">
-              Tenha em uma única compra <strong>3 volumes de atividades + 5 bônus</strong> para
-              trabalhar letras, números, coordenação, leitura inicial, emoções, raciocínio, rotina
-              visual, jogos e muito mais — sem precisar criar tudo do zero.
+              Tenha uma coleção organizada com <strong>492 páginas digitais</strong> para encontrar
+              com facilidade atividades de letras, números, coordenação, leitura inicial, emoções,
+              raciocínio, rotina visual, jogos e muito mais sempre que precisar de uma nova proposta.
             </p>
 
             <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
@@ -606,7 +606,7 @@ function Index() {
 
             <div className="v3-hero-actions">
               <PrimaryButton href={checkoutUrls.complete}>
-                QUERO O KIT COMPLETO — R$39,90
+                QUERO TER AS ATIVIDADES PRONTAS
               </PrimaryButton>
               <a className="v3-text-link" href="#conteudo">
                 Ver tudo o que vem no Kit Completo
@@ -683,12 +683,11 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading">
             <span className="v3-kicker">VOCÊ RECEBE</span>
-            <h2>
-              Uma coleção completa, organizada para você saber exatamente o que está comprando.
-            </h2>
+            <h2>Pare de começar do zero toda vez que precisar de uma atividade.</h2>
             <p>
               São 382 páginas nos três volumes de atividades e mais 110 páginas em cinco materiais
-              complementares. No total, <strong>492 páginas digitais prontas para imprimir.</strong>
+              complementares. No total, <strong>492 páginas organizadas para consultar, escolher e
+              imprimir conforme a necessidade.</strong>
             </p>
           </div>
 
@@ -770,7 +769,7 @@ function Index() {
           <div className="v32-preview-heading v46-preview-heading">
             <div>
               <span className="v3-kicker">PÁGINAS REAIS • 3 VOLUMES</span>
-              <h2 id="preview-title">Veja o material por dentro antes de comprar.</h2>
+              <h2 id="preview-title">Veja as atividades que já estarão prontas para você usar.</h2>
             </div>
             <p>
               Uma única galeria reúne páginas reais dos Volumes 1, 2 e 3. Deslize no celular e toque
@@ -853,7 +852,7 @@ function Index() {
               <strong>492 páginas no total:</strong> 3 volumes de atividades + 5 bônus por R$39,90.
             </p>
             <PrimaryButton href={checkoutUrls.complete}>
-              QUERO O KIT COMPLETO — R$39,90
+              QUERO TER AS ATIVIDADES PRONTAS
             </PrimaryButton>
           </div>
         </div>
@@ -884,10 +883,10 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading v3-pricing-heading">
             <span className="v3-kicker">OFERTA PRINCIPAL</span>
-            <h2>Leve o Kit Completo com 492 páginas por R$39,90.</h2>
+            <h2>Tenha sua coleção de atividades pronta por R$39,90.</h2>
             <p>
-              Uma única compra com os três volumes e todos os cinco bônus. Sem assinatura e sem
-              frete: o material é digital e pronto para imprimir.
+              Uma única compra com 492 páginas, três volumes e cinco bônus para consultar sempre que
+              precisar de uma nova atividade. Sem assinatura e sem frete.
             </p>
           </div>
 
@@ -905,9 +904,9 @@ function Index() {
                 <strong>R$20 DE DESCONTO</strong>
                 <span>preço de lançamento</span>
               </div>
-              <h3>Receba a coleção inteira</h3>
+              <h3>Abra, escolha, imprima e use</h3>
               <p className="v3-price-description">
-                Três volumes de atividades e cinco bônus para ampliar as possibilidades de uso.
+                Três volumes de atividades e cinco bônus organizados em uma única coleção digital.
               </p>
 
               <div className="v40-price-anchor">
@@ -940,7 +939,7 @@ function Index() {
               </ul>
 
               <PrimaryButton href={checkoutUrls.complete}>
-                QUERO O KIT COMPLETO — R$39,90
+                QUERO TER AS ATIVIDADES PRONTAS
               </PrimaryButton>
 
               <p className="v3-price-difference v40-price-difference">
@@ -1013,8 +1012,8 @@ function Index() {
       <section className="v3-final-cta">
         <div className="v3-shell v3-final-inner">
           <div>
-            <span className="v3-kicker v3-kicker-light">PRONTO PARA COMEÇAR?</span>
-            <h2>492 páginas. Três volumes. Cinco bônus. Uma escolha.</h2>
+            <span className="v3-kicker v3-kicker-light">SUA COLEÇÃO, PRONTA PARA CONSULTAR</span>
+            <h2>Na próxima vez que precisar de uma atividade, comece escolhendo — não criando.</h2>
           </div>
 
           <div className="v40-final-offer">
@@ -1022,7 +1021,7 @@ function Index() {
               de <s>R$59,90</s> por <strong>R$39,90</strong>
             </span>
             <PrimaryButton href={checkoutUrls.complete} dark>
-              QUERO O KIT COMPLETO — R$39,90
+              QUERO TER AS ATIVIDADES PRONTAS
             </PrimaryButton>
           </div>
         </div>
@@ -1031,7 +1030,7 @@ function Index() {
       <AttributionLink
         className="v31-mobile-buybar"
         href={checkoutUrls.complete}
-        ariaLabel="Comprar Kit Completo por R$39,90, preço promocional de lançamento"
+        ariaLabel="Ter a coleção de atividades prontas por R$39,90, preço promocional de lançamento"
       >
         <span className="v41-mobile-price">
           <small>
@@ -1040,7 +1039,7 @@ function Index() {
           <strong>R$39,90</strong>
         </span>
         <b>
-          QUERO AGORA <ArrowRight size={16} />
+          QUERO AS ATIVIDADES <ArrowRight size={16} />
         </b>
       </AttributionLink>
 
@@ -1064,17 +1063,17 @@ function Index() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kit de Atividades Infantil e Autismo | 492 páginas" },
+      { title: "Atividades prontas para imprimir | Kit com 492 páginas" },
       {
         name: "description",
         content:
-          "Kit Completo digital com 492 páginas: 3 volumes de atividades + 5 bônus, prontos para imprimir. Oferta de lançamento por R$39,90.",
+          "Tenha atividades prontas para escolher, imprimir e usar sem criar tudo do zero. Kit digital com 492 páginas, 3 volumes + 5 bônus por R$39,90.",
       },
-      { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
+      { property: "og:title", content: "Atividades prontas para escolher, imprimir e usar" },
       {
         property: "og:description",
         content:
-          "Kit Completo: 492 páginas, 3 volumes + 5 bônus. Material digital pronto para imprimir por R$39,90.",
+          "Pare de começar do zero toda vez que precisar de uma atividade. Tenha 492 páginas organizadas em 3 volumes + 5 bônus por R$39,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
