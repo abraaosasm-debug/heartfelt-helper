@@ -116,8 +116,21 @@ for (const preplayMarker of [
   }
 }
 
-if (!vsl.includes('!started && videoState !== "fallback"')) {
-  errors.push("Thumbnail da VSL precisa desaparecer após o primeiro play.");
+for (const replayMarker of [
+  "showPreplay",
+  "setShowPreplay(false)",
+  "setShowPreplay(true)",
+  "setCompleted(true)",
+  "Assistir novamente",
+  "Rever apresentação • 1min44s",
+]) {
+  if (!vsl.includes(replayMarker)) {
+    errors.push(`Comportamento pós-VSL incompleto: ${replayMarker}`);
+  }
+}
+
+if (!vsl.includes('showPreplay && videoState !== "fallback"')) {
+  errors.push("Thumbnail da VSL precisa controlar pré-play e replay.");
 }
 
 if (!css.includes("width: min(84vw, 340px);")) {
