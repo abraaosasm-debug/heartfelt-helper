@@ -80,9 +80,7 @@ function Index() {
         <div className="vsl-shell vsl-hero-inner">
           <div className="vsl-copy">
             <span className="vsl-eyebrow">ANTES DE VER A OFERTA</span>
-            <h1 id="vsl-title">
-              Pare de começar do zero toda vez que precisar de uma atividade.
-            </h1>
+            <h1 id="vsl-title">Pare de começar do zero toda vez que precisar de uma atividade.</h1>
             <p>
               Em poucos minutos, veja como ter uma coleção organizada de atividades prontas para
               escolher, imprimir e usar quando precisar.
@@ -108,9 +106,19 @@ function Index() {
               {videoState !== "ready" ? (
                 <div className="vsl-fallback" aria-live="polite">
                   <div className="vsl-fallback-covers" aria-hidden="true">
-                    <img src="/covers/optimized/cover-1.webp?v=1" alt="" width={1080} height={1528} />
+                    <img
+                      src="/covers/optimized/cover-1.webp?v=1"
+                      alt=""
+                      width={1080}
+                      height={1528}
+                    />
                     <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
-                    <img src="/covers/optimized/cover-2.webp?v=1" alt="" width={1080} height={1527} />
+                    <img
+                      src="/covers/optimized/cover-2.webp?v=1"
+                      alt=""
+                      width={1080}
+                      height={1527}
+                    />
                   </div>
 
                   <div className="vsl-fallback-copy">
