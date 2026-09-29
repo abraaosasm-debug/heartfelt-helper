@@ -166,7 +166,9 @@ function Index() {
                     </span>
                     <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
                     <small>
-                      {completed ? "Rever apresentação • 1min44s" : "1min44s • veja o kit por dentro"}
+                      {completed
+                        ? "Rever apresentação • 1min44s"
+                        : "1min44s • veja o kit por dentro"}
                     </small>
                   </span>
                 </button>
