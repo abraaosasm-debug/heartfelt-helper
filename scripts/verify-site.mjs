@@ -18,7 +18,7 @@ for (const vslMarker of [
   'createFileRoute("/")',
   "VSL_VIDEO_SRC",
   "/vsl/kit-atividades-vsl.mp4",
-  "Pare de começar do zero toda vez que precisar de uma atividade.",
+  "Pare de criar atividades do zero toda vez que precisar.",
   "VER O KIT COMPLETO",
   "VSLStarted",
   "VSLCompleted",
@@ -34,6 +34,34 @@ for (const vslMarker of [
 
 if (!css.includes("V6.0 — VSL ENTRY PAGE")) {
   errors.push("Camada V6.0 da página VSL ausente.");
+}
+
+if (!css.includes("V6.1 — MOBILE VSL CONVERSION PASS")) {
+  errors.push("Camada V6.1 de otimização mobile da VSL ausente.");
+}
+
+for (const refinedVslMarker of [
+  "ASSISTA À APRESENTAÇÃO",
+  "492 páginas organizadas",
+  "Carregando apresentação...",
+  'videoState === "ready"',
+  "3 volumes + 5 bônus",
+]) {
+  if (!vsl.includes(refinedVslMarker)) {
+    errors.push(`Refinamento da VSL ausente: ${refinedVslMarker}`);
+  }
+}
+
+if (vsl.includes("Sem promessa milagrosa")) {
+  errors.push('Texto defensivo "Sem promessa milagrosa" não deve voltar à VSL.');
+}
+
+if (vsl.includes("Pare de começar do zero toda vez que precisar de uma atividade.")) {
+  errors.push("Headline longa anterior não deve voltar à VSL.");
+}
+
+if (!/\.vsl-player-frame\s*\{[^}]*aspect-ratio:\s*4\s*\/\s*5;/s.test(css.slice(css.indexOf("V6.1 — MOBILE VSL CONVERSION PASS")))) {
+  errors.push("Player mobile da VSL precisa manter proporção 4:5 na camada V6.1.");
 }
 
 if (!index.includes('createFileRoute("/oferta")')) {
