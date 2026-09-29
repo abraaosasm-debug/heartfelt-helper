@@ -8826,3 +8826,37 @@
     padding: 24px 0 34px;
   }
 }
+
+
+/* =========================================================
+   V6.2 — VSL VIDEO VISIBILITY FIX
+   ========================================================= */
+
+.vsl-video {
+  opacity: 1;
+  object-fit: contain;
+  background: #0d1623;
+}
+
+.vsl-player-frame[data-state="loading"] .vsl-video,
+.vsl-player-frame[data-state="ready"] .vsl-video {
+  opacity: 1;
+}
+
+.vsl-player-frame[data-state="fallback"] .vsl-video {
+  opacity: 0;
+}
+
+.vsl-player-frame[data-state="fallback"] .vsl-fallback {
+  z-index: 3;
+}
+
+@media (max-width: 760px) {
+  .vsl-player-frame {
+    aspect-ratio: 4 / 5;
+  }
+
+  .vsl-video {
+    object-fit: contain;
+  }
+}
