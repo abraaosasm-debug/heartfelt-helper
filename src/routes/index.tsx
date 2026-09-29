@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Check, Play, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Check, LockKeyhole, Play, ShieldCheck } from "lucide-react";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 
 const attributionKeys = [
@@ -29,6 +29,7 @@ function Index() {
   const [videoState, setVideoState] = useState<"loading" | "ready" | "fallback">("loading");
   const [showOffer, setShowOffer] = useState(false);
   const [started, setStarted] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const source = new URL(window.location.href);
@@ -105,6 +106,11 @@ function Index() {
                 onCanPlay={handleVideoReady}
                 onPlaying={handleVideoReady}
                 onPlay={handlePlay}
+                onTimeUpdate={(event) => {
+                  const video = event.currentTarget;
+                  if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+                  setProgress(Math.min(100, (video.currentTime / video.duration) * 100));
+                }}
                 onEnded={handleEnded}
                 onError={handleVideoError}
               >
@@ -141,6 +147,22 @@ function Index() {
                   </div>
                 </div>
               ) : null}
+            </div>
+
+            <div className="vsl-video-progress" aria-label="Progresso da apresentação">
+              <div className="vsl-video-progress-copy">
+                <span>Vídeo curto • 1min44s</span>
+                <strong>{Math.round(progress)}%</strong>
+              </div>
+              <div
+                className="vsl-video-progress-track"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round(progress)}
+              >
+                <span style={{ width: `${progress}%` }} />
+              </div>
             </div>
 
             <div className="vsl-player-meta" aria-label="Resumo da apresentação">
@@ -181,7 +203,12 @@ function Index() {
                 Não foi possível carregar o vídeo. Atualize a página e tente novamente.
               </p>
             ) : (
-              <p className="vsl-gate-hint">Assista até o final para liberar os detalhes do kit.</p>
+              <div className="vsl-gate-locked">
+                <LockKeyhole size={15} aria-hidden="true" />
+                <p className="vsl-gate-hint">
+                  A oferta completa será liberada ao final da apresentação.
+                </p>
+              </div>
             )}
           </div>
         </div>
