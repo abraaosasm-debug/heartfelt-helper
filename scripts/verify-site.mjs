@@ -52,7 +52,7 @@ if (/const handleVideoError[\s\S]*?setShowOffer\(true\)/.test(vsl)) {
   errors.push("Erro de vídeo não deve liberar automaticamente a oferta.");
 }
 
-if (!vsl.includes("const handleEnded = () => {\n    setShowOffer(true);")) {
+if (!/const handleEnded = \(\) => \{[\s\S]*?setShowOffer\(true\);/.test(vsl)) {
   errors.push("CTA da VSL precisa ser liberado pelo evento ended.");
 }
 
@@ -109,7 +109,7 @@ for (const preplayMarker of [
   "vsl-preplay-button",
   "Assista à apresentação",
   "1min44s • veja o kit por dentro",
-  "videoRef.current?.play()",
+  "void video.play()",
 ]) {
   if (!vsl.includes(preplayMarker)) {
     errors.push(`Thumbnail de pré-play incompleta: ${preplayMarker}`);
