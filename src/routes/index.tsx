@@ -151,7 +151,7 @@ const faqs = [
   ],
   [
     "Tenho garantia?",
-    "Sim. A oferta apresenta garantia de 7 dias. Confira no checkout as condições, os prazos e o canal de atendimento antes de concluir a compra.",
+    "Sim. A oferta apresenta garantia de 30 dias. Confira no checkout as condições, os prazos e o canal de atendimento antes de concluir a compra.",
   ],
 ] as const;
 
@@ -385,7 +385,7 @@ function TrustStrip() {
         </div>
         <div className="v41-offer-strip-trust">
           <ShieldCheck size={15} aria-hidden="true" />
-          <span>Pagamento único • material digital • 7 dias de garantia</span>
+          <span>Pagamento único • material digital • 30 dias de garantia</span>
         </div>
         <a href="#precos">Ver oferta</a>
       </div>
@@ -395,13 +395,13 @@ function TrustStrip() {
 
 function GuaranteeSeal() {
   return (
-    <div className="v31-guarantee-seal" role="img" aria-label="Garantia de 7 dias">
+    <div className="v31-guarantee-seal" role="img" aria-label="Garantia de 30 dias">
       <div className="v31-guarantee-seal-inner">
         <span className="v31-seal-stars" aria-hidden="true">
           ★ ★ ★
         </span>
         <span className="v31-seal-top">GARANTIA</span>
-        <strong>7</strong>
+        <strong>30</strong>
         <span className="v31-seal-days">DIAS</span>
         <ShieldCheck className="v31-seal-icon" size={24} aria-hidden="true" />
       </div>
@@ -617,7 +617,7 @@ function Index() {
             <div className="v31-hero-trust">
               <ShieldCheck size={16} aria-hidden="true" />
               <span>
-                Checkout via Cakto • produto digital • pagamento único • garantia de 7 dias
+                Checkout via Cakto • produto digital • pagamento único • garantia de 30 dias
               </span>
             </div>
           </div>
@@ -980,7 +980,7 @@ function Index() {
 
           <div className="v46-checkout-note">
             <ShieldCheck size={17} aria-hidden="true" />
-            <span>Checkout via Cakto • produto digital • sem frete • garantia de 7 dias</span>
+            <span>Checkout via Cakto • produto digital • sem frete • garantia de 30 dias</span>
           </div>
         </div>
       </section>
@@ -989,8 +989,8 @@ function Index() {
         <div className="v3-shell v3-assurance-grid">
           <div className="v3-guarantee">
             <GuaranteeSeal />
-            <span className="v3-kicker">GARANTIA DE 7 DIAS</span>
-            <h2>Compra digital com garantia de 7 dias.</h2>
+            <span className="v3-kicker">GARANTIA DE 30 DIAS</span>
+            <h2>Compra digital com garantia de 30 dias.</h2>
             <p>
               Confira no checkout as condições da garantia, entrega e atendimento antes de concluir
               o pagamento.
