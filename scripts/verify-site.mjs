@@ -99,6 +99,27 @@ if (!css.includes("V6.4 — COMPACT MOBILE VSL PLAYER")) {
   errors.push("Camada V6.4 de compactação do player mobile ausente.");
 }
 
+if (!css.includes("V6.5 — PRE-PLAY THUMBNAIL")) {
+  errors.push("Camada V6.5 da thumbnail de pré-play ausente.");
+}
+
+for (const preplayMarker of [
+  "vsl-preplay",
+  "vsl-preplay-covers",
+  "vsl-preplay-button",
+  "Assista à apresentação",
+  "1min44s • veja o kit por dentro",
+  "videoRef.current?.play()",
+]) {
+  if (!vsl.includes(preplayMarker)) {
+    errors.push(`Thumbnail de pré-play incompleta: ${preplayMarker}`);
+  }
+}
+
+if (!vsl.includes('!started && videoState !== "fallback"')) {
+  errors.push("Thumbnail da VSL precisa desaparecer após o primeiro play.");
+}
+
 if (!css.includes("width: min(84vw, 340px);")) {
   errors.push("Player mobile da VSL precisa manter largura compactada.");
 }
