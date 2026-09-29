@@ -2,15 +2,47 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = process.cwd();
-const indexPath = resolve(root, "src/routes/index.tsx");
+const vslPath = resolve(root, "src/routes/index.tsx");
+const indexPath = resolve(root, "src/routes/oferta.tsx");
 const checkoutPath = resolve(root, "src/lib/checkout.ts");
 const dialogPath = resolve(root, "src/components/ui/dialog.tsx");
 const cssPath = resolve(root, "src/styles.css");
+const vsl = readFileSync(vslPath, "utf8");
 const index = readFileSync(indexPath, "utf8");
 const checkout = readFileSync(checkoutPath, "utf8");
 const dialog = readFileSync(dialogPath, "utf8");
 const css = readFileSync(cssPath, "utf8");
 const errors = [];
+
+for (const vslMarker of [
+  'createFileRoute("/")',
+  'VSL_VIDEO_SRC',
+  '/vsl/kit-atividades-vsl.mp4',
+  'Pare de começar do zero toda vez que precisar de uma atividade.',
+  'VER O KIT COMPLETO',
+  'VSLStarted',
+  'VSLCompleted',
+  'VSLToOffer',
+  'new URL("/oferta", window.location.origin)',
+  '"utm_campaign"',
+  '"fbclid"',
+]) {
+  if (!vsl.includes(vslMarker)) {
+    errors.push(`Página VSL incompleta: ${vslMarker}`);
+  }
+}
+
+if (!css.includes("V6.0 — VSL ENTRY PAGE")) {
+  errors.push("Camada V6.0 da página VSL ausente.");
+}
+
+if (!index.includes('createFileRoute("/oferta")')) {
+  errors.push("Landing principal precisa permanecer disponível em /oferta.");
+}
+
+if (!index.includes('href: "https://kitcompletoautismoeinfantil.lovable.app/oferta"')) {
+  errors.push("Canonical da landing /oferta está divergente.");
+}
 
 const requiredIds = ["inicio", "como-usar", "conteudo", "bonus", "precos", "duvidas"];
 for (const id of requiredIds) {
