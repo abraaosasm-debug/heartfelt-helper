@@ -427,6 +427,8 @@ function Index() {
     }
 
     page.classList.add("v3-motion-ready");
+
+    const cleanup: Array<() => void> = [];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -435,11 +437,91 @@ function Index() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -9%", threshold: 0.08 },
+      { rootMargin: "0px 0px -8%", threshold: 0.08 },
     );
 
     targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
+    cleanup.push(() => observer.disconnect());
+
+    const header = page.querySelector<HTMLElement>(".v3-header");
+    let scrollFrame = 0;
+    const updateHeader = () => {
+      scrollFrame = 0;
+      header?.classList.toggle("is-scrolled", window.scrollY > 18);
+    };
+    const onScroll = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(updateHeader);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    cleanup.push(() => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+    });
+
+    const heroArt = page.querySelector<HTMLElement>(".v3-hero-art");
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (heroArt && finePointer) {
+      let pointerFrame = 0;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      const renderParallax = () => {
+        currentX += (targetX - currentX) * 0.14;
+        currentY += (targetY - currentY) * 0.14;
+
+        heroArt.style.setProperty("--v50-left-x", `${currentX * -7}px`);
+        heroArt.style.setProperty("--v50-left-y", `${currentY * -4}px`);
+        heroArt.style.setProperty("--v50-right-x", `${currentX * 7}px`);
+        heroArt.style.setProperty("--v50-right-y", `${currentY * -5}px`);
+        heroArt.style.setProperty("--v50-center-x", `${currentX * 3}px`);
+        heroArt.style.setProperty("--v50-center-y", `${currentY * -7}px`);
+        heroArt.style.setProperty("--v50-tilt-x", `${currentY * -1.1}deg`);
+        heroArt.style.setProperty("--v50-tilt-y", `${currentX * 1.25}deg`);
+
+        if (Math.abs(targetX - currentX) > 0.002 || Math.abs(targetY - currentY) > 0.002) {
+          pointerFrame = window.requestAnimationFrame(renderParallax);
+        } else {
+          pointerFrame = 0;
+        }
+      };
+
+      const scheduleParallax = () => {
+        if (!pointerFrame) pointerFrame = window.requestAnimationFrame(renderParallax);
+      };
+
+      const onPointerMove = (event: PointerEvent) => {
+        const rect = heroArt.getBoundingClientRect();
+        targetX = Math.max(-1, Math.min(1, (event.clientX - rect.left - rect.width / 2) / (rect.width / 2)));
+        targetY = Math.max(-1, Math.min(1, (event.clientY - rect.top - rect.height / 2) / (rect.height / 2)));
+        scheduleParallax();
+      };
+
+      const onPointerLeave = () => {
+        targetX = 0;
+        targetY = 0;
+        scheduleParallax();
+      };
+
+      heroArt.addEventListener("pointermove", onPointerMove, { passive: true });
+      heroArt.addEventListener("pointerleave", onPointerLeave, { passive: true });
+
+      cleanup.push(() => {
+        heroArt.removeEventListener("pointermove", onPointerMove);
+        heroArt.removeEventListener("pointerleave", onPointerLeave);
+        if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+      });
+    }
+
+    return () => {
+      cleanup.forEach((dispose) => dispose());
+      page.classList.remove("v3-motion-ready");
+    };
   }, []);
 
   return (
