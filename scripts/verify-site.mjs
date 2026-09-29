@@ -338,6 +338,10 @@ if (!css.includes("V4.7 — MOBILE HERO CONVERSION PASS")) {
   errors.push("Camada V4.7 de otimização mobile do hero ausente.");
 }
 
+if (!css.includes("V4.8 — REFINED COLOR SYSTEM")) {
+  errors.push("Camada V4.8 de refinamento cromático ausente.");
+}
+
 if (!index.includes('className="v47-preview-summary-new"')) {
   errors.push("Volume 3 precisa permanecer destacado primeiro na prova compacta.");
 }
