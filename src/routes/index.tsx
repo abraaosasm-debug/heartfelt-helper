@@ -42,6 +42,17 @@ function Index() {
     setOfferHref(`${target.pathname}${target.search}`);
   }, []);
 
+  useEffect(() => {
+    if (videoState !== "loading") return undefined;
+
+    const fallbackTimer = window.setTimeout(() => {
+      setVideoState((current) => (current === "loading" ? "fallback" : current));
+      setShowOffer(true);
+    }, 4000);
+
+    return () => window.clearTimeout(fallbackTimer);
+  }, [videoState]);
+
   const handlePlay = () => {
     if (started) return;
     setStarted(true);
@@ -51,6 +62,11 @@ function Index() {
   const handleEnded = () => {
     setShowOffer(true);
     trackVslEvent("VSLCompleted");
+  };
+
+  const handleVideoReady = () => {
+    setVideoState("ready");
+    setShowOffer(false);
   };
 
   const handleVideoError = () => {
@@ -79,11 +95,11 @@ function Index() {
       <section className="vsl-hero" aria-labelledby="vsl-title">
         <div className="vsl-shell vsl-hero-inner">
           <div className="vsl-copy">
-            <span className="vsl-eyebrow">ANTES DE VER A OFERTA</span>
-            <h1 id="vsl-title">Pare de começar do zero toda vez que precisar de uma atividade.</h1>
+            <span className="vsl-eyebrow">ASSISTA À APRESENTAÇÃO</span>
+            <h1 id="vsl-title">Pare de criar atividades do zero toda vez que precisar.</h1>
             <p>
-              Em poucos minutos, veja como ter uma coleção organizada de atividades prontas para
-              escolher, imprimir e usar quando precisar.
+              Veja como ter <strong>492 páginas organizadas</strong> para escolher, imprimir e usar
+              quando precisar de uma nova atividade.
             </p>
           </div>
 
@@ -95,7 +111,7 @@ function Index() {
                 playsInline
                 preload="metadata"
                 poster="/covers/1_v3.jpg?v=1"
-                onCanPlay={() => setVideoState("ready")}
+                onCanPlay={handleVideoReady}
                 onPlay={handlePlay}
                 onEnded={handleEnded}
                 onError={handleVideoError}
@@ -145,13 +161,15 @@ function Index() {
                 Páginas reais
               </span>
               <span>
-                <Check size={15} aria-hidden="true" />
-                Sem promessa milagrosa
+                <Check size={15} aria-hidden="true" />3 volumes + 5 bônus
               </span>
             </div>
           </div>
 
-          <div className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`} aria-live="polite">
+          <div
+            className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`}
+            aria-live="polite"
+          >
             {showOffer ? (
               <>
                 <span>AGORA VEJA A COLEÇÃO COMPLETA</span>
@@ -169,8 +187,10 @@ function Index() {
                   <ArrowRight size={19} />
                 </a>
               </>
-            ) : (
+            ) : videoState === "ready" ? (
               <p className="vsl-gate-hint">Assista até o final para liberar os detalhes do kit.</p>
+            ) : (
+              <p className="vsl-gate-hint">Carregando apresentação...</p>
             )}
           </div>
         </div>
@@ -225,7 +245,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Pare de começar do zero toda vez que precisar de uma atividade",
+        content: "Pare de criar atividades do zero toda vez que precisar",
       },
       {
         property: "og:description",
