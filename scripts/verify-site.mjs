@@ -351,6 +351,24 @@ if (!css.includes("V5.0 — REALISTIC MOTION SYSTEM")) {
   errors.push("Camada V5.0 de motion design otimizado ausente.");
 }
 
+if (!css.includes("V5.1 — 30 DAY GUARANTEE SEAL")) {
+  errors.push("Camada V5.1 de garantia de 30 dias ausente.");
+}
+
+for (const guaranteeMarker of [
+  "garantia de 30 dias",
+  "GARANTIA DE 30 DIAS",
+  "<strong>30</strong>",
+]) {
+  if (!index.includes(guaranteeMarker)) {
+    errors.push(`Garantia de 30 dias incompleta: ${guaranteeMarker}`);
+  }
+}
+
+if (/garantia de 7 dias|Garantia de 7 dias|GARANTIA DE 7 DIAS|7 dias de garantia/.test(index)) {
+  errors.push("Referência antiga à garantia de 7 dias ainda presente.");
+}
+
 for (const motionMarker of [
   "--v50-left-x",
   "v50-cover-settle",
