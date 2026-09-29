@@ -42,18 +42,10 @@ function Index() {
     setOfferHref(`${target.pathname}${target.search}`);
   }, []);
 
-  useEffect(() => {
-    if (videoState !== "loading") return undefined;
-
-    const fallbackTimer = window.setTimeout(() => {
-      setVideoState((current) => (current === "loading" ? "fallback" : current));
-      setShowOffer(true);
-    }, 4000);
-
-    return () => window.clearTimeout(fallbackTimer);
-  }, [videoState]);
-
   const handlePlay = () => {
+    setVideoState("ready");
+    setShowOffer(false);
+
     if (started) return;
     setStarted(true);
     trackVslEvent("VSLStarted");
@@ -66,12 +58,10 @@ function Index() {
 
   const handleVideoReady = () => {
     setVideoState("ready");
-    setShowOffer(false);
   };
 
   const handleVideoError = () => {
     setVideoState("fallback");
-    setShowOffer(true);
   };
 
   return (
@@ -109,9 +99,11 @@ function Index() {
                 className="vsl-video"
                 controls
                 playsInline
-                preload="metadata"
+                preload="auto"
                 poster="/covers/1_v3.jpg?v=1"
+                onLoadedData={handleVideoReady}
                 onCanPlay={handleVideoReady}
+                onPlaying={handleVideoReady}
                 onPlay={handlePlay}
                 onEnded={handleEnded}
                 onError={handleVideoError}
@@ -119,7 +111,7 @@ function Index() {
                 <source src={VSL_VIDEO_SRC} type="video/mp4" />
               </video>
 
-              {videoState !== "ready" ? (
+              {videoState === "fallback" ? (
                 <div className="vsl-fallback" aria-live="polite">
                   <div className="vsl-fallback-covers" aria-hidden="true">
                     <img
@@ -184,10 +176,12 @@ function Index() {
                   <ArrowRight size={19} />
                 </a>
               </>
-            ) : videoState === "ready" ? (
-              <p className="vsl-gate-hint">Assista até o final para liberar os detalhes do kit.</p>
+            ) : videoState === "fallback" ? (
+              <p className="vsl-gate-hint">
+                Não foi possível carregar o vídeo. Atualize a página e tente novamente.
+              </p>
             ) : (
-              <p className="vsl-gate-hint">Carregando apresentação...</p>
+              <p className="vsl-gate-hint">Assista até o final para liberar os detalhes do kit.</p>
             )}
           </div>
         </div>
