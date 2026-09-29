@@ -230,12 +230,13 @@ for (const obsoletePositioning of [
 }
 
 for (const completeFocusMarker of [
-  "KIT COMPLETO • 492 PÁGINAS • 3 VOLUMES + 5 BÔNUS",
-  "492 páginas de atividades e materiais",
+  "ATIVIDADES PRONTAS • 3 VOLUMES + 5 BÔNUS",
+  "Tenha atividades prontas para escolher, imprimir e usar.",
+  "Sem precisar criar tudo do zero.",
   "Ver tudo o que vem no Kit Completo",
   "v43-pricing-focus",
   "OFERTA PRINCIPAL",
-  "Leve o Kit Completo com 492 páginas por R$39,90.",
+  "Tenha sua coleção de atividades pronta por R$39,90.",
 ]) {
   if (!index.includes(completeFocusMarker)) {
     errors.push(`Foco do Kit Completo ausente: ${completeFocusMarker}`);
@@ -282,7 +283,7 @@ for (const requiredVolume2Marker of [
   "previewPagesVolume2",
   "PÁGINAS REAIS • 3 VOLUMES",
   "v46-compact-preview-section",
-  "QUERO O KIT COMPLETO — R$39,90",
+  "QUERO TER AS ATIVIDADES PRONTAS",
 ]) {
   if (!index.includes(requiredVolume2Marker)) {
     errors.push(`Prova do Volume 2 ausente: ${requiredVolume2Marker}`);
@@ -370,6 +371,22 @@ if (index.includes("R$0,08 por página")) {
   errors.push("Argumento de preço por página não deve voltar para a oferta principal.");
 }
 
+for (const promiseMarker of [
+  "Tenha atividades prontas para escolher, imprimir e usar.",
+  "Sem precisar criar tudo do zero.",
+  "Pare de começar do zero toda vez que precisar de uma atividade.",
+  "Abra, escolha, imprima e use",
+  "comece escolhendo — não criando.",
+]) {
+  if (!index.includes(promiseMarker)) {
+    errors.push(`Promessa principal enfraquecida ou ausente: ${promiseMarker}`);
+  }
+}
+
+if (index.includes("492 páginas de atividades e materiais")) {
+  errors.push("A headline não deve voltar a vender quantidade antes da promessa.");
+}
+
 for (const removedLongSection of ["v38-upgrade-section", "v38-purchase-section"]) {
   if (index.includes(removedLongSection)) {
     errors.push(`Seção longa removida voltou para a landing: ${removedLongSection}`);
@@ -417,7 +434,7 @@ for (const bonusValueMarker of [
 for (const requiredPromoCopy of [
   "de <s>R$59,90</s> por <b>R$39,90</b>",
   "492 páginas • 3 volumes • 5 bônus",
-  "QUERO O KIT COMPLETO — R$39,90",
+  "QUERO TER AS ATIVIDADES PRONTAS",
 ]) {
   if (!index.includes(requiredPromoCopy)) {
     errors.push(`Clareza promocional ausente: ${requiredPromoCopy}`);
