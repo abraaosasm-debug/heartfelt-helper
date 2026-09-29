@@ -56,12 +56,14 @@ if (!vsl.includes("const handleEnded = () => {\n    setShowOffer(true);")) {
   errors.push("CTA da VSL precisa ser liberado pelo evento ended.");
 }
 
-if (
-  /\.vsl-video\s*\{[^}]*opacity:\s*0;/s.test(
-    css.slice(css.indexOf("V6.2 — VSL VIDEO VISIBILITY FIX")),
-  )
-) {
-  errors.push("Camada V6.2 não pode esconder o vídeo por padrão.");
+const vslVisibilityLayer = css.slice(css.indexOf("V6.2 — VSL VIDEO VISIBILITY FIX"));
+
+if (!/\.vsl-video\s*\{[^}]*opacity:\s*1;/s.test(vslVisibilityLayer)) {
+  errors.push("Camada V6.2 precisa manter o vídeo visível por padrão.");
+}
+
+if (!/data-state="fallback"[^}]*\.vsl-video|\[data-state="fallback"\][^{]*\.vsl-video/s.test(vslVisibilityLayer)) {
+  errors.push("Estado de fallback da VSL precisa continuar isolado do estado padrão.");
 }
 
 for (const refinedVslMarker of [
