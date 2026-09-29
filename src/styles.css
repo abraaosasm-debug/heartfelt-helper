@@ -8970,3 +8970,21 @@
     animation: none !important;
   }
 }
+
+
+/* =========================================================
+   V6.4 — COMPACT MOBILE VSL PLAYER
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .vsl-player-wrap {
+    width: min(88vw, 360px);
+    min-width: min(290px, 100%);
+    margin-inline: auto;
+  }
+
+  .vsl-player-frame {
+    border-radius: 16px;
+    box-shadow: 0 16px 38px oklch(0.285 0.035 248 / 0.12);
+  }
+}
