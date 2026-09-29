@@ -165,11 +165,11 @@ if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
 }
 
 if (
-  !/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO O KIT COMPLETO — R\$39,90[\s\S]*<\/PrimaryButton>/.test(
+  !/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO TER AS ATIVIDADES PRONTAS[\s\S]*<\/PrimaryButton>/.test(
     index,
   )
 ) {
-  errors.push("CTA final precisa usar explicitamente a variante escura e o preço promocional.");
+  errors.push("CTA final precisa usar explicitamente a variante escura e a promessa principal.");
 }
 
 for (const number of [3, 4, 5, 6, 7]) {
