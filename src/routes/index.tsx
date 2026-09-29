@@ -497,8 +497,14 @@ function Index() {
 
       const onPointerMove = (event: PointerEvent) => {
         const rect = heroArt.getBoundingClientRect();
-        targetX = Math.max(-1, Math.min(1, (event.clientX - rect.left - rect.width / 2) / (rect.width / 2)));
-        targetY = Math.max(-1, Math.min(1, (event.clientY - rect.top - rect.height / 2) / (rect.height / 2)));
+        targetX = Math.max(
+          -1,
+          Math.min(1, (event.clientX - rect.left - rect.width / 2) / (rect.width / 2)),
+        );
+        targetY = Math.max(
+          -1,
+          Math.min(1, (event.clientY - rect.top - rect.height / 2) / (rect.height / 2)),
+        );
         scheduleParallax();
       };
 
