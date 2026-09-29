@@ -346,6 +346,22 @@ if (!css.includes("V4.9 — EDUCATIONAL STATIONERY BRAND SYSTEM")) {
   errors.push("Camada V4.9 de identidade educacional ausente.");
 }
 
+if (!css.includes("V5.0 — REALISTIC MOTION SYSTEM")) {
+  errors.push("Camada V5.0 de motion design otimizado ausente.");
+}
+
+for (const motionMarker of [
+  "--v50-left-x",
+  "v50-cover-settle",
+  "v50-buybar-enter",
+  'classList.toggle("is-scrolled"',
+]) {
+  const source = motionMarker.startsWith("classList") ? index : css;
+  if (!source.includes(motionMarker)) {
+    errors.push(`Motion design incompleto: ${motionMarker}`);
+  }
+}
+
 if (!index.includes('className="v47-preview-summary-new"')) {
   errors.push("Volume 3 precisa permanecer destacado primeiro na prova compacta.");
 }
