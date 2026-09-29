@@ -352,7 +352,7 @@ if (!css.includes("V5.0 — REALISTIC MOTION SYSTEM")) {
 }
 
 if (!css.includes("V5.1 — 30 DAY GUARANTEE SEAL")) {
-  errors.push("Camada V5.1 de garantia de 30 dias ausente.");
+  errors.push("Camada V5.1 do selo de garantia de 30 dias ausente.");
 }
 
 for (const guaranteeMarker of [
