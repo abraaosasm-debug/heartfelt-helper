@@ -8706,3 +8706,123 @@
     animation: none !important;
   }
 }
+
+
+/* =========================================================
+   V6.1 — MOBILE VSL CONVERSION PASS
+   ========================================================= */
+
+.vsl-copy p strong {
+  color: oklch(0.285 0.035 248);
+  font-weight: 850;
+}
+
+.vsl-fallback-copy strong {
+  max-width: 360px;
+}
+
+.vsl-footer {
+  padding: 28px 0 42px;
+}
+
+.vsl-footer .vsl-shell {
+  gap: 5px;
+}
+
+.vsl-footer-links {
+  margin-top: 5px;
+}
+
+@media (max-width: 760px) {
+  .vsl-hero {
+    padding: 30px 0 34px;
+  }
+
+  .vsl-copy {
+    width: min(100%, 620px);
+  }
+
+  .vsl-eyebrow {
+    padding: 7px 10px;
+    font-size: 8px;
+  }
+
+  .vsl-copy h1 {
+    max-width: 620px;
+    margin-top: 14px;
+    font-size: clamp(2.05rem, 9.4vw, 3rem);
+    line-height: 1.01;
+    letter-spacing: -0.04em;
+  }
+
+  .vsl-copy p {
+    max-width: 600px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.58;
+  }
+
+  .vsl-player-wrap {
+    margin-top: 22px;
+  }
+
+  .vsl-player-frame {
+    aspect-ratio: 4 / 5;
+  }
+
+  .vsl-fallback {
+    gap: 10px;
+    padding: 18px 16px 20px;
+  }
+
+  .vsl-fallback-covers {
+    min-height: 220px;
+  }
+
+  .vsl-fallback-copy strong {
+    max-width: 300px;
+    margin-inline: auto;
+    font-size: 1.72rem;
+    line-height: 1.02;
+  }
+
+  .vsl-fallback-copy p {
+    max-width: 310px;
+    margin-inline: auto;
+  }
+
+  .vsl-play-mark {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 10px;
+  }
+
+  .vsl-player-meta {
+    margin-top: 13px;
+    gap: 6px 10px;
+  }
+
+  .vsl-offer-gate {
+    margin-top: 22px;
+  }
+
+  .vsl-offer-gate.is-visible {
+    padding: 21px 16px;
+  }
+
+  .vsl-offer-gate h2 {
+    font-size: clamp(1.85rem, 8.5vw, 2.55rem);
+  }
+
+  .vsl-proof-grid > div {
+    padding: 22px 14px;
+  }
+
+  .vsl-proof-grid strong {
+    font-size: 27px;
+  }
+
+  .vsl-footer {
+    padding: 24px 0 34px;
+  }
+}
