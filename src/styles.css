@@ -7300,3 +7300,168 @@
     margin-top: 18px;
   }
 }
+
+
+/* =========================================================
+   V4.8 — REFINED COLOR SYSTEM
+   Calm premium palette: navy + warm neutrals + restrained action color
+   ========================================================= */
+
+.v3-page {
+  --v3-ink: oklch(0.235 0.036 248);
+  --v3-ink-soft: oklch(0.305 0.032 244);
+  --v3-cream: oklch(0.978 0.014 84);
+  --v3-paper: oklch(0.997 0.004 84);
+  --v3-orange: oklch(0.72 0.13 48);
+  --v3-orange-dark: oklch(0.57 0.13 43);
+  --v3-teal: oklch(0.94 0.022 165);
+  --v3-gold: oklch(0.85 0.075 86);
+  --v3-line: oklch(0.86 0.012 84);
+  --v3-muted: oklch(0.49 0.018 245);
+}
+
+/* Keep large surfaces quiet; let product imagery and CTA carry color. */
+.v3-product-card-orange {
+  border: 1px solid var(--v3-line);
+  background:
+    radial-gradient(circle at 92% 10%, oklch(0.72 0.13 48 / 0.08), transparent 34%),
+    var(--v3-paper);
+  color: var(--v3-ink);
+  box-shadow: 0 18px 44px oklch(0.18 0.025 245 / 0.07);
+}
+
+.v3-product-card-orange .v3-product-copy > span {
+  color: var(--v3-orange-dark);
+}
+
+.v3-product-card-orange .v3-product-copy p {
+  color: var(--v3-muted);
+}
+
+/* Replace the saturated teal block with a soft sage editorial field. */
+.v3-benefits {
+  background:
+    radial-gradient(circle at 85% 12%, oklch(0.72 0.13 48 / 0.05), transparent 28%),
+    var(--v3-teal);
+  color: var(--v3-ink);
+}
+
+.v3-benefit-intro h2 {
+  color: var(--v3-ink);
+}
+
+.v3-benefits .v3-kicker-light {
+  color: var(--v3-orange-dark);
+}
+
+.v3-benefit-grid {
+  border-block-color: oklch(0.235 0.036 248 / 0.13);
+}
+
+.v3-benefit,
+.v3-benefit + .v3-benefit {
+  border-color: oklch(0.235 0.036 248 / 0.11);
+}
+
+.v3-benefit-icon {
+  background: var(--v3-ink);
+  color: var(--v3-gold);
+}
+
+.v3-benefit h3 {
+  color: var(--v3-ink);
+}
+
+.v3-benefit p {
+  color: var(--v3-muted);
+}
+
+/* Final CTA returns to the core brand color; orange becomes the action itself. */
+.v3-final-cta {
+  background:
+    radial-gradient(circle at 92% 12%, oklch(0.72 0.13 48 / 0.12), transparent 28%),
+    var(--v3-ink);
+  color: white;
+}
+
+.v3-final-inner .v3-kicker {
+  color: var(--v3-gold);
+}
+
+.v3-final-inner h2 {
+  color: white;
+}
+
+.v3-final-inner .v3-button,
+.v3-final-inner .v3-button.v3-button-dark {
+  border-color: var(--v3-orange);
+  background: var(--v3-orange);
+  color: var(--v3-ink);
+}
+
+.v3-final-inner .v3-button:hover,
+.v3-final-inner .v3-button.v3-button-dark:hover {
+  background: var(--v3-gold);
+  border-color: var(--v3-gold);
+  color: var(--v3-ink);
+}
+
+/* Soften remaining warm surfaces and decorative accents. */
+.v3-hero {
+  background:
+    radial-gradient(circle at 5% 12%, oklch(0.42 0.06 195 / 0.12), transparent 23%),
+    radial-gradient(circle at 95% 92%, oklch(0.72 0.13 48 / 0.09), transparent 25%),
+    var(--v3-ink);
+}
+
+.v3-art-chip {
+  border-color: oklch(0.235 0.036 248 / 0.9);
+  background: var(--v3-orange);
+}
+
+.v3-art-chip-bottom {
+  background: var(--v3-gold);
+}
+
+.v41-hero-offer {
+  border-color: oklch(0.72 0.13 48 / 0.42);
+  background:
+    linear-gradient(145deg, oklch(0.998 0.004 84), oklch(0.978 0.014 84));
+}
+
+.v46-compact-preview-section {
+  background:
+    radial-gradient(circle at 10% 10%, oklch(0.72 0.13 48 / 0.045), transparent 26%),
+    var(--v3-cream);
+}
+
+.v47-preview-summary-new {
+  border-color: oklch(0.72 0.13 48 / 0.22) !important;
+  background: oklch(0.975 0.018 84) !important;
+  color: var(--v3-orange-dark) !important;
+}
+
+.v3-pricing-section {
+  background:
+    linear-gradient(oklch(0.235 0.036 248 / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.235 0.036 248 / 0.025) 1px, transparent 1px),
+    var(--v3-cream);
+}
+
+/* Keep orange reserved for actual conversion emphasis. */
+.v3-button,
+.v3-popular-badge,
+.v41-hero-offer-meta b {
+  background: var(--v3-orange);
+}
+
+.v3-button:hover {
+  background: var(--v3-gold);
+}
+
+@media (max-width: 760px) {
+  .v3-benefit,
+  .v3-benefit + .v3-benefit {
+    border-top-color: oklch(0.235 0.036 248 / 0.11);
+  }
+}
