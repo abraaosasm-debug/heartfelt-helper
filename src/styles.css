@@ -8978,8 +8978,8 @@
 
 @media (max-width: 760px) {
   .vsl-player-wrap {
-    width: min(88vw, 360px);
-    min-width: min(290px, 100%);
+    width: min(84vw, 340px);
+    min-width: min(280px, 100%);
     margin-inline: auto;
   }
 
