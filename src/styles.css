@@ -7758,3 +7758,414 @@
     border-top-color: oklch(0.285 0.035 248 / 0.10);
   }
 }
+
+
+/* =========================================================
+   V5.0 — REALISTIC MOTION SYSTEM
+   GPU-friendly, interaction-led motion with reduced-motion fallback
+   ========================================================= */
+
+.v3-header {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.v3-header.is-scrolled {
+  border-bottom-color: oklch(0.285 0.035 248 / 0.12);
+  background: oklch(0.992 0.006 82 / 0.98);
+  box-shadow: 0 10px 28px oklch(0.285 0.035 248 / 0.08);
+}
+
+/* One coherent reveal system. */
+.v3-motion-ready :is(
+  .v3-section-heading,
+  .v32-preview-heading,
+  .v3-product-card,
+  .v3-bonus-card,
+  .v34-preview-card,
+  .v46-volume3-highlight,
+  .v3-benefit,
+  .v3-price-card,
+  .v3-guarantee,
+  .v3-faq details,
+  .v3-final-inner
+) {
+  transition:
+    opacity 480ms ease-out,
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 280ms ease;
+}
+
+.v3-motion-ready :is(
+  .v3-section-heading,
+  .v32-preview-heading,
+  .v3-product-card,
+  .v3-bonus-card,
+  .v34-preview-card,
+  .v46-volume3-highlight,
+  .v3-benefit,
+  .v3-price-card,
+  .v3-guarantee,
+  .v3-faq details,
+  .v3-final-inner
+):not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.99);
+  will-change: opacity, transform;
+}
+
+.v3-motion-ready :is(
+  .v3-section-heading,
+  .v32-preview-heading,
+  .v3-product-card,
+  .v3-bonus-card,
+  .v34-preview-card,
+  .v46-volume3-highlight,
+  .v3-benefit,
+  .v3-price-card,
+  .v3-guarantee,
+  .v3-faq details,
+  .v3-final-inner
+).is-visible {
+  opacity: 1;
+  will-change: auto;
+}
+
+/* Hero copy enters once. No perpetual text animation. */
+.v3-hero-copy > * {
+  animation: v50-hero-enter 640ms both cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.v3-hero-copy > :nth-child(2) { animation-delay: 55ms !important; }
+.v3-hero-copy > :nth-child(3) { animation-delay: 105ms !important; }
+.v3-hero-copy > :nth-child(4) { animation-delay: 155ms !important; }
+.v3-hero-copy > :nth-child(5) { animation-delay: 205ms !important; }
+.v3-hero-copy > :nth-child(6) { animation-delay: 255ms !important; }
+
+/* Paper-stack depth follows the pointer through CSS variables set in one RAF loop. */
+.v3-hero-art {
+  --v50-left-x: 0px;
+  --v50-left-y: 0px;
+  --v50-right-x: 0px;
+  --v50-right-y: 0px;
+  --v50-center-x: 0px;
+  --v50-center-y: 0px;
+  --v50-tilt-x: 0deg;
+  --v50-tilt-y: 0deg;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  contain: layout paint style;
+}
+
+.v3-book {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition:
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 420ms ease;
+  animation: v50-cover-settle 760ms both cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.v3-book-one {
+  transform:
+    translate3d(var(--v50-left-x), var(--v50-left-y), 0)
+    rotate(-9deg)
+    rotateX(var(--v50-tilt-x))
+    rotateY(var(--v50-tilt-y));
+  animation-delay: 120ms !important;
+}
+
+.v3-book-two {
+  transform:
+    translate3d(var(--v50-right-x), var(--v50-right-y), 0)
+    rotate(9deg)
+    rotateX(var(--v50-tilt-x))
+    rotateY(var(--v50-tilt-y));
+  animation-delay: 180ms !important;
+}
+
+.v3-book-three {
+  transform:
+    translate3d(var(--v50-center-x), var(--v50-center-y), 0)
+    rotate(-1deg)
+    rotateX(var(--v50-tilt-x))
+    rotateY(var(--v50-tilt-y));
+  animation-delay: 235ms !important;
+}
+
+.v3-mini-stack,
+.v3-art-orbit-one,
+.v3-art-orbit-two {
+  animation: none !important;
+}
+
+.v3-art-chip-top,
+.v3-art-chip-bottom {
+  animation: v50-chip-enter 520ms both cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.v3-art-chip-top { animation-delay: 360ms !important; }
+.v3-art-chip-bottom { animation-delay: 420ms !important; }
+
+/* Conversion controls move only when the user interacts. */
+.v3-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.v3-button > span,
+.v3-button > svg {
+  position: relative;
+  z-index: 1;
+}
+
+.v3-button::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -40%;
+  bottom: -40%;
+  left: -38%;
+  width: 24%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.44), transparent);
+  transform: skewX(-18deg) translate3d(-220%, 0, 0);
+  transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v3-header-cta,
+.v31-mobile-buybar {
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 240ms ease,
+    background-color 220ms ease;
+}
+
+.v3-button:active,
+.v3-header-cta:active,
+.v31-mobile-buybar:active {
+  transform: translate3d(0, 1px, 0) scale(0.985);
+}
+
+/* Cards respond like physical sheets rather than floating continuously. */
+.v3-cover,
+.v34-preview-card,
+.v3-product-card,
+.v3-price-card {
+  backface-visibility: hidden;
+}
+
+.v3-cover {
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 260ms ease;
+}
+
+.v34-preview-card {
+  transition:
+    opacity 480ms ease-out,
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 240ms ease,
+    box-shadow 300ms ease;
+}
+
+.v34-preview-media img {
+  transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v34-preview-zoom-icon {
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 260ms ease;
+}
+
+.v31-guarantee-seal,
+.v31-guarantee-seal::after {
+  animation: none !important;
+}
+
+.v31-guarantee-seal {
+  transition:
+    transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 380ms ease;
+}
+
+.v31-guarantee-seal::after {
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.v3-faq details[open] p {
+  animation: v50-faq-open 280ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .v3-button:hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 12px 26px oklch(0.72 0.14 42 / 0.22);
+  }
+
+  .v3-button:hover::after {
+    transform: skewX(-18deg) translate3d(760%, 0, 0);
+  }
+
+  .v3-header-cta:hover {
+    transform: translate3d(0, -1px, 0);
+    box-shadow: 0 8px 18px oklch(0.285 0.035 248 / 0.12);
+  }
+
+  .v3-motion-ready .v3-product-card.is-visible:hover,
+  .v3-motion-ready .v3-price-card.is-visible:hover {
+    transform: translate3d(0, -4px, 0) scale(1.004);
+    box-shadow: 0 24px 52px oklch(0.285 0.035 248 / 0.11);
+  }
+
+  .v3-motion-ready .v34-preview-card.is-visible:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 20px 42px oklch(0.285 0.035 248 / 0.12);
+  }
+
+  .v34-preview-card:hover .v34-preview-media img {
+    transform: scale(1.024);
+  }
+
+  .v34-preview-card:hover .v34-preview-zoom-icon {
+    transform: translate3d(0, -2px, 0) scale(1.04);
+    box-shadow: 0 10px 24px oklch(0.285 0.035 248 / 0.14);
+  }
+
+  .v3-cover:hover {
+    transform: translate3d(0, -3px, 0) rotate(0.2deg);
+  }
+
+  .v31-guarantee-seal:hover {
+    transform: translate3d(0, -3px, 0) rotate(-0.6deg) scale(1.012);
+    box-shadow:
+      0 26px 52px oklch(0.32 0.06 78 / 0.19),
+      inset 0 0 0 2px oklch(0.99 0.035 94),
+      inset 0 0 0 8px oklch(0.52 0.09 74 / 0.42);
+  }
+
+  .v31-guarantee-seal:hover::after {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .v31-mobile-buybar {
+    animation: v50-buybar-enter 560ms 420ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .v3-book {
+    will-change: auto;
+  }
+}
+
+@keyframes v50-hero-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes v50-cover-settle {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes v50-chip-enter {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes v50-buybar-enter {
+  from {
+    opacity: 0;
+    translate: 0 20px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes v50-faq-open {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v3-hero-copy > *,
+  .v3-book,
+  .v3-art-chip-top,
+  .v3-art-chip-bottom,
+  .v31-mobile-buybar,
+  .v3-faq details[open] p {
+    animation: none !important;
+  }
+
+  .v3-motion-ready :is(
+    .v3-section-heading,
+    .v32-preview-heading,
+    .v3-product-card,
+    .v3-bonus-card,
+    .v34-preview-card,
+    .v46-volume3-highlight,
+    .v3-benefit,
+    .v3-price-card,
+    .v3-guarantee,
+    .v3-faq details,
+    .v3-final-inner
+  ) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .v3-button,
+  .v3-header,
+  .v3-header-cta,
+  .v31-mobile-buybar,
+  .v3-cover,
+  .v34-preview-card,
+  .v34-preview-media img,
+  .v34-preview-zoom-icon,
+  .v31-guarantee-seal {
+    transition: none !important;
+  }
+
+  .v3-book-one { transform: rotate(-9deg) !important; }
+  .v3-book-two { transform: rotate(9deg) !important; }
+  .v3-book-three { transform: rotate(-1deg) !important; }
+}
