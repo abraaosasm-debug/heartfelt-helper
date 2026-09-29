@@ -342,6 +342,10 @@ if (!css.includes("V4.8 — REFINED COLOR SYSTEM")) {
   errors.push("Camada V4.8 de refinamento cromático ausente.");
 }
 
+if (!css.includes("V4.9 — EDUCATIONAL STATIONERY BRAND SYSTEM")) {
+  errors.push("Camada V4.9 de identidade educacional ausente.");
+}
+
 if (!index.includes('className="v47-preview-summary-new"')) {
   errors.push("Volume 3 precisa permanecer destacado primeiro na prova compacta.");
 }
