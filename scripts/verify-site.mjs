@@ -91,12 +91,28 @@ if (vsl.includes("Pare de começar do zero toda vez que precisar de uma atividad
   errors.push("Headline longa anterior não deve voltar à VSL.");
 }
 
+if (!css.includes("V6.3 — VSL COMPLETION POLISH")) {
+  errors.push("Camada V6.3 de acabamento final da VSL ausente.");
+}
+
+for (const completionMarker of [
+  "Vídeo curto • 1min44s",
+  "vsl-video-progress",
+  "vsl-gate-locked",
+  "A oferta completa será liberada ao final da apresentação.",
+  "LockKeyhole",
+]) {
+  if (!vsl.includes(completionMarker)) {
+    errors.push(`Acabamento final da VSL ausente: ${completionMarker}`);
+  }
+}
+
 if (
-  !/\.vsl-player-frame\s*\{[^}]*aspect-ratio:\s*4\s*\/\s*5;/s.test(
-    css.slice(css.indexOf("V6.1 — MOBILE VSL CONVERSION PASS")),
+  !/\.vsl-player-frame\s*\{[^}]*aspect-ratio:\s*720\s*\/\s*1560;/s.test(
+    css.slice(css.indexOf("V6.3 — VSL COMPLETION POLISH")),
   )
 ) {
-  errors.push("Player mobile da VSL precisa manter proporção 4:5 na camada V6.1.");
+  errors.push("Player mobile da VSL precisa respeitar a proporção vertical real do vídeo.");
 }
 
 if (!index.includes('createFileRoute("/oferta")')) {
