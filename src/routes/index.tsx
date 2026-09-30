@@ -103,9 +103,9 @@ function Index() {
 
           <div className="vsl-showcase">
             <div className="vsl-showcase-head">
-              <span className="vsl-showcase-kicker">APRESENTAÇÃO DO KIT</span>
-              <strong>Veja o material por dentro antes de conhecer a oferta.</strong>
-              <p>Uma demonstração rápida, com páginas reais da coleção.</p>
+              <span className="vsl-showcase-kicker">POR DENTRO DO KIT</span>
+              <strong>Veja o material por dentro antes de decidir.</strong>
+              <p>Em 1min44s, veja páginas reais e entenda como a coleção funciona.</p>
             </div>
 
             <div className="vsl-player-wrap">
@@ -247,10 +247,10 @@ function Index() {
             <div className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`} aria-live="polite">
               {showOffer ? (
                 <>
-                  <span>AGORA VEJA A COLEÇÃO COMPLETA</span>
-                  <h2>Conheça as 492 páginas, os 3 volumes e os 5 bônus.</h2>
+                  <span>AGORA CONHEÇA A COLEÇÃO COMPLETA</span>
+                  <h2>Conheça o Kit Completo e veja tudo o que está incluído.</h2>
                   <p>
-                    Veja as páginas por dentro, tudo o que está incluído e a oferta atual antes de
+                    Veja as 492 páginas, os três volumes, os cinco bônus e as condições atuais antes de
                     decidir.
                   </p>
                   <a
@@ -258,7 +258,7 @@ function Index() {
                     href={offerHref}
                     onClick={() => trackVslEvent("VSLToOffer")}
                   >
-                    VER O KIT COMPLETO
+                    CONHECER O KIT COMPLETO
                     <ArrowRight size={19} />
                   </a>
                 </>
@@ -270,7 +270,7 @@ function Index() {
                 <div className="vsl-gate-locked">
                   <LockKeyhole size={15} aria-hidden="true" />
                   <p className="vsl-gate-hint">
-                    A oferta completa será liberada ao final da apresentação.
+                    Ao final da apresentação, você poderá ver tudo o que está incluído no Kit Completo.
                   </p>
                 </div>
               )}
