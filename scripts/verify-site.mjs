@@ -167,7 +167,7 @@ for (const completionMarker of [
   "Vídeo curto • 1min44s",
   "vsl-video-progress",
   "vsl-gate-locked",
-  "Ao final da apresentação, você poderá ver tudo o que está incluído no Kit Completo.",
+  "Ao final da apresentação, você poderá ver tudo o que está incluído no Kit",
   "LockKeyhole",
 ]) {
   if (!vsl.includes(completionMarker)) {
