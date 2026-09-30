@@ -14,7 +14,7 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
-const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=1";
+const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=2";
 
 function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") {
   if (!window.fbq) return;
@@ -26,6 +26,7 @@ function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") 
 
 function Index() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastProgressRef = useRef(-1);
   const [offerHref, setOfferHref] = useState("/oferta");
   const [videoState, setVideoState] = useState<"loading" | "ready" | "fallback">("loading");
   const [showOffer, setShowOffer] = useState(false);
@@ -47,8 +48,6 @@ function Index() {
   }, []);
 
   const handlePlay = () => {
-    setVideoState("ready");
-    setShowPreplay(false);
     if (!completed) setShowOffer(false);
 
     if (started) return;
@@ -56,10 +55,16 @@ function Index() {
     trackVslEvent("VSLStarted");
   };
 
+  const handlePlaying = () => {
+    setVideoState("ready");
+    setShowPreplay(false);
+  };
+
   const handleEnded = () => {
     setCompleted(true);
     setShowPreplay(true);
     setShowOffer(true);
+    lastProgressRef.current = 100;
     setProgress(100);
     trackVslEvent("VSLCompleted");
   };
@@ -115,16 +120,23 @@ function Index() {
                   className="vsl-video"
                   controls
                   playsInline
-                  preload="auto"
-                  poster="/covers/1_v3.jpg?v=1"
+                  preload="metadata"
                   onLoadedData={handleVideoReady}
                   onCanPlay={handleVideoReady}
-                  onPlaying={handleVideoReady}
+                  onPlaying={handlePlaying}
                   onPlay={handlePlay}
                   onTimeUpdate={(event) => {
                     const video = event.currentTarget;
                     if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-                    setProgress(Math.min(100, (video.currentTime / video.duration) * 100));
+
+                    const nextProgress = Math.min(
+                      100,
+                      Math.floor((video.currentTime / video.duration) * 100),
+                    );
+
+                    if (nextProgress === lastProgressRef.current) return;
+                    lastProgressRef.current = nextProgress;
+                    setProgress(nextProgress);
                   }}
                   onEnded={handleEnded}
                   onError={handleVideoError}
