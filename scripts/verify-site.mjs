@@ -121,11 +121,22 @@ if (!css.includes("V7.1 — MOBILE DENSITY PASS")) {
   errors.push("Camada V7.1 de densidade mobile da landing ausente.");
 }
 
+for (const heroFitMarker of [
+  "width: 43%;",
+  "top: 28px;",
+  "left: 28.5%;",
+  "min-height: 278px;",
+]) {
+  if (!css.includes(heroFitMarker)) {
+    errors.push(`Enquadramento mobile das capas incompleto: ${heroFitMarker}`);
+  }
+}
+
 for (const mobileDensityMarker of [
   "font-size: clamp(2.2rem, 10.6vw, 2.9rem);",
   "font-size: 0.78em;",
-  "min-height: 278px;",
-  "min-height: 56px;",
+  "min-height: 296px;",
+  "min-height: 52px;",
 ]) {
   if (!css.includes(mobileDensityMarker)) {
     errors.push(`Ajuste de densidade mobile incompleto: ${mobileDensityMarker}`);
