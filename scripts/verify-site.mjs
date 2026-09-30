@@ -121,6 +121,22 @@ if (!css.includes("V7.1 — MOBILE DENSITY PASS")) {
   errors.push("Camada V7.1 de densidade mobile da landing ausente.");
 }
 
+if (!css.includes("V7.2 — MOBILE HERO ART SAFE FRAME")) {
+  errors.push("Camada V7.2 de enquadramento seguro das capas ausente.");
+}
+
+for (const safeFrameMarker of [
+  "height: 330px;",
+  "aspect-ratio: 1080 / 1528;",
+  "width: 40%;",
+  "top: 24px;",
+  "height: 312px;",
+]) {
+  if (!css.includes(safeFrameMarker)) {
+    errors.push(`Enquadramento seguro das capas incompleto: ${safeFrameMarker}`);
+  }
+}
+
 for (const heroFitMarker of ["width: 43%;", "top: 28px;", "left: 28.5%;", "min-height: 278px;"]) {
   if (!css.includes(heroFitMarker)) {
     errors.push(`Enquadramento mobile das capas incompleto: ${heroFitMarker}`);
