@@ -103,6 +103,22 @@ if (!css.includes("V6.5 — PRE-PLAY THUMBNAIL")) {
   errors.push("Camada V6.5 da thumbnail de pré-play ausente.");
 }
 
+if (!css.includes("V7.0 — VSL PRODUCT SHOWROOM")) {
+  errors.push("Camada V7.0 do showroom da VSL ausente.");
+}
+
+for (const showroomMarker of [
+  "vsl-showcase",
+  "vsl-showcase-head",
+  "vsl-showcase-kicker",
+  "Veja o material por dentro antes de conhecer a oferta.",
+  "Uma demonstração rápida, com páginas reais da coleção.",
+]) {
+  if (!vsl.includes(showroomMarker)) {
+    errors.push(`Showroom da VSL incompleto: ${showroomMarker}`);
+  }
+}
+
 for (const preplayMarker of [
   "vsl-preplay",
   "vsl-preplay-covers",
