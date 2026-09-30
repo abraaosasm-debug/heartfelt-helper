@@ -250,8 +250,8 @@ function Index() {
                   <span>AGORA CONHEÇA A COLEÇÃO COMPLETA</span>
                   <h2>Conheça o Kit Completo e veja tudo o que está incluído.</h2>
                   <p>
-                    Veja as 492 páginas, os três volumes, os cinco bônus e as condições atuais antes de
-                    decidir.
+                    Veja as 492 páginas, os três volumes, os cinco bônus e as condições atuais antes
+                    de decidir.
                   </p>
                   <a
                     className="vsl-offer-button"
@@ -270,7 +270,8 @@ function Index() {
                 <div className="vsl-gate-locked">
                   <LockKeyhole size={15} aria-hidden="true" />
                   <p className="vsl-gate-hint">
-                    Ao final da apresentação, você poderá ver tudo o que está incluído no Kit Completo.
+                    Ao final da apresentação, você poderá ver tudo o que está incluído no Kit
+                    Completo.
                   </p>
                 </div>
               )}
