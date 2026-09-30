@@ -19,7 +19,7 @@ for (const vslMarker of [
   "VSL_VIDEO_SRC",
   "/vsl/kit-atividades-vsl.mp4",
   "Pare de criar atividades do zero toda vez que precisar.",
-  "VER O KIT COMPLETO",
+  "CONHECER O KIT COMPLETO",
   "VSLStarted",
   "VSLCompleted",
   "VSLToOffer",
@@ -87,6 +87,16 @@ if (vsl.includes("Sem promessa milagrosa")) {
   errors.push('Texto defensivo "Sem promessa milagrosa" não deve voltar à VSL.');
 }
 
+for (const funnelLanguage of [
+  "Veja o material por dentro antes de conhecer a oferta.",
+  "A oferta completa será liberada ao final da apresentação.",
+  "AGORA VEJA A COLEÇÃO COMPLETA",
+]) {
+  if (vsl.includes(funnelLanguage)) {
+    errors.push(`Linguagem antiga de funil não deve voltar à VSL: ${funnelLanguage}`);
+  }
+}
+
 if (vsl.includes("Pare de começar do zero toda vez que precisar de uma atividade.")) {
   errors.push("Headline longa anterior não deve voltar à VSL.");
 }
@@ -111,8 +121,8 @@ for (const showroomMarker of [
   "vsl-showcase",
   "vsl-showcase-head",
   "vsl-showcase-kicker",
-  "Veja o material por dentro antes de conhecer a oferta.",
-  "Uma demonstração rápida, com páginas reais da coleção.",
+  "Veja o material por dentro antes de decidir.",
+  "Em 1min44s, veja páginas reais e entenda como a coleção funciona.",
 ]) {
   if (!vsl.includes(showroomMarker)) {
     errors.push(`Showroom da VSL incompleto: ${showroomMarker}`);
@@ -157,7 +167,7 @@ for (const completionMarker of [
   "Vídeo curto • 1min44s",
   "vsl-video-progress",
   "vsl-gate-locked",
-  "A oferta completa será liberada ao final da apresentação.",
+  "Ao final da apresentação, você poderá ver tudo o que está incluído no Kit Completo.",
   "LockKeyhole",
 ]) {
   if (!vsl.includes(completionMarker)) {
