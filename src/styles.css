@@ -9407,3 +9407,257 @@
     scroll-behavior: auto;
   }
 }
+
+
+/* =========================================================
+   V7.1 — MOBILE DENSITY PASS
+   More proportional hierarchy for the sales page on phones
+   ========================================================= */
+
+@media (max-width: 760px) {
+  /* Hero: strong, but no longer fills the viewport like a poster. */
+  .v3-hero {
+    padding: 28px 0 32px;
+  }
+
+  .v3-hero .v3-kicker {
+    gap: 7px;
+    font-size: 8px;
+    letter-spacing: 0.11em;
+    line-height: 1.4;
+  }
+
+  .v3-hero .v3-kicker::before {
+    width: 20px;
+  }
+
+  .v3-hero h1 {
+    max-width: 100%;
+    margin-top: 14px;
+    font-size: clamp(2.2rem, 10.6vw, 2.9rem);
+    line-height: 0.97;
+    letter-spacing: -0.045em;
+  }
+
+  .v3-hero h1 span {
+    margin-top: 10px;
+    font-size: 0.78em;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .v3-hero-lead {
+    max-width: 100%;
+    margin-top: 16px !important;
+    font-size: 13px;
+    line-height: 1.58;
+  }
+
+  /* Commercial card: keep price dominant without turning it into an outdoor. */
+  .v41-hero-offer {
+    gap: 8px;
+    margin-top: 16px;
+    padding: 14px 15px;
+    border-radius: 15px;
+  }
+
+  .v41-hero-offer-label {
+    padding: 5px 8px;
+    font-size: 7px;
+  }
+
+  .v41-hero-offer-label svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .v41-hero-offer-prices {
+    gap: 6px 10px;
+  }
+
+  .v41-hero-offer-prices > span {
+    font-size: 11px;
+  }
+
+  .v41-hero-offer-prices s {
+    font-size: 15px;
+  }
+
+  .v41-hero-offer-prices > strong {
+    font-size: clamp(2.45rem, 12.3vw, 3.25rem);
+    line-height: 0.92;
+  }
+
+  .v41-hero-offer-meta {
+    gap: 7px;
+  }
+
+  .v41-hero-offer-meta b {
+    padding: 6px 9px;
+    font-size: 8px;
+  }
+
+  .v41-hero-offer-meta span {
+    font-size: 9px;
+  }
+
+  .v41-hero-offer > p {
+    padding-top: 7px;
+    font-size: 7px;
+  }
+
+  .v3-hero-actions {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .v3-hero-actions .v3-button {
+    min-height: 52px;
+    padding: 12px 17px;
+    font-size: 10px;
+  }
+
+  .v31-hero-trust {
+    gap: 6px;
+    margin-top: 11px;
+    font-size: 8.5px;
+    line-height: 1.45;
+  }
+
+  .v31-hero-trust svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Product visual: still important, with more breathing room around it. */
+  .v3-hero-art {
+    min-height: 278px;
+    margin-top: 4px;
+    border-radius: 20px;
+  }
+
+  .v3-book {
+    border-width: 4px;
+    border-radius: 10px;
+  }
+
+  .v3-book-one {
+    width: 35%;
+    top: 56px;
+    left: 7%;
+  }
+
+  .v3-book-two {
+    width: 35%;
+    top: 62px;
+    right: 7%;
+  }
+
+  .v3-book-three {
+    width: 42%;
+    top: 34px;
+    left: 29%;
+  }
+
+  .v3-art-chip {
+    min-height: 28px;
+    padding: 6px 9px;
+    border-width: 1.5px;
+    font-size: 6.5px;
+  }
+
+  .v3-art-chip-top {
+    top: 12px;
+    right: 12px;
+  }
+
+  .v3-art-chip-bottom {
+    bottom: 12px;
+    left: 12px;
+  }
+
+  /* Global mobile hierarchy: sections stop competing with the hero. */
+  .v3-section,
+  .v3-benefits,
+  .v3-pricing-section,
+  .v3-assurance-section {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .v3-section-heading h2,
+  .v3-benefit-intro h2,
+  .v3-guarantee h2,
+  .v3-final-inner h2 {
+    font-size: clamp(2.05rem, 9.5vw, 3rem);
+    line-height: 1;
+  }
+
+  .v3-section-heading > p,
+  .v3-benefit-intro > p {
+    margin-top: 14px !important;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .v3-product-grid,
+  .v3-pricing-grid {
+    margin-top: 32px;
+  }
+
+  /* Sticky CTA: visible and useful, but no longer visually compresses the page. */
+  .v31-mobile-buybar {
+    right: 9px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    left: 9px;
+    min-height: 56px;
+    gap: 9px;
+    padding: 7px 8px 7px 13px;
+    border-radius: 14px;
+  }
+
+  .v31-mobile-buybar small,
+  .v41-mobile-price small {
+    font-size: 6.5px;
+  }
+
+  .v31-mobile-buybar strong,
+  .v41-mobile-price strong {
+    font-size: 17px;
+  }
+
+  .v31-mobile-buybar b {
+    min-height: 40px;
+    gap: 6px;
+    padding: 8px 11px;
+    border-radius: 10px;
+    font-size: 8px;
+  }
+
+  .v31-mobile-buybar b svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .v3-footer {
+    padding-bottom: calc(102px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 390px) {
+  .v3-hero h1 {
+    font-size: clamp(2.12rem, 10.2vw, 2.55rem);
+  }
+
+  .v3-hero h1 span {
+    font-size: 0.76em;
+  }
+
+  .v41-hero-offer-prices > strong {
+    font-size: clamp(2.35rem, 11.8vw, 2.9rem);
+  }
+
+  .v3-hero-art {
+    min-height: 260px;
+  }
+}
