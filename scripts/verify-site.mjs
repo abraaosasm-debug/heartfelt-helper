@@ -131,7 +131,7 @@ if (!css.includes("V7.3 — VSL MOBILE PERFORMANCE")) {
 
 for (const vslPerformanceMarker of [
   'preload="metadata"',
-  "kit-atividades-vsl.mp4?v=2",
+  "kit-atividades-vsl.mp4?v=3",
   "lastProgressRef",
   "handlePlaying",
   "Math.floor((video.currentTime / video.duration) * 100)",
