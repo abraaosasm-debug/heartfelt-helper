@@ -14,7 +14,7 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
-const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=2";
+const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=3";
 
 function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") {
   if (!window.fbq) return;
