@@ -9661,3 +9661,76 @@
     min-height: 278px;
   }
 }
+
+
+/* =========================================================
+   V7.2 — MOBILE HERO ART SAFE FRAME
+   Locks a predictable frame so the three volume covers never
+   get clipped at the bottom on phone layouts.
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .v3-hero-art {
+    height: 330px;
+    min-height: 330px;
+    overflow: hidden;
+  }
+
+  .v3-book {
+    height: auto;
+    aspect-ratio: 1080 / 1528;
+  }
+
+  .v3-book img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .v3-book-one {
+    width: 34%;
+    top: 46px;
+    left: 8%;
+  }
+
+  .v3-book-two {
+    width: 34%;
+    top: 52px;
+    right: 8%;
+  }
+
+  .v3-book-three {
+    width: 40%;
+    top: 24px;
+    left: 30%;
+  }
+
+  .v3-art-chip-bottom {
+    bottom: 14px;
+  }
+}
+
+@media (max-width: 390px) {
+  .v3-hero-art {
+    height: 312px;
+    min-height: 312px;
+  }
+
+  .v3-book-one {
+    width: 33%;
+    top: 44px;
+    left: 8%;
+  }
+
+  .v3-book-two {
+    width: 33%;
+    top: 50px;
+    right: 8%;
+  }
+
+  .v3-book-three {
+    width: 39%;
+    top: 22px;
+    left: 30.5%;
+  }
+}
