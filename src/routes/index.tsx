@@ -101,173 +101,181 @@ function Index() {
             </p>
           </div>
 
-          <div className="vsl-player-wrap">
-            <div className="vsl-player-frame" data-state={videoState}>
-              <video
-                ref={videoRef}
-                className="vsl-video"
-                controls
-                playsInline
-                preload="auto"
-                poster="/covers/1_v3.jpg?v=1"
-                onLoadedData={handleVideoReady}
-                onCanPlay={handleVideoReady}
-                onPlaying={handleVideoReady}
-                onPlay={handlePlay}
-                onTimeUpdate={(event) => {
-                  const video = event.currentTarget;
-                  if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-                  setProgress(Math.min(100, (video.currentTime / video.duration) * 100));
-                }}
-                onEnded={handleEnded}
-                onError={handleVideoError}
-              >
-                <source src={VSL_VIDEO_SRC} type="video/mp4" />
-              </video>
+          <div className="vsl-showcase">
+            <div className="vsl-showcase-head">
+              <span className="vsl-showcase-kicker">APRESENTAÇÃO DO KIT</span>
+              <strong>Veja o material por dentro antes de conhecer a oferta.</strong>
+              <p>Uma demonstração rápida, com páginas reais da coleção.</p>
+            </div>
 
-              {showPreplay && videoState !== "fallback" ? (
-                <button
-                  type="button"
-                  className={`vsl-preplay${completed ? " is-replay" : ""}`}
-                  aria-label={
-                    completed
-                      ? "Assistir novamente à apresentação do Kit de Atividades"
-                      : "Reproduzir apresentação do Kit de Atividades"
-                  }
-                  onClick={() => {
-                    const video = videoRef.current;
-                    if (!video) return;
-                    if (completed) {
-                      video.currentTime = 0;
-                      setProgress(0);
-                    }
-                    void video.play();
+            <div className="vsl-player-wrap">
+              <div className="vsl-player-frame" data-state={videoState}>
+                <video
+                  ref={videoRef}
+                  className="vsl-video"
+                  controls
+                  playsInline
+                  preload="auto"
+                  poster="/covers/1_v3.jpg?v=1"
+                  onLoadedData={handleVideoReady}
+                  onCanPlay={handleVideoReady}
+                  onPlaying={handleVideoReady}
+                  onPlay={handlePlay}
+                  onTimeUpdate={(event) => {
+                    const video = event.currentTarget;
+                    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+                    setProgress(Math.min(100, (video.currentTime / video.duration) * 100));
                   }}
+                  onEnded={handleEnded}
+                  onError={handleVideoError}
                 >
-                  <span className="vsl-preplay-covers" aria-hidden="true">
-                    <img
-                      src="/covers/optimized/cover-1.webp?v=1"
-                      alt=""
-                      width={1080}
-                      height={1528}
-                    />
-                    <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
-                    <img
-                      src="/covers/optimized/cover-2.webp?v=1"
-                      alt=""
-                      width={1080}
-                      height={1527}
-                    />
-                  </span>
+                  <source src={VSL_VIDEO_SRC} type="video/mp4" />
+                </video>
 
-                  <span className="vsl-preplay-action">
-                    <span className="vsl-preplay-button" aria-hidden="true">
-                      <Play size={24} fill="currentColor" />
+                {showPreplay && videoState !== "fallback" ? (
+                  <button
+                    type="button"
+                    className={`vsl-preplay${completed ? " is-replay" : ""}`}
+                    aria-label={
+                      completed
+                        ? "Assistir novamente à apresentação do Kit de Atividades"
+                        : "Reproduzir apresentação do Kit de Atividades"
+                    }
+                    onClick={() => {
+                      const video = videoRef.current;
+                      if (!video) return;
+                      if (completed) {
+                        video.currentTime = 0;
+                        setProgress(0);
+                      }
+                      void video.play();
+                    }}
+                  >
+                    <span className="vsl-preplay-covers" aria-hidden="true">
+                      <img
+                        src="/covers/optimized/cover-1.webp?v=1"
+                        alt=""
+                        width={1080}
+                        height={1528}
+                      />
+                      <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
+                      <img
+                        src="/covers/optimized/cover-2.webp?v=1"
+                        alt=""
+                        width={1080}
+                        height={1527}
+                      />
                     </span>
-                    <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
-                    <small>
-                      {completed
-                        ? "Rever apresentação • 1min44s"
-                        : "1min44s • veja o kit por dentro"}
-                    </small>
-                  </span>
-                </button>
-              ) : null}
 
-              {videoState === "fallback" ? (
-                <div className="vsl-fallback" aria-live="polite">
-                  <div className="vsl-fallback-covers" aria-hidden="true">
-                    <img
-                      src="/covers/optimized/cover-1.webp?v=1"
-                      alt=""
-                      width={1080}
-                      height={1528}
-                    />
-                    <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
-                    <img
-                      src="/covers/optimized/cover-2.webp?v=1"
-                      alt=""
-                      width={1080}
-                      height={1527}
-                    />
-                  </div>
-
-                  <div className="vsl-fallback-copy">
-                    <span className="vsl-play-mark" aria-hidden="true">
-                      <Play size={24} fill="currentColor" />
+                    <span className="vsl-preplay-action">
+                      <span className="vsl-preplay-button" aria-hidden="true">
+                        <Play size={24} fill="currentColor" />
+                      </span>
+                      <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
+                      <small>
+                        {completed
+                          ? "Rever apresentação • 1min44s"
+                          : "1min44s • veja o kit por dentro"}
+                      </small>
                     </span>
-                    <strong>Atividades prontas. Uma coleção organizada.</strong>
-                    <p>
-                      492 páginas digitais em 3 volumes + 5 bônus para consultar, escolher e
-                      imprimir.
-                    </p>
+                  </button>
+                ) : null}
+
+                {videoState === "fallback" ? (
+                  <div className="vsl-fallback" aria-live="polite">
+                    <div className="vsl-fallback-covers" aria-hidden="true">
+                      <img
+                        src="/covers/optimized/cover-1.webp?v=1"
+                        alt=""
+                        width={1080}
+                        height={1528}
+                      />
+                      <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
+                      <img
+                        src="/covers/optimized/cover-2.webp?v=1"
+                        alt=""
+                        width={1080}
+                        height={1527}
+                      />
+                    </div>
+
+                    <div className="vsl-fallback-copy">
+                      <span className="vsl-play-mark" aria-hidden="true">
+                        <Play size={24} fill="currentColor" />
+                      </span>
+                      <strong>Atividades prontas. Uma coleção organizada.</strong>
+                      <p>
+                        492 páginas digitais em 3 volumes + 5 bônus para consultar, escolher e
+                        imprimir.
+                      </p>
+                    </div>
                   </div>
+                ) : null}
+              </div>
+
+              <div className="vsl-video-progress" aria-label="Progresso da apresentação">
+                <div className="vsl-video-progress-copy">
+                  <span>Vídeo curto • 1min44s</span>
+                  <strong>{Math.round(progress)}%</strong>
                 </div>
-              ) : null}
-            </div>
-
-            <div className="vsl-video-progress" aria-label="Progresso da apresentação">
-              <div className="vsl-video-progress-copy">
-                <span>Vídeo curto • 1min44s</span>
-                <strong>{Math.round(progress)}%</strong>
-              </div>
-              <div
-                className="vsl-video-progress-track"
-                role="progressbar"
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={Math.round(progress)}
-              >
-                <span style={{ width: `${progress}%` }} />
-              </div>
-            </div>
-
-            <div className="vsl-player-meta" aria-label="Resumo da apresentação">
-              <span>
-                <Check size={15} aria-hidden="true" />
-                Demonstração do material
-              </span>
-              <span>
-                <Check size={15} aria-hidden="true" />
-                Páginas reais
-              </span>
-              <span>
-                <Check size={15} aria-hidden="true" />3 volumes + 5 bônus
-              </span>
-            </div>
-          </div>
-
-          <div className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`} aria-live="polite">
-            {showOffer ? (
-              <>
-                <span>AGORA VEJA A COLEÇÃO COMPLETA</span>
-                <h2>Conheça as 492 páginas, os 3 volumes e os 5 bônus.</h2>
-                <p>
-                  Veja as páginas por dentro, tudo o que está incluído e a oferta atual antes de
-                  decidir.
-                </p>
-                <a
-                  className="vsl-offer-button"
-                  href={offerHref}
-                  onClick={() => trackVslEvent("VSLToOffer")}
+                <div
+                  className="vsl-video-progress-track"
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(progress)}
                 >
-                  VER O KIT COMPLETO
-                  <ArrowRight size={19} />
-                </a>
-              </>
-            ) : videoState === "fallback" ? (
-              <p className="vsl-gate-hint">
-                Não foi possível carregar o vídeo. Atualize a página e tente novamente.
-              </p>
-            ) : (
-              <div className="vsl-gate-locked">
-                <LockKeyhole size={15} aria-hidden="true" />
-                <p className="vsl-gate-hint">
-                  A oferta completa será liberada ao final da apresentação.
-                </p>
+                  <span style={{ width: `${progress}%` }} />
+                </div>
               </div>
-            )}
-          </div>
+
+              <div className="vsl-player-meta" aria-label="Resumo da apresentação">
+                <span>
+                  <Check size={15} aria-hidden="true" />
+                  Demonstração do material
+                </span>
+                <span>
+                  <Check size={15} aria-hidden="true" />
+                  Páginas reais
+                </span>
+                <span>
+                  <Check size={15} aria-hidden="true" />3 volumes + 5 bônus
+                </span>
+              </div>
+            </div>
+
+            <div className={`vsl-offer-gate${showOffer ? " is-visible" : ""}`} aria-live="polite">
+              {showOffer ? (
+                <>
+                  <span>AGORA VEJA A COLEÇÃO COMPLETA</span>
+                  <h2>Conheça as 492 páginas, os 3 volumes e os 5 bônus.</h2>
+                  <p>
+                    Veja as páginas por dentro, tudo o que está incluído e a oferta atual antes de
+                    decidir.
+                  </p>
+                  <a
+                    className="vsl-offer-button"
+                    href={offerHref}
+                    onClick={() => trackVslEvent("VSLToOffer")}
+                  >
+                    VER O KIT COMPLETO
+                    <ArrowRight size={19} />
+                  </a>
+                </>
+              ) : videoState === "fallback" ? (
+                <p className="vsl-gate-hint">
+                  Não foi possível carregar o vídeo. Atualize a página e tente novamente.
+                </p>
+              ) : (
+                <div className="vsl-gate-locked">
+                  <LockKeyhole size={15} aria-hidden="true" />
+                  <p className="vsl-gate-hint">
+                    A oferta completa será liberada ao final da apresentação.
+                  </p>
+                </div>
+              )}
+            <
+          </div>/div>
         </div>
       </section>
 
