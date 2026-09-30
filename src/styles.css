@@ -9531,7 +9531,7 @@
 
   /* Product visual: still important, with more breathing room around it. */
   .v3-hero-art {
-    min-height: 278px;
+    min-height: 296px;
     margin-top: 4px;
     border-radius: 20px;
   }
@@ -9542,21 +9542,21 @@
   }
 
   .v3-book-one {
-    width: 35%;
-    top: 56px;
+    width: 36%;
+    top: 50px;
     left: 7%;
   }
 
   .v3-book-two {
-    width: 35%;
-    top: 62px;
+    width: 36%;
+    top: 56px;
     right: 7%;
   }
 
   .v3-book-three {
-    width: 42%;
-    top: 34px;
-    left: 29%;
+    width: 43%;
+    top: 28px;
+    left: 28.5%;
   }
 
   .v3-art-chip {
@@ -9610,9 +9610,9 @@
     right: 9px;
     bottom: calc(8px + env(safe-area-inset-bottom));
     left: 9px;
-    min-height: 56px;
-    gap: 9px;
-    padding: 7px 8px 7px 13px;
+    min-height: 52px;
+    gap: 8px;
+    padding: 6px 7px 6px 12px;
     border-radius: 14px;
   }
 
@@ -9623,13 +9623,13 @@
 
   .v31-mobile-buybar strong,
   .v41-mobile-price strong {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .v31-mobile-buybar b {
     min-height: 40px;
     gap: 6px;
-    padding: 8px 11px;
+    padding: 7px 10px;
     border-radius: 10px;
     font-size: 8px;
   }
@@ -9658,6 +9658,6 @@
   }
 
   .v3-hero-art {
-    min-height: 260px;
+    min-height: 278px;
   }
 }
