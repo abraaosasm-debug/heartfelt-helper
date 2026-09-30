@@ -117,6 +117,21 @@ if (!css.includes("V7.0 — VSL PRODUCT SHOWROOM")) {
   errors.push("Camada V7.0 do showroom da VSL ausente.");
 }
 
+if (!css.includes("V7.1 — MOBILE DENSITY PASS")) {
+  errors.push("Camada V7.1 de densidade mobile da landing ausente.");
+}
+
+for (const mobileDensityMarker of [
+  "font-size: clamp(2.2rem, 10.6vw, 2.9rem);",
+  "font-size: 0.78em;",
+  "min-height: 278px;",
+  "min-height: 56px;",
+]) {
+  if (!css.includes(mobileDensityMarker)) {
+    errors.push(`Ajuste de densidade mobile incompleto: ${mobileDensityMarker}`);
+  }
+}
+
 for (const showroomMarker of [
   "vsl-showcase",
   "vsl-showcase-head",
