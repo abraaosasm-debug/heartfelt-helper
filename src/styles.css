@@ -9734,3 +9734,47 @@
     left: 30.5%;
   }
 }
+
+
+/* =========================================================
+   V7.3 — VSL MOBILE PERFORMANCE
+   Preserve visual identity while reducing GPU/compositing work
+   during video playback on phones.
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .vsl-showcase {
+    background: linear-gradient(155deg, oklch(0.995 0.01 80), oklch(0.97 0.016 78));
+    box-shadow:
+      0 14px 30px oklch(0.285 0.035 248 / 0.075),
+      inset 0 1px 0 oklch(1 0 0 / 0.8);
+  }
+
+  .vsl-showcase::before,
+  .vsl-showcase::after {
+    display: none;
+  }
+
+  .vsl-showcase .vsl-player-frame {
+    contain: layout paint;
+    box-shadow:
+      0 10px 24px oklch(0.285 0.035 248 / 0.12),
+      0 0 0 3px oklch(1 0 0 / 0.42);
+  }
+
+  .vsl-showcase .vsl-player-meta > span {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .vsl-video-progress-track > span {
+    transition: none;
+  }
+
+  .vsl-proof-strip,
+  .vsl-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
+  }
+}
