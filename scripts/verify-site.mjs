@@ -121,12 +121,7 @@ if (!css.includes("V7.1 — MOBILE DENSITY PASS")) {
   errors.push("Camada V7.1 de densidade mobile da landing ausente.");
 }
 
-for (const heroFitMarker of [
-  "width: 43%;",
-  "top: 28px;",
-  "left: 28.5%;",
-  "min-height: 278px;",
-]) {
+for (const heroFitMarker of ["width: 43%;", "top: 28px;", "left: 28.5%;", "min-height: 278px;"]) {
   if (!css.includes(heroFitMarker)) {
     errors.push(`Enquadramento mobile das capas incompleto: ${heroFitMarker}`);
   }
