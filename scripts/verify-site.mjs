@@ -74,7 +74,7 @@ for (const refinedVslMarker of [
   "ASSISTA À APRESENTAÇÃO",
   "492 páginas organizadas",
   "onLoadedData={handleVideoReady}",
-  "onPlaying={handleVideoReady}",
+  "onPlaying={handlePlaying}",
   'videoState === "fallback"',
   "3 volumes + 5 bônus",
 ]) {
@@ -123,6 +123,40 @@ if (!css.includes("V7.1 — MOBILE DENSITY PASS")) {
 
 if (!css.includes("V7.2 — MOBILE HERO ART SAFE FRAME")) {
   errors.push("Camada V7.2 de enquadramento seguro das capas ausente.");
+}
+
+if (!css.includes("V7.3 — VSL MOBILE PERFORMANCE")) {
+  errors.push("Camada V7.3 de performance mobile da VSL ausente.");
+}
+
+for (const vslPerformanceMarker of [
+  'preload="metadata"',
+  'kit-atividades-vsl.mp4?v=2',
+  "lastProgressRef",
+  "handlePlaying",
+  "Math.floor((video.currentTime / video.duration) * 100)",
+]) {
+  if (!vsl.includes(vslPerformanceMarker)) {
+    errors.push(`Otimização de performance da VSL incompleta: ${vslPerformanceMarker}`);
+  }
+}
+
+if (vsl.includes('preload="auto"')) {
+  errors.push("A VSL não deve voltar a pré-carregar o vídeo inteiro automaticamente.");
+}
+
+if (vsl.includes('poster="/covers/1_v3.jpg')) {
+  errors.push("A VSL não deve carregar a capa JPG pesada como poster do vídeo.");
+}
+
+for (const mobileGpuMarker of [
+  "content-visibility: auto;",
+  "-webkit-backdrop-filter: none;",
+  "contain: layout paint;",
+]) {
+  if (!css.includes(mobileGpuMarker)) {
+    errors.push(`Otimização de GPU mobile ausente: ${mobileGpuMarker}`);
+  }
 }
 
 for (const safeFrameMarker of [
