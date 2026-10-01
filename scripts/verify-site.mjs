@@ -327,10 +327,7 @@ for (const relative of selectedPreviews) {
   }
 }
 
-const volume2Previews = [
-  "public/previews/selected/1.jpg",
-  "public/previews/selected/5.jpg",
-];
+const volume2Previews = ["public/previews/selected/1.jpg", "public/previews/selected/5.jpg"];
 
 for (const relative of volume2Previews) {
   const absolute = resolve(root, relative);
