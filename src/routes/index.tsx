@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Check, LockKeyhole, Play, ShieldCheck } from "lucide-react";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
+import vslVideo from "@/assets/kit-atividades-vsl.mp4.asset.json";
 
 const attributionKeys = [
   "utm_source",
@@ -14,7 +15,7 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
-const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=4";
+const VSL_VIDEO_SRC = vslVideo.url;
 
 function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") {
   if (!window.fbq) return;
@@ -110,7 +111,7 @@ function Index() {
             <div className="vsl-showcase-head">
               <span className="vsl-showcase-kicker">POR DENTRO DO KIT</span>
               <strong>Veja o material por dentro antes de decidir.</strong>
-              <p>Em 2min47s, veja páginas reais e entenda como a coleção funciona.</p>
+              <p>Em 2min31s, veja páginas reais e entenda como a coleção funciona.</p>
             </div>
 
             <div className="vsl-player-wrap">
@@ -186,8 +187,8 @@ function Index() {
                       <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
                       <small>
                         {completed
-                          ? "Rever apresentação • 2min47s"
-                          : "2min47s • veja o kit por dentro"}
+                          ? "Rever apresentação • 2min31s"
+                          : "2min31s • veja o kit por dentro"}
                       </small>
                     </span>
                   </button>
@@ -227,7 +228,7 @@ function Index() {
 
               <div className="vsl-video-progress" aria-label="Progresso da apresentação">
                 <div className="vsl-video-progress-copy">
-                  <span>Vídeo curto • 2min47s</span>
+                  <span>Vídeo curto • 2min31s</span>
                   <strong>{Math.round(progress)}%</strong>
                 </div>
                 <div
