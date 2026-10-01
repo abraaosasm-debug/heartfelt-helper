@@ -17,7 +17,7 @@ const errors = [];
 for (const vslMarker of [
   'createFileRoute("/")',
   "VSL_VIDEO_SRC",
-  '@/assets/kit-atividades-vsl.mp4.asset.json',
+  "@/assets/kit-atividades-vsl.mp4.asset.json",
   "Pare de criar atividades do zero toda vez que precisar.",
   "CONHECER O KIT COMPLETO",
   "VSLStarted",
