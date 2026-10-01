@@ -310,7 +310,12 @@ function OfferPage() {
           <div className="v10-volume-grid">
             {volumes.map((volume) => (
               <article className="v10-volume-card" key={volume.label}>
-                <img src={volume.cover} alt={`Capa do ${volume.label}`} loading="lazy" decoding="async" />
+                <img
+                  src={volume.cover}
+                  alt={`Capa do ${volume.label}`}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <span>{volume.label}</span>
                   <strong>{volume.pages}</strong>
@@ -385,7 +390,9 @@ function OfferPage() {
               <Layers3 size={22} />
               <div>
                 <strong>Mais variedade.</strong>
-                <p>Linguagem, números, coordenação, raciocínio e percepção visual na mesma coleção.</p>
+                <p>
+                  Linguagem, números, coordenação, raciocínio e percepção visual na mesma coleção.
+                </p>
               </div>
             </article>
           </div>
@@ -456,9 +463,7 @@ function OfferPage() {
               <strong>R$10,00</strong>
             </summary>
             <div>
-              <p>
-                Inclui apenas o Volume 1, sem os Volumes 2 e 3 e sem os cinco bônus.
-              </p>
+              <p>Inclui apenas o Volume 1, sem os Volumes 2 e 3 e sem os cinco bônus.</p>
               <AttributionLink href={checkoutUrls.essential} className="v10-essential-link">
                 VER KIT ESSENCIAL <ArrowRight size={14} />
               </AttributionLink>
