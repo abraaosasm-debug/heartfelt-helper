@@ -648,11 +648,14 @@ if ((index.match(/className="v32-preview-section/g) ?? []).length !== 1) {
 
 for (const compactPostVslMarker of [
   "v80-page",
+  "v81-page",
   "v80-materials-grid",
-  "v80-edu-section",
-  "educationReview",
+  "v81-feedback-section",
+  "professionalFeedbacks",
   "6 amostras reais",
-  "Não é depoimento nem endosso de profissional externo.",
+  "FEEDBACKS DE PROFISSIONAIS • EXEMPLOS ILUSTRATIVOS",
+  "simulações editoriais",
+  "Feedback ilustrativo • não verificado",
 ]) {
   if (!index.includes(compactPostVslMarker)) {
     errors.push(`Landing pós-VSL compacta incompleta: ${compactPostVslMarker}`);
@@ -669,6 +672,23 @@ if (index.includes("OFERTA DE LANÇAMENTO")) {
 
 if (!css.includes("V8.0 — POST-VSL COMPACT LANDING")) {
   errors.push("Camada V8.0 da landing compacta pós-VSL ausente.");
+}
+
+if (!css.includes("V8.1 — CREATIVE EDUCATION ART DIRECTION")) {
+  errors.push("Camada V8.1 da direção visual educacional ausente.");
+}
+
+for (const visualMarker of [
+  '"Bricolage Grotesque"',
+  '"Patrick Hand"',
+  "--v81-coral",
+  "--v81-mint",
+  "--v81-lilac",
+  "--v81-sun",
+]) {
+  if (!css.includes(visualMarker)) {
+    errors.push(`Direção visual V8.1 incompleta: ${visualMarker}`);
+  }
 }
 
 for (const requiredVolume3Marker of [
