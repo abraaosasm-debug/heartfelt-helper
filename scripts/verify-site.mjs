@@ -486,7 +486,7 @@ for (const completeFocusMarker of [
   "Ver tudo o que vem no Kit Completo",
   "v43-pricing-focus",
   "OFERTA PRINCIPAL",
-  "Tenha sua coleção de atividades pronta por R$39,90.",
+  "Leve os oito materiais por R$39,90.",
 ]) {
   if (!index.includes(completeFocusMarker)) {
     errors.push(`Foco do Kit Completo ausente: ${completeFocusMarker}`);
@@ -530,9 +530,9 @@ if (!css.includes("V3.8 — CONVERSION CLARITY + TRUST + VALUE PROOF")) {
 }
 
 for (const requiredVolume2Marker of [
-  "previewPagesVolume2",
-  "PÁGINAS REAIS • 3 VOLUMES",
-  "v46-compact-preview-section",
+  "curatedPreviewPages",
+  "VOLUME 2 • PÁGINA REAL",
+  "v80-preview-section",
   "QUERO TER AS ATIVIDADES PRONTAS",
 ]) {
   if (!index.includes(requiredVolume2Marker)) {
@@ -547,13 +547,12 @@ if (!css.includes("V3.9 — REAL VOLUME 2 PREVIEWS")) {
 for (const launchOfferMarker of [
   "v40-price-anchor",
   "v40-promo-price",
-  "v40-final-offer",
   "v41-offer-strip",
   "v41-hero-offer",
   "v41-price-promo-headline",
   "v41-mobile-price",
   "R$39,90",
-  "OFERTA DE LANÇAMENTO",
+  "KIT COMPLETO",
   "ECONOMIZE R$20",
 ]) {
   if (!index.includes(launchOfferMarker)) {
@@ -642,9 +641,9 @@ if (index.includes("R$0,08 por página")) {
 for (const promiseMarker of [
   "Tenha atividades prontas para escolher, imprimir e usar.",
   "Sem precisar criar tudo do zero.",
-  "Pare de começar do zero toda vez que precisar de uma atividade.",
-  "Abra, escolha, imprima e use",
-  "comece escolhendo — não criando.",
+  "Os oito materiais, em uma visão rápida.",
+  "Veja o material por dentro.",
+  "Leve os oito materiais por R$39,90.",
 ]) {
   if (!index.includes(promiseMarker)) {
     errors.push(`Promessa principal enfraquecida ou ausente: ${promiseMarker}`);
@@ -665,9 +664,34 @@ if ((index.match(/className="v32-preview-section/g) ?? []).length !== 1) {
   errors.push("A landing deve manter apenas uma seção principal de prévias.");
 }
 
+for (const compactPostVslMarker of [
+  "v80-page",
+  "v80-materials-grid",
+  "v80-edu-section",
+  "educationReview",
+  "6 amostras reais",
+  "Não é depoimento nem endosso de profissional externo.",
+]) {
+  if (!index.includes(compactPostVslMarker)) {
+    errors.push(`Landing pós-VSL compacta incompleta: ${compactPostVslMarker}`);
+  }
+}
+
+if (index.includes('className="v3-final-cta"')) {
+  errors.push("CTA final redundante não deve voltar para a landing compacta.");
+}
+
+if (index.includes("OFERTA DE LANÇAMENTO")) {
+  errors.push("Linguagem de lançamento não comprovada não deve voltar para a landing.");
+}
+
+if (!css.includes("V8.0 — POST-VSL COMPACT LANDING")) {
+  errors.push("Camada V8.0 da landing compacta pós-VSL ausente.");
+}
+
 for (const requiredVolume3Marker of [
-  "previewPagesVolume3",
-  "v46-volume3-highlight",
+  "curatedPreviewPages",
+  "VOLUME 3 • PÁGINA REAL",
   "VOLUME 3 • 200 PÁGINAS",
   "3 volumes + 5 bônus",
   "492 páginas",
