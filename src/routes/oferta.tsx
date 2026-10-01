@@ -64,229 +64,72 @@ const bonuses = [
   ["Atividades para as famílias", "20 páginas", "15 atividades + 3 modelos de bilhetes"],
 ] as const;
 
-const previewPagesVolume1 = [
-  [
-    "Sumário do Kit",
-    "Visão geral",
-    "/previews/selected/kit1-selected-1.jpg",
-    "9 MÓDULOS + ENCERRAMENTO",
-  ],
+const curatedPreviewPages = [
   [
     "Trace as Vogais",
     "Alfabetização + grafomotricidade",
     "/previews/selected/kit1-selected-2.jpg",
+    "VOLUME 1 • PÁGINA REAL",
+    "Volume 1",
+  ],
+  [
+    "Quantos Você Vê?",
+    "Números e quantidades",
+    "/previews/selected/kit1-selected-4.jpg",
     null,
+    "Volume 1",
   ],
-  ["Coordenação Motora", "Grafomotricidade", "/previews/selected/kit1-selected-3.jpg", null],
-  ["Quantos Você Vê?", "Números e quantidades", "/previews/selected/kit1-selected-4.jpg", null],
   [
-    "Qual Sílaba Está Faltando?",
-    "Formação de palavras",
-    "/previews/selected/kit1-selected-5.jpg",
-    null,
+    "Amostra real 01",
+    "Página real do material",
+    "/previews/selected/1.jpg",
+    "VOLUME 2 • PÁGINA REAL",
+    "Volume 2",
   ],
-  ["Emoções e Comunicação", "Emoções", "/previews/selected/kit1-selected-6.jpg", null],
+  ["Amostra real 05", "Página real do material", "/previews/selected/5.jpg", null, "Volume 2"],
+  [
+    "Amostra real 01",
+    "Página real do material",
+    "/previews/2_v3.jpg",
+    "VOLUME 3 • PÁGINA REAL",
+    "Volume 3",
+  ],
+  ["Amostra real 04", "Página real do material", "/previews/5_v3.jpg", null, "Volume 3"],
 ] as const;
 
-const previewPagesVolume2 = [
-  ["Amostra real 01", "Volume 2", "/previews/selected/1.jpg", "VOLUME 2 • CONTEÚDO REAL"],
-  ["Amostra real 02", "Volume 2", "/previews/selected/2.jpg", null],
-  ["Amostra real 03", "Volume 2", "/previews/selected/3.jpg", null],
-  ["Amostra real 04", "Volume 2", "/previews/selected/4.jpg", null],
-  ["Amostra real 05", "Volume 2", "/previews/selected/5.jpg", null],
-  ["Amostra real 06", "Volume 2", "/previews/selected/6.jpg", null],
-] as const;
-
-const previewPagesVolume3 = [
-  ["Amostra real 01", "Volume 3", "/previews/2_v3.jpg", "VOLUME 3 • CONTEÚDO REAL"],
-  ["Amostra real 02", "Volume 3", "/previews/3_v3.jpg", null],
-  ["Amostra real 03", "Volume 3", "/previews/4_v3.jpg", null],
-  ["Amostra real 04", "Volume 3", "/previews/5_v3.jpg", null],
-  ["Amostra real 05", "Volume 3", "/previews/6_v3.jpg", null],
-] as const;
-
-const benefits = [
+const educationReview = [
   [
-    PencilLine,
-    "Atividades já prontas",
-    "Você não precisa criar exercícios do zero toda vez que quiser trabalhar uma habilidade.",
+    "Organização por habilidades",
+    "A coleção separa propostas de linguagem, coordenação, números, raciocínio, percepção visual e outros eixos, facilitando a escolha conforme o objetivo de cada momento.",
   ],
   [
-    Brain,
-    "Conteúdo organizado",
-    "Letras, números, raciocínio, coordenação e outras propostas separadas por objetivo.",
+    "Variedade de propostas",
+    "Os três volumes combinam diferentes tipos de atividade, o que ajuda a variar o formato das tarefas sem depender sempre do mesmo exercício.",
   ],
   [
-    Heart,
-    "Mais opções para variar",
-    "Três volumes e cinco bônus evitam depender sempre do mesmo tipo de atividade.",
-  ],
-  [
-    Layers3,
-    "Imprima só o necessário",
-    "Use uma página, uma sequência ou um material complementar sem precisar imprimir tudo.",
+    "Uso flexível",
+    "As páginas podem ser escolhidas e impressas individualmente. Isso permite montar sequências curtas ou usar apenas uma atividade quando necessário.",
   ],
 ] as const;
 
 const faqs = [
   [
     "O que está incluído no Kit Completo?",
-    "O Kit Completo reúne os Volumes 1, 2 e 3 e os cinco bônus — 492 páginas digitais no total.",
+    "Os Volumes 1, 2 e 3 mais cinco bônus, totalizando 492 páginas digitais em oito materiais.",
   ],
   [
-    "Preciso imprimir as 492 páginas de uma vez?",
-    "Não. Você recebe os PDFs e pode escolher apenas as páginas, sequências ou materiais que quiser usar em cada momento.",
+    "Preciso imprimir tudo de uma vez?",
+    "Não. Os arquivos são digitais e você pode imprimir somente as páginas que quiser usar em cada momento.",
   ],
   [
     "O material pode ser usado com diferentes crianças?",
-    "Sim. As propostas são educativas e podem ser selecionadas conforme o objetivo e o nível de cada criança. O material não substitui avaliação, terapia ou acompanhamento individualizado.",
+    "As propostas são educativas e podem ser selecionadas conforme o objetivo e o nível de cada criança. O material não substitui avaliação, terapia ou acompanhamento individualizado.",
   ],
   [
-    "O material é físico?",
-    "Não. O produto é 100% digital. Você recebe os arquivos em PDF e pode imprimir apenas as páginas que quiser utilizar.",
-  ],
-  [
-    "O que acontece depois da compra?",
-    "Você finaliza o pagamento no checkout da Cakto. Após a confirmação, siga as instruções de acesso apresentadas pela plataforma para receber o material digital. Como é um produto digital, não há frete.",
-  ],
-  [
-    "Tenho garantia?",
-    "Sim. A oferta apresenta garantia de 30 dias. Confira no checkout as condições, os prazos e o canal de atendimento antes de concluir a compra.",
+    "Como funcionam entrega e garantia?",
+    "A compra é concluída pela Cakto. Após a confirmação, siga as instruções de acesso da plataforma. A oferta apresenta garantia de 30 dias; confira as condições no checkout.",
   ],
 ] as const;
-
-function getCoverSource(number: number) {
-  return coverSources[number] ?? coverSources[1];
-}
-
-function getCoverPreviewSource(number: number) {
-  return coverPreviewSources[number] ?? getCoverSource(number);
-}
-
-function getCoverDimensions(number: number) {
-  return coverDimensions[number] ?? { width: 1080, height: 1527 };
-}
-
-function Cover({
-  number,
-  title,
-  priority = false,
-  compact = false,
-}: {
-  number: number;
-  title: string;
-  priority?: boolean;
-  compact?: boolean;
-}) {
-  const dimensions = getCoverDimensions(number);
-
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button
-          type="button"
-          className={`v3-cover${compact ? " v3-cover-compact" : ""}`}
-          aria-label={`Ampliar capa: ${title}`}
-        >
-          <img
-            src={getCoverPreviewSource(number)}
-            alt={`Capa de ${title}`}
-            width={dimensions.width}
-            height={dimensions.height}
-            loading={priority ? "eager" : "lazy"}
-            fetchPriority={priority ? "high" : "low"}
-            decoding="async"
-          />
-          <span className="v3-cover-zoom" aria-hidden="true">
-            <Eye size={15} />
-          </span>
-        </button>
-      </DialogTrigger>
-
-      <DialogContent className="v3-cover-dialog">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>Capa do material digital em PDF.</DialogDescription>
-        <img
-          src={getCoverSource(number)}
-          alt={`Capa ampliada de ${title}`}
-          width={dimensions.width}
-          height={dimensions.height}
-          loading="eager"
-          decoding="async"
-        />
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-function PreviewPage({
-  title,
-  skill,
-  source,
-  badge,
-  number,
-  volume,
-  total = 6,
-}: {
-  title: string;
-  skill: string;
-  source: string;
-  badge: string | null;
-  number: number;
-  volume: "Volume 1" | "Volume 2" | "Volume 3";
-  total?: number;
-}) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button type="button" className="v34-preview-card" aria-label={`Ampliar página: ${title}`}>
-          <div className="v34-preview-media">
-            <img
-              src={source}
-              alt={`Página real do ${volume}: ${title}`}
-              width={1086}
-              height={1536}
-              loading="lazy"
-              fetchPriority="low"
-              decoding="async"
-            />
-            {badge ? <span className="v34-preview-badge">{badge}</span> : null}
-            <span className="v34-preview-zoom-icon" aria-hidden="true">
-              <Eye size={18} />
-            </span>
-          </div>
-
-          <div className="v34-preview-card-copy">
-            <div>
-              <span>{skill}</span>
-              <strong>{title}</strong>
-            </div>
-            <span className="v34-preview-index">
-              {String(number).padStart(2, "0")} / {String(total).padStart(2, "0")}
-            </span>
-          </div>
-        </button>
-      </DialogTrigger>
-
-      <DialogContent className="v34-preview-dialog">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>
-          Página real do {volume}. Visualização individual em alta nitidez.
-        </DialogDescription>
-        <div className="v34-preview-dialog-scroll">
-          <img
-            src={source}
-            alt={`Página ampliada do ${volume}: ${title}`}
-            width={1086}
-            height={1536}
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
 
 const attributionKeys = [
   "utm_source",
@@ -377,7 +220,7 @@ function TrustStrip() {
       <div className="v3-shell v32-offer-bar-inner v38-trust-strip-inner v41-offer-strip-inner">
         <div className="v41-offer-strip-main">
           <Sparkles size={16} aria-hidden="true" />
-          <strong>OFERTA DE LANÇAMENTO</strong>
+          <strong>KIT COMPLETO</strong>
           <span>
             de <s>R$59,90</s> por <b>R$39,90</b>
           </span>
@@ -417,7 +260,7 @@ function Index() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const targets = Array.from(
       page.querySelectorAll<HTMLElement>(
-        ".v3-section-heading, .v32-preview-heading, .v3-product-card, .v3-bonus-card, .v34-preview-card, .v46-volume3-highlight, .v3-benefit, .v3-price-card, .v3-guarantee, .v3-faq details, .v3-final-inner",
+        ".v3-section-heading, .v32-preview-heading, .v80-material-card, .v80-bonus-strip, .v34-preview-card, .v80-edu-card, .v3-price-card, .v3-guarantee, .v3-faq details",
       ),
     );
 
@@ -531,7 +374,7 @@ function Index() {
   }, []);
 
   return (
-    <main className="v3-page">
+    <main className="v3-page v80-page">
       <TrustStrip />
 
       <header className="v3-header">
@@ -545,8 +388,8 @@ function Index() {
 
           <nav className="v3-nav" aria-label="Navegação principal">
             <a href="#conteudo">O que vem</a>
+            <a href="#amostras">Por dentro</a>
             <a href="#precos">Oferta</a>
-            <a href="#duvidas">Dúvidas</a>
           </nav>
 
           <a className="v3-header-cta" href="#precos">
@@ -566,10 +409,8 @@ function Index() {
             </h1>
 
             <p className="v3-hero-lead">
-              Tenha uma coleção organizada com <strong>492 páginas digitais</strong> para encontrar
-              com facilidade atividades de letras, números, coordenação, leitura inicial, emoções,
-              raciocínio, rotina visual, jogos e muito mais sempre que precisar de uma nova
-              proposta.
+              Uma coleção com <strong>492 páginas digitais</strong> entre atividades, rotina visual,
+              jogos e materiais de apoio para escolher e imprimir conforme a necessidade.
             </p>
 
             <div className="v3-proof-row v41-proof-row" aria-label="Resumo do Kit Completo">
@@ -590,7 +431,7 @@ function Index() {
             <div className="v41-hero-offer" aria-label="Oferta de lançamento do Kit Completo">
               <div className="v41-hero-offer-label">
                 <Sparkles size={15} aria-hidden="true" />
-                OFERTA DE LANÇAMENTO
+                KIT COMPLETO
               </div>
               <div className="v41-hero-offer-prices">
                 <span>
@@ -680,124 +521,86 @@ function Index() {
         </div>
       </section>
 
-      <section id="conteudo" className="v3-section v3-section-light">
+      <section id="conteudo" className="v3-section v3-section-light v80-content-section">
         <div className="v3-shell">
-          <div className="v3-section-heading">
-            <span className="v3-kicker">VOCÊ RECEBE</span>
-            <h2>Pare de começar do zero toda vez que precisar de uma atividade.</h2>
+          <div className="v3-section-heading v80-section-heading">
+            <span className="v3-kicker">O QUE VOCÊ RECEBE</span>
+            <h2>Os oito materiais, em uma visão rápida.</h2>
             <p>
-              São 382 páginas nos três volumes de atividades e mais 110 páginas em cinco materiais
-              complementares. No total,{" "}
-              <strong>
-                492 páginas organizadas para consultar, escolher e imprimir conforme a necessidade.
-              </strong>
+              <strong>382 páginas</strong> nos três volumes de atividades + <strong>110 páginas</strong>{" "}
+              nos cinco bônus. Total: <strong>492 páginas digitais</strong>.
             </p>
           </div>
 
-          <div className="v3-product-grid">
-            <article className="v3-product-card v3-product-card-dark">
-              <div className="v3-product-cover">
-                <Cover number={1} title="Volume 1 — Kit de Atividades Infantil e Autismo" />
+          <div className="v80-materials-grid">
+            <article className="v80-material-card">
+              <div className="v80-material-cover">
+                <Cover number={1} title="Volume 1 — Kit de Atividades Infantil e Autismo" compact />
               </div>
-              <div className="v3-product-copy">
+              <div>
                 <span>VOLUME 1 • 91 PÁGINAS</span>
-                <h3>O ponto de partida</h3>
-                <p>
-                  Vogais, alfabeto, coordenação motora, números, sílabas, percepção visual, emoções,
-                  associação e revisão.
-                </p>
+                <h3>Fundamentos</h3>
+                <p>Alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação.</p>
               </div>
             </article>
 
-            <article className="v3-product-card v3-product-card-orange">
-              <div className="v3-product-cover">
-                <Cover number={2} title="Volume 2 — Kit de Atividades Infantil e Autismo" />
+            <article className="v80-material-card">
+              <div className="v80-material-cover">
+                <Cover number={2} title="Volume 2 — Kit de Atividades Infantil e Autismo" compact />
               </div>
-              <div className="v3-product-copy">
+              <div>
                 <span>VOLUME 2 • 91 PÁGINAS</span>
-                <h3>Mais desafios e continuidade</h3>
-                <p>
-                  Leitura inicial, quantidades até 20, sequências, escolhas, comunicação e situações
-                  do cotidiano.
-                </p>
+                <h3>Continuidade</h3>
+                <p>Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.</p>
               </div>
             </article>
 
-            <article className="v3-product-card v45-product-card-volume3">
-              <div className="v3-product-cover">
-                <Cover number={8} title="Volume 3 — Kit de Atividades Infantil e Autismo" />
+            <article className="v80-material-card">
+              <div className="v80-material-cover">
+                <Cover number={8} title="Volume 3 — Kit de Atividades Infantil e Autismo" compact />
               </div>
-              <div className="v3-product-copy">
+              <div>
                 <span>VOLUME 3 • 200 PÁGINAS</span>
-                <h3>O maior volume da coleção</h3>
-                <p>
-                  200 páginas organizadas em quatro grandes eixos: traçados e pré-escrita; letras,
-                  sílabas, palavras e leitura inicial; números e raciocínio matemático; percepção
-                  visual, desenho e raciocínio.
-                </p>
-                <strong className="v45-new-volume-badge">NOVO • 200 PÁGINAS</strong>
+                <h3>Maior volume</h3>
+                <p>Traçados, leitura inicial, números, raciocínio, percepção visual e desenho.</p>
               </div>
             </article>
+          </div>
 
-            <article id="bonus" className="v3-bonus-card">
-              <div className="v3-bonus-copy">
-                <span>5 BÔNUS • 110 PÁGINAS</span>
-                <h3>Apoios que fazem o material sair do PDF e entrar na rotina.</h3>
-                <p>
-                  Planejamento, rotina visual, jogos, observação e atividades para enviar às
-                  famílias.
-                </p>
-              </div>
-
-              <div className="v3-bonus-covers" aria-label="Capas dos cinco bônus">
-                {bonuses.map(([title, pages, details], index) => (
-                  <div className="v3-bonus-item" key={title}>
-                    <Cover number={index + 3} title={title} compact />
-                    <span>{pages}</span>
-                    <small>{details}</small>
-                  </div>
-                ))}
-              </div>
-            </article>
+          <div className="v80-bonus-strip" id="bonus">
+            <div className="v80-bonus-summary">
+              <span>5 BÔNUS • 110 PÁGINAS</span>
+              <strong>Materiais complementares para organizar e variar o uso.</strong>
+            </div>
+            <div className="v80-bonus-chips" aria-label="Bônus incluídos">
+              {bonuses.map(([title]) => (
+                <span key={title}>{title}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section
         id="amostras"
-        className="v32-preview-section v46-compact-preview-section"
+        className="v32-preview-section v46-compact-preview-section v80-preview-section"
         aria-labelledby="preview-title"
       >
         <div className="v3-shell">
-          <div className="v32-preview-heading v46-preview-heading">
+          <div className="v32-preview-heading v46-preview-heading v80-preview-heading">
             <div>
-              <span className="v3-kicker">PÁGINAS REAIS • 3 VOLUMES</span>
-              <h2 id="preview-title">Veja as atividades que já estarão prontas para você usar.</h2>
+              <span className="v3-kicker">6 PÁGINAS REAIS • 3 VOLUMES</span>
+              <h2 id="preview-title">Veja o material por dentro.</h2>
             </div>
-            <p>
-              Uma única galeria reúne páginas reais dos Volumes 1, 2 e 3. Deslize no celular e toque
-              em qualquer página para ampliar.
-            </p>
-          </div>
-
-          <div className="v46-preview-summary" aria-label="Resumo das amostras">
-            <span className="v47-preview-summary-new">
-              <strong>Volume 3</strong> • 200 páginas • novo
-            </span>
-            <span>
-              <strong>Volume 1</strong> • 91 páginas
-            </span>
-            <span>
-              <strong>Volume 2</strong> • 91 páginas
-            </span>
+            <p>Seis páginas reais, escolhidas para mostrar os três volumes sem alongar a página.</p>
           </div>
 
           <div
-            className="v33-preview-carousel v46-preview-carousel"
+            className="v33-preview-carousel v46-preview-carousel v80-preview-carousel"
             role="region"
-            aria-label="Galeria com páginas reais dos três volumes"
+            aria-label="Galeria compacta com páginas reais dos três volumes"
           >
-            {previewPagesVolume3.map(([title, skill, source, badge], index) => (
+            {curatedPreviewPages.map(([title, skill, source, badge, volume], index) => (
               <PreviewPage
                 key={source}
                 title={title}
@@ -805,80 +608,41 @@ function Index() {
                 source={source}
                 badge={badge}
                 number={index + 1}
-                volume="Volume 3"
-                total={5}
-              />
-            ))}
-            {previewPagesVolume1.map(([title, skill, source, badge], index) => (
-              <PreviewPage
-                key={source}
-                title={title}
-                skill={skill}
-                source={source}
-                badge={badge}
-                number={index + 1}
-                volume="Volume 1"
-              />
-            ))}
-            {previewPagesVolume2.map(([title, skill, source, badge], index) => (
-              <PreviewPage
-                key={source}
-                title={title}
-                skill={skill}
-                source={source}
-                badge={badge}
-                number={index + 1}
-                volume="Volume 2"
+                volume={volume}
+                total={6}
               />
             ))}
           </div>
 
-          <p className="v33-preview-hint">
-            17 amostras reais • deslize para o lado • toque para ampliar
-          </p>
-
-          <div className="v46-volume3-highlight">
-            <div>
-              <span>NOVO VOLUME 3 • 200 PÁGINAS</span>
-              <strong>Quatro eixos em um único volume.</strong>
-            </div>
-            <div className="v46-theme-chips">
-              <span>Traçados e pré-escrita</span>
-              <span>Letras e leitura inicial</span>
-              <span>Números e raciocínio</span>
-              <span>Percepção visual e desenho</span>
-            </div>
-          </div>
-
-          <div className="v39-preview-cta v46-preview-cta">
-            <p>
-              <strong>492 páginas no total:</strong> 3 volumes de atividades + 5 bônus por R$39,90.
-            </p>
-            <PrimaryButton href={checkoutUrls.complete}>
-              QUERO TER AS ATIVIDADES PRONTAS
-            </PrimaryButton>
-          </div>
+          <p className="v33-preview-hint">6 amostras reais • deslize no celular • toque para ampliar</p>
         </div>
       </section>
 
-      <section id="como-usar" className="v3-section v3-benefits">
+      <section id="avaliacao" className="v3-section v80-edu-section" aria-labelledby="edu-title">
         <div className="v3-shell">
-          <div className="v3-benefit-intro">
-            <span className="v3-kicker v3-kicker-light">MENOS PREPARAÇÃO. MAIS AÇÃO.</span>
-            <h2>Abra, escolha, imprima e use.</h2>
+          <div className="v80-edu-head">
+            <span className="v3-kicker">LEITURA EDUCACIONAL DO MATERIAL</span>
+            <h2 id="edu-title">Três pontos relevantes ao selecionar atividades para o dia a dia.</h2>
+            <p>
+              Análise editorial baseada nas características observáveis dos próprios PDFs.
+              <strong> Não é depoimento nem endosso de profissional externo.</strong>
+            </p>
           </div>
 
-          <div className="v3-benefit-grid">
-            {benefits.map(([Icon, title, text]) => (
-              <article className="v3-benefit" key={title}>
-                <span className="v3-benefit-icon">
-                  <Icon size={22} />
-                </span>
+          <div className="v80-edu-grid">
+            {educationReview.map(([title, text], index) => (
+              <article className="v80-edu-card" key={title}>
+                <span>CRITÉRIO {String(index + 1).padStart(2, "0")}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
             ))}
           </div>
+
+          <p className="v80-edu-note">
+            Para uso profissional, a escolha das atividades deve considerar o objetivo educacional,
+            o contexto e as necessidades individuais da criança.
+          </p>
         </div>
       </section>
 
@@ -886,10 +650,9 @@ function Index() {
         <div className="v3-shell">
           <div className="v3-section-heading v3-pricing-heading">
             <span className="v3-kicker">OFERTA PRINCIPAL</span>
-            <h2>Tenha sua coleção de atividades pronta por R$39,90.</h2>
+            <h2>Leve os oito materiais por R$39,90.</h2>
             <p>
-              Uma única compra com 492 páginas, três volumes e cinco bônus para consultar sempre que
-              precisar de uma nova atividade. Sem assinatura e sem frete.
+              492 páginas digitais • 3 volumes • 5 bônus • pagamento único.
             </p>
           </div>
 
@@ -899,13 +662,13 @@ function Index() {
 
               <span className="v3-popular-badge">
                 <Sparkles size={14} />
-                OFERTA DE LANÇAMENTO
+                KIT COMPLETO
               </span>
 
               <span className="v3-price-tag">KIT COMPLETO</span>
               <div className="v41-price-promo-headline">
                 <strong>R$20 DE DESCONTO</strong>
-                <span>preço de lançamento</span>
+                <span>valor atual</span>
               </div>
               <h3>Abra, escolha, imprima e use</h3>
               <p className="v3-price-description">
@@ -926,12 +689,10 @@ function Index() {
 
               <ul>
                 {[
-                  "492 páginas no total",
-                  "Volume 1 — 91 páginas",
-                  "Volume 2 — 91 páginas",
-                  "Volume 3 — 200 páginas",
-                  "5 bônus — 110 páginas",
-                  "PDFs digitais prontos para imprimir",
+                  "492 páginas digitais",
+                  "3 volumes de atividades",
+                  "5 bônus complementares",
+                  "PDFs prontos para selecionar e imprimir",
                   "Pagamento único",
                 ].map((item) => (
                   <li key={item}>
@@ -946,9 +707,7 @@ function Index() {
               </PrimaryButton>
 
               <p className="v3-price-difference v40-price-difference">
-                <strong>Você recebe os 8 materiais da coleção:</strong> os três volumes completos
-                mais Planejamento de 4 Semanas, Rotina Visual, Jogos de Mesa, Caderno de Observação
-                e Atividades para as Famílias.
+                <strong>8 materiais no total:</strong> 3 volumes + 5 bônus.
               </p>
             </article>
           </div>
@@ -1008,24 +767,6 @@ function Index() {
                 <p>{answer}</p>
               </details>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="v3-final-cta">
-        <div className="v3-shell v3-final-inner">
-          <div>
-            <span className="v3-kicker v3-kicker-light">SUA COLEÇÃO, PRONTA PARA CONSULTAR</span>
-            <h2>Na próxima vez que precisar de uma atividade, comece escolhendo — não criando.</h2>
-          </div>
-
-          <div className="v40-final-offer">
-            <span>
-              de <s>R$59,90</s> por <strong>R$39,90</strong>
-            </span>
-            <PrimaryButton href={checkoutUrls.complete} dark>
-              QUERO TER AS ATIVIDADES PRONTAS
-            </PrimaryButton>
           </div>
         </div>
       </section>
