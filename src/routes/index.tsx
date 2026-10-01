@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Check, LockKeyhole, Play, ShieldCheck } from "lucide-react";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 import { trackMarketingEvent } from "@/lib/marketing-events";
+import { PrintedKit } from "@/components/printed-kit";
 import vslVideo from "@/assets/kit-atividades-vsl.mp4.asset.json";
 
 const attributionKeys = [
@@ -56,6 +57,21 @@ function Index() {
 
     setOfferHref(`${target.pathname}${target.search}`);
   }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        (entry.target as HTMLElement).style.animationPlayState = entry.isIntersecting
+          ? "running"
+          : "paused";
+      });
+    });
+    document
+      .querySelectorAll(".vsl-copy, .vsl-showcase, .vsl-offer-gate")
+      .forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [showOffer]);
 
   const handlePlay = () => {
     if (!completed) setShowOffer(false);
@@ -117,8 +133,8 @@ function Index() {
               que precisar.
             </h1>
             <p>
-              Veja como ter <strong>492 páginas organizadas</strong> para escolher, imprimir e usar
-              quando precisar de uma nova atividade.
+              Conheça <strong>492 páginas organizadas</strong> em PDFs, prontas para escolher,
+              imprimir e usar.
             </p>
           </div>
 
@@ -197,28 +213,7 @@ function Index() {
                       });
                     }}
                   >
-                    <span className="vsl-preplay-covers" aria-hidden="true">
-                      <img
-                        src="/covers/optimized/cover-1.webp?v=1"
-                        alt=""
-                        width={1080}
-                        height={1528}
-                      />
-                      <img
-                        src="/covers/1_v3.jpg?v=1"
-                        srcSet="/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
-                        sizes="180px"
-                        alt=""
-                        width={1080}
-                        height={1528}
-                      />
-                      <img
-                        src="/covers/optimized/cover-2.webp?v=1"
-                        alt=""
-                        width={1080}
-                        height={1527}
-                      />
-                    </span>
+                    <PrintedKit eager compact />
 
                     <span className="vsl-preplay-action">
                       <span className="vsl-preplay-button" aria-hidden="true">

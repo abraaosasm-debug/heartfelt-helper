@@ -18,6 +18,8 @@ import { trackMarketingEvent } from "@/lib/marketing-events";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 import { canTrackMarketing } from "@/lib/marketing-consent-state";
 import { checkoutUrls } from "@/lib/checkout";
+import { PrintedKit, VolumeSample } from "@/components/printed-kit";
+import { OfferRoutine, DigitalDelivery } from "@/components/offer-routine";
 import "./oferta-premium.css";
 
 const attributionKeys = [
@@ -222,9 +224,9 @@ function OfferPage() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-revealed");
-          observer.unobserve(entry.target);
+          const element = entry.target as HTMLElement;
+          element.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+          if (entry.isIntersecting) element.classList.add("is-revealed");
         });
       },
       { threshold: 0.08 },
@@ -318,58 +320,12 @@ function OfferPage() {
           </div>
 
           <div className="v11-product-visual">
-            <div className="v11-product-copy">
-              <span>KIT COMPLETO</span>
-              <strong>492 páginas</strong>
-              <small>3 volumes + 5 bônus</small>
-            </div>
-
-            <div className="v11-cover v11-cover-left">
-              <img
-                src={volumes[0].cover}
-                width={420}
-                height={594}
-                fetchPriority="high"
-                alt="Capa do Volume 1"
-              />
-            </div>
-            <div className="v11-cover v11-cover-center">
-              <img
-                src={volumes[2].cover}
-                srcSet="/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
-                sizes="(min-width: 960px) 240px, 40vw"
-                width={1080}
-                height={1527}
-                alt="Capa do Volume 3"
-              />
-            </div>
-            <div className="v11-cover v11-cover-right">
-              <img src={volumes[1].cover} width={420} height={594} alt="Capa do Volume 2" />
-            </div>
-
-            <div className="v11-bonus-stamp">
-              <strong>+5</strong>
-              <span>BÔNUS</span>
-            </div>
+            <PrintedKit eager />
           </div>
         </div>
       </section>
 
-      <section className="v11-section v11-use-cases">
-        <div className="v11-shell">
-          <span className="v11-kicker">NA SUA ROTINA</span>
-          <h2>Escolha conforme o momento.</h2>
-          <ol>
-            <li>Defina um objetivo educativo e consulte os temas dos volumes.</li>
-            <li>Escolha propostas para casa ou para o contexto educacional.</li>
-            <li>Imprima apenas o necessário e varie as atividades sem começar do zero.</li>
-          </ol>
-          <p>
-            Cada responsável ou profissional deve selecionar as atividades adequadas ao nível, à
-            necessidade e ao contexto da criança.
-          </p>
-        </div>
-      </section>
+      <OfferRoutine />
 
       <section id="conteudo" className="v11-section v11-content-section">
         <div className="v11-shell">
@@ -382,22 +338,25 @@ function OfferPage() {
           </div>
 
           <div className="v11-volume-grid">
-            {volumes.map((volume) => (
+            {volumes.map((volume, index) => (
               <article className={`v11-volume-card v11-volume-${volume.tone}`} key={volume.label}>
-                <img
-                  src={volume.cover}
-                  srcSet={
-                    volume.label === "Volume 3"
-                      ? "/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
-                      : undefined
-                  }
-                  sizes="(min-width: 640px) 185px, 110px"
-                  width={volume.label === "Volume 3" ? 1080 : 420}
-                  height={volume.label === "Volume 3" ? 1527 : 594}
-                  alt={`Capa do ${volume.label}`}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div className="volume-print-spread">
+                  <img
+                    src={volume.cover}
+                    srcSet={
+                      volume.label === "Volume 3"
+                        ? "/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
+                        : undefined
+                    }
+                    sizes="(min-width: 960px) 185px, 180px"
+                    width={volume.label === "Volume 3" ? 1080 : 420}
+                    height={volume.label === "Volume 3" ? 1527 : 594}
+                    alt={`Capa do ${volume.label}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <VolumeSample index={index} />
+                </div>
                 <div>
                   <span>{volume.label}</span>
                   <strong>{volume.pages}</strong>
@@ -431,6 +390,17 @@ function OfferPage() {
                     <Check size={13} aria-hidden="true" />
                     {bonus}
                   </span>
+                  <p className="v11-bonus-purpose">
+                    {
+                      [
+                        "Planejamento para organizar quatro semanas.",
+                        "Propostas de rotina visual para recortar.",
+                        "Jogos de mesa para imprimir e utilizar.",
+                        "Um caderno para registrar observações da aprendizagem.",
+                        "Atividades para compartilhar com as famílias.",
+                      ][index]
+                    }
+                  </p>
                 </article>
               ))}
             </div>
@@ -506,6 +476,8 @@ function OfferPage() {
           </div>
         </div>
       </section>
+
+      <DigitalDelivery />
 
       <section className="v11-section v11-proof-section">
         <div className="v11-shell v11-proof-grid">
@@ -660,6 +632,7 @@ function OfferPage() {
           <h2>Escolha a atividade. Imprima. Use.</h2>
           <p>Comece hoje com atividades prontas, organizadas e fáceis de aplicar.</p>
           <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90 • 30 dias de garantia</p>
+          <PrintedKit />
           <PrimaryCta label="QUERO MEU ACESSO AGORA" />
         </div>
       </section>

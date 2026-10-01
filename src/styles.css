@@ -10072,3 +10072,39 @@ body:has(.v11-page):has(.v42-consent) .v11-mobile-bar { visibility:hidden; point
   text-underline-offset: 4px;
   font-size: 14px;
 }
+
+/* Materiais reais em composições de impressão. */
+:root {
+ --editorial-desk:#f2f1e8;
+ --editorial-stack-shadow:2px 2px 0 var(--editorial-surface),3px 3px 0 var(--editorial-line),4px 4px 0 var(--editorial-surface),5px 5px 0 var(--editorial-line),6px 6px 0 var(--editorial-surface),7px 7px 0 var(--editorial-line),9px 15px 22px rgb(25 61 86 / 13%);
+ --editorial-sheet-shadow:0 2px 3px rgb(25 61 86 / 5%),4px 9px 18px rgb(25 61 86 / 12%);
+}
+.vsl-hero { padding-top:24px; }
+.vsl-copy { animation-duration:450ms; }
+.vsl-copy h1 { font-size:clamp(38px,7vw,64px); line-height:1.08; }
+.vsl-copy p { margin-top:14px; line-height:1.55; }
+.vsl-audience { margin:10px auto 0; font-size:13px; }
+.vsl-showcase { margin-top:20px; padding:20px 14px; animation-duration:450ms; }
+.vsl-showcase-head > strong { margin-top:8px; font-size:26px; }
+.vsl-showcase-head > p { margin-top:6px; }
+.vsl-player-wrap { margin-top:16px; }
+.vsl-preplay { grid-template-rows:auto 1fr; align-content:start; }
+.vsl-preplay .printed-kit { align-self:start; padding-top:18px; }
+.vsl-preplay-action { align-self:start; padding:18px 12px; }
+.vsl-preplay .printed-kit-desk { aspect-ratio:1.15; }
+.vsl-preplay .printed-kit-caption { margin-top:0; }
+.vsl-preplay .printed-kit-label { color:var(--editorial-blue); }
+.v42-consent { padding:14px 16px; border-radius:10px; }
+.v42-consent-copy p { font-size:12px; line-height:1.5; margin:6px 0 10px; }
+.v42-consent-copy strong { font-size:14px; }
+.v42-consent-actions { gap:10px; }
+@media(min-width:640px) { .vsl-showcase { padding:24px; } }
+@media(prefers-reduced-motion:reduce) { .vsl-copy,.vsl-showcase { animation:none; } }
+
+.v42-consent { gap:10px; }
+.v42-consent-copy { gap:0; }
+.v42-consent-copy p { margin:6px 0 4px; }
+.vsl-preplay { grid-template-rows:minmax(0,1fr) auto; }
+.vsl-preplay .printed-kit { display:flex; flex-direction:column; height:100%; }
+.vsl-preplay .printed-kit-desk { flex:1; aspect-ratio:auto; }
+.vsl-preplay-action { align-self:stretch; }

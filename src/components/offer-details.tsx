@@ -47,7 +47,7 @@ export function PreviewCard({
                   ? `${thumbnail} 420w, ${thumbnail.replace(".webp", "-840.webp")} 840w`
                   : undefined
               }
-              sizes="(min-width: 960px) 340px, (min-width: 640px) 30vw, 44vw"
+              sizes="(min-width: 960px) 480px, (min-width: 640px) 44vw, 90vw"
               width={1080}
               height={1527}
               alt={`${title} — página real do ${volume}`}
@@ -56,7 +56,7 @@ export function PreviewCard({
             />
             <span>
               <Eye size={14} />
-              ampliar
+              Toque para ampliar
             </span>
           </div>
           <div className="v11-preview-meta">
