@@ -205,15 +205,7 @@ function BuyButton({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function PreviewDialog({
-  src,
-  title,
-  volume,
-}: {
-  src: string;
-  title: string;
-  volume: string;
-}) {
+function PreviewDialog({ src, title, volume }: { src: string; title: string; volume: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -245,15 +237,7 @@ function PreviewDialog({
   );
 }
 
-function CoverDialog({
-  src,
-  full,
-  label,
-}: {
-  src: string;
-  full: string;
-  label: string;
-}) {
+function CoverDialog({ src, full, label }: { src: string; full: string; label: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -445,9 +429,9 @@ function Offer() {
               <h2>Feedback que parece gente de verdade — sem fingir que é.</h2>
             </div>
             <p>
-              Estes três cards são <strong>modelos ilustrativos</strong>. Os nomes, avatares e textos
-              não representam avaliações reais. A estrutura já está pronta para receber depoimentos
-              verificados com foto e autorização.
+              Estes três cards são <strong>modelos ilustrativos</strong>. Os nomes, avatares e
+              textos não representam avaliações reais. A estrutura já está pronta para receber
+              depoimentos verificados com foto e autorização.
             </p>
           </div>
 
@@ -455,7 +439,10 @@ function Offer() {
             {feedbackModels.map((review, index) => (
               <article className="v90-review-card" key={review.name}>
                 <div className="v90-review-top">
-                  <div className={`v90-avatar v90-avatar-${index + 1}`} aria-label="Avatar ilustrativo">
+                  <div
+                    className={`v90-avatar v90-avatar-${index + 1}`}
+                    aria-label="Avatar ilustrativo"
+                  >
                     <UserRound size={22} />
                     <span>{review.initials}</span>
                   </div>
@@ -611,7 +598,9 @@ function Offer() {
         <div className="v90-shell">
           <div>
             <strong>Kit de Atividades Infantil e Autismo</strong>
-            <p>Material digital educativo. Não substitui avaliação ou acompanhamento individualizado.</p>
+            <p>
+              Material digital educativo. Não substitui avaliação ou acompanhamento individualizado.
+            </p>
           </div>
           <div className="v90-footer-links">
             <Link to="/privacidade">Política de privacidade</Link>
@@ -635,8 +624,7 @@ export const Route = createFileRoute("/oferta")({
       { property: "og:title", content: "Chega de criar atividade do zero" },
       {
         property: "og:description",
-        content:
-          "492 páginas digitais, 3 volumes + 5 bônus. Abra, escolha, imprima e use.",
+        content: "492 páginas digitais, 3 volumes + 5 bônus. Abra, escolha, imprima e use.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
