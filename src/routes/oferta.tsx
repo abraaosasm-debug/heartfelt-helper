@@ -180,25 +180,52 @@ function AttributionLink({
   );
 }
 
-function PrimaryCta({ full = false }: { full?: boolean }) {
+function PrimaryCta({
+  full = false,
+  label = "QUERO O KIT COMPLETO",
+}: {
+  full?: boolean;
+  label?: string;
+}) {
   return (
     <AttributionLink
       href={checkoutUrls.complete}
       className={`v11-cta${full ? " v11-cta-full" : ""}`}
     >
-      <span>QUERO O KIT COMPLETO</span>
+      <span>{label}</span>
       <ArrowRight size={19} />
     </AttributionLink>
   );
 }
 
+const previewSources: Record<string, string> = Object.fromEntries(
+  previews.map((preview, index) => [
+    preview.src,
+    `/previews/optimized/editorial-${index + 1}.webp`,
+  ]),
+);
+
 function PreviewCard({ src, title, volume }: { src: string; title: string; volume: string }) {
+  const thumbnail = previewSources[src];
   return (
     <Dialog>
       <DialogTrigger asChild>
         <button className="v11-preview-card" type="button" aria-label={`Ampliar ${title}`}>
           <div className="v11-preview-image">
-            <img src={src} alt={`Página real do ${volume}`} loading="lazy" decoding="async" />
+            <img
+              src={src}
+              srcSet={
+                thumbnail
+                  ? `${thumbnail} 420w, ${thumbnail.replace(".webp", "-840.webp")} 840w`
+                  : undefined
+              }
+              sizes="(min-width: 960px) 340px, (min-width: 640px) 30vw, 44vw"
+              width={1080}
+              height={1527}
+              alt={`Página real do ${volume}`}
+              loading="lazy"
+              decoding="async"
+            />
             <span>
               <Eye size={14} />
               ampliar
@@ -217,14 +244,45 @@ function PreviewCard({ src, title, volume }: { src: string; title: string; volum
         </DialogTitle>
         <DialogDescription>Página real do material digital.</DialogDescription>
         <div className="v11-preview-dialog-scroll">
-          <img src={src} alt={`Página ampliada do ${volume}`} />
+          <img src={src} width={1080} height={1527} alt={`Página ampliada do ${volume}`} />
         </div>
       </DialogContent>
     </Dialog>
   );
 }
 
+function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <details onToggle={(event) => setOpen(event.currentTarget.open)}>
+      <summary aria-expanded={open} aria-controls={`faq-answer-${index}`}>
+        {question}
+      </summary>
+      <p id={`faq-answer-${index}`}>{answer}</p>
+    </details>
+  );
+}
+
 function OfferPage() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08 },
+    );
+    document
+      .querySelectorAll(
+        ".v11-section-head, .v11-volume-card, .v11-bonus-item, .v11-preview-card, .v11-price-card",
+      )
+      .forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
   return (
     <main className="v11-page">
       <div className="v11-trustbar">
@@ -314,13 +372,26 @@ function OfferPage() {
             </div>
 
             <div className="v11-cover v11-cover-left">
-              <img src={volumes[0].cover} alt="Capa do Volume 1" />
+              <img
+                src={volumes[0].cover}
+                width={420}
+                height={594}
+                fetchPriority="high"
+                alt="Capa do Volume 1"
+              />
             </div>
             <div className="v11-cover v11-cover-center">
-              <img src={volumes[2].cover} alt="Capa do Volume 3" />
+              <img
+                src={volumes[2].cover}
+                srcSet="/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
+                sizes="(min-width: 960px) 240px, 40vw"
+                width={1080}
+                height={1527}
+                alt="Capa do Volume 3"
+              />
             </div>
             <div className="v11-cover v11-cover-right">
-              <img src={volumes[1].cover} alt="Capa do Volume 2" />
+              <img src={volumes[1].cover} width={420} height={594} alt="Capa do Volume 2" />
             </div>
 
             <div className="v11-bonus-stamp">
@@ -346,6 +417,14 @@ function OfferPage() {
               <article className={`v11-volume-card v11-volume-${volume.tone}`} key={volume.label}>
                 <img
                   src={volume.cover}
+                  srcSet={
+                    volume.label === "Volume 3"
+                      ? "/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
+                      : undefined
+                  }
+                  sizes="(min-width: 640px) 185px, 110px"
+                  width={volume.label === "Volume 3" ? 1080 : 420}
+                  height={volume.label === "Volume 3" ? 1527 : 594}
                   alt={`Capa do ${volume.label}`}
                   loading="lazy"
                   decoding="async"
@@ -369,11 +448,21 @@ function OfferPage() {
             </div>
 
             <div className="v11-bonus-list">
-              {bonuses.map((bonus) => (
-                <span key={bonus}>
-                  <Check size={13} />
-                  {bonus}
-                </span>
+              {bonuses.map((bonus, index) => (
+                <article className="v11-bonus-item" key={bonus}>
+                  <img
+                    src={`/covers/optimized/cover-${index + 3}.webp`}
+                    width={420}
+                    height={index === 3 ? 543 : 593}
+                    alt={`Capa de ${bonus}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>
+                    <Check size={13} aria-hidden="true" />
+                    {bonus}
+                  </span>
+                </article>
               ))}
             </div>
           </div>
@@ -540,7 +629,7 @@ function OfferPage() {
         </div>
 
         <div className="v11-shell">
-          <details className="v11-essential">
+          <details className="v11-essential" open>
             <summary>
               <span>
                 Prefere começar com uma opção menor?
@@ -586,11 +675,8 @@ function OfferPage() {
           </div>
 
           <div className="v11-faq">
-            {faqs.map(([question, answer]) => (
-              <details key={question}>
-                <summary>{question}</summary>
-                <p>{answer}</p>
-              </details>
+            {faqs.map(([question, answer], index) => (
+              <FaqItem key={question} question={question} answer={answer} index={index} />
             ))}
           </div>
         </div>
@@ -600,8 +686,9 @@ function OfferPage() {
         <div className="v11-shell">
           <span className="v11-kicker">KIT COMPLETO</span>
           <h2>Escolha a atividade. Imprima. Use.</h2>
+          <p>Comece hoje com atividades prontas, organizadas e fáceis de aplicar.</p>
           <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90</p>
-          <PrimaryCta />
+          <PrimaryCta label="QUERO MEU ACESSO AGORA" />
         </div>
       </section>
 

@@ -191,14 +191,13 @@ requireAll(
     "min-height: 52px",
     "@media (max-width: 640px)",
     "@media (prefers-reduced-motion: reduce)",
-    '"Sora"',
-    '"DM Sans"',
-    '"DM Serif Display"',
+    '"Instrument Serif"',
+    '"Work Sans"',
   ],
   "CSS V11",
 );
 
-requireAll(rootRoute, ["family=DM+Sans", "family=DM+Serif+Display", "family=Sora"], "Fontes V11");
+requireAll(rootRoute, ["family=Instrument+Serif", "family=Work+Sans"], "Fontes V11");
 
 requireAll(
   offer,

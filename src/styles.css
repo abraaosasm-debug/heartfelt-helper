@@ -249,8 +249,8 @@
  */
 
 @theme inline {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -9399,6 +9399,9 @@
 
 /* Editorial VSL: scoped to the presentation; commerce and consent logic unchanged. */
 :root {
+  --editorial-action: #AD4836;
+  --editorial-coral-light: #FAEDE7;
+  --editorial-blue-pale: #DCEAF3;
   --editorial-paper: #fcfcf8;
   --editorial-surface: #ffffff;
   --editorial-blue: #285f85;
@@ -10034,3 +10037,16 @@
   background: var(--editorial-blue);
   color: var(--editorial-surface);
 }
+
+/* Equal consent choices; mobile purchase bar stays clear of the notice. */
+.v42-consent-actions button,.v42-consent-actions button:first-child,.v42-consent-actions button:last-child { background:var(--editorial-paper); color:var(--editorial-blue); border:1px solid var(--editorial-blue); font-weight:600; }
+body:has(.v11-page):has(.v42-consent) .v11-mobile-bar { visibility:hidden; pointer-events:none; }
+.v42-privacy-page { background:var(--editorial-paper); color:var(--editorial-ink); font-family:"Work Sans",sans-serif; padding:40px 20px; }
+.v42-privacy-content { width:min(100%,740px); margin:auto; }
+.v42-privacy-content h1,.v42-privacy-content h2 { font-family:"Instrument Serif",Georgia,serif; font-weight:400; color:var(--editorial-ink); }
+.v42-privacy-content h1 { font-size:clamp(38px,6vw,60px); line-height:1.1; }
+.v42-privacy-content h2 { font-size:29px; }
+.v42-privacy-content p { font-size:15px; line-height:1.8; color:var(--editorial-muted); }
+.v42-privacy-content section { margin-top:30px; }
+.v42-privacy-back,.v42-privacy-content .v42-cookie-settings { display:inline-flex; min-height:44px; align-items:center; font-size:13px; color:var(--editorial-blue); }
+.v42-privacy-content :focus-visible { outline:3px solid var(--editorial-blue); outline-offset:4px; }

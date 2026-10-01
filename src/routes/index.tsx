@@ -174,7 +174,14 @@ function Index() {
                         width={1080}
                         height={1528}
                       />
-                      <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
+                      <img
+                        src="/covers/1_v3.jpg?v=1"
+                        srcSet="/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
+                        sizes="180px"
+                        alt=""
+                        width={1080}
+                        height={1528}
+                      />
                       <img
                         src="/covers/optimized/cover-2.webp?v=1"
                         alt=""
@@ -206,7 +213,14 @@ function Index() {
                         width={1080}
                         height={1528}
                       />
-                      <img src="/covers/1_v3.jpg?v=1" alt="" width={1080} height={1528} />
+                      <img
+                        src="/covers/1_v3.jpg?v=1"
+                        srcSet="/covers/optimized/volume-3-420.webp 420w, /covers/optimized/volume-3-840.webp 840w"
+                        sizes="180px"
+                        alt=""
+                        width={1080}
+                        height={1528}
+                      />
                       <img
                         src="/covers/optimized/cover-2.webp?v=1"
                         alt=""

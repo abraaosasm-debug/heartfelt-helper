@@ -83,12 +83,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Atividades educativas em PDF prontas para imprimir. Kit Completo com 2 volumes, 5 bônus e 292 páginas.",
+          "Atividades educativas em PDF prontas para imprimir. Kit Completo com 3 volumes, 5 bônus e 492 páginas.",
       },
       { property: "og:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         property: "og:description",
-        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
+        content: "3 volumes + 5 bônus, com 492 páginas de materiais digitais para imprimir.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://kitcompletoautismoeinfantil.lovable.app/" },
@@ -96,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Kit de Atividades Infantil e Autismo" },
       {
         name: "twitter:description",
-        content: "2 volumes + 5 bônus, com 292 páginas de materiais digitais para imprimir.",
+        content: "3 volumes + 5 bônus, com 492 páginas de materiais digitais para imprimir.",
       },
       {
         property: "og:image",
@@ -121,7 +121,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&family=Sora:wght@500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
