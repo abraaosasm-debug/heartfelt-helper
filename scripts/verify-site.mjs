@@ -87,7 +87,7 @@ requireAll(
     "CONFIANÇA ANTES DA COMPRA",
     "GARANTIA",
     "PERGUNTAS FREQUENTES",
-    "R$39,90",
+    "R$29,90",
     "R$59,90",
     "R$20 abaixo do preço de referência.",
     "30 dias de garantia",
