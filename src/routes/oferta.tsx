@@ -17,7 +17,6 @@ import { CookieSettingsButton } from "@/components/meta-pixel-consent";
 import { canTrackMarketing } from "@/lib/marketing-consent-state";
 import { checkoutUrls } from "@/lib/checkout";
 import { PrintedKit, VolumeSample } from "@/components/printed-kit";
-import { OfferRoutine, DigitalDelivery } from "@/components/offer-routine";
 import "./oferta-premium.css";
 
 const attributionKeys = [
@@ -244,7 +243,7 @@ function OfferPage() {
     return () => observer.disconnect();
   }, []);
   return (
-    <main className="v11-page">
+    <main className="v11-page v11-simple">
       <div className="v11-trustbar">
         <div className="v11-shell">
           <span>
@@ -261,21 +260,6 @@ function OfferPage() {
           </span>
         </div>
       </div>
-
-      <header className="v11-header">
-        <div className="v11-shell v11-header-inner">
-          <a className="v11-brand" href="#inicio">
-            <span>
-              <BookOpen size={17} />
-            </span>
-            <strong>KIT DE ATIVIDADES</strong>
-          </a>
-
-          <a className="v11-header-cta" href="#oferta">
-            VER OFERTA
-          </a>
-        </div>
-      </header>
 
       <section id="inicio" className="v11-hero">
         <div className="v11-shell v11-hero-grid">
@@ -295,17 +279,10 @@ function OfferPage() {
             </p>
 
             <div className="v11-hero-benefits">
-              <span>
-                <Check size={15} />
-                492 páginas digitais
-              </span>
-              <span>
-                <Check size={15} /> 8 materiais no total
-              </span>
-              <span>
-                <Check size={15} />
-                Imprima somente o que precisar
-              </span>
+              <span><Check size={15} />3 volumes + 5 bônus</span>
+              <span><Check size={15} />492 páginas digitais</span>
+              <span><Check size={15} />PDFs para escolher e imprimir</span>
+              <span><Check size={15} />Garantia de 30 dias</span>
             </div>
 
             <div className="v11-hero-purchase">
@@ -322,6 +299,7 @@ function OfferPage() {
             <p className="v11-microcopy">
               Pagamento único • entrega digital • compra processada pela Cakto
             </p>
+            <p className="v11-hero-value">Aproximadamente R$0,06 por página digital.</p>
           </div>
 
           <div className="v11-product-visual">
@@ -330,16 +308,12 @@ function OfferPage() {
         </div>
       </section>
 
-      <OfferRoutine />
-
       <section id="conteudo" className="v11-section v11-content-section">
         <div className="v11-shell">
           <div className="v11-section-head">
             <span className="v11-kicker">O QUE VEM NO KIT</span>
-            <h2>Em vez de procurar material por material, abra uma coleção com oito recursos.</h2>
-            <p>
-              São três volumes de atividades e cinco bônus organizados para facilitar a escolha do que usar.
-            </p>
+            <h2>O que você recebe por R$29,90.</h2>
+            <p>3 volumes + 5 bônus reunidos em 492 páginas digitais.</p>
           </div>
 
           <div className="v11-volume-grid">
@@ -429,145 +403,7 @@ function OfferPage() {
         </div>
       </section>
 
-      <section className="v11-section v11-benefit-section">
-        <div className="v11-shell">
-          <div className="v11-section-head">
-            <span className="v11-kicker">SE ISSO ACONTECE COM VOCÊ</span>
-            <h2>Procurar e montar atividades do zero consome um tempo que já é curto.</h2>
-          </div>
-          <div className="v11-pain-list">
-            {[
-              "Abrir várias páginas e ainda terminar sem saber qual atividade usar.",
-              "Precisar criar do zero quando a rotina já está cheia.",
-              "Procurar letras em um lugar, números em outro e atividades visuais em outro.",
-              "Imprimir materiais soltos e depois perder a organização do que já foi usado.",
-              "Querer variar as propostas sem começar uma nova busca toda vez.",
-            ].map((item) => (
-              <span key={item}><Check size={16} aria-hidden="true" />{item}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <DigitalDelivery />
-
-      <section className="v11-section v11-proof-section">
-        <div className="v11-shell v11-proof-grid">
-          <div>
-            <span className="v11-kicker">CONFIANÇA ANTES DA COMPRA</span>
-            <h2>Sem depoimento inventado: veja o que você consegue conferir antes de comprar.</h2>
-          </div>
-
-          <div className="v11-proof-list">
-            <article>
-              <span>01</span>
-              <div>
-                <strong>Páginas reais exibidas acima</strong>
-                <p>As amostras mostradas fazem parte dos volumes do produto.</p>
-              </div>
-            </article>
-            <article>
-              <span>02</span>
-              <div>
-                <strong>Estrutura organizada por material</strong>
-                <p>91 + 91 + 200 páginas nos volumes e 110 páginas distribuídas entre os cinco bônus.</p>
-              </div>
-            </article>
-            <article>
-              <span>03</span>
-              <div>
-                <strong>Garantia de 30 dias</strong>
-                <p>As condições aplicáveis ficam disponíveis no checkout.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="oferta" className="v11-section v11-offer-section">
-        <div className="v11-shell v11-offer-grid">
-          <div className="v11-offer-copy">
-            <span className="v11-kicker">OFERTA PRINCIPAL</span>
-            <h2>492 páginas digitais por R$29,90 em uma única compra.</h2>
-            <p>
-              Isso representa aproximadamente R$0,06 por página digital. Em vez de adquirir materiais
-              separados, você recebe os três volumes e os cinco bônus reunidos em oito materiais.
-              Custos de papel, tinta e impressão não estão incluídos.
-            </p>
-
-            <div className="v11-offer-list">
-              {[
-                "Volume 1 — 91 páginas",
-                "Volume 2 — 91 páginas",
-                "Volume 3 — 200 páginas",
-                "5 bônus — 110 páginas",
-                "PDFs digitais prontos para imprimir",
-                "Garantia de 30 dias",
-              ].map((item) => (
-                <span key={item}>
-                  <Check size={15} />
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="v11-price-card">
-            <div className="v11-price-card-top">
-              <span>KIT COMPLETO</span>
-              <small>8 MATERIAIS</small>
-            </div>
-
-            <p className="v11-reference-price">
-              Preço de referência: <s>R$59,90</s>
-            </p>
-
-            <div className="v11-price">
-              <small>R$</small>
-              <strong>29</strong>
-              <span>,90</span>
-            </div>
-
-            <div className="v11-price-proof">
-              <strong>R$30 abaixo do preço de referência.</strong>
-              <span>De R$59,90 por R$29,90 • pagamento único • sem prazo artificial.</span>
-            </div>
-
-            <PrimaryCta full />
-
-            <div className="v11-guarantee-mini">
-              <ShieldCheck size={18} />
-              <span>
-                <strong>Garantia de 30 dias</strong>
-                Consulte as condições no checkout.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="v11-shell">
-          <details
-            className="v11-essential"
-            onToggle={(event) => setEssentialOpen(event.currentTarget.open)}
-          >
-            <summary aria-expanded={essentialOpen} aria-controls="essential-content">
-              <span>
-                Ainda não quer a coleção completa?
-                <small>Kit Essencial • somente Volume 1 • 91 páginas</small>
-              </span>
-              <strong>R$10,00</strong>
-            </summary>
-            <div id="essential-content">
-              <p>Inclui apenas o Volume 1, sem os Volumes 2 e 3 e sem os cinco bônus.</p>
-              <AttributionLink href={checkoutUrls.essential} className="v11-essential-link">
-                VER KIT ESSENCIAL <ArrowRight size={14} />
-              </AttributionLink>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <section className="v11-guarantee-section">
+      <section id="oferta" className="v11-guarantee-section">
         <div className="v11-shell v11-guarantee-grid">
           <div
             className="v11-guarantee-seal"
@@ -613,6 +449,7 @@ function OfferPage() {
         </div>
       </section>
 
+      {/* Prova social entra aqui somente com depoimentos reais e autorização de publicação. */}
       <section id="duvidas" className="v11-section v11-faq-section">
         <div className="v11-shell v11-faq-grid">
           <div>
@@ -632,8 +469,8 @@ function OfferPage() {
       <section className="v11-final">
         <div className="v11-shell">
           <span className="v11-kicker">KIT COMPLETO</span>
-          <h2>Leve os 3 volumes + 5 bônus em uma única coleção.</h2>
-          <p>492 páginas digitais para escolher e imprimir conforme a necessidade do momento.</p>
+          <h2>3 volumes + 5 bônus. 492 páginas. R$29,90.</h2>
+          <p>Escolha as atividades, imprima o que precisar e mantenha tudo em uma única coleção digital.</p>
           <p><s>R$59,90</s> • R$29,90 pagamento único • garantia de 30 dias • checkout via Cakto</p>
           <PrintedKit />
           <PrimaryCta label="QUERO O KIT COMPLETO POR R$29,90" />
