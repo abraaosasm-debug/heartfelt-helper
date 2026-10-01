@@ -131,7 +131,7 @@ if (!css.includes("V7.3 — VSL MOBILE PERFORMANCE")) {
 
 for (const vslPerformanceMarker of [
   'preload="metadata"',
-  "kit-atividades-vsl.mp4?v=4",
+  "@/assets/kit-atividades-vsl.mp4.asset.json",
   "lastProgressRef",
   "handlePlaying",
   "Math.floor((video.currentTime / video.duration) * 100)",
@@ -193,7 +193,7 @@ for (const showroomMarker of [
   "vsl-showcase-head",
   "vsl-showcase-kicker",
   "Veja o material por dentro antes de decidir.",
-  "Em 2min47s, veja páginas reais e entenda como a coleção funciona.",
+  "Em 2min31s, veja páginas reais e entenda como a coleção funciona.",
 ]) {
   if (!vsl.includes(showroomMarker)) {
     errors.push(`Showroom da VSL incompleto: ${showroomMarker}`);
@@ -205,7 +205,7 @@ for (const preplayMarker of [
   "vsl-preplay-covers",
   "vsl-preplay-button",
   "Assista à apresentação",
-  "2min47s • veja o kit por dentro",
+  "2min31s • veja o kit por dentro",
   "void video.play()",
 ]) {
   if (!vsl.includes(preplayMarker)) {
@@ -219,7 +219,7 @@ for (const replayMarker of [
   "setShowPreplay(true)",
   "setCompleted(true)",
   "Assistir novamente",
-  "Rever apresentação • 2min47s",
+  "Rever apresentação • 2min31s",
 ]) {
   if (!vsl.includes(replayMarker)) {
     errors.push(`Comportamento pós-VSL incompleto: ${replayMarker}`);
@@ -235,7 +235,7 @@ if (!css.includes("width: min(84vw, 340px);")) {
 }
 
 for (const completionMarker of [
-  "Vídeo curto • 2min47s",
+  "Vídeo curto • 2min31s",
   "vsl-video-progress",
   "vsl-gate-locked",
   "Ao final da apresentação, você poderá ver tudo o que está incluído no Kit",
