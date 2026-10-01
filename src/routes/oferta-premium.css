@@ -1783,3 +1783,171 @@ body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
 .routine-sequence li {
   align-content: start;
 }
+
+
+/* V12 — estrutura simples, direta e mobile-first, inspirada em LPs de resposta direta. */
+.v11-simple {
+  --simple-max: 1040px;
+}
+.v11-simple .v11-shell {
+  width: min(var(--simple-max), calc(100% - 28px));
+}
+.v11-simple .v11-trustbar .v11-shell {
+  padding-block: 8px;
+}
+.v11-simple .v11-hero {
+  padding: 28px 0 34px;
+  border-bottom: 1px solid var(--editorial-line);
+  background: var(--editorial-paper);
+}
+.v11-simple .v11-hero-grid {
+  gap: 18px;
+}
+.v11-simple .v11-hero h1 {
+  max-width: 760px;
+  font-size: clamp(36px, 9vw, 58px);
+  line-height: 1.01;
+}
+.v11-simple .v11-hero-lead {
+  max-width: 680px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.v11-simple .v11-product-visual {
+  padding: 0;
+  border: 1px solid var(--editorial-line);
+  border-radius: 12px;
+  background: var(--editorial-sage-light);
+  overflow: hidden;
+}
+.v11-simple .v11-hero .printed-kit {
+  padding: 10px 8px 8px;
+}
+.v11-simple .v11-hero-purchase {
+  width: 100%;
+  margin-top: 2px;
+  padding: 12px;
+  border: 1px solid var(--editorial-line);
+  border-radius: 10px;
+  background: var(--editorial-surface);
+  box-shadow: var(--editorial-paper-shadow);
+}
+.v11-simple .v11-hero-price strong {
+  font-size: 31px;
+}
+.v11-simple .v11-hero-benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  padding: 2px 0;
+}
+.v11-simple .v11-hero-benefits span {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.v11-simple .v11-hero-benefits svg {
+  width: 17px;
+  height: 17px;
+  color: var(--editorial-action);
+}
+.v11-simple .v11-hero-value {
+  margin: 0;
+  font-size: 11px;
+  color: var(--editorial-muted);
+}
+.v11-simple .v11-section {
+  padding: 40px 0;
+}
+.v11-simple .v11-section-head {
+  margin-bottom: 22px;
+}
+.v11-simple .v11-section-head h2 {
+  font-size: clamp(30px, 7vw, 42px);
+}
+.v11-simple .v11-volume-card {
+  padding-block: 18px 22px;
+}
+.v11-simple .v11-bonus-box {
+  margin-top: 24px;
+  padding: 22px 16px;
+}
+.v11-simple .v11-preview-section {
+  border-top: 1px solid var(--editorial-line);
+}
+.v11-simple .v11-preview-cta {
+  margin-top: 24px;
+}
+.v11-simple .v11-guarantee-section {
+  padding: 44px 0;
+}
+.v11-simple .v11-faq-section {
+  background: var(--editorial-surface);
+}
+.v11-simple .v11-final {
+  padding: 38px 0;
+}
+.v11-simple .v11-final .printed-kit {
+  margin-block: 18px;
+}
+.v11-simple .v11-final .v11-cta {
+  max-width: 420px;
+}
+@media (max-width: 639px) {
+  .v11-simple .v11-trustbar .v11-shell {
+    gap: 6px 12px;
+  }
+  .v11-simple .v11-trustbar span {
+    font-size: 9px;
+  }
+  .v11-simple .v11-hero-copy {
+    display: contents;
+  }
+  .v11-simple .v11-hero-copy > .v11-eyebrow { order: 0; }
+  .v11-simple .v11-hero-copy > h1 { order: 1; }
+  .v11-simple .v11-hero-copy > .v11-hero-lead { order: 2; }
+  .v11-simple .v11-product-visual { order: 3; }
+  .v11-simple .v11-hero-copy > .v11-hero-purchase { order: 4; }
+  .v11-simple .v11-hero-copy > .v11-hero-benefits { order: 5; }
+  .v11-simple .v11-hero-copy > .v11-microcopy { order: 6; }
+  .v11-simple .v11-hero-copy > .v11-hero-value { order: 7; }
+  .v11-simple .v11-hero-purchase {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .v11-simple .v11-cta {
+    min-height: 48px;
+    padding: 13px 10px;
+  }
+  .v11-simple .v11-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+  .v11-simple .v11-preview-card:first-child,
+  .v11-simple .v11-preview-card:last-child {
+    grid-column: auto;
+  }
+}
+@media (min-width: 640px) {
+  .v11-simple .v11-hero-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 960px) {
+  .v11-simple .v11-hero {
+    padding: 48px 0;
+  }
+  .v11-simple .v11-hero-grid {
+    grid-template-columns: 1.04fr 0.96fr;
+    gap: 42px;
+    align-items: center;
+  }
+  .v11-simple .v11-hero h1 {
+    font-size: 58px;
+  }
+  .v11-simple .v11-product-visual {
+    align-self: center;
+  }
+  .v11-simple .v11-section {
+    padding: 52px 0;
+  }
+}
