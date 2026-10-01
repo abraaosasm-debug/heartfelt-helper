@@ -9780,3 +9780,389 @@
     contain-intrinsic-size: auto 420px;
   }
 }
+
+
+/* =========================================================
+   V8.0 — POST-VSL COMPACT LANDING
+   Shorter confirmation-and-purchase page after the VSL.
+   ========================================================= */
+
+.v80-page .v3-hero {
+  padding-block: clamp(42px, 5.5vw, 72px);
+}
+
+.v80-page .v3-hero-grid {
+  gap: clamp(28px, 4vw, 52px);
+}
+
+.v80-page .v3-hero-lead {
+  max-width: 650px;
+}
+
+.v80-page .v3-section {
+  padding-block: clamp(46px, 5.5vw, 70px);
+}
+
+.v80-page .v3-section-heading,
+.v80-page .v32-preview-heading {
+  margin-bottom: 26px;
+}
+
+.v80-section-heading {
+  max-width: 760px;
+}
+
+.v80-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.v80-material-card {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 15px;
+  align-items: center;
+  min-height: 166px;
+  padding: 18px;
+  border: 1px solid rgba(31, 41, 55, 0.1);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(32, 26, 20, 0.07);
+}
+
+.v80-material-cover {
+  width: 82px;
+}
+
+.v80-material-cover .v3-cover,
+.v80-material-cover .v3-cover-compact {
+  width: 82px;
+  max-width: 82px;
+}
+
+.v80-material-card > div:last-child {
+  min-width: 0;
+}
+
+.v80-material-card span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.055em;
+  color: #c35a2f;
+}
+
+.v80-material-card h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  line-height: 1.1;
+  color: #29211d;
+}
+
+.v80-material-card p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #655b55;
+}
+
+.v80-bonus-strip {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2fr);
+  gap: 20px;
+  align-items: center;
+  margin-top: 16px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: #28211e;
+  color: #fff;
+}
+
+.v80-bonus-summary span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: #ffb38d;
+}
+
+.v80-bonus-summary strong {
+  display: block;
+  max-width: 360px;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.v80-bonus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.v80-bonus-chips span {
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.v80-preview-section {
+  padding-block: clamp(44px, 5vw, 64px);
+}
+
+.v80-preview-heading {
+  align-items: end;
+}
+
+.v80-preview-carousel {
+  gap: 14px;
+}
+
+.v80-preview-carousel .v34-preview-card {
+  min-width: min(258px, 74vw);
+}
+
+.v80-edu-section {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(237, 118, 68, 0.08), transparent 34%),
+    #fffaf6;
+}
+
+.v80-edu-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 28px 44px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.v80-edu-head .v3-kicker {
+  grid-column: 1 / -1;
+  margin-bottom: -12px;
+}
+
+.v80-edu-head h2 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(1.75rem, 3.2vw, 2.7rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #28211e;
+}
+
+.v80-edu-head p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #6a5f58;
+}
+
+.v80-edu-head p strong {
+  color: #433832;
+}
+
+.v80-edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.v80-edu-card {
+  padding: 20px;
+  border: 1px solid rgba(96, 71, 57, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.v80-edu-card > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #c35a2f;
+}
+
+.v80-edu-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: #302722;
+}
+
+.v80-edu-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #665b54;
+}
+
+.v80-edu-note {
+  margin: 14px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #766a63;
+}
+
+.v80-page .v3-pricing-section {
+  padding-top: clamp(50px, 6vw, 76px);
+}
+
+.v80-page .v3-price-card-complete {
+  margin-inline: auto;
+}
+
+.v80-page .v3-assurance-section {
+  padding-block: clamp(46px, 5vw, 64px);
+}
+
+.v80-page .v3-footer {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .v80-materials-grid,
+  .v80-edu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v80-material-card {
+    min-height: 0;
+  }
+
+  .v80-bonus-strip,
+  .v80-edu-head {
+    grid-template-columns: 1fr;
+  }
+
+  .v80-edu-head .v3-kicker {
+    grid-column: auto;
+    margin-bottom: -4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .v80-page .v3-hero {
+    padding-block: 26px 34px;
+  }
+
+  .v80-page .v3-section,
+  .v80-preview-section,
+  .v80-page .v3-assurance-section {
+    padding-block: 38px;
+  }
+
+  .v80-page .v3-section-heading,
+  .v80-page .v32-preview-heading {
+    margin-bottom: 20px;
+  }
+
+  .v80-materials-grid {
+    gap: 10px;
+  }
+
+  .v80-material-card {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 12px;
+    padding: 13px;
+    border-radius: 16px;
+  }
+
+  .v80-material-cover,
+  .v80-material-cover .v3-cover,
+  .v80-material-cover .v3-cover-compact {
+    width: 68px;
+    max-width: 68px;
+  }
+
+  .v80-material-card span {
+    font-size: 0.61rem;
+  }
+
+  .v80-material-card h3 {
+    font-size: 0.98rem;
+  }
+
+  .v80-material-card p {
+    font-size: 0.78rem;
+    line-height: 1.42;
+  }
+
+  .v80-bonus-strip {
+    gap: 14px;
+    margin-top: 10px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .v80-bonus-summary strong {
+    font-size: 0.92rem;
+  }
+
+  .v80-bonus-chips {
+    gap: 6px;
+  }
+
+  .v80-bonus-chips span {
+    padding: 6px 8px;
+    font-size: 0.67rem;
+  }
+
+  .v80-preview-heading {
+    align-items: start;
+  }
+
+  .v80-preview-carousel .v34-preview-card {
+    min-width: min(226px, 72vw);
+  }
+
+  .v80-edu-head {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .v80-edu-head h2 {
+    font-size: 1.65rem;
+  }
+
+  .v80-edu-head p {
+    font-size: 0.82rem;
+  }
+
+  .v80-edu-grid {
+    gap: 9px;
+  }
+
+  .v80-edu-card {
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .v80-edu-card > span {
+    margin-bottom: 8px;
+  }
+
+  .v80-edu-card h3 {
+    font-size: 0.98rem;
+  }
+
+  .v80-edu-card p {
+    font-size: 0.8rem;
+    line-height: 1.48;
+  }
+
+  .v80-edu-note {
+    font-size: 0.7rem;
+  }
+
+  .v80-page .v3-pricing-section {
+    padding-top: 42px;
+  }
+}
