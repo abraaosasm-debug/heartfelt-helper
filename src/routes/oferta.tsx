@@ -130,7 +130,7 @@ const faqs = [
 function trackCheckoutIntent(href: string) {
   const offer =
     href === checkoutUrls.complete
-      ? { name: "Kit Completo", value: 39.9 }
+      ? { name: "Kit Completo", value: 29.9 }
       : href === checkoutUrls.essential
         ? { name: "Kit Essencial", value: 10 }
         : null;
@@ -313,7 +313,7 @@ function OfferPage() {
                 <small>
                   de <s>R$59,90</s> por
                 </small>
-                <strong>R$39,90</strong>
+                <strong>R$29,90</strong>
                 <span>pagamento único</span>
               </div>
               <PrimaryCta label="QUERO AS 492 PÁGINAS" />
@@ -488,9 +488,9 @@ function OfferPage() {
         <div className="v11-shell v11-offer-grid">
           <div className="v11-offer-copy">
             <span className="v11-kicker">OFERTA PRINCIPAL</span>
-            <h2>492 páginas digitais por R$39,90 em uma única compra.</h2>
+            <h2>492 páginas digitais por R$29,90 em uma única compra.</h2>
             <p>
-              Isso representa aproximadamente R$0,08 por página digital. Em vez de adquirir materiais
+              Isso representa aproximadamente R$0,06 por página digital. Em vez de adquirir materiais
               separados, você recebe os três volumes e os cinco bônus reunidos em oito materiais.
               Custos de papel, tinta e impressão não estão incluídos.
             </p>
@@ -524,13 +524,13 @@ function OfferPage() {
 
             <div className="v11-price">
               <small>R$</small>
-              <strong>39</strong>
+              <strong>29</strong>
               <span>,90</span>
             </div>
 
             <div className="v11-price-proof">
-              <strong>R$20 abaixo do preço de referência.</strong>
-              <span>De R$59,90 por R$39,90 • pagamento único • sem prazo artificial.</span>
+              <strong>R$30 abaixo do preço de referência.</strong>
+              <span>De R$59,90 por R$29,90 • pagamento único • sem prazo artificial.</span>
             </div>
 
             <PrimaryCta full />
@@ -634,18 +634,18 @@ function OfferPage() {
           <span className="v11-kicker">KIT COMPLETO</span>
           <h2>Leve os 3 volumes + 5 bônus em uma única coleção.</h2>
           <p>492 páginas digitais para escolher e imprimir conforme a necessidade do momento.</p>
-          <p><s>R$59,90</s> • R$39,90 pagamento único • garantia de 30 dias • checkout via Cakto</p>
+          <p><s>R$59,90</s> • R$29,90 pagamento único • garantia de 30 dias • checkout via Cakto</p>
           <PrintedKit />
-          <PrimaryCta label="QUERO O KIT COMPLETO POR R$39,90" />
+          <PrimaryCta label="QUERO O KIT COMPLETO POR R$29,90" />
         </div>
       </section>
 
       <AttributionLink
         href={checkoutUrls.complete}
         className="v11-mobile-bar"
-        ariaLabel="Comprar Kit Completo por R$39,90"
+        ariaLabel="Comprar Kit Completo por R$29,90"
       >
-        <strong>R$39,90</strong>
+        <strong>R$29,90</strong>
         <span>
           COMPRAR O KIT <ArrowRight size={15} />
         </span>
@@ -678,12 +678,12 @@ export const Route = createFileRoute("/oferta")({
       {
         name: "description",
         content:
-          "Tenha 492 páginas digitais organizadas em 3 volumes + 5 bônus para escolher, imprimir e usar. Kit Completo por R$39,90.",
+          "Tenha 492 páginas digitais organizadas em 3 volumes + 5 bônus para escolher, imprimir e usar. Kit Completo por R$29,90.",
       },
       { property: "og:title", content: "Atividades prontas para escolher, imprimir e usar" },
       {
         property: "og:description",
-        content: "3 volumes + 5 bônus, 492 páginas digitais por R$39,90.",
+        content: "3 volumes + 5 bônus, 492 páginas digitais por R$29,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
