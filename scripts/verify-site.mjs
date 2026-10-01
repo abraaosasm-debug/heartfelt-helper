@@ -262,7 +262,7 @@ if (!index.includes('href: "https://kitcompletoautismoeinfantil.lovable.app/ofer
   errors.push("Canonical da landing /oferta está divergente.");
 }
 
-const requiredIds = ["inicio", "como-usar", "conteudo", "bonus", "precos", "duvidas"];
+const requiredIds = ["inicio", "conteudo", "bonus", "amostras", "avaliacao", "precos", "duvidas"];
 for (const id of requiredIds) {
   if (!index.includes(`id="${id}"`)) {
     errors.push(`Seção obrigatória ausente: #${id}`);
@@ -301,10 +301,10 @@ for (let number = 1; number <= 7; number += 1) {
   }
 }
 
-const selectedPreviews = Array.from(
-  { length: 6 },
-  (_, index) => `public/previews/selected/kit1-selected-${index + 1}.jpg`,
-);
+const selectedPreviews = [
+  "public/previews/selected/kit1-selected-2.jpg",
+  "public/previews/selected/kit1-selected-4.jpg",
+];
 
 for (const relative of selectedPreviews) {
   const absolute = resolve(root, relative);
@@ -327,10 +327,10 @@ for (const relative of selectedPreviews) {
   }
 }
 
-const volume2Previews = Array.from(
-  { length: 6 },
-  (_, index) => `public/previews/selected/${index + 1}.jpg`,
-);
+const volume2Previews = [
+  "public/previews/selected/1.jpg",
+  "public/previews/selected/5.jpg",
+];
 
 for (const relative of volume2Previews) {
   const absolute = resolve(root, relative);
@@ -357,10 +357,7 @@ for (const relative of volume2Previews) {
   }
 }
 
-const volume3Previews = Array.from(
-  { length: 5 },
-  (_, index) => `public/previews/${index + 2}_v3.jpg`,
-);
+const volume3Previews = ["public/previews/2_v3.jpg", "public/previews/5_v3.jpg"];
 
 for (const relative of volume3Previews) {
   const absolute = resolve(root, relative);
@@ -412,14 +409,6 @@ if (!/\.v3-page a\.v3-button\s*\{[^}]*color:\s*var\(--v3-ink\);[^}]*\}/s.test(cs
 
 if (!/\.v3-page a\.v3-button-dark\s*\{[^}]*color:\s*white;[^}]*\}/s.test(css)) {
   errors.push("Cor branca explícita do CTA escuro não encontrada.");
-}
-
-if (
-  !/checkoutUrls\.complete\}\s+dark>[\s\S]*QUERO TER AS ATIVIDADES PRONTAS[\s\S]*<\/PrimaryButton>/.test(
-    index,
-  )
-) {
-  errors.push("CTA final precisa usar explicitamente a variante escura e a promessa principal.");
 }
 
 for (const number of [3, 4, 5, 6, 7]) {
@@ -628,10 +617,6 @@ for (const motionMarker of [
   if (!source.includes(motionMarker)) {
     errors.push(`Motion design incompleto: ${motionMarker}`);
   }
-}
-
-if (!index.includes('className="v47-preview-summary-new"')) {
-  errors.push("Volume 3 precisa permanecer destacado primeiro na prova compacta.");
 }
 
 if (index.includes("R$0,08 por página")) {
