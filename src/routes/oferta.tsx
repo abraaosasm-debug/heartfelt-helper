@@ -775,8 +775,9 @@ function Index() {
               <h2 id="feedback-title">Como profissionais da educação podem perceber o material.</h2>
             </div>
             <p>
-              Os textos abaixo são <strong>simulações editoriais</strong> baseadas nas características
-              observáveis dos PDFs. Não representam depoimentos de pessoas reais nem endosso profissional.
+              Os textos abaixo são <strong>simulações editoriais</strong> baseadas nas
+              características observáveis dos PDFs. Não representam depoimentos de pessoas reais nem
+              endosso profissional.
             </p>
           </div>
 
