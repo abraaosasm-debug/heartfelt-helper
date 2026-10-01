@@ -593,15 +593,41 @@ function OfferPage() {
 
       <section className="v11-guarantee-section">
         <div className="v11-shell v11-guarantee-grid">
-          <div className="v11-guarantee-seal">
-            <ShieldCheck size={34} />
-            <strong>30</strong>
-            <span>DIAS</span>
+          <div
+            className="v11-guarantee-seal"
+            role="img"
+            aria-label="Garantia de 30 dias. Compra protegida."
+          >
+            <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+              <circle className="v11-seal-ring-outer" cx="120" cy="120" r="111" />
+              <circle className="v11-seal-ring-inner" cx="120" cy="120" r="101" />
+              <circle className="v11-seal-radials" cx="120" cy="120" r="96" />
+
+              <text className="v11-seal-label v11-seal-label-top" x="120" y="47">
+                GARANTIA
+              </text>
+
+              <g className="v11-seal-shield">
+                <path d="M120 64 138 71v14c0 11-7.3 20.6-18 25-10.7-4.4-18-14-18-25V71l18-7Z" />
+                <path d="m111.5 85 5.7 5.8 11.8-12" />
+              </g>
+
+              <text className="v11-seal-days-number" x="120" y="151">
+                30
+              </text>
+              <text className="v11-seal-days-label" x="120" y="174">
+                DIAS
+              </text>
+
+              <text className="v11-seal-label v11-seal-label-bottom" x="120" y="207">
+                COMPRA PROTEGIDA
+              </text>
+            </svg>
           </div>
 
-          <div>
-            <span className="v11-kicker">GARANTIA</span>
-            <h2>Você tem 30 dias de garantia.</h2>
+          <div className="v11-guarantee-copy">
+            <span className="v11-kicker">GARANTIA DE 30 DIAS</span>
+            <h2>Você tem 30 dias para conhecer o material com tranquilidade.</h2>
             <p>
               Antes de finalizar, consulte no checkout da Cakto as condições, os prazos e o canal de
               atendimento aplicável à oferta.
