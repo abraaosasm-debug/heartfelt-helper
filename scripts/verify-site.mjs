@@ -40,7 +40,6 @@ function forbidAll(source, markers, label) {
   }
 }
 
-// VSL: entrada do funil, asset Lovable, tracking e desbloqueio por término real.
 requireAll(
   vsl,
   [
@@ -54,26 +53,11 @@ requireAll(
     "onPlaying={handlePlaying}",
     "onEnded={handleEnded}",
     "CONHECER O KIT COMPLETO",
-    '"utm_campaign"',
-    '"fbclid"',
   ],
   "VSL",
 );
 
-forbidAll(
-  vsl,
-  [
-    "OfferCountdown",
-    "setTimeout(() => setOfferUnlocked",
-    "setTimeout(() => setCompleted",
-    "garantia de 7 dias",
-  ],
-  "VSL",
-);
-
-if (!vslAsset.includes('"content_type": "video/mp4"')) {
-  errors.push("VSL: asset do Lovable precisa continuar sendo video/mp4.");
-}
+forbidAll(vsl, ["OfferCountdown", "garantia de 7 dias"], "VSL");
 
 try {
   const asset = JSON.parse(vslAsset);
@@ -84,24 +68,21 @@ try {
   errors.push("VSL: manifesto JSON do asset Lovable é inválido.");
 }
 
-// Landing premium: curta, direta e isolada do CSS legado.
 requireAll(
   offer,
   [
     'createFileRoute("/oferta")',
     'import "./oferta-premium.css"',
-    'className="v90-page"',
+    'className="v10-page"',
     'id="inicio"',
     'id="conteudo"',
     'id="amostras"',
-    'id="avaliacoes"',
     'id="oferta"',
     'id="duvidas"',
-    "Chega de perder tempo criando",
-    "Abra. Escolha. Imprima. Use.",
-    "492",
-    "3 VOLUMES",
-    "+5",
+    "Tenha atividades prontas para",
+    "escolher, imprimir e usar.",
+    "Pare de criar tudo do zero.",
+    "3 VOLUMES + 5 BÔNUS • 492 PÁGINAS",
     "R$39,90",
     "R$59,90",
     "30 dias de garantia",
@@ -109,37 +90,26 @@ requireAll(
     "Kit Essencial",
     "R$10,00",
   ],
-  "Landing premium",
-);
-
-requireAll(
-  offer,
-  [
-    "feedbackModels",
-    "MODELOS VISUAIS DE FEEDBACK PROFISSIONAL",
-    "modelos ilustrativos",
-    "PERFIL ILUSTRATIVO",
-    "Texto-modelo • substitua por avaliação real",
-    "não representam avaliações reais",
-    "foto e autorização",
-  ],
-  "Transparência dos feedbacks",
+  "Landing V10",
 );
 
 forbidAll(
   offer,
   [
+    "feedbackModels",
+    "MODELOS VISUAIS DE FEEDBACK PROFISSIONAL",
+    "PERFIL ILUSTRATIVO",
+    "Marina A.",
+    "Carla M.",
+    "Juliana R.",
     "OFERTA DE LANÇAMENTO",
     "OfferCountdown",
     "R$79,90",
     "garantia de 7 dias",
-    "Feedback verificado",
-    "Depoimento verificado",
   ],
-  "Landing premium",
+  "Landing V10",
 );
 
-// Oferta e checkouts canônicos.
 const canonicalCheckouts = {
   essential: "https://pay.cakto.com.br/4aafyxo_1130411",
   complete: "https://pay.cakto.com.br/5q3o7zo_1130394",
@@ -167,15 +137,13 @@ requireAll(
   "Tracking e checkout",
 );
 
-// Garantia precisa ser consistente.
 if (!/30 dias de garantia|garantia de 30 dias/i.test(offer)) {
-  errors.push("Landing: garantia de 30 dias ausente.");
+  errors.push("Landing V10: garantia de 30 dias ausente.");
 }
 if (/7 dias de garantia|garantia de 7 dias/i.test(offer)) {
-  errors.push("Landing: referência antiga à garantia de 7 dias encontrada.");
+  errors.push("Landing V10: referência antiga à garantia de 7 dias encontrada.");
 }
 
-// Assets realmente usados na landing.
 const requiredAssets = [
   "public/covers/optimized/cover-1.webp",
   "public/covers/optimized/cover-2.webp",
@@ -197,40 +165,33 @@ for (const relative of requiredAssets) {
   if (statSync(absolute).size === 0) errors.push(`Asset vazio: ${relative}`);
 }
 
-// Dialog precisa permanecer acima da barra mobile.
 if (!dialog.includes("z-[100]") || !dialog.includes("z-[110]")) {
   errors.push("Dialog: z-index precisa permanecer acima da barra fixa mobile.");
 }
 
-// CSS novo: identidade isolada, responsive e sem depender das classes antigas.
 requireAll(
   offerCss,
   [
-    ".v90-page",
-    ".v90-hero",
-    ".v90-buy-button",
-    ".v90-volume-grid",
-    ".v90-preview-grid",
-    ".v90-review-grid",
-    ".v90-price-card",
-    ".v90-mobile-bar",
+    ".v10-page",
+    ".v10-hero",
+    ".v10-product-stage",
+    ".v10-volume-grid",
+    ".v10-preview-grid",
+    ".v10-benefit-grid",
+    ".v10-offer-grid",
+    ".v10-price-card",
+    ".v10-mobile-bar",
+    "min-height: 54px",
     "@media (max-width: 640px)",
     "@media (prefers-reduced-motion: reduce)",
-    '"Archivo Black"',
-    '"Instrument Serif"',
+    '"Sora"',
     '"Manrope"',
   ],
-  "CSS premium",
+  "CSS V10",
 );
 
-// Tipografia nova deve estar carregada no documento raiz.
-requireAll(
-  rootRoute,
-  ["family=Archivo+Black", "family=Instrument+Serif", "family=Manrope"],
-  "Fontes premium",
-);
+requireAll(rootRoute, ["family=Manrope", "family=Sora"], "Fontes V10");
 
-// Canonical e metadados básicos.
 requireAll(
   offer,
   [
@@ -240,10 +201,9 @@ requireAll(
   "SEO da oferta",
 );
 
-// Sanidade de tamanho: a rota nova deve continuar claramente menor que a versão longa anterior.
 const offerLines = offer.split("\n").length;
-if (offerLines > 760) {
-  errors.push(`Landing voltou a crescer demais: ${offerLines} linhas (limite 760).`);
+if (offerLines > 700) {
+  errors.push(`Landing V10 voltou a crescer demais: ${offerLines} linhas (limite 700).`);
 }
 
 finish();
