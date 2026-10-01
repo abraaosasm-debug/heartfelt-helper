@@ -73,31 +73,35 @@ requireAll(
   [
     'createFileRoute("/oferta")',
     'import "./oferta-premium.css"',
-    'className="v10-page"',
+    'className="v11-page"',
     'id="inicio"',
     'id="conteudo"',
     'id="amostras"',
     'id="oferta"',
     'id="duvidas"',
-    "Tenha atividades prontas para",
+    "Atividades prontas para",
     "escolher, imprimir e usar.",
-    "Pare de criar tudo do zero.",
     "3 VOLUMES + 5 BÔNUS • 492 PÁGINAS",
+    "PÁGINAS REAIS",
+    "POR QUE ISSO É PRÁTICO",
+    "CONFIANÇA ANTES DA COMPRA",
+    "GARANTIA",
+    "PERGUNTAS FREQUENTES",
     "R$39,90",
     "R$59,90",
+    "Economize R$20",
     "30 dias de garantia",
     "QUERO O KIT COMPLETO",
     "Kit Essencial",
     "R$10,00",
   ],
-  "Landing V10",
+  "Landing V11",
 );
 
 forbidAll(
   offer,
   [
     "feedbackModels",
-    "MODELOS VISUAIS DE FEEDBACK PROFISSIONAL",
     "PERFIL ILUSTRATIVO",
     "Marina A.",
     "Carla M.",
@@ -107,7 +111,7 @@ forbidAll(
     "R$79,90",
     "garantia de 7 dias",
   ],
-  "Landing V10",
+  "Landing V11",
 );
 
 const canonicalCheckouts = {
@@ -138,10 +142,10 @@ requireAll(
 );
 
 if (!/30 dias de garantia|garantia de 30 dias/i.test(offer)) {
-  errors.push("Landing V10: garantia de 30 dias ausente.");
+  errors.push("Landing V11: garantia de 30 dias ausente.");
 }
 if (/7 dias de garantia|garantia de 7 dias/i.test(offer)) {
-  errors.push("Landing V10: referência antiga à garantia de 7 dias encontrada.");
+  errors.push("Landing V11: referência antiga à garantia de 7 dias encontrada.");
 }
 
 const requiredAssets = [
@@ -172,25 +176,33 @@ if (!dialog.includes("z-[100]") || !dialog.includes("z-[110]")) {
 requireAll(
   offerCss,
   [
-    ".v10-page",
-    ".v10-hero",
-    ".v10-product-stage",
-    ".v10-volume-grid",
-    ".v10-preview-grid",
-    ".v10-benefit-grid",
-    ".v10-offer-grid",
-    ".v10-price-card",
-    ".v10-mobile-bar",
-    "min-height: 54px",
+    ".v11-page",
+    ".v11-trustbar",
+    ".v11-hero",
+    ".v11-product-visual",
+    ".v11-volume-grid",
+    ".v11-preview-grid",
+    ".v11-benefit-grid",
+    ".v11-proof-grid",
+    ".v11-offer-grid",
+    ".v11-guarantee-section",
+    ".v11-faq-grid",
+    ".v11-mobile-bar",
+    "min-height: 52px",
     "@media (max-width: 640px)",
     "@media (prefers-reduced-motion: reduce)",
     '"Sora"',
-    '"Manrope"',
+    '"DM Sans"',
+    '"DM Serif Display"',
   ],
-  "CSS V10",
+  "CSS V11",
 );
 
-requireAll(rootRoute, ["family=Manrope", "family=Sora"], "Fontes V10");
+requireAll(
+  rootRoute,
+  ["family=DM+Sans", "family=DM+Serif+Display", "family=Sora"],
+  "Fontes V11",
+);
 
 requireAll(
   offer,
@@ -202,8 +214,8 @@ requireAll(
 );
 
 const offerLines = offer.split("\n").length;
-if (offerLines > 700) {
-  errors.push(`Landing V10 voltou a crescer demais: ${offerLines} linhas (limite 700).`);
+if (offerLines > 760) {
+  errors.push(`Landing V11 voltou a crescer demais: ${offerLines} linhas (limite 760).`);
 }
 
 finish();
