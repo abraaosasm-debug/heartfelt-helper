@@ -47,7 +47,8 @@ const volumes = [
   {
     label: "Volume 2",
     pages: "91 páginas",
-    description: "Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.",
+    description:
+      "Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.",
     cover: "/covers/optimized/cover-2.webp?v=1",
     tone: "teal",
   },
@@ -191,15 +192,7 @@ function PrimaryCta({ full = false }: { full?: boolean }) {
   );
 }
 
-function PreviewCard({
-  src,
-  title,
-  volume,
-}: {
-  src: string;
-  title: string;
-  volume: string;
-}) {
+function PreviewCard({ src, title, volume }: { src: string; title: string; volume: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -270,8 +263,7 @@ function OfferPage() {
         <div className="v11-shell v11-hero-grid">
           <div className="v11-hero-copy">
             <span className="v11-eyebrow">
-              <Sparkles size={14} />
-              3 VOLUMES + 5 BÔNUS • 492 PÁGINAS
+              <Sparkles size={14} /> 3 VOLUMES + 5 BÔNUS • 492 PÁGINAS
             </span>
 
             <h1>
@@ -290,8 +282,7 @@ function OfferPage() {
                 492 páginas digitais
               </span>
               <span>
-                <Check size={15} />
-                8 materiais no total
+                <Check size={15} /> 8 materiais no total
               </span>
               <span>
                 <Check size={15} />
@@ -345,13 +336,20 @@ function OfferPage() {
           <div className="v11-section-head">
             <span className="v11-kicker">O QUE VEM NO KIT</span>
             <h2>Você recebe oito materiais organizados em uma única oferta.</h2>
-            <p>Três volumes de atividades e cinco complementos para ampliar as possibilidades de uso.</p>
+            <p>
+              Três volumes de atividades e cinco complementos para ampliar as possibilidades de uso.
+            </p>
           </div>
 
           <div className="v11-volume-grid">
             {volumes.map((volume) => (
               <article className={`v11-volume-card v11-volume-${volume.tone}`} key={volume.label}>
-                <img src={volume.cover} alt={`Capa do ${volume.label}`} loading="lazy" decoding="async" />
+                <img
+                  src={volume.cover}
+                  alt={`Capa do ${volume.label}`}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <span>{volume.label}</span>
                   <strong>{volume.pages}</strong>
@@ -421,7 +419,10 @@ function OfferPage() {
                 <Clock3 size={20} />
               </div>
               <strong>Comece de algo pronto</strong>
-              <p>Em vez de montar uma atividade do zero, abra a coleção e procure a proposta adequada.</p>
+              <p>
+                Em vez de montar uma atividade do zero, abra a coleção e procure a proposta
+                adequada.
+              </p>
             </article>
 
             <article>
@@ -429,7 +430,10 @@ function OfferPage() {
                 <Printer size={20} />
               </div>
               <strong>Imprima só o necessário</strong>
-              <p>Você não precisa imprimir o material inteiro. Escolha páginas individuais quando quiser.</p>
+              <p>
+                Você não precisa imprimir o material inteiro. Escolha páginas individuais quando
+                quiser.
+              </p>
             </article>
 
             <article>
@@ -437,7 +441,9 @@ function OfferPage() {
                 <Layers3 size={20} />
               </div>
               <strong>Varie as propostas</strong>
-              <p>Linguagem, coordenação, números, leitura inicial, percepção visual e raciocínio.</p>
+              <p>
+                Linguagem, coordenação, números, leitura inicial, percepção visual e raciocínio.
+              </p>
             </article>
           </div>
         </div>
@@ -482,7 +488,8 @@ function OfferPage() {
             <span className="v11-kicker">OFERTA PRINCIPAL</span>
             <h2>Tenha sua coleção completa por R$39,90.</h2>
             <p>
-              Uma compra única com os três volumes e os cinco bônus, totalizando 492 páginas digitais.
+              Uma compra única com os três volumes e os cinco bônus, totalizando 492 páginas
+              digitais.
             </p>
 
             <div className="v11-offer-list">
