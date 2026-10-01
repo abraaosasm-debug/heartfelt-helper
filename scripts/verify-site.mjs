@@ -73,7 +73,7 @@ requireAll(
   [
     'createFileRoute("/oferta")',
     'import "./oferta-premium.css"',
-    'className="v11-page"',
+    'className="v11-page v11-simple"',
     'id="inicio"',
     'id="conteudo"',
     'id="amostras"',
