@@ -2,13 +2,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   ArrowRight,
+  BadgeCheck,
   BookOpen,
   Check,
   Clock3,
   Eye,
+  FileText,
+  HelpCircle,
   Layers3,
   Printer,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 import {
   Dialog,
@@ -36,24 +40,27 @@ const volumes = [
   {
     label: "Volume 1",
     pages: "91 páginas",
-    description: "Alfabeto, coordenação, números, sílabas, percepção visual e emoções.",
+    description: "Alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação.",
     cover: "/covers/optimized/cover-1.webp?v=1",
+    tone: "coral",
   },
   {
     label: "Volume 2",
     pages: "91 páginas",
-    description: "Leitura inicial, quantidades até 20, sequências e situações do cotidiano.",
+    description: "Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.",
     cover: "/covers/optimized/cover-2.webp?v=1",
+    tone: "teal",
   },
   {
     label: "Volume 3",
     pages: "200 páginas",
     description: "Traçados, leitura, números, raciocínio, percepção visual e desenho.",
     cover: "/covers/1_v3.jpg?v=1",
+    tone: "violet",
   },
 ] as const;
 
-const previewPages = [
+const previews = [
   {
     src: "/previews/selected/kit1-selected-2.jpg",
     title: "Trace as Vogais",
@@ -90,22 +97,30 @@ const bonuses = [
   "Planejamento de 4 Semanas",
   "Rotina Visual para Recortar",
   "Jogos de Mesa Imprimíveis",
-  "Caderno de Observação",
-  "Atividades para as Famílias",
+  "Caderno de Observação da Aprendizagem",
+  "Atividades para Enviar às Famílias",
 ] as const;
 
 const faqs = [
   [
-    "O que está incluído no Kit Completo?",
-    "Os três volumes completos e os cinco bônus, totalizando 492 páginas digitais em oito materiais.",
+    "O que exatamente eu recebo?",
+    "O Kit Completo reúne os Volumes 1, 2 e 3 mais cinco bônus, totalizando 492 páginas digitais em oito materiais.",
   ],
   [
-    "Preciso imprimir tudo?",
-    "Não. Você pode escolher e imprimir somente as páginas que quiser usar em cada momento.",
+    "É material físico ou digital?",
+    "É um produto digital. Você recebe os arquivos em PDF e pode imprimir somente as páginas que quiser utilizar.",
+  ],
+  [
+    "Preciso imprimir as 492 páginas?",
+    "Não. A proposta é justamente escolher a atividade que faz sentido para cada momento e imprimir apenas o necessário.",
+  ],
+  [
+    "Como recebo o material depois da compra?",
+    "A compra é processada pela Cakto. Após a confirmação do pagamento, siga as instruções de acesso fornecidas pela plataforma.",
   ],
   [
     "Como funciona a garantia?",
-    "A oferta apresenta garantia de 30 dias. Confira as condições e o canal de atendimento no checkout da Cakto antes de concluir a compra.",
+    "A oferta apresenta garantia de 30 dias. Consulte no checkout as condições, os prazos e o canal de atendimento aplicável.",
   ],
 ] as const;
 
@@ -164,11 +179,11 @@ function AttributionLink({
   );
 }
 
-function BuyButton({ compact = false }: { compact?: boolean }) {
+function PrimaryCta({ full = false }: { full?: boolean }) {
   return (
     <AttributionLink
       href={checkoutUrls.complete}
-      className={`v10-buy-button${compact ? " v10-buy-button-compact" : ""}`}
+      className={`v11-cta${full ? " v11-cta-full" : ""}`}
     >
       <span>QUERO O KIT COMPLETO</span>
       <ArrowRight size={19} />
@@ -176,31 +191,39 @@ function BuyButton({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function PreviewDialog({ src, title, volume }: { src: string; title: string; volume: string }) {
+function PreviewCard({
+  src,
+  title,
+  volume,
+}: {
+  src: string;
+  title: string;
+  volume: string;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="v10-preview-card" type="button" aria-label={`Ampliar ${title}`}>
-          <div className="v10-preview-image">
+        <button className="v11-preview-card" type="button" aria-label={`Ampliar ${title}`}>
+          <div className="v11-preview-image">
             <img src={src} alt={`Página real do ${volume}`} loading="lazy" decoding="async" />
             <span>
-              <Eye size={15} />
+              <Eye size={14} />
               ampliar
             </span>
           </div>
-          <div className="v10-preview-meta">
+          <div className="v11-preview-meta">
             <strong>{volume}</strong>
             <small>{title}</small>
           </div>
         </button>
       </DialogTrigger>
 
-      <DialogContent className="v10-preview-dialog">
+      <DialogContent className="v11-preview-dialog">
         <DialogTitle>
           {volume} — {title}
         </DialogTitle>
         <DialogDescription>Página real do material digital.</DialogDescription>
-        <div className="v10-preview-dialog-scroll">
+        <div className="v11-preview-dialog-scroll">
           <img src={src} alt={`Página ampliada do ${volume}`} />
         </div>
       </DialogContent>
@@ -210,89 +233,106 @@ function PreviewDialog({ src, title, volume }: { src: string; title: string; vol
 
 function OfferPage() {
   return (
-    <main className="v10-page">
-      <header className="v10-header">
-        <div className="v10-shell v10-header-inner">
-          <a className="v10-brand" href="#inicio">
+    <main className="v11-page">
+      <div className="v11-trustbar">
+        <div className="v11-shell">
+          <span>
+            <FileText size={14} />
+            PRODUTO DIGITAL
+          </span>
+          <span>
+            <ShieldCheck size={14} />
+            GARANTIA DE 30 DIAS
+          </span>
+          <span>
+            <BadgeCheck size={14} />
+            CHECKOUT VIA CAKTO
+          </span>
+        </div>
+      </div>
+
+      <header className="v11-header">
+        <div className="v11-shell v11-header-inner">
+          <a className="v11-brand" href="#inicio">
             <span>
               <BookOpen size={17} />
             </span>
-            KIT DE ATIVIDADES
+            <strong>KIT DE ATIVIDADES</strong>
           </a>
 
-          <nav className="v10-nav" aria-label="Navegação da oferta">
-            <a href="#conteudo">O que vem</a>
-            <a href="#amostras">Por dentro</a>
-            <a href="#oferta">Oferta</a>
-          </nav>
-
-          <a className="v10-header-cta" href="#oferta">
+          <a className="v11-header-cta" href="#oferta">
             VER OFERTA
           </a>
         </div>
       </header>
 
-      <section id="inicio" className="v10-hero">
-        <div className="v10-shell v10-hero-grid">
-          <div className="v10-hero-copy">
-            <span className="v10-kicker">3 VOLUMES + 5 BÔNUS • 492 PÁGINAS</span>
+      <section id="inicio" className="v11-hero">
+        <div className="v11-shell v11-hero-grid">
+          <div className="v11-hero-copy">
+            <span className="v11-eyebrow">
+              <Sparkles size={14} />
+              3 VOLUMES + 5 BÔNUS • 492 PÁGINAS
+            </span>
 
             <h1>
-              Tenha atividades prontas para
+              Atividades prontas para
               <span> escolher, imprimir e usar.</span>
             </h1>
 
-            <p>
-              Pare de criar tudo do zero. Tenha uma coleção organizada para encontrar uma atividade
-              pronta quando precisar.
+            <p className="v11-hero-lead">
+              Tenha uma coleção organizada para não precisar criar tudo do zero sempre que precisar
+              de uma nova atividade.
             </p>
 
-            <div className="v10-hero-proof">
+            <div className="v11-hero-benefits">
               <span>
-                <strong>492</strong>
-                páginas digitais
+                <Check size={15} />
+                492 páginas digitais
               </span>
               <span>
-                <strong>8</strong>
-                materiais
+                <Check size={15} />
+                8 materiais no total
               </span>
               <span>
-                <strong>30</strong>
-                dias de garantia
+                <Check size={15} />
+                Imprima somente o que precisar
               </span>
             </div>
 
-            <div className="v10-hero-offer">
-              <div>
+            <div className="v11-hero-purchase">
+              <div className="v11-hero-price">
                 <small>
                   de <s>R$59,90</s> por
                 </small>
                 <strong>R$39,90</strong>
                 <span>pagamento único</span>
               </div>
-              <BuyButton />
+              <PrimaryCta />
             </div>
 
-            <div className="v10-trust">
-              <ShieldCheck size={16} />
-              Produto digital • checkout via Cakto • sem frete
-            </div>
+            <p className="v11-microcopy">
+              Compra processada pela Cakto • produto digital • sem frete
+            </p>
           </div>
 
-          <div className="v10-product-stage" aria-label="Capas dos três volumes do Kit">
-            <span className="v10-stage-label">KIT COMPLETO</span>
+          <div className="v11-product-visual">
+            <div className="v11-product-copy">
+              <span>KIT COMPLETO</span>
+              <strong>492 páginas</strong>
+              <small>3 volumes + 5 bônus</small>
+            </div>
 
-            <div className="v10-cover v10-cover-1">
+            <div className="v11-cover v11-cover-left">
               <img src={volumes[0].cover} alt="Capa do Volume 1" />
             </div>
-            <div className="v10-cover v10-cover-3">
+            <div className="v11-cover v11-cover-center">
               <img src={volumes[2].cover} alt="Capa do Volume 3" />
             </div>
-            <div className="v10-cover v10-cover-2">
+            <div className="v11-cover v11-cover-right">
               <img src={volumes[1].cover} alt="Capa do Volume 2" />
             </div>
 
-            <div className="v10-stage-badge">
+            <div className="v11-bonus-stamp">
               <strong>+5</strong>
               <span>BÔNUS</span>
             </div>
@@ -300,22 +340,18 @@ function OfferPage() {
         </div>
       </section>
 
-      <section id="conteudo" className="v10-section v10-content-section">
-        <div className="v10-shell">
-          <div className="v10-section-head">
-            <span className="v10-kicker">O QUE VOCÊ RECEBE</span>
-            <h2>Três volumes. Cinco bônus. Tudo em uma coleção.</h2>
+      <section id="conteudo" className="v11-section v11-content-section">
+        <div className="v11-shell">
+          <div className="v11-section-head">
+            <span className="v11-kicker">O QUE VEM NO KIT</span>
+            <h2>Você recebe oito materiais organizados em uma única oferta.</h2>
+            <p>Três volumes de atividades e cinco complementos para ampliar as possibilidades de uso.</p>
           </div>
 
-          <div className="v10-volume-grid">
+          <div className="v11-volume-grid">
             {volumes.map((volume) => (
-              <article className="v10-volume-card" key={volume.label}>
-                <img
-                  src={volume.cover}
-                  alt={`Capa do ${volume.label}`}
-                  loading="lazy"
-                  decoding="async"
-                />
+              <article className={`v11-volume-card v11-volume-${volume.tone}`} key={volume.label}>
+                <img src={volume.cover} alt={`Capa do ${volume.label}`} loading="lazy" decoding="async" />
                 <div>
                   <span>{volume.label}</span>
                   <strong>{volume.pages}</strong>
@@ -325,16 +361,16 @@ function OfferPage() {
             ))}
           </div>
 
-          <div className="v10-bonus-strip">
-            <div>
-              <Layers3 size={20} />
-              <span>
-                <strong>+ 5 bônus • 110 páginas</strong>
-                materiais complementares incluídos
-              </span>
+          <div className="v11-bonus-box">
+            <div className="v11-bonus-intro">
+              <Layers3 size={21} />
+              <div>
+                <span>5 BÔNUS • 110 PÁGINAS</span>
+                <strong>Materiais complementares incluídos no Kit Completo.</strong>
+              </div>
             </div>
 
-            <div className="v10-bonus-list">
+            <div className="v11-bonus-list">
               {bonuses.map((bonus) => (
                 <span key={bonus}>
                   <Check size={13} />
@@ -346,17 +382,17 @@ function OfferPage() {
         </div>
       </section>
 
-      <section id="amostras" className="v10-section v10-preview-section">
-        <div className="v10-shell">
-          <div className="v10-section-head v10-section-head-light">
-            <span className="v10-kicker">PÁGINAS REAIS</span>
-            <h2>Veja algumas atividades por dentro.</h2>
-            <p>Toque em qualquer página para ampliar.</p>
+      <section id="amostras" className="v11-section v11-preview-section">
+        <div className="v11-shell">
+          <div className="v11-section-head v11-section-head-dark">
+            <span className="v11-kicker">VEJA POR DENTRO</span>
+            <h2>Páginas reais do material.</h2>
+            <p>Veja uma seleção dos três volumes antes de decidir.</p>
           </div>
 
-          <div className="v10-preview-grid">
-            {previewPages.map((preview) => (
-              <PreviewDialog
+          <div className="v11-preview-grid">
+            {previews.map((preview) => (
+              <PreviewCard
                 key={preview.src}
                 src={preview.src}
                 title={preview.title}
@@ -364,52 +400,92 @@ function OfferPage() {
               />
             ))}
           </div>
+
+          <div className="v11-preview-cta">
+            <p>Gostou do que viu? O Kit Completo reúne 492 páginas.</p>
+            <PrimaryCta />
+          </div>
         </div>
       </section>
 
-      <section className="v10-section v10-benefit-section">
-        <div className="v10-shell">
-          <div className="v10-benefit-grid">
+      <section className="v11-section v11-benefit-section">
+        <div className="v11-shell">
+          <div className="v11-section-head">
+            <span className="v11-kicker">POR QUE ISSO É PRÁTICO</span>
+            <h2>Menos tempo preparando. Mais facilidade para escolher.</h2>
+          </div>
+
+          <div className="v11-benefit-grid">
             <article>
-              <Clock3 size={22} />
-              <div>
-                <strong>Menos preparação.</strong>
-                <p>Você parte de uma atividade pronta em vez de começar do zero.</p>
+              <div className="v11-icon v11-icon-coral">
+                <Clock3 size={20} />
               </div>
+              <strong>Comece de algo pronto</strong>
+              <p>Em vez de montar uma atividade do zero, abra a coleção e procure a proposta adequada.</p>
             </article>
 
             <article>
-              <Printer size={22} />
-              <div>
-                <strong>Imprima só o que precisar.</strong>
-                <p>Escolha a página certa para aquele momento e use quando quiser.</p>
+              <div className="v11-icon v11-icon-teal">
+                <Printer size={20} />
               </div>
+              <strong>Imprima só o necessário</strong>
+              <p>Você não precisa imprimir o material inteiro. Escolha páginas individuais quando quiser.</p>
             </article>
 
             <article>
-              <Layers3 size={22} />
+              <div className="v11-icon v11-icon-violet">
+                <Layers3 size={20} />
+              </div>
+              <strong>Varie as propostas</strong>
+              <p>Linguagem, coordenação, números, leitura inicial, percepção visual e raciocínio.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="v11-section v11-proof-section">
+        <div className="v11-shell v11-proof-grid">
+          <div>
+            <span className="v11-kicker">CONFIANÇA ANTES DA COMPRA</span>
+            <h2>Não dependa de promessa. Confira o que é verificável.</h2>
+          </div>
+
+          <div className="v11-proof-list">
+            <article>
+              <span>01</span>
               <div>
-                <strong>Mais variedade.</strong>
-                <p>
-                  Linguagem, números, coordenação, raciocínio e percepção visual na mesma coleção.
-                </p>
+                <strong>Páginas reais exibidas acima</strong>
+                <p>As amostras mostradas fazem parte dos volumes do produto.</p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <strong>Quantidade declarada por material</strong>
+                <p>91 + 91 + 200 páginas nos volumes e 110 páginas nos cinco bônus.</p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <strong>Garantia de 30 dias</strong>
+                <p>As condições aplicáveis ficam disponíveis no checkout.</p>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="oferta" className="v10-section v10-offer-section">
-        <div className="v10-shell v10-offer-grid">
-          <div className="v10-offer-copy">
-            <span className="v10-kicker">KIT COMPLETO</span>
-            <h2>492 páginas prontas por R$39,90.</h2>
+      <section id="oferta" className="v11-section v11-offer-section">
+        <div className="v11-shell v11-offer-grid">
+          <div className="v11-offer-copy">
+            <span className="v11-kicker">OFERTA PRINCIPAL</span>
+            <h2>Tenha sua coleção completa por R$39,90.</h2>
             <p>
-              Três volumes de atividades + cinco bônus. Uma compra única para ter sua coleção
-              organizada e pronta para consultar.
+              Uma compra única com os três volumes e os cinco bônus, totalizando 492 páginas digitais.
             </p>
 
-            <div className="v10-check-list">
+            <div className="v11-offer-list">
               {[
                 "Volume 1 — 91 páginas",
                 "Volume 2 — 91 páginas",
@@ -419,52 +495,55 @@ function OfferPage() {
                 "Garantia de 30 dias",
               ].map((item) => (
                 <span key={item}>
-                  <Check size={16} />
+                  <Check size={15} />
                   {item}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="v10-price-card">
-            <span className="v10-price-label">OFERTA PRINCIPAL</span>
+          <div className="v11-price-card">
+            <div className="v11-price-card-top">
+              <span>KIT COMPLETO</span>
+              <small>8 MATERIAIS</small>
+            </div>
 
-            <small className="v10-price-reference">
-              preço de referência <s>R$59,90</s>
-            </small>
+            <p className="v11-reference-price">
+              Preço de referência: <s>R$59,90</s>
+            </p>
 
-            <div className="v10-price">
+            <div className="v11-price">
               <small>R$</small>
               <strong>39</strong>
               <span>,90</span>
             </div>
 
-            <div className="v10-saving">VOCÊ ECONOMIZA R$20</div>
+            <p className="v11-economy">Economize R$20</p>
 
-            <BuyButton compact />
+            <PrimaryCta full />
 
-            <div className="v10-guarantee">
-              <ShieldCheck size={19} />
+            <div className="v11-guarantee-mini">
+              <ShieldCheck size={18} />
               <span>
-                <strong>30 dias de garantia</strong>
-                Confira as condições no checkout.
+                <strong>Garantia de 30 dias</strong>
+                Consulte as condições no checkout.
               </span>
             </div>
           </div>
         </div>
 
-        <div className="v10-shell">
-          <details className="v10-essential">
+        <div className="v11-shell">
+          <details className="v11-essential">
             <summary>
               <span>
-                Quer começar menor?
+                Prefere começar com uma opção menor?
                 <small>Kit Essencial • somente Volume 1 • 91 páginas</small>
               </span>
               <strong>R$10,00</strong>
             </summary>
             <div>
               <p>Inclui apenas o Volume 1, sem os Volumes 2 e 3 e sem os cinco bônus.</p>
-              <AttributionLink href={checkoutUrls.essential} className="v10-essential-link">
+              <AttributionLink href={checkoutUrls.essential} className="v11-essential-link">
                 VER KIT ESSENCIAL <ArrowRight size={14} />
               </AttributionLink>
             </div>
@@ -472,14 +551,34 @@ function OfferPage() {
         </div>
       </section>
 
-      <section id="duvidas" className="v10-section v10-faq-section">
-        <div className="v10-shell v10-faq-grid">
-          <div>
-            <span className="v10-kicker">DÚVIDAS RÁPIDAS</span>
-            <h2>Antes de comprar.</h2>
+      <section className="v11-guarantee-section">
+        <div className="v11-shell v11-guarantee-grid">
+          <div className="v11-guarantee-seal">
+            <ShieldCheck size={34} />
+            <strong>30</strong>
+            <span>DIAS</span>
           </div>
 
-          <div className="v10-faq">
+          <div>
+            <span className="v11-kicker">GARANTIA</span>
+            <h2>Você tem 30 dias de garantia.</h2>
+            <p>
+              Antes de finalizar, consulte no checkout da Cakto as condições, os prazos e o canal de
+              atendimento aplicável à oferta.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="duvidas" className="v11-section v11-faq-section">
+        <div className="v11-shell v11-faq-grid">
+          <div>
+            <span className="v11-kicker">PERGUNTAS FREQUENTES</span>
+            <h2>Respostas antes de comprar.</h2>
+            <HelpCircle size={28} />
+          </div>
+
+          <div className="v11-faq">
             {faqs.map(([question, answer]) => (
               <details key={question}>
                 <summary>{question}</summary>
@@ -490,9 +589,18 @@ function OfferPage() {
         </div>
       </section>
 
+      <section className="v11-final">
+        <div className="v11-shell">
+          <span className="v11-kicker">KIT COMPLETO</span>
+          <h2>Escolha a atividade. Imprima. Use.</h2>
+          <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90</p>
+          <PrimaryCta />
+        </div>
+      </section>
+
       <AttributionLink
         href={checkoutUrls.complete}
-        className="v10-mobile-bar"
+        className="v11-mobile-bar"
         ariaLabel="Comprar Kit Completo por R$39,90"
       >
         <strong>R$39,90</strong>
@@ -501,8 +609,8 @@ function OfferPage() {
         </span>
       </AttributionLink>
 
-      <footer className="v10-footer">
-        <div className="v10-shell">
+      <footer className="v11-footer">
+        <div className="v11-shell">
           <div>
             <strong>Kit de Atividades Infantil e Autismo</strong>
             <p>
@@ -529,10 +637,10 @@ export const Route = createFileRoute("/oferta")({
         content:
           "Tenha 492 páginas digitais organizadas em 3 volumes + 5 bônus para escolher, imprimir e usar. Kit Completo por R$39,90.",
       },
-      { property: "og:title", content: "492 páginas prontas para escolher, imprimir e usar" },
+      { property: "og:title", content: "Atividades prontas para escolher, imprimir e usar" },
       {
         property: "og:description",
-        content: "3 volumes + 5 bônus em uma coleção digital por R$39,90.",
+        content: "3 volumes + 5 bônus, 492 páginas digitais por R$39,90.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
