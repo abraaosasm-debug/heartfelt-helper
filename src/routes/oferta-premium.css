@@ -1911,12 +1911,19 @@ body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
   .v11-simple .v11-hero-copy > .v11-microcopy { order: 6; }
   .v11-simple .v11-hero-copy > .v11-hero-value { order: 7; }
   .v11-simple .v11-hero-purchase {
-    grid-template-columns: 104px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
-  .v11-simple .v11-cta {
-    min-height: 48px;
-    padding: 13px 10px;
+  .v11-simple .v11-hero-price {
+    width: 100%;
+  }
+  .v11-simple .v11-hero-price strong {
+    white-space: nowrap;
+  }
+  .v11-simple .v11-hero-purchase .v11-cta {
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 12px;
   }
   .v11-simple .v11-preview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
