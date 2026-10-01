@@ -97,18 +97,21 @@ const curatedPreviewPages = [
   ["Amostra real 04", "Página real do material", "/previews/5_v3.jpg", null, "Volume 3"],
 ] as const;
 
-const educationReview = [
+const professionalFeedbacks = [
   [
-    "Organização por habilidades",
-    "A coleção separa propostas de linguagem, coordenação, números, raciocínio, percepção visual e outros eixos, facilitando a escolha conforme o objetivo de cada momento.",
+    "Pedagoga",
+    "Organização pedagógica",
+    "O material apresenta uma organização clara por habilidades e oferece variedade suficiente para selecionar propostas diferentes sem precisar montar atividades do zero a cada momento.",
   ],
   [
-    "Variedade de propostas",
-    "Os três volumes combinam diferentes tipos de atividade, o que ajuda a variar o formato das tarefas sem depender sempre do mesmo exercício.",
+    "Professora da Educação Infantil",
+    "Praticidade na rotina",
+    "A possibilidade de escolher e imprimir apenas a página necessária torna o uso mais prático no dia a dia, principalmente quando é preciso adaptar rapidamente a proposta à turma ou à criança.",
   ],
   [
-    "Uso flexível",
-    "As páginas podem ser escolhidas e impressas individualmente. Isso permite montar sequências curtas ou usar apenas uma atividade quando necessário.",
+    "Psicopedagoga",
+    "Variedade de estímulos",
+    "A combinação entre traçados, linguagem, números, percepção visual e raciocínio permite alternar formatos de atividade e trabalhar diferentes objetivos dentro da mesma coleção.",
   ],
 ] as const;
 
@@ -393,7 +396,7 @@ function Index() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const targets = Array.from(
       page.querySelectorAll<HTMLElement>(
-        ".v3-section-heading, .v32-preview-heading, .v80-material-card, .v80-bonus-strip, .v34-preview-card, .v80-edu-card, .v3-price-card, .v3-guarantee, .v3-faq details",
+        ".v3-section-heading, .v32-preview-heading, .v80-material-card, .v80-bonus-strip, .v34-preview-card, .v81-feedback-card, .v3-price-card, .v3-guarantee, .v3-faq details",
       ),
     );
 
@@ -507,7 +510,7 @@ function Index() {
   }, []);
 
   return (
-    <main className="v3-page v80-page">
+    <main className="v3-page v80-page v81-page">
       <TrustStrip />
 
       <header className="v3-header">
@@ -759,33 +762,47 @@ function Index() {
         </div>
       </section>
 
-      <section id="avaliacao" className="v3-section v80-edu-section" aria-labelledby="edu-title">
+      <section
+        id="avaliacao"
+        className="v3-section v81-feedback-section"
+        aria-labelledby="feedback-title"
+      >
         <div className="v3-shell">
-          <div className="v80-edu-head">
-            <span className="v3-kicker">LEITURA EDUCACIONAL DO MATERIAL</span>
-            <h2 id="edu-title">
-              Três pontos relevantes ao selecionar atividades para o dia a dia.
-            </h2>
+          <div className="v81-feedback-head">
+            <div>
+              <span className="v81-handwritten">olhar profissional</span>
+              <span className="v3-kicker">FEEDBACKS DE PROFISSIONAIS • EXEMPLOS ILUSTRATIVOS</span>
+              <h2 id="feedback-title">Como profissionais da educação podem perceber o material.</h2>
+            </div>
             <p>
-              Análise editorial baseada nas características observáveis dos próprios PDFs.
-              <strong> Não é depoimento nem endosso de profissional externo.</strong>
+              Os textos abaixo são <strong>simulações editoriais</strong> baseadas nas características
+              observáveis dos PDFs. Não representam depoimentos de pessoas reais nem endosso profissional.
             </p>
           </div>
 
-          <div className="v80-edu-grid">
-            {educationReview.map(([title, text], index) => (
-              <article className="v80-edu-card" key={title}>
-                <span>CRITÉRIO {String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+          <div className="v81-feedback-grid">
+            {professionalFeedbacks.map(([role, focus, quote], index) => (
+              <article className={`v81-feedback-card v81-feedback-card-${index + 1}`} key={role}>
+                <span className="v81-quote-mark" aria-hidden="true">
+                  “
+                </span>
+                <p>{quote}</p>
+                <div className="v81-feedback-meta">
+                  <span className="v81-role-badge">{role}</span>
+                  <strong>{focus}</strong>
+                  <small>Feedback ilustrativo • não verificado</small>
+                </div>
               </article>
             ))}
           </div>
 
-          <p className="v80-edu-note">
-            Para uso profissional, a escolha das atividades deve considerar o objetivo educacional,
-            o contexto e as necessidades individuais da criança.
-          </p>
+          <div className="v81-feedback-note">
+            <span>TRANSPARÊNCIA</span>
+            <p>
+              Quando houver avaliações reais de profissionais que tenham analisado o kit, este bloco
+              pode ser substituído por depoimentos verificados com nome, profissão e autorização.
+            </p>
+          </div>
         </div>
       </section>
 
