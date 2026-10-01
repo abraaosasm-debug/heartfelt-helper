@@ -5,11 +5,9 @@ import {
   BadgeCheck,
   BookOpen,
   Check,
-  Clock3,
   FileText,
   HelpCircle,
   Layers3,
-  Printer,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -37,7 +35,8 @@ const volumes = [
   {
     label: "Volume 1",
     pages: "91 páginas",
-    description: "Alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação.",
+    description:
+      "Reúna em um só volume propostas de alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação para não precisar procurar cada tema separadamente.",
     cover: "/covers/optimized/cover-1.webp?v=1",
     tone: "coral",
   },
@@ -45,14 +44,15 @@ const volumes = [
     label: "Volume 2",
     pages: "91 páginas",
     description:
-      "Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.",
+      "Avance para leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano com novas opções para variar as atividades.",
     cover: "/covers/optimized/cover-2.webp?v=1",
     tone: "teal",
   },
   {
     label: "Volume 3",
     pages: "200 páginas",
-    description: "Traçados, leitura, números, raciocínio, percepção visual e desenho.",
+    description:
+      "Amplie o repertório com 200 páginas de traçados, leitura, números, raciocínio, percepção visual e desenho dentro da mesma coleção.",
     cover: "/covers/1_v3.jpg?v=1",
     tone: "violet",
   },
@@ -80,8 +80,8 @@ const previews = [
     volume: "Volume 2",
   },
   {
-    src: "/previews/2_v3.jpg",
-    title: "Sumário do Volume 3",
+    src: "/previews/3_v3.jpg",
+    title: "Atividade real do Volume 3",
     volume: "Volume 3",
   },
   {
@@ -92,34 +92,39 @@ const previews = [
 ] as const;
 
 const bonuses = [
-  "Planejamento de 4 Semanas",
-  "Rotina Visual para Recortar",
-  "Jogos de Mesa Imprimíveis",
-  "Caderno de Observação da Aprendizagem",
-  "Atividades para Enviar às Famílias",
+  {
+    title: "Planejamento de 4 Semanas",
+    description: "24 páginas para distribuir propostas ao longo de quatro semanas e facilitar a organização do que usar.",
+  },
+  {
+    title: "Rotina Visual para Recortar",
+    description: "Recursos visuais para recortar e apoiar a organização de momentos da rotina.",
+  },
+  {
+    title: "Jogos de Mesa Imprimíveis",
+    description: "Quatro jogos em 30 páginas para variar o uso do material com propostas imprimíveis.",
+  },
+  {
+    title: "Caderno de Observação da Aprendizagem",
+    description: "Um material para concentrar registros e observações em vez de deixá-los espalhados.",
+  },
+  {
+    title: "Atividades para Enviar às Famílias",
+    description: "Propostas prontas para compartilhar com as famílias quando isso fizer sentido no contexto educacional.",
+  },
 ] as const;
 
 const faqs = [
-  [
-    "O que exatamente eu recebo?",
-    "O Kit Completo reúne os Volumes 1, 2 e 3 mais cinco bônus, totalizando 492 páginas digitais em oito materiais.",
-  ],
-  [
-    "É material físico ou digital?",
-    "É um produto digital. Você recebe os arquivos em PDF e pode imprimir somente as páginas que quiser utilizar.",
-  ],
-  [
-    "Preciso imprimir as 492 páginas?",
-    "Não. A proposta é justamente escolher a atividade que faz sentido para cada momento e imprimir apenas o necessário.",
-  ],
-  [
-    "Como recebo o material depois da compra?",
-    "A compra é processada pela Cakto. Após a confirmação do pagamento, siga as instruções de acesso fornecidas pela plataforma.",
-  ],
-  [
-    "Como funciona a garantia?",
-    "A oferta apresenta garantia de 30 dias. Consulte no checkout as condições, os prazos e o canal de atendimento aplicável.",
-  ],
+  ["O que exatamente eu recebo?", "3 volumes + 5 bônus, totalizando 492 páginas digitais em oito materiais."],
+  ["É material físico ou digital?", "É um produto digital em PDF. Não há envio físico nem frete."],
+  ["Como recebo o material depois da compra?", "A compra é processada pela Cakto. Após a confirmação do pagamento, siga as instruções de acesso fornecidas pela plataforma."],
+  ["Preciso imprimir as 492 páginas?", "Não. Você pode consultar os PDFs e imprimir apenas as páginas que fizerem sentido para o momento."],
+  ["Serve para casa e para o contexto educacional?", "A coleção foi apresentada para mães, pais e profissionais da educação. A escolha de cada atividade deve considerar o nível, a necessidade e o contexto da criança."],
+  ["Existe uma faixa etária única?", "A oferta não define uma faixa etária única. O responsável ou profissional deve selecionar as atividades adequadas ao nível e ao contexto da criança."],
+  ["Preciso de impressora colorida?", "Os arquivos são entregues em PDF para impressão. A página não estabelece uma exigência técnica de impressora colorida; o resultado de cada impressão depende da página, da impressora e das configurações usadas."],
+  ["Quais formas de pagamento estão disponíveis?", "Confira no checkout da Cakto as formas de pagamento disponíveis no momento da compra."],
+  ["O material substitui terapia ou acompanhamento individualizado?", "Não. É um material educativo e não substitui avaliação, terapia ou acompanhamento individualizado quando esses forem necessários."],
+  ["Como funciona a garantia e o atendimento?", "A oferta apresenta garantia de 30 dias. Consulte no checkout as condições, os prazos e o canal de atendimento aplicável; não tratamos o reembolso como automático."],
 ] as const;
 
 function trackCheckoutIntent(href: string) {
@@ -244,7 +249,7 @@ function OfferPage() {
         <div className="v11-shell">
           <span>
             <FileText size={14} />
-            PRODUTO DIGITAL
+            ENTREGA DIGITAL
           </span>
           <span>
             <ShieldCheck size={14} />
@@ -252,7 +257,7 @@ function OfferPage() {
           </span>
           <span>
             <BadgeCheck size={14} />
-            CHECKOUT VIA CAKTO
+            COMPRA VIA CAKTO
           </span>
         </div>
       </div>
@@ -280,13 +285,13 @@ function OfferPage() {
             </span>
 
             <h1>
-              Atividades prontas para
-              <span> escolher, imprimir e usar.</span>
+              Mães, pais e educadores:
+              <span> pare de montar cada atividade do zero.</span>
             </h1>
 
             <p className="v11-hero-lead">
-              Para mães, pais e profissionais da educação: uma coleção digital em PDF, organizada
-              para escolher, imprimir e usar sem criar cada atividade do zero.
+              Tenha 492 páginas digitais em 3 volumes + 5 bônus para escolher, imprimir e usar
+              conforme a necessidade e o contexto da criança.
             </p>
 
             <div className="v11-hero-benefits">
@@ -311,11 +316,11 @@ function OfferPage() {
                 <strong>R$39,90</strong>
                 <span>pagamento único</span>
               </div>
-              <PrimaryCta />
+              <PrimaryCta label="QUERO AS 492 PÁGINAS" />
             </div>
 
             <p className="v11-microcopy">
-              Compra processada pela Cakto • produto digital • sem frete
+              Pagamento único • entrega digital • compra processada pela Cakto
             </p>
           </div>
 
@@ -331,9 +336,9 @@ function OfferPage() {
         <div className="v11-shell">
           <div className="v11-section-head">
             <span className="v11-kicker">O QUE VEM NO KIT</span>
-            <h2>Você recebe oito materiais organizados em uma única oferta.</h2>
+            <h2>Em vez de procurar material por material, abra uma coleção com oito recursos.</h2>
             <p>
-              Três volumes de atividades e cinco complementos para ampliar as possibilidades de uso.
+              São três volumes de atividades e cinco bônus organizados para facilitar a escolha do que usar.
             </p>
           </div>
 
@@ -377,30 +382,20 @@ function OfferPage() {
 
             <div className="v11-bonus-list">
               {bonuses.map((bonus, index) => (
-                <article className="v11-bonus-item" key={bonus}>
+                <article className="v11-bonus-item" key={bonus.title}>
                   <img
                     src={`/covers/optimized/cover-${index + 3}.webp`}
                     width={420}
                     height={index === 3 ? 543 : 593}
-                    alt={`Capa de ${bonus}`}
+                    alt={`Capa de ${bonus.title}`}
                     loading="lazy"
                     decoding="async"
                   />
                   <span>
                     <Check size={13} aria-hidden="true" />
-                    {bonus}
+                    {bonus.title}
                   </span>
-                  <p className="v11-bonus-purpose">
-                    {
-                      [
-                        "Planejamento para organizar quatro semanas.",
-                        "Propostas de rotina visual para recortar.",
-                        "Jogos de mesa para imprimir e utilizar.",
-                        "Um caderno para registrar observações da aprendizagem.",
-                        "Atividades para compartilhar com as famílias.",
-                      ][index]
-                    }
-                  </p>
+                  <p className="v11-bonus-purpose">{bonus.description}</p>
                 </article>
               ))}
             </div>
@@ -437,42 +432,19 @@ function OfferPage() {
       <section className="v11-section v11-benefit-section">
         <div className="v11-shell">
           <div className="v11-section-head">
-            <span className="v11-kicker">POR QUE ISSO É PRÁTICO</span>
-            <h2>Menos tempo preparando. Mais facilidade para escolher.</h2>
+            <span className="v11-kicker">SE ISSO ACONTECE COM VOCÊ</span>
+            <h2>Procurar e montar atividades do zero consome um tempo que já é curto.</h2>
           </div>
-
-          <div className="v11-benefit-grid">
-            <article>
-              <div className="v11-icon v11-icon-coral">
-                <Clock3 size={20} />
-              </div>
-              <strong>Comece de algo pronto</strong>
-              <p>
-                Em vez de montar uma atividade do zero, abra a coleção e procure a proposta
-                adequada.
-              </p>
-            </article>
-
-            <article>
-              <div className="v11-icon v11-icon-teal">
-                <Printer size={20} />
-              </div>
-              <strong>Imprima só o necessário</strong>
-              <p>
-                Você não precisa imprimir o material inteiro. Escolha páginas individuais quando
-                quiser.
-              </p>
-            </article>
-
-            <article>
-              <div className="v11-icon v11-icon-violet">
-                <Layers3 size={20} />
-              </div>
-              <strong>Varie as propostas</strong>
-              <p>
-                Linguagem, coordenação, números, leitura inicial, percepção visual e raciocínio.
-              </p>
-            </article>
+          <div className="v11-pain-list">
+            {[
+              "Abrir várias páginas e ainda terminar sem saber qual atividade usar.",
+              "Precisar criar do zero quando a rotina já está cheia.",
+              "Procurar letras em um lugar, números em outro e atividades visuais em outro.",
+              "Imprimir materiais soltos e depois perder a organização do que já foi usado.",
+              "Querer variar as propostas sem começar uma nova busca toda vez.",
+            ].map((item) => (
+              <span key={item}><Check size={16} aria-hidden="true" />{item}</span>
+            ))}
           </div>
         </div>
       </section>
@@ -483,7 +455,7 @@ function OfferPage() {
         <div className="v11-shell v11-proof-grid">
           <div>
             <span className="v11-kicker">CONFIANÇA ANTES DA COMPRA</span>
-            <h2>Não dependa de promessa. Confira o que é verificável.</h2>
+            <h2>Sem depoimento inventado: veja o que você consegue conferir antes de comprar.</h2>
           </div>
 
           <div className="v11-proof-list">
@@ -497,8 +469,8 @@ function OfferPage() {
             <article>
               <span>02</span>
               <div>
-                <strong>Quantidade declarada por material</strong>
-                <p>91 + 91 + 200 páginas nos volumes e 110 páginas nos cinco bônus.</p>
+                <strong>Estrutura organizada por material</strong>
+                <p>91 + 91 + 200 páginas nos volumes e 110 páginas distribuídas entre os cinco bônus.</p>
               </div>
             </article>
             <article>
@@ -516,10 +488,11 @@ function OfferPage() {
         <div className="v11-shell v11-offer-grid">
           <div className="v11-offer-copy">
             <span className="v11-kicker">OFERTA PRINCIPAL</span>
-            <h2>Tenha sua coleção completa por R$39,90.</h2>
+            <h2>492 páginas digitais por R$39,90 em uma única compra.</h2>
             <p>
-              Uma compra única com os três volumes e os cinco bônus, totalizando 492 páginas
-              digitais.
+              Isso representa aproximadamente R$0,08 por página digital. Em vez de adquirir materiais
+              separados, você recebe os três volumes e os cinco bônus reunidos em oito materiais.
+              Custos de papel, tinta e impressão não estão incluídos.
             </p>
 
             <div className="v11-offer-list">
@@ -555,7 +528,10 @@ function OfferPage() {
               <span>,90</span>
             </div>
 
-            <p className="v11-economy">Economize R$20</p>
+            <div className="v11-price-proof">
+              <strong>R$20 abaixo do preço de referência.</strong>
+              <span>De R$59,90 por R$39,90 • pagamento único • sem prazo artificial.</span>
+            </div>
 
             <PrimaryCta full />
 
@@ -629,8 +605,9 @@ function OfferPage() {
             <span className="v11-kicker">GARANTIA DE 30 DIAS</span>
             <h2>Você tem 30 dias para conhecer o material com tranquilidade.</h2>
             <p>
-              Antes de finalizar, consulte no checkout da Cakto as condições, os prazos e o canal de
-              atendimento aplicável à oferta.
+              A oferta possui garantia de 30 dias. Antes de finalizar, consulte no checkout da Cakto
+              as condições, os prazos e o canal de atendimento aplicável. Não há promessa de
+              reembolso automático ou incondicional fora dessas condições.
             </p>
           </div>
         </div>
@@ -655,11 +632,11 @@ function OfferPage() {
       <section className="v11-final">
         <div className="v11-shell">
           <span className="v11-kicker">KIT COMPLETO</span>
-          <h2>Escolha a atividade. Imprima. Use.</h2>
-          <p>Comece hoje com atividades prontas, organizadas e fáceis de aplicar.</p>
-          <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90 • 30 dias de garantia</p>
+          <h2>Leve os 3 volumes + 5 bônus em uma única coleção.</h2>
+          <p>492 páginas digitais para escolher e imprimir conforme a necessidade do momento.</p>
+          <p><s>R$59,90</s> • R$39,90 pagamento único • garantia de 30 dias • checkout via Cakto</p>
           <PrintedKit />
-          <PrimaryCta label="QUERO MEU ACESSO AGORA" />
+          <PrimaryCta label="QUERO O KIT COMPLETO POR R$39,90" />
         </div>
       </section>
 
@@ -670,7 +647,7 @@ function OfferPage() {
       >
         <strong>R$39,90</strong>
         <span>
-          QUERO O KIT <ArrowRight size={15} />
+          COMPRAR O KIT <ArrowRight size={15} />
         </span>
       </AttributionLink>
 
