@@ -660,8 +660,9 @@ function Index() {
             <span className="v3-kicker">O QUE VOCÊ RECEBE</span>
             <h2>Os oito materiais, em uma visão rápida.</h2>
             <p>
-              <strong>382 páginas</strong> nos três volumes de atividades + <strong>110 páginas</strong>{" "}
-              nos cinco bônus. Total: <strong>492 páginas digitais</strong>.
+              <strong>382 páginas</strong> nos três volumes de atividades +{" "}
+              <strong>110 páginas</strong> nos cinco bônus. Total:{" "}
+              <strong>492 páginas digitais</strong>.
             </p>
           </div>
 
@@ -673,7 +674,9 @@ function Index() {
               <div>
                 <span>VOLUME 1 • 91 PÁGINAS</span>
                 <h3>Fundamentos</h3>
-                <p>Alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação.</p>
+                <p>
+                  Alfabeto, coordenação, números, sílabas, percepção visual, emoções e associação.
+                </p>
               </div>
             </article>
 
@@ -684,7 +687,10 @@ function Index() {
               <div>
                 <span>VOLUME 2 • 91 PÁGINAS</span>
                 <h3>Continuidade</h3>
-                <p>Leitura inicial, quantidades até 20, sequências, comunicação e situações do cotidiano.</p>
+                <p>
+                  Leitura inicial, quantidades até 20, sequências, comunicação e situações do
+                  cotidiano.
+                </p>
               </div>
             </article>
 
@@ -747,7 +753,9 @@ function Index() {
             ))}
           </div>
 
-          <p className="v33-preview-hint">6 amostras reais • deslize no celular • toque para ampliar</p>
+          <p className="v33-preview-hint">
+            6 amostras reais • deslize no celular • toque para ampliar
+          </p>
         </div>
       </section>
 
@@ -755,7 +763,9 @@ function Index() {
         <div className="v3-shell">
           <div className="v80-edu-head">
             <span className="v3-kicker">LEITURA EDUCACIONAL DO MATERIAL</span>
-            <h2 id="edu-title">Três pontos relevantes ao selecionar atividades para o dia a dia.</h2>
+            <h2 id="edu-title">
+              Três pontos relevantes ao selecionar atividades para o dia a dia.
+            </h2>
             <p>
               Análise editorial baseada nas características observáveis dos próprios PDFs.
               <strong> Não é depoimento nem endosso de profissional externo.</strong>
@@ -784,9 +794,7 @@ function Index() {
           <div className="v3-section-heading v3-pricing-heading">
             <span className="v3-kicker">OFERTA PRINCIPAL</span>
             <h2>Leve os oito materiais por R$39,90.</h2>
-            <p>
-              492 páginas digitais • 3 volumes • 5 bônus • pagamento único.
-            </p>
+            <p>492 páginas digitais • 3 volumes • 5 bônus • pagamento único.</p>
           </div>
 
           <div className="v3-pricing-grid v43-pricing-focus">
