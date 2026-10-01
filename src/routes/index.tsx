@@ -14,7 +14,7 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
-const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=3";
+const VSL_VIDEO_SRC = "/vsl/kit-atividades-vsl.mp4?v=4";
 
 function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") {
   if (!window.fbq) return;
@@ -110,7 +110,7 @@ function Index() {
             <div className="vsl-showcase-head">
               <span className="vsl-showcase-kicker">POR DENTRO DO KIT</span>
               <strong>Veja o material por dentro antes de decidir.</strong>
-              <p>Em 1min44s, veja páginas reais e entenda como a coleção funciona.</p>
+              <p>Em 2min47s, veja páginas reais e entenda como a coleção funciona.</p>
             </div>
 
             <div className="vsl-player-wrap">
@@ -186,8 +186,8 @@ function Index() {
                       <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
                       <small>
                         {completed
-                          ? "Rever apresentação • 1min44s"
-                          : "1min44s • veja o kit por dentro"}
+                          ? "Rever apresentação • 2min47s"
+                          : "2min47s • veja o kit por dentro"}
                       </small>
                     </span>
                   </button>
@@ -227,7 +227,7 @@ function Index() {
 
               <div className="vsl-video-progress" aria-label="Progresso da apresentação">
                 <div className="vsl-video-progress-copy">
-                  <span>Vídeo curto • 1min44s</span>
+                  <span>Vídeo curto • 2min47s</span>
                   <strong>{Math.round(progress)}%</strong>
                 </div>
                 <div
