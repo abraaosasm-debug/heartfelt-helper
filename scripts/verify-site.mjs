@@ -84,15 +84,13 @@ requireAll(
     "3 VOLUMES + 5 BÔNUS • 492 PÁGINAS",
     "Páginas reais do material.",
     "O que você recebe por R$29,90.",
-    "SE ISSO ACONTECE COM VOCÊ",
-        "GARANTIA",
+    "GARANTIA",
     "PERGUNTAS FREQUENTES",
     "R$29,90",
     "R$59,90",
-    "R$20 abaixo do preço de referência.",
     "30 dias de garantia",
     "QUERO O KIT COMPLETO",
-          ],
+  ],
   "Landing V11",
 );
 
@@ -127,7 +125,6 @@ requireAll(
   offer,
   [
     "href={checkoutUrls.complete}",
-    "href={checkoutUrls.essential}",
     "InitiateCheckout",
     "content_name: offer.name",
     'currency: "BRL"',
@@ -180,9 +177,6 @@ requireAll(
     ".v11-product-visual",
     ".v11-volume-grid",
     ".v11-preview-grid",
-    ".v11-benefit-grid",
-    ".v11-proof-grid",
-    ".v11-offer-grid",
     ".v11-guarantee-section",
     ".v11-faq-grid",
     ".v11-mobile-bar",
@@ -207,8 +201,8 @@ requireAll(
 );
 
 const offerLines = offer.split("\n").length;
-if (offerLines > 780) {
-  errors.push(`Landing V11 voltou a crescer demais: ${offerLines} linhas (limite 780).`);
+if (offerLines > 620) {
+  errors.push(`Landing V11 voltou a crescer demais: ${offerLines} linhas (limite 620).`);
 }
 
 finish();
