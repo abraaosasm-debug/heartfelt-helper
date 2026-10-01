@@ -131,6 +131,139 @@ const faqs = [
   ],
 ] as const;
 
+function getCoverSource(number: number) {
+  return coverSources[number] ?? coverSources[1];
+}
+
+function getCoverPreviewSource(number: number) {
+  return coverPreviewSources[number] ?? getCoverSource(number);
+}
+
+function getCoverDimensions(number: number) {
+  return coverDimensions[number] ?? { width: 1080, height: 1527 };
+}
+
+function Cover({
+  number,
+  title,
+  priority = false,
+  compact = false,
+}: {
+  number: number;
+  title: string;
+  priority?: boolean;
+  compact?: boolean;
+}) {
+  const dimensions = getCoverDimensions(number);
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          className={`v3-cover${compact ? " v3-cover-compact" : ""}`}
+          aria-label={`Ampliar capa: ${title}`}
+        >
+          <img
+            src={getCoverPreviewSource(number)}
+            alt={`Capa de ${title}`}
+            width={dimensions.width}
+            height={dimensions.height}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "low"}
+            decoding="async"
+          />
+          <span className="v3-cover-zoom" aria-hidden="true">
+            <Eye size={15} />
+          </span>
+        </button>
+      </DialogTrigger>
+
+      <DialogContent className="v3-cover-dialog">
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>Capa do material digital em PDF.</DialogDescription>
+        <img
+          src={getCoverSource(number)}
+          alt={`Capa ampliada de ${title}`}
+          width={dimensions.width}
+          height={dimensions.height}
+          loading="eager"
+          decoding="async"
+        />
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function PreviewPage({
+  title,
+  skill,
+  source,
+  badge,
+  number,
+  volume,
+  total = 6,
+}: {
+  title: string;
+  skill: string;
+  source: string;
+  badge: string | null;
+  number: number;
+  volume: "Volume 1" | "Volume 2" | "Volume 3";
+  total?: number;
+}) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button type="button" className="v34-preview-card" aria-label={`Ampliar página: ${title}`}>
+          <div className="v34-preview-media">
+            <img
+              src={source}
+              alt={`Página real do ${volume}: ${title}`}
+              width={1086}
+              height={1536}
+              loading="lazy"
+              fetchPriority="low"
+              decoding="async"
+            />
+            {badge ? <span className="v34-preview-badge">{badge}</span> : null}
+            <span className="v34-preview-zoom-icon" aria-hidden="true">
+              <Eye size={18} />
+            </span>
+          </div>
+
+          <div className="v34-preview-card-copy">
+            <div>
+              <span>{skill}</span>
+              <strong>{title}</strong>
+            </div>
+            <span className="v34-preview-index">
+              {String(number).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
+          </div>
+        </button>
+      </DialogTrigger>
+
+      <DialogContent className="v34-preview-dialog">
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>
+          Página real do {volume}. Visualização individual em alta nitidez.
+        </DialogDescription>
+        <div className="v34-preview-dialog-scroll">
+          <img
+            src={source}
+            alt={`Página ampliada do ${volume}: ${title}`}
+            width={1086}
+            height={1536}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 const attributionKeys = [
   "utm_source",
   "utm_medium",
