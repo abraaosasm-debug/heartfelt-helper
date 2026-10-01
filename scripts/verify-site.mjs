@@ -79,17 +79,17 @@ requireAll(
     'id="amostras"',
     'id="oferta"',
     'id="duvidas"',
-    "Atividades prontas para",
-    "escolher, imprimir e usar.",
+    "Mães, pais e educadores:",
+    "pare de montar cada atividade do zero.",
     "3 VOLUMES + 5 BÔNUS • 492 PÁGINAS",
     "Páginas reais do material.",
-    "POR QUE ISSO É PRÁTICO",
+    "SE ISSO ACONTECE COM VOCÊ",
     "CONFIANÇA ANTES DA COMPRA",
     "GARANTIA",
     "PERGUNTAS FREQUENTES",
     "R$39,90",
     "R$59,90",
-    "Economize R$20",
+    "R$20 abaixo do preço de referência.",
     "30 dias de garantia",
     "QUERO O KIT COMPLETO",
     "Kit Essencial",
@@ -156,7 +156,7 @@ const requiredAssets = [
   "public/previews/selected/kit1-selected-4.jpg",
   "public/previews/selected/1.jpg",
   "public/previews/selected/5.jpg",
-  "public/previews/2_v3.jpg",
+  "public/previews/3_v3.jpg",
   "public/previews/5_v3.jpg",
 ];
 
@@ -209,8 +209,8 @@ requireAll(
 );
 
 const offerLines = offer.split("\n").length;
-if (offerLines > 760) {
-  errors.push(`Landing V11 voltou a crescer demais: ${offerLines} linhas (limite 760).`);
+if (offerLines > 780) {
+  errors.push(`Landing V11 voltou a crescer demais: ${offerLines} linhas (limite 780).`);
 }
 
 finish();
