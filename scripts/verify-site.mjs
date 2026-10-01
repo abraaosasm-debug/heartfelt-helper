@@ -82,7 +82,7 @@ requireAll(
     "Atividades prontas para",
     "escolher, imprimir e usar.",
     "3 VOLUMES + 5 BÔNUS • 492 PÁGINAS",
-    "PÁGINAS REAIS",
+    "Páginas reais do material.",
     "POR QUE ISSO É PRÁTICO",
     "CONFIANÇA ANTES DA COMPRA",
     "GARANTIA",
