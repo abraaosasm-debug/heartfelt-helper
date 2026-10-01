@@ -8306,7 +8306,9 @@
 .vsl-player-frame {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  width: min(100%, 440px);
+  margin-inline: auto;
+  aspect-ratio: 886 / 1920;
   border: 1px solid oklch(0.285 0.035 248 / 0.11);
   border-radius: 26px;
   background: oklch(0.285 0.035 248);
