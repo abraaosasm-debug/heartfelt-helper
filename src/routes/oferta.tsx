@@ -203,7 +203,6 @@ function PrimaryCta({
 }
 
 function OfferPage() {
-  const [essentialOpen, setEssentialOpen] = useState(false);
   useEffect(() => {
     let sent = false;
     const recordView = () => {
