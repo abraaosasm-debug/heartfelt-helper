@@ -198,11 +198,7 @@ requireAll(
   "CSS V11",
 );
 
-requireAll(
-  rootRoute,
-  ["family=DM+Sans", "family=DM+Serif+Display", "family=Sora"],
-  "Fontes V11",
-);
+requireAll(rootRoute, ["family=DM+Sans", "family=DM+Serif+Display", "family=Sora"], "Fontes V11");
 
 requireAll(
   offer,
