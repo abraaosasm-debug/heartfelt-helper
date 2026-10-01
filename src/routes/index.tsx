@@ -100,7 +100,10 @@ function Index() {
         <div className="vsl-shell vsl-hero-inner">
           <div className="vsl-copy">
             <span className="vsl-eyebrow">ASSISTA À APRESENTAÇÃO</span>
-            <h1 id="vsl-title">Pare de criar atividades do zero toda vez que precisar.</h1>
+            <h1 id="vsl-title">
+              Pare de criar atividades <span className="vsl-title-accent">do zero</span> toda vez
+              que precisar.
+            </h1>
             <p>
               Veja como ter <strong>492 páginas organizadas</strong> para escolher, imprimir e usar
               quando precisar de uma nova atividade.
@@ -234,11 +237,12 @@ function Index() {
                 <div
                   className="vsl-video-progress-track"
                   role="progressbar"
+                  aria-label="Progresso da apresentação"
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-valuenow={Math.round(progress)}
                 >
-                  <span style={{ width: `${progress}%` }} />
+                  <span style={{ transform: `scaleX(${progress / 100})` }} />
                 </div>
               </div>
 
