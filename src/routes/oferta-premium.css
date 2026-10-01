@@ -1127,3 +1127,32 @@
     scroll-behavior: auto !important;
   }
 }
+
+.v11-essential:not([open]) summary {
+  grid-column: 1 / -1;
+}
+.v11-use-cases {
+  background: var(--editorial-paper);
+}
+.v11-use-cases ol {
+  display: grid;
+  gap: 18px;
+  margin: 28px 0;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.v11-use-cases p {
+  max-width: 65ch;
+  font-size: 14px;
+  line-height: 1.7;
+}
+@media (min-width: 960px) {
+  .v11-use-cases ol {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+}
+body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
+  visibility: hidden;
+}

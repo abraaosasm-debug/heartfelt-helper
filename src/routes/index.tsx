@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Check, LockKeyhole, Play, ShieldCheck } from "lucide-react";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
+import { trackMarketingEvent } from "@/lib/marketing-events";
 import vslVideo from "@/assets/kit-atividades-vsl.mp4.asset.json";
 
 const attributionKeys = [
@@ -15,19 +16,27 @@ const attributionKeys = [
   "ttclid",
 ] as const;
 
-const VSL_VIDEO_SRC = vslVideo.url;
+const VSL_VIDEO_SRC = import.meta.env.DEV
+  ? new URL(vslVideo.url, "https://kitcompletoautismoeinfantil.lovable.app").href
+  : vslVideo.url;
 
 function trackVslEvent(eventName: "VSLStarted" | "VSLCompleted" | "VSLToOffer") {
-  if (!window.fbq) return;
-
-  window.fbq("trackCustom", eventName, {
-    content_name: "Kit Completo — VSL",
-  });
+  trackMarketingEvent(eventName, { content_name: "Kit Completo — VSL" });
 }
 
 function Index() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastProgressRef = useRef(-1);
+  const milestones = useRef(new Set<number>());
+  const [requested, setRequested] = useState(false);
+  const [buffering, setBuffering] = useState(false);
+  const recordProgress = (percent: number) => {
+    for (const milestone of [25, 50, 75, 100]) {
+      if (percent < milestone || milestones.current.has(milestone)) continue;
+      milestones.current.add(milestone);
+      trackMarketingEvent("VSLProgress", { percent: milestone });
+    }
+  };
   const [offerHref, setOfferHref] = useState("/oferta");
   const [videoState, setVideoState] = useState<"loading" | "ready" | "fallback">("loading");
   const [showOffer, setShowOffer] = useState(false);
@@ -59,6 +68,7 @@ function Index() {
   const handlePlaying = () => {
     setVideoState("ready");
     setShowPreplay(false);
+    setBuffering(false);
   };
 
   const handleEnded = () => {
@@ -67,7 +77,8 @@ function Index() {
     setShowOffer(true);
     lastProgressRef.current = 100;
     setProgress(100);
-    trackVslEvent("VSLCompleted");
+    recordProgress(100);
+    if (!completed) trackVslEvent("VSLCompleted");
   };
 
   const handleVideoReady = () => {
@@ -76,6 +87,7 @@ function Index() {
 
   const handleVideoError = () => {
     setVideoState("fallback");
+    setBuffering(false);
   };
 
   return (
@@ -110,6 +122,9 @@ function Index() {
             </p>
           </div>
 
+          <p className="vsl-audience">
+            Para mães, pais, professoras, pedagogas e profissionais da educação.
+          </p>
           <div className="vsl-showcase">
             <div className="vsl-showcase-head">
               <span className="vsl-showcase-kicker">POR DENTRO DO KIT</span>
@@ -129,6 +144,8 @@ function Index() {
                   onCanPlay={handleVideoReady}
                   onPlaying={handlePlaying}
                   onPlay={handlePlay}
+                  onWaiting={() => setBuffering(true)}
+                  aria-label="Apresentação do Kit de Atividades Infantil e Autismo"
                   onTimeUpdate={(event) => {
                     const video = event.currentTarget;
                     if (!Number.isFinite(video.duration) || video.duration <= 0) return;
@@ -141,11 +158,16 @@ function Index() {
                     if (nextProgress === lastProgressRef.current) return;
                     lastProgressRef.current = nextProgress;
                     setProgress(nextProgress);
+                    recordProgress(Math.min(nextProgress, 99));
                   }}
                   onEnded={handleEnded}
                   onError={handleVideoError}
                 >
-                  <source src={VSL_VIDEO_SRC} type="video/mp4" />
+                  <source
+                    src={requested ? VSL_VIDEO_SRC : undefined}
+                    type="video/mp4"
+                    onError={handleVideoError}
+                  />
                 </video>
 
                 {showPreplay && videoState !== "fallback" ? (
@@ -164,7 +186,15 @@ function Index() {
                         video.currentTime = 0;
                         setProgress(0);
                       }
-                      void video.play();
+                      setBuffering(true);
+                      if (!requested) {
+                        setRequested(true);
+                        video.src = VSL_VIDEO_SRC;
+                        video.load();
+                      }
+                      void video.play().catch((error: DOMException) => {
+                        if (error.name !== "AbortError") handleVideoError();
+                      });
                     }}
                   >
                     <span className="vsl-preplay-covers" aria-hidden="true">
@@ -194,7 +224,13 @@ function Index() {
                       <span className="vsl-preplay-button" aria-hidden="true">
                         <Play size={24} fill="currentColor" />
                       </span>
-                      <strong>{completed ? "Assistir novamente" : "Assista à apresentação"}</strong>
+                      <strong>
+                        {buffering
+                          ? "Carregando apresentação…"
+                          : completed
+                            ? "Assistir novamente"
+                            : "Assista à apresentação"}
+                      </strong>
                       <small>
                         {completed
                           ? "Rever apresentação • 2min31s"
@@ -281,8 +317,8 @@ function Index() {
                   <span>AGORA CONHEÇA A COLEÇÃO COMPLETA</span>
                   <h2>Conheça o Kit Completo e veja tudo o que está incluído.</h2>
                   <p>
-                    Veja as 492 páginas, os três volumes, os cinco bônus e as condições atuais antes
-                    de decidir.
+                    Agora confira tudo o que você recebe e escolha a opção que faz sentido para sua
+                    rotina.
                   </p>
                   <a
                     className="vsl-offer-button"
@@ -295,7 +331,7 @@ function Index() {
                 </>
               ) : videoState === "fallback" ? (
                 <p className="vsl-gate-hint">
-                  Não foi possível carregar o vídeo. Atualize a página e tente novamente.
+                  Não foi possível carregar o vídeo. Você pode conhecer a coleção por escrito.
                 </p>
               ) : (
                 <div className="vsl-gate-locked">
@@ -307,6 +343,20 @@ function Index() {
                 </div>
               )}
             </div>
+            <a
+              className="vsl-written-link"
+              href={offerHref}
+              onClick={() =>
+                trackMarketingEvent("VSLAlternateCTA", {
+                  reason: videoState === "fallback" ? "video_error" : "written",
+                })
+              }
+            >
+              {videoState === "fallback"
+                ? "Ver os materiais e a oferta"
+                : "Prefiro conhecer o kit por escrito"}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </section>

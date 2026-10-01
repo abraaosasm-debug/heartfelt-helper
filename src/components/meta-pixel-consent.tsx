@@ -1,3 +1,4 @@
+import { setMarketingAllowed } from "@/lib/marketing-consent-state";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
@@ -87,7 +88,10 @@ function readConsent(): ConsentRecord | null {
 }
 
 function loadMetaPixel() {
-  if (window.fbq) return;
+  if (window.fbq) {
+    setMarketingAllowed(true);
+    return;
+  }
 
   const fbq: MetaPixelFunction = (...args: unknown[]) => {
     if (fbq.callMethod) fbq.callMethod(...args);
@@ -108,9 +112,13 @@ function loadMetaPixel() {
 
   fbq("init", META_PIXEL_ID);
   fbq("track", "PageView");
+  setMarketingAllowed(true);
 }
 
 async function getRegion(): Promise<string> {
+  // O endpoint regional pertence à hospedagem; o Vite local não o fornece.
+  // Região desconhecida exige uma escolha explícita, sem carregar o Pixel.
+  if (import.meta.env.DEV) return "XX";
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 2000);
 
@@ -172,6 +180,10 @@ export function MetaPixelConsent() {
       const stored = readConsent();
       setShowBanner(!stored);
       if (stored?.choice === "accepted") loadMetaPixel();
+      else {
+        setMarketingAllowed(false);
+        window.fbq?.("consent", "revoke");
+      }
     };
 
     window.addEventListener("marketing-consent-settings", openSettings);
@@ -196,6 +208,7 @@ export function MetaPixelConsent() {
       loadMetaPixel();
       window.fbq?.("consent", "grant");
     } else {
+      setMarketingAllowed(false);
       window.fbq?.("consent", "revoke");
     }
   };

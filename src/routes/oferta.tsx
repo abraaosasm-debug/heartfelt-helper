@@ -6,7 +6,6 @@ import {
   BookOpen,
   Check,
   Clock3,
-  Eye,
   FileText,
   HelpCircle,
   Layers3,
@@ -14,14 +13,10 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { PreviewCard, FaqItem } from "@/components/offer-details";
+import { trackMarketingEvent } from "@/lib/marketing-events";
 import { CookieSettingsButton } from "@/components/meta-pixel-consent";
+import { canTrackMarketing } from "@/lib/marketing-consent-state";
 import { checkoutUrls } from "@/lib/checkout";
 import "./oferta-premium.css";
 
@@ -74,22 +69,22 @@ const previews = [
   },
   {
     src: "/previews/selected/1.jpg",
-    title: "Página real",
+    title: "Encontre as primeiras atividades",
     volume: "Volume 2",
   },
   {
     src: "/previews/selected/5.jpg",
-    title: "Página real",
+    title: "Encontre três diferenças",
     volume: "Volume 2",
   },
   {
     src: "/previews/2_v3.jpg",
-    title: "Página real",
+    title: "Sumário do Volume 3",
     volume: "Volume 3",
   },
   {
     src: "/previews/5_v3.jpg",
-    title: "Página real",
+    title: "Antes e depois: números",
     volume: "Volume 3",
   },
 ] as const;
@@ -133,7 +128,10 @@ function trackCheckoutIntent(href: string) {
         ? { name: "Kit Essencial", value: 10 }
         : null;
 
-  if (!offer || !window.fbq) return;
+  if (!offer || !window.fbq || !canTrackMarketing()) return;
+  trackMarketingEvent(offer.value === 10 ? "KitEssentialCTA" : "KitCompleteCTA", {
+    content_name: offer.name,
+  });
 
   window.fbq("track", "InitiateCheckout", {
     content_name: offer.name,
@@ -198,72 +196,27 @@ function PrimaryCta({
   );
 }
 
-const previewSources: Record<string, string> = Object.fromEntries(
-  previews.map((preview, index) => [
-    preview.src,
-    `/previews/optimized/editorial-${index + 1}.webp`,
-  ]),
-);
-
-function PreviewCard({ src, title, volume }: { src: string; title: string; volume: string }) {
-  const thumbnail = previewSources[src];
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className="v11-preview-card" type="button" aria-label={`Ampliar ${title}`}>
-          <div className="v11-preview-image">
-            <img
-              src={src}
-              srcSet={
-                thumbnail
-                  ? `${thumbnail} 420w, ${thumbnail.replace(".webp", "-840.webp")} 840w`
-                  : undefined
-              }
-              sizes="(min-width: 960px) 340px, (min-width: 640px) 30vw, 44vw"
-              width={1080}
-              height={1527}
-              alt={`Página real do ${volume}`}
-              loading="lazy"
-              decoding="async"
-            />
-            <span>
-              <Eye size={14} />
-              ampliar
-            </span>
-          </div>
-          <div className="v11-preview-meta">
-            <strong>{volume}</strong>
-            <small>{title}</small>
-          </div>
-        </button>
-      </DialogTrigger>
-
-      <DialogContent className="v11-preview-dialog">
-        <DialogTitle>
-          {volume} — {title}
-        </DialogTitle>
-        <DialogDescription>Página real do material digital.</DialogDescription>
-        <div className="v11-preview-dialog-scroll">
-          <img src={src} width={1080} height={1527} alt={`Página ampliada do ${volume}`} />
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <details onToggle={(event) => setOpen(event.currentTarget.open)}>
-      <summary aria-expanded={open} aria-controls={`faq-answer-${index}`}>
-        {question}
-      </summary>
-      <p id={`faq-answer-${index}`}>{answer}</p>
-    </details>
-  );
-}
-
 function OfferPage() {
+  const [essentialOpen, setEssentialOpen] = useState(false);
+  useEffect(() => {
+    let sent = false;
+    const recordView = () => {
+      if (!sent) sent = trackMarketingEvent("OfferView", { content_name: "Kit Completo" });
+    };
+    recordView();
+    window.addEventListener("marketing-consent-change", recordView);
+    const footer = document.querySelector(".v11-footer");
+    const observer = new IntersectionObserver((entries) =>
+      entries.forEach((entry) =>
+        entry.target.classList.toggle("is-footer-visible", entry.isIntersecting),
+      ),
+    );
+    if (footer) observer.observe(footer);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("marketing-consent-change", recordView);
+    };
+  }, []);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const observer = new IntersectionObserver(
@@ -330,8 +283,8 @@ function OfferPage() {
             </h1>
 
             <p className="v11-hero-lead">
-              Tenha uma coleção organizada para não precisar criar tudo do zero sempre que precisar
-              de uma nova atividade.
+              Para mães, pais e profissionais da educação: uma coleção digital em PDF, organizada
+              para escolher, imprimir e usar sem criar cada atividade do zero.
             </p>
 
             <div className="v11-hero-benefits">
@@ -399,6 +352,22 @@ function OfferPage() {
               <span>BÔNUS</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="v11-section v11-use-cases">
+        <div className="v11-shell">
+          <span className="v11-kicker">NA SUA ROTINA</span>
+          <h2>Escolha conforme o momento.</h2>
+          <ol>
+            <li>Defina um objetivo educativo e consulte os temas dos volumes.</li>
+            <li>Escolha propostas para casa ou para o contexto educacional.</li>
+            <li>Imprima apenas o necessário e varie as atividades sem começar do zero.</li>
+          </ol>
+          <p>
+            Cada responsável ou profissional deve selecionar as atividades adequadas ao nível, à
+            necessidade e ao contexto da criança.
+          </p>
         </div>
       </section>
 
@@ -629,15 +598,18 @@ function OfferPage() {
         </div>
 
         <div className="v11-shell">
-          <details className="v11-essential" open>
-            <summary>
+          <details
+            className="v11-essential"
+            onToggle={(event) => setEssentialOpen(event.currentTarget.open)}
+          >
+            <summary aria-expanded={essentialOpen} aria-controls="essential-content">
               <span>
-                Prefere começar com uma opção menor?
+                Ainda não quer a coleção completa?
                 <small>Kit Essencial • somente Volume 1 • 91 páginas</small>
               </span>
               <strong>R$10,00</strong>
             </summary>
-            <div>
+            <div id="essential-content">
               <p>Inclui apenas o Volume 1, sem os Volumes 2 e 3 e sem os cinco bônus.</p>
               <AttributionLink href={checkoutUrls.essential} className="v11-essential-link">
                 VER KIT ESSENCIAL <ArrowRight size={14} />
@@ -687,7 +659,7 @@ function OfferPage() {
           <span className="v11-kicker">KIT COMPLETO</span>
           <h2>Escolha a atividade. Imprima. Use.</h2>
           <p>Comece hoje com atividades prontas, organizadas e fáceis de aplicar.</p>
-          <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90</p>
+          <p>3 volumes + 5 bônus • 492 páginas digitais • R$39,90 • 30 dias de garantia</p>
           <PrimaryCta label="QUERO MEU ACESSO AGORA" />
         </div>
       </section>
@@ -703,6 +675,7 @@ function OfferPage() {
         </span>
       </AttributionLink>
 
+      {/* Identificação comercial, suporte e licença de uso aguardam dados confirmados do responsável. */}
       <footer className="v11-footer">
         <div className="v11-shell">
           <div>

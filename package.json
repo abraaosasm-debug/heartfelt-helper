@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "verify:site": "node scripts/verify-site.mjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "verify-site": "node scripts/verify-site.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
