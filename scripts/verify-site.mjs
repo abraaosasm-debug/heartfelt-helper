@@ -226,11 +226,7 @@ requireAll(
 // Tipografia nova deve estar carregada no documento raiz.
 requireAll(
   rootRoute,
-  [
-    "family=Archivo+Black",
-    "family=Instrument+Serif",
-    "family=Manrope",
-  ],
+  ["family=Archivo+Black", "family=Instrument+Serif", "family=Manrope"],
   "Fontes premium",
 );
 
