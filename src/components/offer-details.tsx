@@ -13,7 +13,7 @@ const previewPaths = [
   "/previews/selected/kit1-selected-4.jpg",
   "/previews/selected/1.jpg",
   "/previews/selected/5.jpg",
-  "/previews/2_v3.jpg",
+  "/previews/3_v3.jpg",
   "/previews/5_v3.jpg",
 ];
 const previewSources: Record<string, string> = Object.fromEntries(
@@ -56,7 +56,7 @@ export function PreviewCard({
             />
             <span>
               <Eye size={14} />
-              Toque para ampliar
+              Ampliar
             </span>
           </div>
           <div className="v11-preview-meta">
