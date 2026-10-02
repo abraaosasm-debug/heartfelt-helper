@@ -75,8 +75,8 @@
 }
 .printed-sheet {
   position: absolute;
-  top: 45%;
-  left: 42%;
+  top: 44%;
+  left: 27%;
   width: 28%;
   padding: 3px;
   background: var(--editorial-surface);
@@ -86,33 +86,9 @@
   z-index: 2;
 }
 .printed-sheet-2 {
-  left: 65%;
-  top: 48%;
+  left: 50%;
+  top: 47%;
   transform: rotate(9deg);
-}
-.printed-pencil {
-  position: absolute;
-  bottom: 16%;
-  left: 13%;
-  width: 3px;
-  height: 27%;
-  border-radius: 2px;
-  background: var(--editorial-sage-dark);
-  transform: rotate(33deg);
-}
-.printed-pencil::after {
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  left: 0;
-  border-left: 1.5px solid transparent;
-  border-right: 1.5px solid transparent;
-  border-top: 7px solid var(--editorial-gold-dark);
-}
-.printed-pencil-gold {
-  left: 18%;
-  bottom: 13%;
-  background: var(--editorial-gold);
 }
 .printed-kit-caption {
   position: relative;
