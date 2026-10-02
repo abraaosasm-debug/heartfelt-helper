@@ -93,7 +93,8 @@ const previews = [
 const bonuses = [
   {
     title: "Planejamento de 4 Semanas",
-    description: "24 páginas para distribuir propostas ao longo de quatro semanas e facilitar a organização do que usar.",
+    description:
+      "24 páginas para distribuir propostas ao longo de quatro semanas e facilitar a organização do que usar.",
   },
   {
     title: "Rotina Visual para Recortar",
@@ -101,29 +102,59 @@ const bonuses = [
   },
   {
     title: "Jogos de Mesa Imprimíveis",
-    description: "Quatro jogos em 30 páginas para variar o uso do material com propostas imprimíveis.",
+    description:
+      "Quatro jogos em 30 páginas para variar o uso do material com propostas imprimíveis.",
   },
   {
     title: "Caderno de Observação da Aprendizagem",
-    description: "Um material para concentrar registros e observações em vez de deixá-los espalhados.",
+    description:
+      "Um material para concentrar registros e observações em vez de deixá-los espalhados.",
   },
   {
     title: "Atividades para Enviar às Famílias",
-    description: "Propostas prontas para compartilhar com as famílias quando isso fizer sentido no contexto educacional.",
+    description:
+      "Propostas prontas para compartilhar com as famílias quando isso fizer sentido no contexto educacional.",
   },
 ] as const;
 
 const faqs = [
-  ["O que exatamente eu recebo?", "3 volumes + 5 bônus, totalizando 492 páginas digitais em oito materiais."],
+  [
+    "O que exatamente eu recebo?",
+    "3 volumes + 5 bônus, totalizando 492 páginas digitais em oito materiais.",
+  ],
   ["É material físico ou digital?", "É um produto digital em PDF. Não há envio físico nem frete."],
-  ["Como recebo o material depois da compra?", "A compra é processada pela Cakto. Após a confirmação do pagamento, siga as instruções de acesso fornecidas pela plataforma."],
-  ["Preciso imprimir as 492 páginas?", "Não. Você pode consultar os PDFs e imprimir apenas as páginas que fizerem sentido para o momento."],
-  ["Serve para casa e para o contexto educacional?", "A coleção foi apresentada para mães, pais e profissionais da educação. A escolha de cada atividade deve considerar o nível, a necessidade e o contexto da criança."],
-  ["Existe uma faixa etária única?", "A oferta não define uma faixa etária única. O responsável ou profissional deve selecionar as atividades adequadas ao nível e ao contexto da criança."],
-  ["Preciso de impressora colorida?", "Os arquivos são entregues em PDF para impressão. A página não estabelece uma exigência técnica de impressora colorida; o resultado de cada impressão depende da página, da impressora e das configurações usadas."],
-  ["Quais formas de pagamento estão disponíveis?", "Confira no checkout da Cakto as formas de pagamento disponíveis no momento da compra."],
-  ["O material substitui terapia ou acompanhamento individualizado?", "Não. É um material educativo e não substitui avaliação, terapia ou acompanhamento individualizado quando esses forem necessários."],
-  ["Como funciona a garantia e o atendimento?", "A oferta apresenta garantia de 30 dias. Consulte no checkout as condições, os prazos e o canal de atendimento aplicável; não tratamos o reembolso como automático."],
+  [
+    "Como recebo o material depois da compra?",
+    "A compra é processada pela Cakto. Após a confirmação do pagamento, siga as instruções de acesso fornecidas pela plataforma.",
+  ],
+  [
+    "Preciso imprimir as 492 páginas?",
+    "Não. Você pode consultar os PDFs e imprimir apenas as páginas que fizerem sentido para o momento.",
+  ],
+  [
+    "Serve para casa e para o contexto educacional?",
+    "A coleção foi apresentada para mães, pais e profissionais da educação. A escolha de cada atividade deve considerar o nível, a necessidade e o contexto da criança.",
+  ],
+  [
+    "Existe uma faixa etária única?",
+    "A oferta não define uma faixa etária única. O responsável ou profissional deve selecionar as atividades adequadas ao nível e ao contexto da criança.",
+  ],
+  [
+    "Preciso de impressora colorida?",
+    "Os arquivos são entregues em PDF para impressão. A página não estabelece uma exigência técnica de impressora colorida; o resultado de cada impressão depende da página, da impressora e das configurações usadas.",
+  ],
+  [
+    "Quais formas de pagamento estão disponíveis?",
+    "Confira no checkout da Cakto as formas de pagamento disponíveis no momento da compra.",
+  ],
+  [
+    "O material substitui terapia ou acompanhamento individualizado?",
+    "Não. É um material educativo e não substitui avaliação, terapia ou acompanhamento individualizado quando esses forem necessários.",
+  ],
+  [
+    "Como funciona a garantia e o atendimento?",
+    "A oferta apresenta garantia de 30 dias. Consulte no checkout as condições, os prazos e o canal de atendimento aplicável; não tratamos o reembolso como automático.",
+  ],
 ] as const;
 
 function trackCheckoutIntent(href: string) {
@@ -278,10 +309,21 @@ function OfferPage() {
             </p>
 
             <div className="v11-hero-benefits">
-              <span><Check size={15} />3 volumes + 5 bônus</span>
-              <span><Check size={15} />492 páginas digitais</span>
-              <span><Check size={15} />PDFs para escolher e imprimir</span>
-              <span><Check size={15} />Garantia de 30 dias</span>
+              <span>
+                <Check size={15} />3 volumes + 5 bônus
+              </span>
+              <span>
+                <Check size={15} />
+                492 páginas digitais
+              </span>
+              <span>
+                <Check size={15} />
+                PDFs para escolher e imprimir
+              </span>
+              <span>
+                <Check size={15} />
+                Garantia de 30 dias
+              </span>
             </div>
 
             <div className="v11-hero-purchase">
@@ -469,8 +511,13 @@ function OfferPage() {
         <div className="v11-shell">
           <span className="v11-kicker">KIT COMPLETO</span>
           <h2>3 volumes + 5 bônus. 492 páginas. R$29,90.</h2>
-          <p>Escolha as atividades, imprima o que precisar e mantenha tudo em uma única coleção digital.</p>
-          <p><s>R$59,90</s> • R$29,90 pagamento único • garantia de 30 dias • checkout via Cakto</p>
+          <p>
+            Escolha as atividades, imprima o que precisar e mantenha tudo em uma única coleção
+            digital.
+          </p>
+          <p>
+            <s>R$59,90</s> • R$29,90 pagamento único • garantia de 30 dias • checkout via Cakto
+          </p>
           <PrintedKit />
           <PrimaryCta label="QUERO O KIT COMPLETO POR R$29,90" />
         </div>
