@@ -49,8 +49,6 @@ export function PrintedKit({
             />
           </span>
         ))}
-        <span className="printed-pencil printed-pencil-sage" aria-hidden="true" />
-        <span className="printed-pencil printed-pencil-gold" aria-hidden="true" />
       </span>
       <span className="printed-kit-caption">
         <strong>492 páginas digitais</strong>
