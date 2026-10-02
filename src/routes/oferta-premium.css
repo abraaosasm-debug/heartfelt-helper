@@ -1958,3 +1958,196 @@ body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
     padding: 52px 0;
   }
 }
+
+/* V12.1 — refinamento visual econômico: mais legibilidade, ritmo e unidade. */
+.v11-simple {
+  --v11-soft-shadow: 0 12px 30px color-mix(in oklab, var(--editorial-ink) 9%, transparent);
+  --v11-action-shadow: 0 10px 22px color-mix(in oklab, var(--editorial-action) 24%, transparent);
+}
+.v11-simple h1,
+.v11-simple h2,
+.v11-simple h3,
+.v11-simple .v11-hero-price strong,
+.v11-simple .v11-mobile-bar strong {
+  letter-spacing: 0;
+}
+.v11-simple .v11-trustbar {
+  background: color-mix(in oklab, var(--editorial-sage-light) 82%, var(--editorial-surface));
+}
+.v11-simple .v11-trustbar span {
+  color: var(--editorial-ink);
+  font-weight: 650;
+  letter-spacing: 0;
+}
+.v11-simple .v11-hero {
+  background:
+    linear-gradient(180deg, var(--editorial-paper), color-mix(in oklab, var(--editorial-sage-light) 58%, var(--editorial-paper)));
+}
+.v11-simple .v11-eyebrow {
+  width: fit-content;
+  padding: 7px 10px;
+  border: 1px solid var(--editorial-line);
+  border-radius: 6px;
+  background: var(--editorial-surface);
+  color: var(--editorial-sage-dark);
+  letter-spacing: 0;
+}
+.v11-simple .v11-hero h1 span {
+  color: var(--editorial-blue);
+}
+.v11-simple .v11-hero-lead,
+.v11-simple .v11-section-head > p,
+.v11-simple .v11-volume-card p,
+.v11-simple .v11-bonus-purpose,
+.v11-simple .v11-guarantee-grid p,
+.v11-simple .v11-final p {
+  color: color-mix(in oklab, var(--editorial-muted) 88%, var(--editorial-ink));
+}
+.v11-simple .v11-product-visual {
+  border-color: color-mix(in oklab, var(--editorial-sage) 42%, var(--editorial-line));
+  box-shadow: var(--v11-soft-shadow);
+}
+.v11-simple .v11-hero-purchase {
+  border-color: color-mix(in oklab, var(--editorial-action) 24%, var(--editorial-line));
+  box-shadow: var(--v11-soft-shadow);
+}
+.v11-simple .v11-cta {
+  min-height: 54px;
+  border-radius: 7px;
+  box-shadow: var(--v11-action-shadow);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.v11-simple .v11-section-head {
+  max-width: 720px;
+}
+.v11-simple .v11-kicker {
+  color: var(--editorial-sage-dark);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.v11-simple .v11-volume-card {
+  border-top-color: color-mix(in oklab, var(--editorial-line) 75%, var(--editorial-sage));
+}
+.v11-simple .v11-volume-card > div:last-child {
+  border-left-width: 4px;
+}
+.v11-simple .v11-bonus-box {
+  border-color: color-mix(in oklab, var(--editorial-sage) 38%, var(--editorial-line));
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--editorial-sage-dark) 7%, transparent);
+}
+.v11-simple .v11-preview-section {
+  background: color-mix(in oklab, var(--editorial-blue-light) 52%, var(--editorial-surface));
+}
+.v11-simple .v11-preview-card {
+  border-radius: 6px;
+  border-color: color-mix(in oklab, var(--editorial-blue) 18%, var(--editorial-line));
+  box-shadow: var(--v11-soft-shadow);
+}
+.v11-simple .v11-preview-meta strong {
+  font-weight: 700;
+}
+.v11-simple .v11-guarantee-section {
+  background: color-mix(in oklab, var(--editorial-gold-light) 72%, var(--editorial-sage-light));
+}
+.v11-simple .v11-guarantee-seal {
+  box-shadow: 0 18px 40px color-mix(in oklab, var(--editorial-gold-dark) 18%, transparent);
+}
+.v11-simple .v11-faq details:first-child {
+  border-top: 1px solid var(--editorial-line);
+}
+.v11-simple .v11-faq summary {
+  color: var(--editorial-ink);
+  font-weight: 600;
+}
+.v11-simple .v11-faq details[open] summary {
+  color: var(--editorial-blue);
+}
+.v11-simple .v11-final {
+  border-top: 1px solid color-mix(in oklab, var(--editorial-gold) 46%, var(--editorial-line));
+  background: color-mix(in oklab, var(--editorial-gold-light) 82%, var(--editorial-paper));
+}
+.v11-simple .v11-mobile-bar {
+  border-color: color-mix(in oklab, var(--editorial-action) 30%, var(--editorial-line));
+  box-shadow: 0 10px 30px color-mix(in oklab, var(--editorial-ink) 18%, transparent);
+}
+.v11-simple .v11-mobile-bar > strong {
+  color: var(--editorial-action);
+}
+.v11-simple .v11-footer {
+  border-top: 1px solid var(--editorial-line);
+}
+@media (max-width: 639px) {
+  .v11-simple .v11-shell {
+    width: min(var(--simple-max), calc(100% - 32px));
+  }
+  .v11-simple .v11-hero {
+    padding-top: 24px;
+  }
+  .v11-simple .v11-hero h1 {
+    font-size: clamp(38px, 10.7vw, 48px);
+    line-height: 1.03;
+  }
+  .v11-simple .v11-hero-lead {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+  .v11-simple .v11-product-visual {
+    border-radius: 9px;
+  }
+  .v11-simple .v11-section {
+    padding: 38px 0;
+  }
+  .v11-simple .v11-section-head > p {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+  .v11-simple .v11-volume-card p,
+  .v11-simple .v11-bonus-purpose {
+    font-size: 14px;
+  }
+  .v11-simple .v11-preview-grid {
+    gap: 16px 12px;
+  }
+  .v11-simple .v11-preview-meta strong,
+  .v11-simple .v11-preview-meta small {
+    font-size: 12px;
+  }
+  .v11-simple .v11-guarantee-grid h2 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+  .v11-simple .v11-guarantee-grid p {
+    font-size: 14px;
+  }
+  .v11-simple .v11-faq summary {
+    min-height: 64px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .v11-simple .v11-faq p {
+    font-size: 14px;
+  }
+}
+@media (min-width: 960px) {
+  .v11-simple .v11-hero-lead {
+    font-size: 17px;
+  }
+  .v11-simple .v11-section-head > p {
+    font-size: 16px;
+  }
+  .v11-simple .v11-hero-benefits span {
+    font-size: 14px;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .v11-simple .v11-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px color-mix(in oklab, var(--editorial-action) 30%, transparent);
+  }
+  .v11-simple .v11-preview-card:hover {
+    transform: translateY(-3px);
+  }
+}

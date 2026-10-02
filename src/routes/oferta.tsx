@@ -251,7 +251,7 @@ function OfferPage() {
           </span>
           <span>
             <ShieldCheck size={14} />
-            GARANTIA DE 30 DIAS
+            30 dias de garantia
           </span>
           <span>
             <BadgeCheck size={14} />
