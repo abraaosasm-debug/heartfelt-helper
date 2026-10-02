@@ -1394,10 +1394,10 @@ body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
 .v11-hero .printed-sheet {
   width: 21%;
   top: 42%;
-  left: 48%;
+  left: 31%;
 }
 .v11-hero .printed-sheet-2 {
-  left: 68%;
+  left: 53%;
   top: 45%;
 }
 .v11-hero .printed-kit-caption {
@@ -1676,11 +1676,11 @@ body:has(.v11-footer.is-footer-visible) .v11-mobile-bar {
   }
   .v11-hero .printed-sheet {
     width: 29%;
-    left: 40%;
+    left: 25%;
     top: 46%;
   }
   .v11-hero .printed-sheet-2 {
-    left: 64%;
+    left: 50%;
     top: 49%;
   }
   .v11-hero .printed-kit-caption {
