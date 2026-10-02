@@ -411,7 +411,10 @@ function OfferPage() {
                     {bonus.title}
                   </span>
                   <p className="v11-bonus-purpose">{bonus.description}</p>
-                  <div className="v11-bonus-price" aria-label="Valor do bônus: de R$4,90 por grátis hoje">
+                  <div
+                    className="v11-bonus-price"
+                    aria-label="Valor do bônus: de R$4,90 por grátis hoje"
+                  >
                     <s>R$4,90</s>
                     <strong>HOJE GRÁTIS</strong>
                   </div>
