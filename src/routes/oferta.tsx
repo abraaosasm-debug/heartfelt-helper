@@ -329,8 +329,12 @@ function OfferPage() {
 
             <div className="v11-hero-purchase">
               <div className="v11-hero-price">
+                <span className="v11-promo-badge">
+                  <Sparkles size={12} aria-hidden="true" />
+                  PROMOÇÃO ESPECIAL
+                </span>
                 <small>
-                  de <s>R$59,90</s> por
+                  de <s>R$39,90</s> por
                 </small>
                 <strong>R$29,90</strong>
                 <span>pagamento único</span>
@@ -338,6 +342,9 @@ function OfferPage() {
               <PrimaryCta label="QUERO AS 492 PÁGINAS" />
             </div>
 
+            <p className="v11-promo-copy">
+              Aproveite a condição promocional enquanto estiver disponível.
+            </p>
             <p className="v11-microcopy">
               Pagamento único • entrega digital • compra processada pela Cakto
             </p>
@@ -487,14 +494,15 @@ function OfferPage() {
 
       <section className="v11-final">
         <div className="v11-shell">
-          <span className="v11-kicker">KIT COMPLETO</span>
+          <span className="v11-kicker">KIT COMPLETO • PROMOÇÃO ESPECIAL</span>
           <h2>3 volumes + 5 bônus. 492 páginas. R$29,90.</h2>
           <p>
             Escolha as atividades, imprima o que precisar e mantenha tudo em uma única coleção
             digital.
           </p>
           <p>
-            <s>R$59,90</s> • R$29,90 pagamento único • garantia de 30 dias • checkout via Cakto
+            de <s>R$39,90</s> por <strong>R$29,90</strong> • pagamento único • garantia de 30 dias •
+            checkout via Cakto
           </p>
           <PrintedKit />
           <PrimaryCta label="QUERO O KIT COMPLETO POR R$29,90" />
